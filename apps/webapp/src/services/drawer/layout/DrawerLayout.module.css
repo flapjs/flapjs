@@ -1,0 +1,161 @@
+@value HANDLE_SIZE: 6px;
+@value MIN_DRAWER_SIZE: 20rem;
+
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+
+    --drawer-layout-handle: var(--primary);
+    --drawer-layout-background: var(--primary-dark);
+    --drawer-layout-text: var(--primary-text);
+}
+
+.viewport {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+
+    /** NOTE: This is not like the other viewports. It likes to hide... */
+    overflow: hidden;
+}
+
+.drawer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    color: var(--drawer-layout-text);
+    background: var(--drawer-layout-background);
+
+    /**
+     * HACK: Overrides the 'none' for workspace foreground input events.
+     * Refer to WorkspaceLayout for more info.
+     **/
+    pointer-events: auto;
+
+    /** Animated properties */
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+}
+
+.drawer .content {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.drawer .content::-webkit-scrollbar {
+    display: none;
+}
+
+.drawer:global(.left) .content,
+.drawer:global(.right) .content {
+    /** It's being blocked by the handle. */
+    margin-left: calc(HANDLE_SIZE);
+}
+
+.drawer:global(.top) .content,
+.drawer:global(.bottom) .content {
+    /** It's being blocked by the handle. */
+    margin-top: calc(HANDLE_SIZE);
+}
+
+.drawer:global(.left),
+.drawer:global(.right) {
+    min-width: MIN_DRAWER_SIZE;
+}
+
+.drawer:global(.top),
+.drawer:global(.bottom) {
+    min-height: MIN_DRAWER_SIZE;
+}
+
+.drawer:not(:global(.open)) {
+    /** Forces drawer to exit the flow. */
+    position: absolute;
+
+    /** Animated properties */
+    transition: transform 0.3s ease;
+}
+
+/** Sliiiide to the left! */
+.drawer:global(.left):not(:global(.open)) {
+    transform: translateX(-100%);
+}
+
+/** Sliiiide to the right! */
+.drawer:global(.right):not(:global(.open)) {
+    transform: translateX(100%);
+}
+
+/** Sliiiide to the top! */
+.drawer:global(.top):not(:global(.open)) {
+    transform: translateY(-100%);
+}
+
+/** Sliiiide to the bottom! */
+.drawer:global(.bottom):not(:global(.open)) {
+    transform: translateY(100%);
+}
+
+/** TODO: Fix this. There's a random space between drawer and sidebar when tabbing. */
+.drawer:not(:global(.open)):global(.left):focus-within,
+.drawer:not(:global(.open)):global(.right):focus-within {
+    /** Forces drawer to exit the flow. */
+    position: absolute;
+    right: MIN_DRAWER_SIZE;
+}
+
+/** TODO: Fix this. There's a random space between drawer and sidebar when tabbing. */
+.drawer:not(:global(.open)):global(.top):focus-within,
+.drawer:not(:global(.open)):global(.bottom):focus-within {
+    /** Forces drawer to exit the flow. */
+    position: absolute;
+    bottom: MIN_DRAWER_SIZE;
+}
+
+.handle {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--drawer-layout-handle);
+    border-left: 2px solid rgba(255, 255, 255, 0.05);
+    border-right: 2px solid rgba(0, 0, 0, 0.4);
+    user-select: none;
+    pointer-events: auto;
+}
+
+.drawer:not(:global(.open)) .handle {
+    pointer-events: none;
+}
+
+.drawer:global(.left) .handle {
+    right: 0;
+    width: HANDLE_SIZE;
+    transform: translateX(calc(HANDLE_SIZE / 2));
+    cursor: col-resize;
+}
+
+.drawer:global(.right) .handle {
+    left: 0;
+    width: HANDLE_SIZE;
+    transform: translateX(calc(HANDLE_SIZE / -2));
+    cursor: col-resize;
+}
+
+.drawer:global(.bottom) .handle {
+    top: 0;
+    height: HANDLE_SIZE;
+    transform: translateY(calc(HANDLE_SIZE / -2));
+    cursor: row-resize;
+}
+
+.drawer:global(.top) .handle {
+    bottom: 0;
+    height: HANDLE_SIZE;
+    transform: translateY(calc(HANDLE_SIZE / -2));
+    cursor: row-resize;
+}

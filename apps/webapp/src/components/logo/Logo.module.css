@@ -1,0 +1,34 @@
+.container {
+    display: inline-block;
+    margin: 0 0.3em;
+    font-size: 1.2em;
+}
+
+.logo {
+    padding: 0 0.3em;
+    border-radius: 0.5em;
+    transition: background-color 0.3s ease;
+    user-select: none;
+    background-color: var(--primary-focus);
+}
+
+.logo:hover {
+    background-color: var(--primary-active);
+    cursor: pointer;
+}
+
+.title {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+.version {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    margin-left: 0.2em;
+    font-size: 0.5em;
+    bottom: 0;
+    opacity: 0.6;
+}

@@ -1,0 +1,13 @@
+.workspace {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 15vmin;
+    border: none !important;
+}
+
+.center {
+    position: absolute;
+    top: 45%;
+    transform: translate(0, -50%);
+}

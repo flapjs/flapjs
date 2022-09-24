@@ -1,0 +1,10 @@
+{
+    "src/**/*.js?(x)": [
+        "eslint",
+        "git add"
+    ],
+    "src/**/*.css": [
+        "stylelint",
+        "git add"
+    ]
+}

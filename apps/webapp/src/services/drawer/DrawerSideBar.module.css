@@ -1,0 +1,34 @@
+.sidetab {
+    display: flex;
+    color: var(--primary-text);
+    text-align: center;
+}
+
+.sidetab > * {
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: none;
+    outline: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    color: var(--primary-text);
+}
+
+.sidetab:global(.horizontal) {
+    flex-direction: column;
+    height: 100%;
+}
+
+.sidetab:global(.vertical) {
+    flex-direction: row;
+    width: 100%;
+}
+
+.sidetab:global(.horizontal) > * {
+    margin: 0.2rem 0;
+}
+
+.sidetab:global(.vertical) > * {
+    margin: 0 0.2rem;
+}

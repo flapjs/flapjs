@@ -1,0 +1,31 @@
+.container {
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: none;
+    outline: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+
+    /* Should be inherited from parent. */
+    color: var(--primary-text, white);
+}
+
+.container:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.container:focus {
+    background-color: var(--primary-focus, rgba(255, 255, 255, 0.1));
+}
+
+.icon {
+    background: none;
+    border: none;
+    width: 2rem;
+    height: 2rem;
+
+    /** Inherits the color from the container */
+    color: currentColor;
+}

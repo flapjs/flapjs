@@ -1,0 +1,44 @@
+.container {
+    padding: 0.5rem;
+    margin: 0.5rem;
+    max-width: 20rem;
+    max-height: 80%;
+    overflow-y: auto;
+    border-top: 0.5rem solid var(--primary-dark);
+    box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.2);
+}
+
+.container > p {
+    margin: 0.5rem;
+}
+
+.container > fieldset {
+    position: sticky;
+    bottom: 0;
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.container > fieldset > legend {
+    font-size: 0.8rem;
+    opacity: 0.3;
+}
+
+.container:global(.info) {
+    border-color: var(--info-dark);
+    background-color: var(--info);
+}
+
+.container:global(.error) {
+    border-color: var(--danger-dark);
+    background-color: var(--danger);
+}
+
+.container:global(.warning) {
+    border-color: var(--warning-dark);
+    background-color: var(--warning);
+}
+
+.container:global(.success) {
+    border-color: var(--success-dark);
+    background-color: var(--success);
+}

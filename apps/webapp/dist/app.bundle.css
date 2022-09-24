@@ -1,0 +1,560 @@
+.src-components-__App-module__container--14FNh {
+    display: grid;
+    grid-template-rows: 4rem;
+    width: 100%;
+    height: 100%;
+}
+
+.src-components-__App-module__container--14FNh header {
+    width: 100%;
+    height: 4rem;
+    overflow: hidden;
+}
+
+.src-components-__App-module__container--14FNh main {
+    width: 100%;
+    height: 100%;
+}
+
+.src-components-__App-module__container--14FNh footer:empty {
+    display: none;
+}
+
+.src-components-sidebar-__SideBarLayout-module__container--1RGMP {
+    position: relative;
+    display: flex;
+
+    /** flex-direction is controlled by SideBarLayout. */
+
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    --side-margin: auto;
+    --side-background: var(--primary);
+}
+
+.src-components-sidebar-__SideBarLayout-module__sideBar--2BFCH {
+    z-index: 20;
+    background-color: var(--side-background);
+    overflow: auto;
+    flex-shrink: 0;
+
+    /**
+     * HACK: Overrides the 'none' for workspace foreground input events.
+     * Refer to WorkspaceLayout for more info.
+     */
+    pointer-events: auto;
+}
+
+.src-components-sidebar-__SideBarLayout-module__sideContent--3kPga {
+    display: flex;
+
+    /** flex-direction is controlled by SideBarLayout. */
+}
+
+.src-components-sidebar-__SideBarLayout-module__sideContent--3kPga > * {
+    padding: 0.3rem;
+}
+
+.src-components-sidebar-__SideBarLayout-module__viewport--15hdu {
+    flex: 1;
+    overflow: hidden;
+
+    /** This makes sure that the viewport's overflow respects this container's height */
+    width: 100%;
+    height: 100%;
+}
+
+/** Disable the scroll bar */
+.src-components-sidebar-__SideBarLayout-module__sideBar--2BFCH::-webkit-scrollbar {
+    display: none;
+}
+
+.src-components-sidebar-__SideBarLayout-module__sideBar--2BFCH.left {
+    width: var(--side-margin);
+}
+
+.src-components-sidebar-__SideBarLayout-module__sideBar--2BFCH.right {
+    width: var(--side-margin);
+}
+
+.src-components-sidebar-__SideBarLayout-module__sideBar--2BFCH.top {
+    height: var(--side-margin);
+}
+
+.src-components-sidebar-__SideBarLayout-module__sideBar--2BFCH.bottom {
+    height: var(--side-margin);
+}
+
+.src-services-drawer-layout-__DrawerLayout-module__container--1g3ba {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+
+    --drawer-layout-handle: var(--primary);
+    --drawer-layout-background: var(--primary-dark);
+    --drawer-layout-text: var(--primary-text);
+}
+
+.src-services-drawer-layout-__DrawerLayout-module__viewport--2umQ- {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+
+    /** NOTE: This is not like the other viewports. It likes to hide... */
+    overflow: hidden;
+}
+
+.src-services-drawer-layout-__DrawerLayout-module__drawer--1CeuY {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    color: var(--drawer-layout-text);
+    background: var(--drawer-layout-background);
+
+    /**
+     * HACK: Overrides the 'none' for workspace foreground input events.
+     * Refer to WorkspaceLayout for more info.
+     **/
+    pointer-events: auto;
+
+    /** Animated properties */
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+}
+
+.src-services-drawer-layout-__DrawerLayout-module__drawer--1CeuY .src-services-drawer-layout-__DrawerLayout-module__content--17Aoa {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.src-services-drawer-layout-__DrawerLayout-module__drawer--1CeuY .src-services-drawer-layout-__DrawerLayout-module__content--17Aoa::-webkit-scrollbar {
+    display: none;
+}
+
+.src-services-drawer-layout-__DrawerLayout-module__drawer--1CeuY.left .src-services-drawer-layout-__DrawerLayout-module__content--17Aoa,
+.src-services-drawer-layout-__DrawerLayout-module__drawer--1CeuY.right .src-services-drawer-layout-__DrawerLayout-module__content--17Aoa {
+    /** It's being blocked by the handle. */
+    margin-left: calc(6px);
+}
+
+.src-services-drawer-layout-__DrawerLayout-module__drawer--1CeuY.top .src-services-drawer-layout-__DrawerLayout-module__content--17Aoa,
+.src-services-drawer-layout-__DrawerLayout-module__drawer--1CeuY.bottom .src-services-drawer-layout-__DrawerLayout-module__content--17Aoa {
+    /** It's being blocked by the handle. */
+    margin-top: calc(6px);
+}
+
+.src-services-drawer-layout-__DrawerLayout-module__drawer--1CeuY.left,
+.src-services-drawer-layout-__DrawerLayout-module__drawer--1CeuY.right {
+    min-width: 20rem;
+}
+
+.src-services-drawer-layout-__DrawerLayout-module__drawer--1CeuY.top,
+.src-services-drawer-layout-__DrawerLayout-module__drawer--1CeuY.bottom {
+    min-height: 20rem;
+}
+
+.src-services-drawer-layout-__DrawerLayout-module__drawer--1CeuY:not(.open) {
+    /** Forces drawer to exit the flow. */
+    position: absolute;
+
+    /** Animated properties */
+    transition: transform 0.3s ease;
+}
+
+/** Sliiiide to the left! */
+.src-services-drawer-layout-__DrawerLayout-module__drawer--1CeuY.left:not(.open) {
+    transform: translateX(-100%);
+}
+
+/** Sliiiide to the right! */
+.src-services-drawer-layout-__DrawerLayout-module__drawer--1CeuY.right:not(.open) {
+    transform: translateX(100%);
+}
+
+/** Sliiiide to the top! */
+.src-services-drawer-layout-__DrawerLayout-module__drawer--1CeuY.top:not(.open) {
+    transform: translateY(-100%);
+}
+
+/** Sliiiide to the bottom! */
+.src-services-drawer-layout-__DrawerLayout-module__drawer--1CeuY.bottom:not(.open) {
+    transform: translateY(100%);
+}
+
+/** TODO: Fix this. There's a random space between drawer and sidebar when tabbing. */
+.src-services-drawer-layout-__DrawerLayout-module__drawer--1CeuY:not(.open).left:focus-within,
+.src-services-drawer-layout-__DrawerLayout-module__drawer--1CeuY:not(.open).right:focus-within {
+    /** Forces drawer to exit the flow. */
+    position: absolute;
+    right: 20rem;
+}
+
+/** TODO: Fix this. There's a random space between drawer and sidebar when tabbing. */
+.src-services-drawer-layout-__DrawerLayout-module__drawer--1CeuY:not(.open).top:focus-within,
+.src-services-drawer-layout-__DrawerLayout-module__drawer--1CeuY:not(.open).bottom:focus-within {
+    /** Forces drawer to exit the flow. */
+    position: absolute;
+    bottom: 20rem;
+}
+
+.src-services-drawer-layout-__DrawerLayout-module__handle--3PWEy {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--drawer-layout-handle);
+    border-left: 2px solid rgba(255, 255, 255, 0.05);
+    border-right: 2px solid rgba(0, 0, 0, 0.4);
+    -webkit-user-select: none;
+            user-select: none;
+    pointer-events: auto;
+}
+
+.src-services-drawer-layout-__DrawerLayout-module__drawer--1CeuY:not(.open) .src-services-drawer-layout-__DrawerLayout-module__handle--3PWEy {
+    pointer-events: none;
+}
+
+.src-services-drawer-layout-__DrawerLayout-module__drawer--1CeuY.left .src-services-drawer-layout-__DrawerLayout-module__handle--3PWEy {
+    right: 0;
+    width: 6px;
+    transform: translateX(calc(6px / 2));
+    cursor: col-resize;
+}
+
+.src-services-drawer-layout-__DrawerLayout-module__drawer--1CeuY.right .src-services-drawer-layout-__DrawerLayout-module__handle--3PWEy {
+    left: 0;
+    width: 6px;
+    transform: translateX(calc(6px / -2));
+    cursor: col-resize;
+}
+
+.src-services-drawer-layout-__DrawerLayout-module__drawer--1CeuY.bottom .src-services-drawer-layout-__DrawerLayout-module__handle--3PWEy {
+    top: 0;
+    height: 6px;
+    transform: translateY(calc(6px / -2));
+    cursor: row-resize;
+}
+
+.src-services-drawer-layout-__DrawerLayout-module__drawer--1CeuY.top .src-services-drawer-layout-__DrawerLayout-module__handle--3PWEy {
+    bottom: 0;
+    height: 6px;
+    transform: translateY(calc(6px / -2));
+    cursor: row-resize;
+}
+
+.src-services-drawer-__DrawerSideBar-module__sidetab--2vIq5 {
+    display: flex;
+    color: var(--primary-text);
+    text-align: center;
+}
+
+.src-services-drawer-__DrawerSideBar-module__sidetab--2vIq5 > * {
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: none;
+    outline: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    color: var(--primary-text);
+}
+
+.src-services-drawer-__DrawerSideBar-module__sidetab--2vIq5.horizontal {
+    flex-direction: column;
+    height: 100%;
+}
+
+.src-services-drawer-__DrawerSideBar-module__sidetab--2vIq5.vertical {
+    flex-direction: row;
+    width: 100%;
+}
+
+.src-services-drawer-__DrawerSideBar-module__sidetab--2vIq5.horizontal > * {
+    margin: 0.2rem 0;
+}
+
+.src-services-drawer-__DrawerSideBar-module__sidetab--2vIq5.vertical > * {
+    margin: 0 0.2rem;
+}
+
+.src-components-icons-__IconButton-module__container--3AYpC {
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: none;
+    outline: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+
+    /* Should be inherited from parent. */
+    color: var(--primary-text, white);
+}
+
+.src-components-icons-__IconButton-module__container--3AYpC:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.src-components-icons-__IconButton-module__container--3AYpC:focus {
+    background-color: var(--primary-focus, rgba(255, 255, 255, 0.1));
+}
+
+.src-components-icons-__IconButton-module__icon--3yNRJ {
+    background: none;
+    border: none;
+    width: 2rem;
+    height: 2rem;
+
+    /** Inherits the color from the container */
+    color: currentColor;
+}
+
+.src-components-appbar-__AppBar-module__container--2jfDY {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0 0.4rem;
+    width: calc(100% - 0.8rem);
+    height: 100%;
+    background-color: var(--primary);
+    color: var(--primary-text);
+}
+
+.src-components-appbar-__AppBar-module__container--2jfDY::-webkit-scrollbar {
+    display: none;
+}
+
+.src-components-layout-__FlexibleOrientationLayout-module__container--1bGSN {
+    width: 100%;
+    height: 100%;
+}
+
+.src-components-layout-__FlexibleOrientationLayout-module__container--1bGSN.resizing * {
+    /** Disable transitions while resizing in a flexible orientation layout */
+    transition: none !important;
+}
+
+.src-components-workspace-__WorkspaceLayout-module__container--2YkID {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.src-components-workspace-__WorkspaceLayout-module__background--2Q3aD {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /**
+     * HACK: Overrides the input events for workspace background.
+     * This let's you actually click workspace stuff. BUT, you
+     * will need to enable pointer-events for everything that
+     * you want to be able to click. :(
+     *
+     * Refer to DrawerLayer and SideBarLayout for how this is done.
+     **/
+    pointer-events: none;
+}
+
+.src-components-workspace-__WorkspaceLayout-module__foreground--2Dmd8 {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /**
+     * HACK: Overrides the input events for workspace foreground.
+     * This let's you actually click background stuff. BUT, you
+     * will need to enable pointer-events for everything that
+     * you want to be able to click. :(
+     *
+     * Refer to DrawerLayer and SideBarLayout for how this is done.
+     **/
+    pointer-events: none;
+}
+
+.src-components-viewport-__Viewport-module__container--PgBwC {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.src-components-viewport-__Viewport-module__container--PgBwC > * {
+    pointer-events: auto;
+}
+
+.src-components-logo-__Logo-module__container--33Xrv {
+    display: inline-block;
+    margin: 0 0.3em;
+    font-size: 1.2em;
+}
+
+.src-components-logo-__Logo-module__logo--2e8Bt {
+    padding: 0 0.3em;
+    border-radius: 0.5em;
+    transition: background-color 0.3s ease;
+    -webkit-user-select: none;
+            user-select: none;
+    background-color: var(--primary-focus);
+}
+
+.src-components-logo-__Logo-module__logo--2e8Bt:hover {
+    background-color: var(--primary-active);
+    cursor: pointer;
+}
+
+.src-components-logo-__Logo-module__title--37GKA {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+.src-components-logo-__Logo-module__version--TIZdj {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    margin-left: 0.2em;
+    font-size: 0.5em;
+    bottom: 0;
+    opacity: 0.6;
+}
+
+.src-components-__ModuleSelector-module__container--3STXK {
+    position: relative;
+    display: inline-block;
+}
+
+.src-components-__ModuleSelector-module__launcher--Pbywp {
+    width: 5rem;
+    opacity: 1;
+    transition: width 0.2s ease, opacity 0.4s ease;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.src-components-__ModuleSelector-module__launcher--Pbywp:disabled {
+    width: 0;
+    opacity: 0;
+}
+
+.src-components-__ModuleSelector-module__cancel--3gZe7 {
+    width: 5rem;
+    opacity: 1;
+    transition: width 0.2s ease, opacity 0.4s ease;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.src-components-__ModuleSelector-module__cancel--3gZe7:disabled {
+    width: 0;
+    opacity: 0;
+}
+
+.src-components-__ModuleSelector-module__selector--3uGBw {
+    font-size: 1em;
+    width: 80%;
+}
+
+.src-components-welcome-__WelcomeScreen-module__container--2hbpR {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    opacity: 1;
+    font-size: 2rem;
+    background-color: rgba(0, 0, 0, 0.8);
+
+    --welcome-layout-background: var(--primary);
+    --welcome-layout-text: var(--primary-text);
+    --welcome-layout-focus: var(--primary-focus);
+}
+
+.src-components-welcome-__WelcomeScreen-module__container--2hbpR.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.src-components-welcome-__WelcomeScreen-module__content--2OKt0 {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    color: var(--welcome-layout-text);
+}
+
+.src-components-welcome-__WelcomeScreen-module__content--2OKt0 > * {
+    flex: 1;
+}
+
+.src-components-welcome-__WelcomeScreen-module__button--ebQns {
+    flex: 0;
+    margin: 1rem;
+    padding: 1rem;
+    font-size: 1.5rem;
+    border: 4px solid var(--welcome-layout-text);
+    border-radius: 2rem;
+    box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.3);
+    background-color: transparent;
+    color: var(--welcome-layout-text);
+}
+
+.src-components-welcome-__WelcomeScreen-module__button--ebQns:hover {
+    background-color: var(--welcome-layout-focus);
+}
+
+.src-components-welcome-__WelcomeScreen-module__button--ebQns:active {
+    border: 4px solid var(--welcome-layout-text);
+}
+
+.src-components-welcome-__WelcomeScreen-module__dialog--2Cpug {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 80vmin;
+    height: 60vmin;
+    padding: 0.5rem;
+    border-top: 1rem solid;
+    border-color: black;
+    box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.3);
+    background-color: var(--welcome-layout-background);
+}
+
+.src-components-welcome-__WelcomeScreen-module__close--53q3j {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: white;
+}
+
+.src-components-welcome-__WelcomeScreen-module__footer--s5PAg {
+    color: gray;
+    flex: 0;
+    font-size: 0.5em;
+    padding: 0;
+    margin: 0;
+}
+
+.src-components-welcome-__WelcomeScreen-module__footer--s5PAg a {
+    color: silver;
+}
+
+.src-components-welcome-__WelcomeScreen-module__footer--s5PAg a:visited {
+    color: gold;
+}
+

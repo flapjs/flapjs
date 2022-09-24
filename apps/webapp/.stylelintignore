@@ -1,0 +1,7 @@
+/dist/
+/docs/
+/out/
+
+# Source files that should not be linted
+/src/assets/libs/
+/src/deprecated/
