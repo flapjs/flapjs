@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 const webpack = require('webpack');
 const package = require('./package.json');
 const NODE_ENV = process.env.NODE_ENV || 'development';
@@ -52,6 +53,7 @@ const config = {
   //Target platform
   target: 'web',
   output: {
+    //Output to ./OUTPUT/bundle.js
     path: OUTPUT_PATH,
     filename: '[name].bundle.js',
     chunkFilename: '[name].bundle.js',
@@ -108,10 +110,11 @@ const config = {
       entry: path.join(__dirname, './res/ServiceWorker.js'),
       publicPath: './',
       excludes: ['**/.*', '**/*.map', '**/document/**', '**/image/**', '**/lang/**', '**/script/**', '**/style/**'],
-      transformOptions(serviceWorkerOption) {
+      transformOptions: serviceWorkerOption =>
+      {
         return {
           assets: serviceWorkerOption.assets,
-          hash: Math.random().toString(36).substring(2, 9)
+          hash: Math.random().toString(36).substr(2, 9)
         };
       }
     }),
@@ -121,7 +124,7 @@ const config = {
       alwaysWriteToDisk: true
     }),
     new HtmlHardDiskPlugin(),
-    new webpack.DefinePlugin(GLOBAL_VARS),
+    new webpack.DefinePlugin(GLOBAL_VARS)
   ]
 };
 
@@ -155,12 +158,11 @@ module.exports = (env, argv) =>
         filename: 'sourcemap/[name].bundle.js.map',
         exclude: [/vendors\.bundle.*\.js$/, 'serviceWorker.js']
       }));
-    config.plugins.push(
-      new CleanPlugin({
-        cleanOnceBeforeBuildPatterns: [OUTPUT_PATH],
-        dangerouslyAllowCleanPatternsOutsideProject: true,
-        dry: false
-      }));
+    config.plugins.push(new CleanPlugin({
+      cleanOnceBeforeBuildPatterns: [OUTPUT_PATH],
+      dangerouslyAllowCleanPatternsOutsideProject: true,
+      dry: false
+    }));
 
     //Optimizations
     config.optimization = {

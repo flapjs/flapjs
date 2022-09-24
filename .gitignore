@@ -1,3 +1,8 @@
+# Flap.js temporary files
+apps/*/dist/
+tools/*/dist/
+libs/*/dist/
+
 # Logs
 *.log
 npm-debug.log*

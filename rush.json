@@ -402,6 +402,14 @@
     {
       "packageName": "@flapjs/webapp",
       "projectFolder": "apps/webapp"
+    },
+    {
+      "packageName": "flapjs-webapp",
+      "projectFolder": "apps/FLAPJS-WebApp"
+    },
+    {
+      "packageName": "flapjs-v2",
+      "projectFolder": "apps/FLAPJS-V2"
     }
     // {
     //   /**
