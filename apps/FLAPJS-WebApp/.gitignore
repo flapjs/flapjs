@@ -1,0 +1,11 @@
+/node_modules
+.DS_Store
+
+# Ignore any output files (not distributed)
+/out
+
+# Ignore any logs
+*.log
+
+# ESlint cache file
+.eslintcache
