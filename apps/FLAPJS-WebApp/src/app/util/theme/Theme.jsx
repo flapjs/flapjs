@@ -3,7 +3,7 @@ import StyleEntry from './style/StyleEntry';
 
 const LOGGER_TAG = 'Theme';
 //TODO: this should be only lang/ when have server
-const BASE_URL = 'dist/theme/';
+const BASE_URL = 'theme/';
 
 class Theme
 {
