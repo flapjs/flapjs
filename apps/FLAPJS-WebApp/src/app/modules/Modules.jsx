@@ -1,24 +1,29 @@
+import FSAModule from './fsa2/FSAModule';
+import PDAModule from './pda/PDAModule';
+import REModule from './re/REModule';
+import NodeGraphModule from './nodegraph/NodeGraphModule';
+
 const Modules = {};
 
 Modules['fsa'] = {
     name: 'Finite Automata',
     version: '3.0.0',
     experimental: true,
-    fetch: function (callback) { import(/* webpackChunkName: "module_fsa" */ 'src/app/modules/fsa2/FSAModule').then(({ default: _ }) => callback(_)); }
+    fetch: function (callback) { callback(FSAModule); }
 };
 
 Modules['pda'] = {
     name: 'Pushdown Automata',
     version: '1.0.0',
     experimental: true,
-    fetch: function (callback) { import(/* webpackChunkName: "module_pda" */ 'src/app/modules/pda/PDAModule').then(({ default: _ }) => callback(_)); }
+    fetch: function (callback) { callback(PDAModule); }
 };
 
 Modules['re'] = {
     name: 'Regular Expression',
     version: '1.0.0',
     experimental: true,
-    fetch: function (callback) { import(/* webpackChunkName: "module_re" */ 'src/app/modules/re/REModule').then(({ default: _ }) => callback(_)); }
+    fetch: function (callback) { callback(REModule); }
 };
 
 Modules['tm'] = {
@@ -32,7 +37,7 @@ Modules['node'] = {
     name: 'Node Graph',
     version: '1.0.0',
     experimental: true,
-    fetch: function (callback) { import(/* webpackChunkName: "module_nodegraph" */ 'src/app/modules/nodegraph/NodeGraphModule').then(({ default: _ }) => callback(_)); }
+    fetch: function (callback) { callback(NodeGraphModule); }
 };
 
 Modules['tree'] = {

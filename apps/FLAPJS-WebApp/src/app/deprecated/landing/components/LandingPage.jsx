@@ -10,6 +10,7 @@ import Quote from './Quote';
 import ModuleLoader from 'src/app/deprecated/modules/ModuleLoader';
 import LocalSave from 'src/app/deprecated/system/localsave/LocalSave';
 import App from 'src/app/deprecated/content/App';
+import ExperimentalApp from 'src/app/experimental/App';
 
 const LAUNCH_BUTTON_TEXT = "Launch Workspace";
 const SMALL_LAUNCH_BUTTON_TEXT = "Get Started!";
@@ -101,8 +102,7 @@ class LandingPage extends React.Component
     {
       if (LocalSave.getStringFromStorage("enableExperimental") === "true")
       {
-        import(/* webpackChunkName: "experimental" */ 'src/app/experimental/App')
-          .then(({ default: _ }) => Router.routeTo( _ ));
+        Router.routeTo(ExperimentalApp);
       }
       else
       {

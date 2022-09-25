@@ -4,6 +4,7 @@ import Router from 'router';
 import App from 'src/app/deprecated/content/App';
 import Modules from 'src/app/modules/Modules';
 import LocalSave from 'src/app/deprecated/system/localsave/LocalSave';
+import ExperimentalApp from 'src/app/experimental/App';
 
 export const CURRENT_MODULE_STORAGE_ID = "currentModule";
 const MODULE_LOAD_DELAY = 300;
@@ -50,11 +51,10 @@ class ModuleLoader extends React.Component
         IS_DEFAULT_MODULE = false;
         if (useExperimental)
         {
-          import(/* webpackChunkName: "experimental" */ 'src/app/experimental/App')
-            .then(({ default: _ }) => Router.routeTo(ModuleLoader, {
-              moduleClass: moduleClass,
-              appClass: _
-            }));
+          Router.routeTo(ModuleLoader, {
+            moduleClass,
+            appClass: ExperimentalApp,
+          });
         }
         else
         {
