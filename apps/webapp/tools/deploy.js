@@ -1,7 +1,10 @@
-const ghPages = require('gh-pages');
-const package = require('../package.json');
-const PACKAGE_VERSION = package.version;
-const PACKAGE_TITLE = package.name;
+import ghPages from 'gh-pages';
+import fs from 'fs';
+
+let file = fs.readFileSync('./package.json');
+let packageJson = JSON.parse(file.toString());
+const PACKAGE_VERSION = packageJson.version;
+const PACKAGE_TITLE = packageJson.name;
 
 ghPages.publish('dist', {
     branch: `staging-v${PACKAGE_VERSION}`,

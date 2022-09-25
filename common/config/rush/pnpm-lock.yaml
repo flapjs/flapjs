@@ -167,12 +167,13 @@ importers:
 
   ../../apps/webapp:
     specifiers:
-      '@types/react': ^18.0.17
-      '@types/react-dom': ^18.0.6
-      '@vitejs/plugin-react': ^2.1.0
-      react: ^18.2.0
-      react-dom: ^18.2.0
-      vite: ^3.1.0
+      '@types/react': ~18.0.17
+      '@types/react-dom': ~18.0.6
+      '@vitejs/plugin-react': ~2.1.0
+      gh-pages: ~4.0.0
+      react: ~18.2.0
+      react-dom: ~18.2.0
+      vite: ~3.1.0
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -180,6 +181,7 @@ importers:
       '@types/react': 18.0.21
       '@types/react-dom': 18.0.6
       '@vitejs/plugin-react': 2.1.0_vite@3.1.3
+      gh-pages: 4.0.0
       vite: 3.1.3
 
 packages:
@@ -6531,6 +6533,10 @@ packages:
       minimalistic-crypto-utils: 1.0.1
     dev: true
 
+  /email-addresses/3.1.0:
+    resolution: {integrity: sha512-k0/r7GrWVL32kZlGwfPNgB2Y/mMXVTq/decgLczm/j34whdaspNrZO8CnXPf1laaHxI6ptUlsnAxN+UAPw+fzg==}
+    dev: true
+
   /emittery/0.7.2:
     resolution: {integrity: sha512-A8OG5SR/ij3SsJdWDJdkkSYUjQdCUx6APQXem0SaEePBSRg4eymGYwBkKo1Y6DU+af/Jn2dBQqDBvjnr9Vi8nQ==}
     engines: {node: '>=10'}
@@ -7691,6 +7697,20 @@ packages:
     dev: true
     optional: true
 
+  /filename-reserved-regex/2.0.0:
+    resolution: {integrity: sha512-lc1bnsSr4L4Bdif8Xb/qrtokGbq5zlsms/CYH8PP+WtCkGNF65DPiQY8vG3SakEdRn8Dlnm+gW/qWKKjS5sZzQ==}
+    engines: {node: '>=4'}
+    dev: true
+
+  /filenamify/4.3.0:
+    resolution: {integrity: sha512-hcFKyUG57yWGAzu1CMt/dPzYZuv+jAJUT85bL8mrXvNe6hWj6yEHEc4EdcgiA6Z3oi1/9wXJdZPXF2dZNgwgOg==}
+    engines: {node: '>=8'}
+    dependencies:
+      filename-reserved-regex: 2.0.0
+      strip-outer: 1.0.1
+      trim-repeated: 1.0.0
+    dev: true
+
   /fill-range/4.0.0:
     resolution: {integrity: sha512-VcpLTWqWDiTerugjj8e3+esbg+skS3M9e54UuR3iCeIDMXCLTsAH8hTSzDQU/X6/6t3eYkOKoZSef2PlU6U1XQ==}
     engines: {node: '>=0.10.0'}
@@ -8140,6 +8160,20 @@ packages:
     resolution: {integrity: sha512-0fzj9JxOLfJ+XGLhR8ze3unN0KZCgZwiSSDz168VERjK8Wl8kVSdcu2kspd4s4wtAa1y/qrVRiAA0WclVsu0ng==}
     dependencies:
       assert-plus: 1.0.0
+    dev: true
+
+  /gh-pages/4.0.0:
+    resolution: {integrity: sha512-p8S0T3aGJc68MtwOcZusul5qPSNZCalap3NWbhRUZYu1YOdp+EjZ+4kPmRM8h3NNRdqw00yuevRjlkuSzCn7iQ==}
+    engines: {node: '>=10'}
+    hasBin: true
+    dependencies:
+      async: 2.6.4
+      commander: 2.20.3
+      email-addresses: 3.1.0
+      filenamify: 4.3.0
+      find-cache-dir: 3.3.2
+      fs-extra: 8.1.0
+      globby: 6.1.0
     dev: true
 
   /github-slugger/1.4.0:
@@ -14589,6 +14623,13 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /strip-outer/1.0.1:
+    resolution: {integrity: sha512-k55yxKHwaXnpYGsOzg4Vl8+tDrWylxDEpknGjhTiZB8dFRU5rTo9CAzeycivxV3s+zlTKwrs6WxMxR95n26kwg==}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      escape-string-regexp: 1.0.5
+    dev: true
+
   /style-loader/0.23.1:
     resolution: {integrity: sha512-XK+uv9kWwhZMZ1y7mysB+zoihsEj4wneFWAS5qoiLwzW0WzSqMrrsIy+a3zkQJq0ipFtBpX5W3MqyRIBF/WFGg==}
     engines: {node: '>= 0.12.0'}
@@ -15076,6 +15117,13 @@ packages:
   /trim-newlines/3.0.1:
     resolution: {integrity: sha512-c1PTsA3tYrIsLGkJkzHF+w9F2EyxfXGo4UyJc4pFL++FMjnq0HJS69T3M7d//gKrFKwy429bouPescbjecU+Zw==}
     engines: {node: '>=8'}
+    dev: true
+
+  /trim-repeated/1.0.0:
+    resolution: {integrity: sha512-pkonvlKk8/ZuR0D5tLW8ljt5I8kmxp2XKymhepUeOdCEfKpZaktSArkLHZt76OB1ZvO9bssUsDty4SWhLvZpLg==}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      escape-string-regexp: 1.0.5
     dev: true
 
   /trim-trailing-lines/1.1.4:
