@@ -1,20 +1,25 @@
-class LabelFormatter
-{
-    formatLabel(target, nextLabel, prevLabel = null) { return nextLabel; }
-    getDefaultLabel(target) { return ''; }
+class LabelFormatter {
+  formatLabel(target, nextLabel, prevLabel = null) {
+    return nextLabel;
+  }
+  getDefaultLabel(target) {
+    return '';
+  }
 
-    formatNodeLabel(nextNodeLabel, prevNodeLabel = null)
-    {
-        return nextNodeLabel;
-    }
+  formatNodeLabel(nextNodeLabel, prevNodeLabel = null) {
+    return nextNodeLabel;
+  }
 
-    formatEdgeLabel(nextEdgeLabel, prevEdgeLabel = null)
-    {
-        return nextEdgeLabel;
-    }
+  formatEdgeLabel(nextEdgeLabel, prevEdgeLabel = null) {
+    return nextEdgeLabel;
+  }
 
-    getDefaultNodeLabel() { return ''; }
-    getDefaultEdgeLabel() { return ''; }
+  getDefaultNodeLabel() {
+    return '';
+  }
+  getDefaultEdgeLabel() {
+    return '';
+  }
 }
 export default LabelFormatter;
 

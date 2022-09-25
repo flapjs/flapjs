@@ -1,23 +1,20 @@
 import React from 'react';
 import Style from './ToolbarDivider.module.css';
 
-class ToolbarDivider extends React.Component
-{
-    constructor(props)
-    {
-        super(props);
-    }
+class ToolbarDivider extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-    /** @override */
-    render()
-    {
-        return (
-            <div id={this.props.id}
-                className={Style.divider + ' ' + this.props.className}
-                style={this.props.style}>
-            </div>
-        );
-    }
+  /** @override */
+  render() {
+    return (
+      <div
+        id={this.props.id}
+        className={Style.divider + ' ' + this.props.className}
+        style={this.props.style}></div>
+    );
+  }
 }
 
 export default ToolbarDivider;

@@ -1,42 +1,40 @@
-import {ONESHOT_MODE} from 'src/components/tooltip/TooltipView';
+import { ONESHOT_MODE } from 'src/components/tooltip/TooltipView';
 
-class TooltipManager
-{
-    constructor()
-    {
-        this._tooltips = [];
+class TooltipManager {
+  constructor() {
+    this._tooltips = [];
 
-        this._transitionMode = ONESHOT_MODE;
-    }
+    this._transitionMode = ONESHOT_MODE;
+  }
 
-    setTransitionMode(transitionMode)
-    {
-        this._transitionMode = transitionMode;
-        return this;
-    }
+  setTransitionMode(transitionMode) {
+    this._transitionMode = transitionMode;
+    return this;
+  }
 
-    addTooltip(tooltip)
-    {
-        this._tooltips.push(tooltip);
-        return this;
-    }
+  addTooltip(tooltip) {
+    this._tooltips.push(tooltip);
+    return this;
+  }
 
-    //DuckType(SessionListener)
-    onSessionStart(session)
-    {
+  //DuckType(SessionListener)
+  onSessionStart(session) {}
 
-    }
+  //DuckType(SessionListener)
+  onSessionStop(session) {
+    this._tooltips.length = 0;
+    this._transitionMode = ONESHOT_MODE;
+  }
 
-    //DuckType(SessionListener)
-    onSessionStop(session)
-    {
-        this._tooltips.length = 0;
-        this._transitionMode = ONESHOT_MODE;
-    }
-
-    getTransitionMode() { return this._transitionMode; }
-    getTooltips() { return this._tooltips; }
-    hasTooltips() { return this._tooltips.length > 0; }
+  getTransitionMode() {
+    return this._transitionMode;
+  }
+  getTooltips() {
+    return this._tooltips;
+  }
+  hasTooltips() {
+    return this._tooltips.length > 0;
+  }
 }
 
 export default TooltipManager;

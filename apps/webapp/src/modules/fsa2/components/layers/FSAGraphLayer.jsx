@@ -11,90 +11,91 @@ import FSANodeInputHandler from '../../graph/inputhandler/FSANodeInputHandler';
 
 import FSAEdgeRenderer from '../../graph/renderer/FSAEdgeRenderer';
 
-class FSAGraphLayer extends React.Component
-{
-    constructor(props)
-    {
-        super(props);
+class FSAGraphLayer extends React.Component {
+  constructor(props) {
+    super(props);
 
-        const graphView = props.graphView;
-        const graphController = props.graphController;
-        const inputController = graphView.getInputController();
+    const graphView = props.graphView;
+    const graphController = props.graphController;
+    const inputController = graphView.getInputController();
 
-        this._fsaNodeInputHandler = new FSANodeInputHandler(inputController, graphController);
-    }
+    this._fsaNodeInputHandler = new FSANodeInputHandler(
+      inputController,
+      graphController
+    );
+  }
 
-    /** @override */
-    componentDidMount()
-    {
-        const graphView = this.props.graphView;
-        const inputContext = graphView.getInputContext();
-        inputContext.addInputHandler(this._fsaNodeInputHandler);
-    }
+  /** @override */
+  componentDidMount() {
+    const graphView = this.props.graphView;
+    const inputContext = graphView.getInputContext();
+    inputContext.addInputHandler(this._fsaNodeInputHandler);
+  }
 
-    /** @override */
-    componentWillUnmount()
-    {
-        const graphView = this.props.graphView;
-        const inputContext = graphView.getInputContext();
-        inputContext.removeInputHandler(this._fsaNodeInputHandler);
-    }
+  /** @override */
+  componentWillUnmount() {
+    const graphView = this.props.graphView;
+    const inputContext = graphView.getInputContext();
+    inputContext.removeInputHandler(this._fsaNodeInputHandler);
+  }
 
-    /** @override */
-    render()
-    {
-        const graphView = this.props.graphView;
-        const graphController = this.props.graphController;
-        const editable = this.props.editable;
+  /** @override */
+  render() {
+    const graphView = this.props.graphView;
+    const graphController = this.props.graphController;
+    const editable = this.props.editable;
 
-        const graph = graphController.getGraph();
-        const inputController = graphView.getInputController();
-        const inputContext = graphView.getInputContext();
+    const graph = graphController.getGraph();
+    const inputController = graphView.getInputController();
+    const inputContext = graphView.getInputContext();
 
-        const session = this.props.session;
-        const testTargetNodes = session.getCurrentModule()._tester.targets;
+    const session = this.props.session;
+    const testTargetNodes = session.getCurrentModule()._tester.targets;
 
-        return (
-            <React.Fragment>
-                <IndexedGraphStartMarkerLayer
-                    inputController={inputController}
-                    graphController={graphController}
-                    inputContext={inputContext}
-                    inputPriority={-1}
-                    editable={editable} />
-                <GraphNodeLayer
-                    nodes={graph.getNodes()}
-                    inputController={inputController}
-                    graphController={graphController}
-                    nodeRenderer={FSANodeRenderer}
-                    inputContext={inputContext}
-                    inputPriority={-1}
-                    editable={editable} />
-                <GraphEdgeLayer
-                    ref={ref =>
-                    {
-                        if (!ref) return;
-                        ref.getGraphEdgeInputHandler()
-                            .setShouldDeleteEdgeWithEmptyLabel(true)
-                            .setShouldDeleteEdgePlaceholder(true);
-                    }}
-                    edges={graph.getEdges()}
-                    inputController={inputController}
-                    graphController={graphController}
-                    edgeRenderer={FSAEdgeRenderer}
-                    inputContext={inputContext}
-                    inputPriority={-1}
-                    editable={editable} />
-                <SelectionBoxLayer
-                    inputController={inputController}
-                    graphController={graphController}
-                    inputContext={inputContext}
-                    inputPriority={-1} />
-                <GraphHighlightLayer
-                    nodes={testTargetNodes} />
-            </React.Fragment>
-        );
-    }
+    return (
+      <React.Fragment>
+        <IndexedGraphStartMarkerLayer
+          inputController={inputController}
+          graphController={graphController}
+          inputContext={inputContext}
+          inputPriority={-1}
+          editable={editable}
+        />
+        <GraphNodeLayer
+          nodes={graph.getNodes()}
+          inputController={inputController}
+          graphController={graphController}
+          nodeRenderer={FSANodeRenderer}
+          inputContext={inputContext}
+          inputPriority={-1}
+          editable={editable}
+        />
+        <GraphEdgeLayer
+          ref={(ref) => {
+            if (!ref) return;
+            ref
+              .getGraphEdgeInputHandler()
+              .setShouldDeleteEdgeWithEmptyLabel(true)
+              .setShouldDeleteEdgePlaceholder(true);
+          }}
+          edges={graph.getEdges()}
+          inputController={inputController}
+          graphController={graphController}
+          edgeRenderer={FSAEdgeRenderer}
+          inputContext={inputContext}
+          inputPriority={-1}
+          editable={editable}
+        />
+        <SelectionBoxLayer
+          inputController={inputController}
+          graphController={graphController}
+          inputContext={inputContext}
+          inputPriority={-1}
+        />
+        <GraphHighlightLayer nodes={testTargetNodes} />
+      </React.Fragment>
+    );
+  }
 }
 
 export default FSAGraphLayer;

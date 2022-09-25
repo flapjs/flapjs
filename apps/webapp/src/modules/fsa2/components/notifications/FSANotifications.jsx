@@ -16,11 +16,25 @@ export const STATE_UNREACHABLE_LAYOUT_ID = 'machine-state-unreachable';
 
 export const MACHINE_ERROR_NOTIFICATION_TAG = 'machine-error';
 
-export function registerNotifications(notificationManager)
-{
-    notificationManager.registerNotificationLayout(MACHINE_CONVERSION_LAYOUT_ID, NFAToDFAConversionNotificationLayout);
-    notificationManager.registerNotificationLayout(STATE_MISSING_LAYOUT_ID, StateMissingTransitionNotificationLayout);
-    notificationManager.registerNotificationLayout(STATE_UNREACHABLE_LAYOUT_ID, StateUnreachableNotificationLayout);
-    notificationManager.registerNotificationLayout(STATE_LAYOUT_ID, StateNotificationLayout);
-    notificationManager.registerNotificationLayout(TRANSITION_LAYOUT_ID, TransitionNotificationLayout);
+export function registerNotifications(notificationManager) {
+  notificationManager.registerNotificationLayout(
+    MACHINE_CONVERSION_LAYOUT_ID,
+    NFAToDFAConversionNotificationLayout
+  );
+  notificationManager.registerNotificationLayout(
+    STATE_MISSING_LAYOUT_ID,
+    StateMissingTransitionNotificationLayout
+  );
+  notificationManager.registerNotificationLayout(
+    STATE_UNREACHABLE_LAYOUT_ID,
+    StateUnreachableNotificationLayout
+  );
+  notificationManager.registerNotificationLayout(
+    STATE_LAYOUT_ID,
+    StateNotificationLayout
+  );
+  notificationManager.registerNotificationLayout(
+    TRANSITION_LAYOUT_ID,
+    TransitionNotificationLayout
+  );
 }

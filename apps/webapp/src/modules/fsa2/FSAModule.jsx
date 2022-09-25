@@ -41,178 +41,221 @@ import GraphView from 'src/graph2/components/GraphView';
 const MODULE_NAME = 'fsa';
 const MODULE_VERSION = '3.0.0';
 
-class FSAModule
-{
-    constructor(app)
-    {
-        this._app = app;
+class FSAModule {
+  constructor(app) {
+    this._app = app;
 
-        this._graph = new FSAGraph();
-        this._graphController = new FSAGraphController(app, this._graph, null);
-        this._graphViewComponent = React.createRef();
-        
-        const graphController = this._graphController;
+    this._graph = new FSAGraph();
+    this._graphController = new FSAGraphController(app, this._graph, null);
+    this._graphViewComponent = React.createRef();
 
-        app.getRenderManager()
-            .addRenderer(RENDER_LAYER_WORKSPACE, props => (
-                <GraphView
-                    ref={this._graphViewComponent}
-                    renderGraph={graphView =>
-                    {
-                        return <FSAGraphLayer
-                            graphView={graphView}
-                            graphController={graphController}
-                            editable={!this._testMode}
-                            session={this._app.getSession()} />;
-                    }}
-                    renderOverlay={graphView =>
-                    {
-                        if (!this._testMode)
-                        {
-                            return <FSAGraphOverlayLayer
-                                graphView={graphView}
-                                graphController={graphController}
-                                session={this._app.getSession()} />;
-                        }
-                        else
-                        {
-                            return <FSATapeGraphOverlayLayer
-                                graphView={graphView}
-                                tester={this._tester} />;
-                        }
-                    }}>
-                </GraphView>
-            ));
-        this._machineController = new MachineController(this);
+    const graphController = this._graphController;
 
-        this._errorChecker = new FSAErrorChecker(app,
-            this._graphController,
-            this._machineController);
-        this._tester = new StringTester();
-        this._testMode = false;
+    app.getRenderManager().addRenderer(RENDER_LAYER_WORKSPACE, (props) => (
+      <GraphView
+        ref={this._graphViewComponent}
+        renderGraph={(graphView) => {
+          return (
+            <FSAGraphLayer
+              graphView={graphView}
+              graphController={graphController}
+              editable={!this._testMode}
+              session={this._app.getSession()}
+            />
+          );
+        }}
+        renderOverlay={(graphView) => {
+          if (!this._testMode) {
+            return (
+              <FSAGraphOverlayLayer
+                graphView={graphView}
+                graphController={graphController}
+                session={this._app.getSession()}
+              />
+            );
+          } else {
+            return (
+              <FSATapeGraphOverlayLayer
+                graphView={graphView}
+                tester={this._tester}
+              />
+            );
+          }
+        }}></GraphView>
+    ));
+    this._machineController = new MachineController(this);
 
-        this._broadcastHandler = new FSABroadcastHandler();
-        this._tutorialHandler = new TutorialHandler(app);
-    }
+    this._errorChecker = new FSAErrorChecker(
+      app,
+      this._graphController,
+      this._machineController
+    );
+    this._tester = new StringTester();
+    this._testMode = false;
 
-    /** @override */
-    initialize(app)
-    {
-        registerNotifications(app.getNotificationManager());
+    this._broadcastHandler = new FSABroadcastHandler();
+    this._tutorialHandler = new TutorialHandler(app);
+  }
 
-        // TODO: These should have a pre/post handlers...
-        app.getExportManager()
-            .registerExporter(new FSAExporter(FSAGraphParser.JSON), 'session')
-            .registerExporter(new FSAJFFExporter(FSAGraphParser.XML), 'jflap');
+  /** @override */
+  initialize(app) {
+    registerNotifications(app.getNotificationManager());
 
-        registerImageExporters(app.getExportManager());
+    // TODO: These should have a pre/post handlers...
+    app
+      .getExportManager()
+      .registerExporter(new FSAExporter(FSAGraphParser.JSON), 'session')
+      .registerExporter(new FSAJFFExporter(FSAGraphParser.XML), 'jflap');
 
-        app.getImportManager()
-            .addImporter(new FSAImporter(app, FSAGraphParser.JSON), '.fsa.json', '.json')
-            .addImporter(new FSAJFFImporter(app, FSAGraphParser.XML), '.jff');
+    registerImageExporters(app.getExportManager());
 
-        app.getUndoManager()
-            .setEventHandlerFactory((...args) => new SafeGraphEventHandler(
-                this._graphController, FSAGraphParser.JSON));
+    app
+      .getImportManager()
+      .addImporter(
+        new FSAImporter(app, FSAGraphParser.JSON),
+        '.fsa.json',
+        '.json'
+      )
+      .addImporter(new FSAJFFImporter(app, FSAGraphParser.XML), '.jff');
 
-        app.getDrawerManager()
-            .addPanelClass(props => (
-                <PanelContainer id={props.id}
-                    className={props.className}
-                    style={props.style}
-                    title={'Finite State Automata'}>
-                    <p>{'Brought to you with \u2764 by the Flap.js team.'}</p>
-                    <p>{'<- Tap on a tab to begin!'}</p>
-                    <div style={{position: 'absolute', bottom: 0, right: 0, marginRight: '1em'}}>
-                        {'Looking for Bab\'s Tutorial?'}
-                        <div style={{display: 'flex', margin: '0.5em 0'}}>
-                            <button style={{flex: 1}} onClick={e =>
-                            {
-                                app.getDrawerComponent().closeDrawer();
-                                this._tutorialHandler.start(app, true);
-                            }}>
-                                {I18N.toString('message.action.next')}
-                            </button>
-                        </div>
-                    </div>
-                </PanelContainer>
-            ))
-            .addPanelClass(OverviewPanel)
-            .addPanelClass(TestingPanel)
-            .addPanelClass(AnalysisPanel);
+    app
+      .getUndoManager()
+      .setEventHandlerFactory(
+        (...args) =>
+          new SafeGraphEventHandler(this._graphController, FSAGraphParser.JSON)
+      );
 
-        app.getHotKeyManager()
-            .registerHotKey('Export to PNG', [CTRL_KEY, 'KeyP'], () => { app.getExportManager().tryExportFile('image-png', app.getSession()); })
-            .registerHotKey('Save as JSON', [CTRL_KEY, 'KeyS'], () => { app.getExportManager().tryExportFile('session', app.getSession()); });
-        
-        app.getMenuManager().setSubtitleComponentClass(props => (
-            <select onChange={(e) =>
-            {
-                this._machineController.setMachineType(e.target.value);
-            }}
-            value={this._machineController.getMachineType()}>
-                <option value="DFA">DFA</option>
-                <option value="NFA">NFA</option>
-            </select>
-        ));
+    app
+      .getDrawerManager()
+      .addPanelClass((props) => (
+        <PanelContainer
+          id={props.id}
+          className={props.className}
+          style={props.style}
+          title={'Finite State Automata'}>
+          <p>{'Brought to you with \u2764 by the Flap.js team.'}</p>
+          <p>{'<- Tap on a tab to begin!'}</p>
+          <div
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              right: 0,
+              marginRight: '1em',
+            }}>
+            {"Looking for Bab's Tutorial?"}
+            <div style={{ display: 'flex', margin: '0.5em 0' }}>
+              <button
+                style={{ flex: 1 }}
+                onClick={(e) => {
+                  app.getDrawerComponent().closeDrawer();
+                  this._tutorialHandler.start(app, true);
+                }}>
+                {I18N.toString('message.action.next')}
+              </button>
+            </div>
+          </div>
+        </PanelContainer>
+      ))
+      .addPanelClass(OverviewPanel)
+      .addPanelClass(TestingPanel)
+      .addPanelClass(AnalysisPanel);
 
-        app.getTooltipManager()
-            .addTooltip(I18N.toString('message.workspace.empty'))
-            .addTooltip('If you need help, try the \'?\' at the top.')
-            .addTooltip('Or you can choose to do nothing.')
-            .addTooltip('I can\'t do anything about that.')
-            .addTooltip('You really should consider doing something though, for the sake of both of us.')
-            .addTooltip('Of course, it is your free will.')
-            .addTooltip('You do you.')
-            .addTooltip('Please do something.')
-            .addTooltip('I need my job.')
-            .addTooltip(I18N.toString('message.workspace.empty'));
+    app
+      .getHotKeyManager()
+      .registerHotKey('Export to PNG', [CTRL_KEY, 'KeyP'], () => {
+        app.getExportManager().tryExportFile('image-png', app.getSession());
+      })
+      .registerHotKey('Save as JSON', [CTRL_KEY, 'KeyS'], () => {
+        app.getExportManager().tryExportFile('session', app.getSession());
+      });
 
-        app.getBroadcastManager()
-            .addMessageHandler(this._broadcastHandler);
+    app.getMenuManager().setSubtitleComponentClass((props) => (
+      <select
+        onChange={(e) => {
+          this._machineController.setMachineType(e.target.value);
+        }}
+        value={this._machineController.getMachineType()}>
+        <option value="DFA">DFA</option>
+        <option value="NFA">NFA</option>
+      </select>
+    ));
 
-        this._machineController.initialize(this);
-        this._graphController.initialize();
+    app
+      .getTooltipManager()
+      .addTooltip(I18N.toString('message.workspace.empty'))
+      .addTooltip("If you need help, try the '?' at the top.")
+      .addTooltip('Or you can choose to do nothing.')
+      .addTooltip("I can't do anything about that.")
+      .addTooltip(
+        'You really should consider doing something though, for the sake of both of us.'
+      )
+      .addTooltip('Of course, it is your free will.')
+      .addTooltip('You do you.')
+      .addTooltip('Please do something.')
+      .addTooltip('I need my job.')
+      .addTooltip(I18N.toString('message.workspace.empty'));
 
-        this._tutorialHandler.start(app);
-    }
+    app.getBroadcastManager().addMessageHandler(this._broadcastHandler);
 
-    /** @override */
-    update(app)
-    {
-        this._graphController.update();
-        this._machineController.update(this);
-    }
+    this._machineController.initialize(this);
+    this._graphController.initialize();
 
-    /** @override */
-    destroy(app)
-    {
-        this._machineController.destroy(this);
-        this._graphController.destroy();
-    }
+    this._tutorialHandler.start(app);
+  }
 
-    /** @override */
-    clear(app, graphOnly = false)
-    {
-        userClearGraph(app, graphOnly, () => app.getToolbarComponent().closeBar());
-    }
+  /** @override */
+  update(app) {
+    this._graphController.update();
+    this._machineController.update(this);
+  }
 
-    getMachineController() { return this._machineController; }
-    getGraphController() { return this._graphController; }
-    getGraphView() { return this._graphViewComponent.current; }
+  /** @override */
+  destroy(app) {
+    this._machineController.destroy(this);
+    this._graphController.destroy();
+  }
 
-    getErrorChecker() { return this._errorChecker; }
-    getStringTester() { return this._tester; }
-    getBroadcastHandler() { return this._broadcastHandler; }
+  /** @override */
+  clear(app, graphOnly = false) {
+    userClearGraph(app, graphOnly, () => app.getToolbarComponent().closeBar());
+  }
 
-    /** @override */
-    getModuleVersion() { return MODULE_VERSION; }
-    /** @override */
-    getModuleName() { return MODULE_NAME; }
-    /** @override */
-    getLocalizedModuleName() { return 'Finite Automata'; }
-    /** @override */
-    getApp() { return this._app; }
+  getMachineController() {
+    return this._machineController;
+  }
+  getGraphController() {
+    return this._graphController;
+  }
+  getGraphView() {
+    return this._graphViewComponent.current;
+  }
+
+  getErrorChecker() {
+    return this._errorChecker;
+  }
+  getStringTester() {
+    return this._tester;
+  }
+  getBroadcastHandler() {
+    return this._broadcastHandler;
+  }
+
+  /** @override */
+  getModuleVersion() {
+    return MODULE_VERSION;
+  }
+  /** @override */
+  getModuleName() {
+    return MODULE_NAME;
+  }
+  /** @override */
+  getLocalizedModuleName() {
+    return 'Finite Automata';
+  }
+  /** @override */
+  getApp() {
+    return this._app;
+  }
 }
 
 export default FSAModule;

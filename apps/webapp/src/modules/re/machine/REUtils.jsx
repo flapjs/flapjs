@@ -1,1 +1,1 @@
-export {convertToNFA} from './util/ConvertRE';
+export { convertToNFA } from './util/ConvertRE';

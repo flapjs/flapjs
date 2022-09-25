@@ -1,1 +1,1 @@
-export {solvePDA, solvePDAByStep} from './util/SolvePDA';
+export { solvePDA, solvePDAByStep } from './util/SolvePDA';

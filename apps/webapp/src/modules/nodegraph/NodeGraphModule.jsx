@@ -28,86 +28,111 @@ const MODULE_NAME = 'nodegraph';
 const MODULE_VERSION = '0.0.1';
 const MODULE_LOCALIZED_NAME = 'Node Graph';
 
-class NodalGraphModule
-{
-    constructor(app)
-    {
-        this._app = app;
+class NodalGraphModule {
+  constructor(app) {
+    this._app = app;
 
-        this._graph = new NodeGraph(GraphNode, QuadraticEdge);
-        this._graphParser = new NodeGraphParser();
-        this._graphController = new NodeGraphController(app, this._graph);
-        this._graphViewComponent = React.createRef();
+    this._graph = new NodeGraph(GraphNode, QuadraticEdge);
+    this._graphParser = new NodeGraphParser();
+    this._graphController = new NodeGraphController(app, this._graph);
+    this._graphViewComponent = React.createRef();
 
-        const graphController = this._graphController;
+    const graphController = this._graphController;
 
-        app.getRenderManager()
-            .addRenderer(RENDER_LAYER_WORKSPACE, props => (
-                <GraphView
-                    ref={this._graphViewComponent}
-                    renderGraph={graphView =>
-                        <NodeGraphLayer graphView={graphView} graphController={graphController} editable={true} />}
-                    renderOverlay={graphView =>
-                        <NodeGraphOverlayLayer graphView={graphView} graphController={graphController} session={this._app.getSession()} />}>
-                </GraphView>
-            ));
-    }
+    app
+      .getRenderManager()
+      .addRenderer(RENDER_LAYER_WORKSPACE, (props) => (
+        <GraphView
+          ref={this._graphViewComponent}
+          renderGraph={(graphView) => (
+            <NodeGraphLayer
+              graphView={graphView}
+              graphController={graphController}
+              editable={true}
+            />
+          )}
+          renderOverlay={(graphView) => (
+            <NodeGraphOverlayLayer
+              graphView={graphView}
+              graphController={graphController}
+              session={this._app.getSession()}
+            />
+          )}></GraphView>
+      ));
+  }
 
-    /** @override */
-    initialize(app)
-    {
-        registerImageExporters(app.getExportManager());
+  /** @override */
+  initialize(app) {
+    registerImageExporters(app.getExportManager());
 
-        app.getUndoManager()
-            .setEventHandlerFactory((...args) =>
-                new SafeUndoNodeGraphEventHandler(this._graphController, this._graphParser));
+    app
+      .getUndoManager()
+      .setEventHandlerFactory(
+        (...args) =>
+          new SafeUndoNodeGraphEventHandler(
+            this._graphController,
+            this._graphParser
+          )
+      );
 
-        app.getDrawerManager()
-            .addPanelClass(props => (
-                <PanelContainer id={props.id}
-                    className={props.className}
-                    style={props.style}
-                    title={'Your Average Graph Editor'}>
-                    <p>{'Brought to you with \u2764 by the Flap.js team.'}</p>
-                    <p>{'<- Tap on a tab to begin!'}</p>
-                </PanelContainer>
-            ));
+    app.getDrawerManager().addPanelClass((props) => (
+      <PanelContainer
+        id={props.id}
+        className={props.className}
+        style={props.style}
+        title={'Your Average Graph Editor'}>
+        <p>{'Brought to you with \u2764 by the Flap.js team.'}</p>
+        <p>{'<- Tap on a tab to begin!'}</p>
+      </PanelContainer>
+    ));
 
-        app.getHotKeyManager()
-            .registerHotKey('Export to PNG', [CTRL_KEY, 'KeyP'], () => { app.getExportManager().tryExportFile('image-png', app.getSession()); });
+    app
+      .getHotKeyManager()
+      .registerHotKey('Export to PNG', [CTRL_KEY, 'KeyP'], () => {
+        app.getExportManager().tryExportFile('image-png', app.getSession());
+      });
 
-        this._graphController.initialize();
-    }
+    this._graphController.initialize();
+  }
 
-    /** @override */
-    update(app)
-    {
-        this._graphController.update();
-    }
+  /** @override */
+  update(app) {
+    this._graphController.update();
+  }
 
-    /** @override */
-    destroy(app)
-    {
-        this._graphController.destroy();
-    }
+  /** @override */
+  destroy(app) {
+    this._graphController.destroy();
+  }
 
-    /** @override */
-    clear(app, graphOnly = false)
-    {
-        userClearGraph(app, graphOnly, () => app.getToolbarComponent().closeBar());
-    }
+  /** @override */
+  clear(app, graphOnly = false) {
+    userClearGraph(app, graphOnly, () => app.getToolbarComponent().closeBar());
+  }
 
-    getGraphController() { return this._graphController; }
-    getGraphView() { return this._graphViewComponent.current; }
+  getGraphController() {
+    return this._graphController;
+  }
+  getGraphView() {
+    return this._graphViewComponent.current;
+  }
 
-    /** @override */
-    getModuleVersion() { return MODULE_VERSION; }
-    /** @override */
-    getModuleName() { return MODULE_NAME; }
-    /** @override */
-    getLocalizedModuleName() { return MODULE_LOCALIZED_NAME; }
+  /** @override */
+  getModuleVersion() {
+    return MODULE_VERSION;
+  }
+  /** @override */
+  getModuleName() {
+    return MODULE_NAME;
+  }
+  /** @override */
+  getLocalizedModuleName() {
+    return MODULE_LOCALIZED_NAME;
+  }
 
-    getApp() { return this._app; }
+  getApp() {
+    return this._app;
+  }
 }
 
 export default NodalGraphModule;

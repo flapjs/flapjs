@@ -1,19 +1,20 @@
 import Downloader, { downloadURL } from './Downloader';
 
-function getTextDataURI(data)
-{
-    return 'data:text/plain; charset=utf-8,' + encodeURIComponent(data);
+function getTextDataURI(data) {
+  return 'data:text/plain; charset=utf-8,' + encodeURIComponent(data);
 }
 
-class TextDownloader extends Downloader
-{
-    constructor() { super(); }
+class TextDownloader extends Downloader {
+  constructor() {
+    super();
+  }
 
-    /** @override */
-    downloadFile(fileName, downloadType, fileData, opts)
-    {
-        return downloadURL(fileName, getTextDataURI(fileData)).then(result => fileData);
-    }
+  /** @override */
+  downloadFile(fileName, downloadType, fileData, opts) {
+    return downloadURL(fileName, getTextDataURI(fileData)).then(
+      (result) => fileData
+    );
+  }
 }
 
 export default TextDownloader;

@@ -5,37 +5,39 @@ import ViewportNavigationLayer from 'src/graph2/components/layers/ViewportNaviga
 
 import LabelEditorWidget from 'src/graph2/components/widgets/LabelEditorWidget';
 
-class NodeGraphOverlayLayer extends React.Component
-{
-    constructor(props) { super(props); }
+class NodeGraphOverlayLayer extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-    /** @override */
-    render()
-    {
-        const session = this.props.session;
-        const graphView = this.props.graphView;
-        const graphController = this.props.graphController;
-        const labelFormatter = graphController.getLabelFormatter();
-        const inputController = graphView.getInputController();
+  /** @override */
+  render() {
+    const session = this.props.session;
+    const graphView = this.props.graphView;
+    const graphController = this.props.graphController;
+    const labelFormatter = graphController.getLabelFormatter();
+    const inputController = graphView.getInputController();
 
-        return (
-            <React.Fragment>
-                <ViewportEditLayer
-                    graphController={graphController}
-                    inputController={inputController}
-                    viewport={graphView.getViewportComponent()}
-                    session={session}/>
-                <ViewportNavigationLayer
-                    style={{ right: 0 }}
-                    viewportAdapter={graphView.getViewportAdapter()} />
-                <LabelEditorWidget ref={ref => graphController.setLabelEditor(ref)}
-                    labelFormatter={labelFormatter}
-                    viewport={graphView.getViewportComponent()}
-                    saveOnExit={true}>
-                </LabelEditorWidget>
-            </React.Fragment>
-        );
-    }
+    return (
+      <React.Fragment>
+        <ViewportEditLayer
+          graphController={graphController}
+          inputController={inputController}
+          viewport={graphView.getViewportComponent()}
+          session={session}
+        />
+        <ViewportNavigationLayer
+          style={{ right: 0 }}
+          viewportAdapter={graphView.getViewportAdapter()}
+        />
+        <LabelEditorWidget
+          ref={(ref) => graphController.setLabelEditor(ref)}
+          labelFormatter={labelFormatter}
+          viewport={graphView.getViewportComponent()}
+          saveOnExit={true}></LabelEditorWidget>
+      </React.Fragment>
+    );
+  }
 }
 
 export default NodeGraphOverlayLayer;

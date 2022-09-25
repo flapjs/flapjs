@@ -1,6 +1,5 @@
-class GraphListener
-{
-    onGraphEvent(graphController, eventName, eventData) {}
+class GraphListener {
+  onGraphEvent(graphController, eventName, eventData) {}
 }
 
 export default GraphListener;

@@ -5,15 +5,13 @@ const TUTORIAL_NOTIFICATION_ID = 'tutorial';
 
 const TUTORIAL_STORAGE_ID = 'prefs-tut_fsa';
 
-class TutorialHandler
-{
-    constructor() {}
+class TutorialHandler {
+  constructor() {}
 
-    start(app, forceStart = false)
-    {
-        if (!forceStart && LocalStorage.getData(TUTORIAL_STORAGE_ID)) return;
-        app.getNotificationManager()
-            .pushNotification(`-=-= Bab's First Graph =-=-
+  start(app, forceStart = false) {
+    if (!forceStart && LocalStorage.getData(TUTORIAL_STORAGE_ID)) return;
+    app.getNotificationManager().pushNotification(
+      `-=-= Bab's First Graph =-=-
             We can make a graph by creating nodes and edges.
             
             Nodes
@@ -23,10 +21,12 @@ class TutorialHandler
             > RIGHT-HOLD on a node, then DRAG out to target.
 
             If using touchscreen, you can TAP & HOLD instead of a RIGHT-CLICK.`,
-            SEQUENCE_LAYOUT_ID, [TUTORIAL_NOTIFICATION_ID], { onClick: () => 
-            {
-                app.getNotificationManager()
-                    .pushNotification(`-=-= More Bab's Graph =-=-
+      SEQUENCE_LAYOUT_ID,
+      [TUTORIAL_NOTIFICATION_ID],
+      {
+        onClick: () => {
+          app.getNotificationManager().pushNotification(
+            `-=-= More Bab's Graph =-=-
                     You can do so much more.
         
                     Move stuff
@@ -39,13 +39,15 @@ class TutorialHandler
                     > RIGHT-CLICK on target.
                     
                     More tools in the Drawer on the right. Check it out!`,
-                    SEQUENCE_LAYOUT_ID, [TUTORIAL_NOTIFICATION_ID], { onClick: () =>
-                    {
-                        // Don't need to show it again.
-                        LocalStorage.setData(TUTORIAL_STORAGE_ID, 'true');
-                        
-                        app.getNotificationManager()
-                            .pushNotification(`-=- Bab's Masterpiece -=-
+            SEQUENCE_LAYOUT_ID,
+            [TUTORIAL_NOTIFICATION_ID],
+            {
+              onClick: () => {
+                // Don't need to show it again.
+                LocalStorage.setData(TUTORIAL_STORAGE_ID, 'true');
+
+                app.getNotificationManager().pushNotification(
+                  `-=- Bab's Masterpiece -=-
                             Action Mode Tray (Bottom Left)
                             > This will show you whether you are currently editing or moving stuff or you can manually switch them here!
                             
@@ -57,10 +59,17 @@ class TutorialHandler
                             
                             Any additional questions, please use the ? button on the toolbar.
                             Have fun!
-                            `, null, [TUTORIAL_NOTIFICATION_ID]);
-                    }});
-            }});
-    }
+                            `,
+                  null,
+                  [TUTORIAL_NOTIFICATION_ID]
+                );
+              },
+            }
+          );
+        },
+      }
+    );
+  }
 }
 
 export default TutorialHandler;
