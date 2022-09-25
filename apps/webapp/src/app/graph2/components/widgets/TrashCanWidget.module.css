@@ -1,4 +1,4 @@
-:local(.trash_container) {
+.trash_container {
   width: 4em;
   height: 4em;
   padding: 0.5em;
@@ -13,16 +13,16 @@
     color 0.15s ease,
     background-color 0.15s ease;
 }
-:local(.trash_container).active {
+.trash_container:global(.active) {
   color: var(--color-viewport-error);
   background-color: var(--color-viewport-back);
 }
-:local(.trash_container).hide {
+.trash_container:global(.hide) {
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-:local(.trash_container) > * {
+.trash_container > * {
   width: 100%;
   height: 100%;
   pointer-events: none;

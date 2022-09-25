@@ -1,4 +1,4 @@
-:local(.viewport_component) {
+.viewport_component {
   position: absolute;
   left: 0;
   top: 0;

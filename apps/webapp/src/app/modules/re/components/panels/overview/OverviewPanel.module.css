@@ -1,4 +1,4 @@
-:local(.overview_button) {
+.overview_button {
   width: 100%;
   outline: none;
   cursor: pointer;

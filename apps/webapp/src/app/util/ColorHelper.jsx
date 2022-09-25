@@ -51,6 +51,7 @@ export function invertRGB(rgb, blackwhite = false, dst = [])
 /* RGB and HSL conversions: https://gist.github.com/mjackson/5311256 */
 export function HEXtoRGB(hex, dst = [])
 {
+    if (!hex) hex = '000000';
     if (hex.indexOf('#') === 0) hex = hex.slice(1);
     if (hex.length === 3) hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
     if (hex.length !== 6) throw new Error('Invalid hex color format');

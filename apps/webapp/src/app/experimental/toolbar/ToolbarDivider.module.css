@@ -1,4 +1,4 @@
-:local(.divider) {
+.divider {
   flex: 1;
   height: 10vmin;
 }

@@ -1,6 +1,6 @@
-:local(.panel_container) {
+.panel_container {
 }
-:local(.panel_title) {
+.panel_title {
   position: sticky;
   top: 0;
   padding: 1em 0.5em;
@@ -10,13 +10,13 @@
   background: var(--color-panel-back);
   border-bottom: 2px solid var(--color-panel-back-detail);
 }
-:local(.panel_title) > h1 {
+.panel_title > h1 {
   margin: 0;
 }
-:local(.panel_content) {
+.panel_content {
   display: flex;
   flex-direction: column;
 }
-:local(.panel_bottom) {
+.panel_bottom {
   height: 3em;
 }

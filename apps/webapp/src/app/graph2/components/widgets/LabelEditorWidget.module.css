@@ -1,4 +1,4 @@
-:local(.editor_container) {
+.editor_container {
   position: absolute;
   display: none;
   padding: 0.5em;
@@ -6,10 +6,10 @@
   border-radius: 0.5em;
   box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
-:local(.editor_container).open {
+.editor_container:global(.open) {
   display: block;
 }
-:local(.editor_container) input, :local(.editor_container) textarea {
+.editor_container input, .editor_container textarea {
   outline: none;
   border: none;
   background: none;
@@ -19,6 +19,6 @@
   width: 4em;
 }
 
-:local(.tray_container) {
+.tray_container {
 
 }

@@ -1,11 +1,11 @@
-:local(.zoom_container) {
+.zoom_container {
   display: flex;
   flex-direction: column;
 }
-:local(.zoom_button) {
+.zoom_button {
   margin-bottom: -0.75em;
 }
-:local(.zoom_label) {
+.zoom_label {
   font-size: 0.5em;
   text-align: center;
 

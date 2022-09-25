@@ -1,4 +1,4 @@
-:local(.analysis_button) {
+.analysis_button {
   width: 100%;
   outline: none;
   cursor: pointer;

@@ -1,4 +1,4 @@
-:local(.notifications_container) {
+.notifications_container {
   position: absolute;
   top: 0px;
   left: 0px;
@@ -10,7 +10,7 @@
   pointer-events: auto;
 }
 
-:local(.notifications_container) > * {
+.notifications_container > * {
   margin: 0.5em;
   width: 12em;
 

@@ -1,4 +1,4 @@
-:local(.fullscreen_button) {
+.fullscreen_button {
 	position: absolute;
 	top: 0px;
 	right: 0px;
@@ -11,6 +11,6 @@
 	z-index: 1000;
 }
 
-:local(.fullscreen_button):hover {
+.fullscreen_button:hover {
 	color: var(--color-background-active);
 }

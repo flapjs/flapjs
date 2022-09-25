@@ -1,5 +1,4 @@
 import React from 'react';
-import { hot } from 'react-hot-loader/root';
 import './App.css';
 
 import Config from 'src/app/deprecated/config';
@@ -335,4 +334,4 @@ class App extends React.Component
 }
 
 //For hotloading this class
-export default hot(App);
+export default App;

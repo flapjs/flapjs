@@ -1,9 +1,9 @@
-:local(.view_container) {
+.view_container {
   /* BUGFIX: This stops some super large icons in viewport */
   font-size: 1em;
 }
 
-:local(.view_widget) {
+.view_widget {
   position: absolute;
   min-width: 32px;
   min-height: 32px;

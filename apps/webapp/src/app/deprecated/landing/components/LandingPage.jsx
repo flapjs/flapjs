@@ -1,5 +1,4 @@
 import React from 'react';
-import { hot } from 'react-hot-loader/root';
 import './LandingPage.css';
 
 import Router from 'router';
@@ -263,4 +262,4 @@ class LandingPage extends React.Component
 }
 
 //For hotloading this class
-export default hot(LandingPage);
+export default LandingPage;

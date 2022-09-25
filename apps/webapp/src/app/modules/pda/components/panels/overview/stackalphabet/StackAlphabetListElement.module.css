@@ -1,11 +1,11 @@
-:local(.element_container) {
+.element_container {
   margin: 0.2em;
   padding: 0.3em;
 
   border-radius: 0.5em;
   background: var(--color-panel-back-input);
 }
-:local(.element_container) input {
+.element_container input {
   background: none;
   outline: none;
   padding: 1px;
@@ -19,12 +19,12 @@
   border-radius: 0.5em;
 }
 
-:local(.element_container).empty {
+.element_container:global(.empty) {
   background: var(--color-panel-error);
 }
-:local(.element_container).error input {
+.element_container:global(.error) input {
   color: var(--color-panel-error);
 }
-:local(.element_container):not(.used) input {
+.element_container:not(:global(.used)) input {
   color: var(--color-panel-text-active);
 }

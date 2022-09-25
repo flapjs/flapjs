@@ -1,5 +1,6 @@
 import React from 'react';
 import Style from './TapeWidget.module.css';
+import './TapeWidget.css';
 
 import DownArrowIcon from 'src/app/components/iconset/DownArrowIcon';
 

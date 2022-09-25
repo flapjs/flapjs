@@ -1,11 +1,11 @@
-:local(.speech_container) {
+.speech_container {
     position: absolute;
     width: 10em;
     height: 4em;
     color: blue;
 }
 
-:local(.speech_content) {
+.speech_content {
     width: auto;
     height: calc(100% - 1em);
     background: currentColor;
@@ -13,11 +13,11 @@
     min-width: 1em;
 }
 
-.upside :local(.speech_content) {
+:global(.upside) .speech_content {
     margin-top: 1em;
 }
 
-.upside :local(.speech_content):after {
+:global(.upside) .speech_content:after {
 	content: '';
 	position: absolute;
 	top: 0;
@@ -32,11 +32,11 @@
 	margin-top: 0em;
 }
 
-:local(.speech_content) {
+.speech_content {
     margin-top: 0em;
 }
 
-:local(.speech_content):after {
+.speech_content:after {
 	content: '';
 	position: absolute;
 	bottom: 0;

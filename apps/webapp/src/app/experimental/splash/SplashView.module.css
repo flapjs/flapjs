@@ -1,4 +1,4 @@
-:local(.splash_container) {
+.splash_container {
   position: absolute;
   top: 0px;
   left: 0px;
@@ -16,12 +16,12 @@
   transition: opacity 0.3s ease;
 }
 
-:local(.splash_container).hide {
+.splash_container:global(.hide) {
   pointer-events: none;
   opacity: 0.0;
 }
 
-:local(.splash_child) {
+.splash_child {
   width: 80%;
   height: 80%;
   margin: auto;

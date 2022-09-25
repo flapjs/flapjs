@@ -1,4 +1,4 @@
-:local(.icon_button) {
+.icon_button {
   position: relative;
   background-color: transparent;
   color: inherit;
@@ -11,18 +11,18 @@
   /** BUGFIX: So we don't get huge icons. */
   max-width: 20vw;
 }
-:local(.icon_button) * {
+.icon_button * {
   pointer-events: none;
 }
-:local(.icon_button):disabled {
+.icon_button:disabled {
   cursor: auto;
 }
-:local(.icon_button) svg {
+.icon_button svg {
   width: 100%;
   height: 100%;
   fill: currentColor;
 }
-:local(.icon_button) label {
+.icon_button label {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -36,9 +36,9 @@
 
   opacity: 0;
 }
-:local(.icon_button).hint svg {
+.icon_button:global(.hint) svg {
   opacity: 0.1;
 }
-:local(.icon_button).hint label {
+.icon_button:global(.hint) label {
   opacity: 1;
 }

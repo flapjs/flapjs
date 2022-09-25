@@ -1,12 +1,12 @@
-:local(.tray_container) {
+.tray_container {
   width: 100%;
 }
-:local(.tray_container) > * {
+.tray_container > * {
   height: 1em;
 }
-:local(.tray_used) {
+.tray_used {
   margin-right: 5px;
 }
-:local(.tray_default) {
+.tray_default {
   opacity: 0.5;
 }

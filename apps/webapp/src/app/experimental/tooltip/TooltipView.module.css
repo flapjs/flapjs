@@ -1,4 +1,4 @@
-:local(.tooltip_container) {
+.tooltip_container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,12 +17,12 @@
   opacity: 0;
   transition: opacity 0.5s ease, visibility 0s linear 0.5s;
 }
-:local(.tooltip_container).visible {
+.tooltip_container:global(.visible) {
   visibility: visible;
   opacity: 1;
   transition: opacity 3.0s 3.0s ease, visibility 0s linear 3.0s;
 }
-:local(.tooltip_container) > * {
+.tooltip_container > * {
   /* HACK: This fixes a weird offset for the view */
   margin-right: 10px;
 

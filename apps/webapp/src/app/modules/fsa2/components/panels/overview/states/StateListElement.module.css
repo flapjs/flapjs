@@ -1,17 +1,17 @@
-:local(.element_container) {
+.element_container {
   margin: 0.2em;
   padding: 0.3em;
 
   border-radius: 0.5em;
   background: var(--color-panel-back-input);
 }
-:local(.element_container):first-of-type {
+.element_container:first-of-type {
   outline: 0.15em dashed var(--color-panel-back-detail);
   outline-offset: 0.15em;
   margin-right: 0.3em;
   margin-left: -0.15em;
 }
-:local(.element_container) input {
+.element_container input {
   background: none;
   outline: none;
   padding: 1px;
@@ -24,17 +24,17 @@
   border: 3px solid transparent;
   border-radius: 0.5em;
 }
-:local(.element_container).accept input {
+.element_container:global(.accept) input {
   /*text-decoration: underline;*/
   border-color: var(--color-panel-back-detail);
 }
 
-:local(.element_container).empty {
+.element_container:global(.empty) {
   background: var(--color-panel-error);
 }
-:local(.element_container).custom input {
+.element_container:global(.custom) input {
   color: var(--color-panel-text);
 }
-:local(.element_container).error input {
+.element_container:global(.error) input {
   color: var(--color-panel-error);
 }

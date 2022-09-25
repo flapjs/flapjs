@@ -1,5 +1,4 @@
 import React from 'react';
-import { hot } from 'react-hot-loader/root';
 import Style from './App.module.css';
 
 import DrawerView, { DRAWER_SIDE_RIGHT, DRAWER_SIDE_BOTTOM, DRAWER_BAR_DIRECTION_VERTICAL, DRAWER_BAR_DIRECTION_HORIZONTAL } from 'src/app/experimental/drawer/DrawerView';
@@ -484,4 +483,4 @@ class App extends React.Component
 App.INSTANCE = null;
 
 //For hotloading this class
-export default hot(App);
+export default App;

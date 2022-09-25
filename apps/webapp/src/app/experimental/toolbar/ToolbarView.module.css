@@ -1,5 +1,5 @@
 /********* APP BAR *********/
-:local(.app_bar) {
+.app_bar {
   --toolbar-height: 80px;
 
   --color-toolbar-highlight: var(--color-accent);
@@ -36,12 +36,12 @@
   background: var(--color-toolbar-back);
   color: var(--color-toolbar-text);
 }
-:local(.app_bar).open {
+.app_bar:global(.open) {
   height: 100%;
   transition: height 0.3s ease;
 }
 /* for hide animation */
-:local(.app_bar).hide {
+.app_bar:global(.hide) {
   height: 0px;
   border-bottom: 0px solid transparent;
 
@@ -51,7 +51,7 @@
 }
 
 /********* MENU *********/
-:local(.bar_menu) {
+.bar_menu {
   flex: 1;
   visibility: visible;
   overflow: hidden;
@@ -61,14 +61,14 @@
   transform: translateY(0);
   transition: visibility 0s linear 0.3s, transform 0.3s ease 0.3s;
 }
-:local(.app_bar):not(.open) :local(.bar_menu) {
+.app_bar:not(:global(.open)) .bar_menu {
   visibility: hidden;
   transform: translateY(-100vh);
   transition: visibility 0s linear 0.3s, transform 0.3s ease;
 }
 
 /********* MENU CONTENTS *********/
-:local(.menu_container) {
+.menu_container {
   position: relative;
   flex: 2;
   animation-name: toolbar-view-slidein-child;
@@ -78,7 +78,7 @@
   margin-left: 1em;
   margin-right: 1em;
 }
-:local(.menu_button_container) {
+.menu_button_container {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -91,12 +91,12 @@
   padding-right: 1em;
   border-left: 4px solid var(--color-panel-accent);
 }
-:local(.menu_button_container) > * {
+.menu_button_container > * {
   flex: 1;
   display: flex;
   flex-direction: row;
 }
-:local(.menu_button_container) button {
+.menu_button_container button {
   background: var(--color-toolbar-menu);
   border-bottom: 1px solid var(--color-toolbar-menu-detail);
   /* Override default icon button size */
@@ -104,16 +104,16 @@
 
   text-align: right;
 }
-:local(.menu_button_container) button:last-of-type {
+.menu_button_container button:last-of-type {
   border-bottom: none;
 }
-:local(.menu_button_container) button:hover {
+.menu_button_container button:hover {
   background: var(--color-toolbar-menu-active);
 }
-:local(.menu_button_container) button:disabled {
+.menu_button_container button:disabled {
   background: var(--color-toolbar-menu-disabled);
 }
-:local(.menu_button_container) button svg {
+.menu_button_container button svg {
   width: 10vmin; /* 16vmin*/
   height: 10vmin; /* 16vmin*/
   margin: 0.5em;
@@ -121,13 +121,13 @@
   min-width: 2em;
   min-height: 2em;
 }
-:local(.menu_button_container) button label {
+.menu_button_container button label {
   text-align: center;
   align-self: center;
   margin-right: 0.5em;
 }
 @media only screen and (min-width: 700px) {
-  :local(.menu_button_container) button label {
+  .menu_button_container button label {
     flex: 1;
     font-size: 2em; /* 9vmin */
 
@@ -147,7 +147,7 @@
 }
 
 /********* TOOLBAR *********/
-:local(.bar_toolbar) {
+.bar_toolbar {
   height: var(--toolbar-height);
   display: flex;
   flex-direction: row;
@@ -155,7 +155,7 @@
 
   border-top: 2px solid var(--color-toolbar-text-disabled);
 }
-:local(.toolbar_button_container) {
+.toolbar_button_container {
   position: relative;
   flex: 1;
   display: flex;
@@ -167,14 +167,14 @@
   transform: translateX(0);
   transition: visibility 0s linear, transform 0.3s ease;
 }
-:local(.app_bar).open :local(.toolbar_button_container) {
+.app_bar:global(.open) .toolbar_button_container {
   visibility: hidden;
   transform: translateX(-100vw);
   transition: visibility 0s linear 0.6s, transform 0.3s ease 0.3s;
 }
 
 /********* TOOLBAR CONTENTS *********/
-:local(.toolbar_title) {
+.toolbar_title {
   padding: 0.2em 1em;
   z-index: 10001;
   margin-right: auto;
@@ -184,10 +184,10 @@
 
   background: var(--color-toolbar-back);
 }
-:local(.app_bar).open :local(.toolbar_title) input {
+.app_bar:global(.open) .toolbar_title input {
   opacity: 1;
 }
-:local(.toolbar_expander) {
+.toolbar_expander {
   z-index: 10001;
   margin: auto;
   margin-left: 1em;

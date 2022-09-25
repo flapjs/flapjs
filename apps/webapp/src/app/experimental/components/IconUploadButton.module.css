@@ -1,9 +1,9 @@
-:local(.upload_button) {
+.upload_button {
   position: relative;
   overflow: hidden;
 }
 /* HACK: make an invisible input that users can click */
-:local(.upload_input) {
+.upload_input {
   position: absolute;
   font-size: 100px;
   opacity: 0;
@@ -11,6 +11,6 @@
   pointer-events: all;
   cursor: pointer;
 }
-:local(.upload_input):disabled {
+.upload_input:disabled {
   cursor: auto;
 }
