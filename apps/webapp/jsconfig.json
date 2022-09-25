@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "target": "ES5",
+        "lib": [
+            "ES2021",
+            "DOM"
+        ],
+        "jsx": "react",
+        "allowJs": true,
+        "checkJs": true,
+        "downlevelIteration": true,
+        "paths": {
+            "src/*": ["./src/*"]
+        }
+    },
+    "exclude": [
+        "node_modules",
+        "dist",
+        "out",
+        "public"
+    ],
+    "include": [
+        "src/**/*.js",
+        "src/**/*.jsx"
+    ]
+}
