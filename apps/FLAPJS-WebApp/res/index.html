@@ -58,35 +58,6 @@
       <noscript>You need to enable JavaScript to run this app.</noscript>
     </div>
 
-    <!-- ServiceWorker -->
-    <script>
-    window.isUpdateAvailable = new Promise((resolve, reject) => {
-      if ('serviceWorker' in navigator)
-      {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker
-            .register('./serviceWorker.js', {scope: './'})
-            .then(registration => {
-              console.log("[ServiceWorker] Registration successful: ", registration.scope);
-              registration.addEventListener('updatefound', foundEvent => {
-                const installingWorker = registration.installing;
-                installingWorker.addEventListener('statechange', changeEvent => {
-                  if (installingWorker.state === 'installed')
-                  {
-                    //Found new update available
-                    if (navigator.serviceWorker.controller) resolve(true);
-                    //No update available
-                    else resolve(false);
-                  }
-                });
-              });
-            })
-            .catch(err => console.error("[ServiceWorker] Registration failed: ", err));
-        });
-      }
-    });
-    </script>
-
     <!-- Library files -->
     <script src="./script/I18N.js" type="application/javascript"></script>
     <script>

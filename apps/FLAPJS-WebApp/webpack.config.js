@@ -1,5 +1,4 @@
 const path = require('path');
-const fs = require('fs');
 const webpack = require('webpack');
 const package = require('./package.json');
 const NODE_ENV = process.env.NODE_ENV || 'development';
@@ -14,8 +13,6 @@ const CleanPlugin = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 //Copy file and output it
 const CopyPlugin = require('copy-webpack-plugin');
-//Gather all generated assets
-const ServiceWorkerPlugin = require('serviceworker-webpack-plugin');
 //Generate html with dynamic assets
 const HtmlPlugin = require('html-webpack-plugin');
 //Save generated html as file
@@ -105,26 +102,12 @@ const config = {
       //NOTE: any files added here should also be added to CleanWebpackPlugin
       { from: './res/404.html', to: '404.html' }
     ]),
-    new ServiceWorkerPlugin({
-      filename: 'serviceWorker.js',
-      entry: path.join(__dirname, './res/ServiceWorker.js'),
-      publicPath: './',
-      excludes: ['**/.*', '**/*.map', '**/document/**', '**/image/**', '**/lang/**', '**/script/**', '**/style/**'],
-      transformOptions: serviceWorkerOption =>
-      {
-        return {
-          assets: serviceWorkerOption.assets,
-          hash: Math.random().toString(36).substr(2, 9)
-        };
-      }
-    }),
     new HtmlPlugin({
       filename: path.resolve(OUTPUT_PATH, 'index.html'),
       template: './res/index.html',
       alwaysWriteToDisk: true
     }),
-    new HtmlHardDiskPlugin(),
-    new webpack.DefinePlugin(GLOBAL_VARS)
+    new HtmlHardDiskPlugin()
   ]
 };
 
@@ -138,7 +121,7 @@ module.exports = (env, argv) =>
 
     //Webpack server options
     config.devServer = {
-      contentBase: path.join(__dirname, '/'),//public/
+      contentBase: path.join(__dirname, 'dist/'),//public/
       //This stops serviceWorker in dev mode since its no longer https
       //disableHostCheck: true,
       host: DEV_SERVER_IP,

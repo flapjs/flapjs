@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Logger from 'util/logger/Logger.js';
+import Logger from 'util/logger/Logger';
 const LOGGER_TAG = 'App';
 
-import App from 'experimental/App.js';
-import Changelog from 'changelog.js';
+import App from 'experimental/App';
+import Changelog from 'changelog';
 
-import LocalStorage from 'util/storage/LocalStorage.js';
+import LocalStorage from 'util/storage/LocalStorage';
 
 const SHOULD_WARN_USERS_ON_EXIT = true;
 
