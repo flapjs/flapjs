@@ -3,7 +3,7 @@ import './AlphabetList.css';
 
 import InfoBlock from '../infoblock/InfoBlock';
 import IconButton from 'src/app/deprecated/icons/IconButton';
-import BoxAddIcon from 'src/app/deprecated/icons/BoxAddIcon';
+import BoxAddIcon from 'src/assets/icons/box-add.svg';
 
 import AlphabetTag from './AlphabetTag';
 

@@ -2,10 +2,9 @@ import SessionExporter from 'src/app/session/SessionExporter';
 
 import * as ColorHelper from 'src/app/util/ColorHelper';
 
-import PNGIcon from 'src/app/deprecated/icons/flat/PNGIcon';
-import JPGIcon from 'src/app/deprecated/icons/flat/JPGIcon';
-import SVGIcon from 'src/app/deprecated/icons/flat/SVGIcon';
-import BWIcon from 'src/app/components/iconset/flat/PNGFileIcon';
+import PNGIcon from 'src/assets/icons/file-png.svg';
+import JPGIcon from 'src/assets/icons/file-jpg.svg';
+import SVGIcon from 'src/assets/icons/file-svg.svg';
 
 export const IMAGE_TYPE_PNG = 'png';
 export const IMAGE_TYPE_JPG = 'jpg';
@@ -124,7 +123,7 @@ class NodalGraphImageExporter extends SessionExporter
         case IMAGE_TYPE_PNG: return PNGIcon;
         case IMAGE_TYPE_JPG: return JPGIcon;
         case IMAGE_TYPE_SVG: return SVGIcon;
-        case IMAGE_TYPE_BW: return BWIcon;
+        case IMAGE_TYPE_BW: return PNGIcon;
         default: return null;
         }
     }

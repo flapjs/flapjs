@@ -2,7 +2,7 @@ import React from 'react';
 import Style from './StateListView.module.css';
 
 import IconButton from 'src/app/experimental/components/IconButton';
-import BoxAddIcon from 'src/app/components/iconset/BoxAddIcon';
+import BoxAddIcon from 'src/assets/icons/box-add.svg';
 import TriangleIcon from 'src/app/components/iconset/TriangleIcon';
 
 import StateListElement from './StateListElement';
