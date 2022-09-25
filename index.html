@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <!-- Metadata -->
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -10,7 +12,7 @@
     <!-- An intuitive web app to help you explore what it means to be computable. Experiment and construct formal languages from finite automata to Turing machines with real-time analysis and error checking. From its humble beginnings as a small tool built by a determined CSE 105 homework group at UC San Diego inspired by JFLAP, it has continued to still be developed by the students, for the students. -->
     <meta name="keywords" content="flap,flapjs,FLAPJS,JFLAP,Computation Theory,CSE 105,UCSD">
     <!-- Title -->
-    <title id="window-title">Flap.js - Formal Languages and Automata Package in JavaScript</title>
+    <title id="window-title">Flap.js</title>
     <!-- Default styling -->
     <style>
     html, body { width: 100%; height: 100%; padding: 0; margin: 0;
@@ -43,6 +45,8 @@
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Overpass+Mono" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+    <script type="module" crossorigin src="/assets/index.290b29b1.js"></script>
+    <link rel="stylesheet" href="/assets/index.2c820e26.css">
   </head>
   <body>
     <!-- React Root -->
@@ -58,37 +62,8 @@
       <noscript>You need to enable JavaScript to run this app.</noscript>
     </div>
 
-    <!-- ServiceWorker -->
-    <script>
-    window.isUpdateAvailable = new Promise((resolve, reject) => {
-      if ('serviceWorker' in navigator)
-      {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker
-            .register('./serviceWorker.js', {scope: './'})
-            .then(registration => {
-              console.log("[ServiceWorker] Registration successful: ", registration.scope);
-              registration.addEventListener('updatefound', foundEvent => {
-                const installingWorker = registration.installing;
-                installingWorker.addEventListener('statechange', changeEvent => {
-                  if (installingWorker.state === 'installed')
-                  {
-                    //Found new update available
-                    if (navigator.serviceWorker.controller) resolve(true);
-                    //No update available
-                    else resolve(false);
-                  }
-                });
-              });
-            })
-            .catch(err => console.error("[ServiceWorker] Registration failed: ", err));
-        });
-      }
-    });
-    </script>
-
     <!-- Library files -->
-    <script src="script/I18N.js" type="application/javascript"></script>
+    <script src="./script/I18N.js" type="application/javascript"></script>
     <script>
       //TODO: this should be only lang/ when have server
       I18N.baseUrl = "lang/";
@@ -96,5 +71,6 @@
     </script>
 
     <!-- Entry point -->
-  <script type="text/javascript" src="./runtime~app.bundle.56f7c4b8b4be2d5095a2.js"></script><script type="text/javascript" src="./styles.bundle.68f0758642f34abcc14f.js"></script><script type="text/javascript" src="./vendors.bundle.771e9df534af9c1f0fde.js"></script><script type="text/javascript" src="./app.bundle.525430d77e37c6eb7350.js"></script></body>
+    
+  </body>
 </html>
