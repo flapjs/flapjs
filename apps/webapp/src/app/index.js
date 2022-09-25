@@ -1,21 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Logger from 'util/logger/Logger.js';
+import Logger from 'src/app/util/logger/Logger';
 const LOGGER_TAG = 'App';
 
-import App from 'experimental/App.js';
-import Changelog from 'changelog.js';
+import App from 'src/app/experimental/App';
+import Changelog from './changelog';
 
-import LocalStorage from 'util/storage/LocalStorage.js';
+import LocalStorage from 'src/app/util/storage/LocalStorage';
+import { NODE_ENV, VERSION } from 'src/globals';
 
 const SHOULD_WARN_USERS_ON_EXIT = true;
 
 //Setup app
 window.addEventListener('load', (event) => 
 {
-    Logger.out(LOGGER_TAG, `Preparing for '${process.env.NODE_ENV}' environment...'`);
-    Logger.out(LOGGER_TAG, `Loading app version '${process.env.VERSION}'...`);
+    Logger.out(LOGGER_TAG, `Preparing for '${NODE_ENV}' environment...'`);
+    Logger.out(LOGGER_TAG, `Loading app version '${VERSION}'...`);
 
     try
     {
@@ -64,7 +65,7 @@ if (typeof window['isUpdateAvailable'] === 'function')
                 message += Changelog['log'];
             }
     
-            Logger.out(LOGGER_TAG, `Found update for version ${process.env.VERSION}...`);
+            Logger.out(LOGGER_TAG, `Found update for version ${VERSION}...`);
             window.alert('*** New update available! *** \n Please restart the browser.' +
                 (message ? '\n' + message : ''));
         }

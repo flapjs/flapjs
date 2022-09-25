@@ -4,7 +4,7 @@
   "description": "Repository for flap.js web app project",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --mode development --config webpack.config.js",
-    "build": "cross-env NODE_ENV=development webpack --mode development --config webpack.config.js",
+    "build": "cross-env NODE_ENV=production webpack --mode production --config webpack.config.js",
     "deploy": "cross-env NODE_ENV=production webpack --mode production --config webpack.config.js; node ./tools/deploy.js",
     "lint": "eslint ./src",
     "docs": "jsdoc --readme ./README.md --recurse -c ./jsdoc.conf.json --destination ./docs/api ./src",

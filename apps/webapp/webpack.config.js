@@ -1,9 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const package = require('./package.json');
 const NODE_ENV = process.env.NODE_ENV || 'development';
-const PACKAGE_VERSION = package.version;
-const PACKAGE_TITLE = package.name;
 const DEV_SERVER_IP = '0.0.0.0';
 const DEV_SERVER_PORT = 8080;
 
@@ -13,21 +10,14 @@ const CleanPlugin = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 //Copy file and output it
 const CopyPlugin = require('copy-webpack-plugin');
-//Gather all generated assets
-const ServiceWorkerPlugin = require('serviceworker-webpack-plugin');
 //Generate html with dynamic assets
 const HtmlPlugin = require('html-webpack-plugin');
 //Save generated html as file
 const HtmlHardDiskPlugin = require('html-webpack-harddisk-plugin');
 
-const GLOBAL_VARS = {
-  'process.env.VERSION': JSON.stringify(PACKAGE_VERSION),
-  'process.env.TITLE': JSON.stringify(PACKAGE_TITLE),
-  'process.env.NODE_ENV': JSON.stringify(NODE_ENV)
-};
 const OUTPUT_PATH = path.resolve(__dirname, 'dist');
 const ALIAS = {
-  '@res': './res'
+  'src': path.resolve(__dirname, 'src'),
 };
 const MODULE_PATHS = [
   //For webpack HMR dev server
@@ -35,8 +25,7 @@ const MODULE_PATHS = [
   'webpack/hot/only-dev-server',//HMR, but does NOT reload on error
   //'webpack/hot/dev-server'//HMR, but reloads on error
   //The used entrypoints
-  './node_modules',
-  './src/app'
+  './node_modules'
 ];
 const ENTRIES = {
   app: './src/app/index.js'
@@ -52,6 +41,7 @@ const config = {
   //Target platform
   target: 'web',
   output: {
+    //Output to ./OUTPUT/bundle.js
     path: OUTPUT_PATH,
     filename: '[name].bundle.js',
     chunkFilename: '[name].bundle.js',
@@ -103,25 +93,12 @@ const config = {
       //NOTE: any files added here should also be added to CleanWebpackPlugin
       { from: './res/404.html', to: '404.html' }
     ]),
-    new ServiceWorkerPlugin({
-      filename: 'serviceWorker.js',
-      entry: path.join(__dirname, './res/ServiceWorker.js'),
-      publicPath: './',
-      excludes: ['**/.*', '**/*.map', '**/document/**', '**/image/**', '**/lang/**', '**/script/**', '**/style/**'],
-      transformOptions(serviceWorkerOption) {
-        return {
-          assets: serviceWorkerOption.assets,
-          hash: Math.random().toString(36).substring(2, 9)
-        };
-      }
-    }),
     new HtmlPlugin({
       filename: path.resolve(OUTPUT_PATH, 'index.html'),
       template: './res/index.html',
       alwaysWriteToDisk: true
     }),
-    new HtmlHardDiskPlugin(),
-    new webpack.DefinePlugin(GLOBAL_VARS),
+    new HtmlHardDiskPlugin()
   ]
 };
 
@@ -135,7 +112,7 @@ module.exports = (env, argv) =>
 
     //Webpack server options
     config.devServer = {
-      contentBase: path.join(__dirname, '/'),//public/
+      contentBase: path.join(__dirname, 'dist/'),//public/
       //This stops serviceWorker in dev mode since its no longer https
       //disableHostCheck: true,
       host: DEV_SERVER_IP,
@@ -155,12 +132,11 @@ module.exports = (env, argv) =>
         filename: 'sourcemap/[name].bundle.js.map',
         exclude: [/vendors\.bundle.*\.js$/, 'serviceWorker.js']
       }));
-    config.plugins.push(
-      new CleanPlugin({
-        cleanOnceBeforeBuildPatterns: [OUTPUT_PATH],
-        dangerouslyAllowCleanPatternsOutsideProject: true,
-        dry: false
-      }));
+    config.plugins.push(new CleanPlugin({
+      cleanOnceBeforeBuildPatterns: [OUTPUT_PATH],
+      dangerouslyAllowCleanPatternsOutsideProject: true,
+      dry: false
+    }));
 
     //Optimizations
     config.optimization = {
