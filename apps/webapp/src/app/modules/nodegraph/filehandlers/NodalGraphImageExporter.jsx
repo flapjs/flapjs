@@ -3,7 +3,7 @@ import SessionExporter from 'src/app/session/SessionExporter';
 import * as ColorHelper from 'src/app/util/ColorHelper';
 
 import PNGIcon from 'src/assets/icons/file-png.svg';
-import JPGIcon from 'src/assets/icons/file-jpg.svg';
+import JPGIcon from 'src/assets/icons/file-jpeg.svg';
 import SVGIcon from 'src/assets/icons/file-svg.svg';
 
 export const IMAGE_TYPE_PNG = 'png';

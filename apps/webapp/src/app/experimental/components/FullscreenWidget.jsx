@@ -2,8 +2,8 @@ import React from 'react';
 import Style from './FullscreenWidget.module.css';
 
 import IconStateButton from 'src/app/experimental/components/IconStateButton';
-import FullscreenIcon from 'src/app/components/iconset/FullscreenIcon';
-import FullscreenExitIcon from 'src/app/components/iconset/FullscreenExitIcon';
+import FullscreenIcon from 'src/assets/icons/fullscreen.svg';
+import FullscreenExitIcon from 'src/assets/icons/fullscreen-exit.svg';
 
 class FullscreenWidget extends React.Component
 {

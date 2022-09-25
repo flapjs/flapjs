@@ -4,7 +4,7 @@ import './StatesList.css';
 import InfoBlock from '../infoblock/InfoBlock';
 import IconButton from 'src/app/deprecated/icons/IconButton';
 import BoxAddIcon from 'src/assets/icons/box-add.svg';
-import TriangleIcon from 'src/app/deprecated/icons/TriangleIcon';
+import TriangleIcon from 'src/assets/icons/triangle.svg';
 
 import StateTag from './StateTag';
 

@@ -5,8 +5,8 @@ import Config from 'src/app/deprecated/config';
 import { EMPTY } from 'src/app/deprecated/fsa/machine/Symbols';
 
 import IconButton from 'src/app/deprecated/icons/IconButton';
-import AddIcon from 'src/app/deprecated/icons/AddIcon';
-import RemoveIcon from 'src/app/deprecated/icons/RemoveIcon';
+import AddIcon from 'src/assets/icons/add.svg';
+import RemoveIcon from 'src/assets/icons/subtract.svg';
 
 import StatusButton from './StatusButton';
 

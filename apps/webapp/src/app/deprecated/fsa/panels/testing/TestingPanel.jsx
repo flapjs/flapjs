@@ -10,10 +10,10 @@ import TestingInput from './TestingInput';
 import IconButton from 'src/app/deprecated/icons/IconButton';
 import UploadTestButton from './components/UploadTestButton';
 
-import UploadIcon from 'src/app/deprecated/icons/UploadIcon';
-import CreateIcon from 'src/app/deprecated/icons/PageNewContentIcon';
-import SaveIcon from 'src/app/deprecated/icons/SaveIcon';
-import CloseIcon from 'src/app/deprecated/icons/CloseIcon';
+import UploadIcon from 'src/assets/icons/upload.svg';
+import CreateIcon from 'src/assets/icons/page-add.svg';
+import SaveIcon from 'src/assets/icons/disk-save.svg';
+import CloseIcon from 'src/assets/icons/cross.svg';
 
 const TEST_FILENAME = 'test.txt';
 

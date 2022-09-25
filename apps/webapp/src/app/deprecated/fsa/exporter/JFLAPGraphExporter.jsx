@@ -1,6 +1,6 @@
 import AbstractGraphExporter from './AbstractGraphExporter';
 
-import XMLFileIcon from 'src/app/deprecated/icons/flat/XMLIcon';
+import XMLFileIcon from 'src/assets/icons/file-xml.svg';
 import { XML as XMLGraphParser } from 'src/app/deprecated/fsa/graph/FSAGraphParser';
 import { downloadText } from 'src/app/util/Downloader';
 

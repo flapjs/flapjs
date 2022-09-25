@@ -7,12 +7,12 @@ import { downloadText } from 'src/app/util/Downloader';
 import IconButton from 'src/app/experimental/components/IconButton';
 import IconUploadButton from 'src/app/experimental/components/IconUploadButton';
 
-import PageContentIcon from 'src/app/components/iconset/PageContentIcon';
-import UploadIcon from 'src/app/components/iconset/UploadIcon';
-import DownloadIcon from 'src/app/components/iconset/DownloadIcon';
-import CrossIcon from 'src/app/components/iconset/CrossIcon';
-import AddIcon from 'src/app/components/iconset/AddIcon';
-import RunningManIcon from 'src/app/components/iconset/RunningManIcon';
+import PageContentIcon from 'src/assets/icons/page-content.svg';
+import UploadIcon from 'src/assets/icons/upload.svg';
+import DownloadIcon from 'src/assets/icons/download.svg';
+import CrossIcon from 'src/assets/icons/cross.svg';
+import AddIcon from 'src/assets/icons/add.svg';
+import RunningManIcon from 'src/assets/icons/man-running.svg';
 
 import TestItem, {SUCCESS_MODE, FAILURE_MODE, WORKING_MODE, DEFAULT_MODE} from './TestItem';
 

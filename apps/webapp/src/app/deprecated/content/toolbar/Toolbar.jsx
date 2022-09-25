@@ -9,19 +9,15 @@ import MachineName from './MachineName';
 
 import IconButton from 'src/app/deprecated/icons/IconButton';
 
-import MoreIcon from 'src/app/deprecated/icons/MoreIcon';
-import UploadIcon from 'src/app/deprecated/icons/UploadIcon';
-import CreateIcon from 'src/app/deprecated/icons/PageNewIcon';
-//import CreateIcon from 'src/app/deprecated/icons/CreateIcon';
-import SaveIcon from 'src/app/deprecated/icons/SaveIcon';
-//import SaveIcon from 'src/app/deprecated/icons/DiskSaveIcon';
-import UndoIcon from 'src/app/deprecated/icons/UndoIcon';
-import RedoIcon from 'src/app/deprecated/icons/RedoIcon';
-import HelpIcon from 'src/app/deprecated/icons/HelpIcon';
-import LanguageIcon from 'src/app/deprecated/icons/LanguageIcon';
-import OfflineIcon from 'src/app/deprecated/icons/OfflineIcon';
-import OfflinePinIcon from 'src/app/deprecated/icons/OfflinePinIcon';
-import BugReportIcon from 'src/app/deprecated/icons/BugReportIcon';
+import UploadIcon from 'src/assets/icons/upload.svg';
+import CreateIcon from 'src/assets/icons/page-empty.svg';
+import SaveIcon from 'src/assets/icons/disk-save.svg';
+import UndoIcon from 'src/assets/icons/undo.svg';
+import RedoIcon from 'src/assets/icons/redo.svg';
+import HelpIcon from 'src/assets/icons/help.svg';
+import LanguageIcon from 'src/assets/icons/world.svg';
+import OfflineIcon from 'src/assets/icons/offline.svg';
+import BugReportIcon from 'src/assets/icons/bug.svg';
 
 import Drawer from 'src/app/deprecated/content/drawer/Drawer';
 

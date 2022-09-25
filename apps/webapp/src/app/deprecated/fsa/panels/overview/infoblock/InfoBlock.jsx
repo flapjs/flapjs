@@ -2,7 +2,7 @@ import React from 'react';
 import './InfoBlock.css';
 
 import IconToggle from 'src/app/deprecated/icons/IconToggle';
-import DropDownIcon from 'src/app/deprecated/icons/DropDownIcon';
+import DropDownIcon from 'src/assets/icons/tiny-down.svg';
 
 //TODO: Should be deprecated to use OptionGroup (or something similar)
 class InfoBlock extends React.Component

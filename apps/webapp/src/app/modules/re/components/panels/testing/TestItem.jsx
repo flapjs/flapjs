@@ -2,11 +2,11 @@ import React from 'react';
 import Style from './TestItem.module.css';
 
 import IconButton from 'src/app/experimental/components/IconButton';
-import SubtractIcon from 'src/app/components/iconset/SubtractIcon';
-import CheckCircleIcon from 'src/app/components/iconset/CheckCircleIcon';
-import CrossCircleIcon from 'src/app/components/iconset/CrossCircleIcon';
-import PendingIcon from 'src/app/components/iconset/PendingIcon';
-import RunningManIcon from 'src/app/components/iconset/RunningManIcon';
+import SubtractIcon from 'src/assets/icons/subtract.svg';
+import CheckCircleIcon from 'src/assets/icons/circle-check.svg';
+import CrossCircleIcon from 'src/assets/icons/circle-cross.svg';
+import PendingIcon from 'src/assets/icons/pending.svg';
+import RunningManIcon from 'src/assets/icons/man-running.svg';
 
 export const DEFAULT_MODE = 'default';
 export const SUCCESS_MODE = 'success';

@@ -2,8 +2,8 @@ import React from 'react';
 import Style from './ZoomWidget.module.css';
 
 import IconButton from 'src/app/experimental/components/IconButton';
-import ZoomInIcon from 'src/app/components/iconset/ZoomInIcon';
-import ZoomOutIcon from 'src/app/components/iconset/ZoomOutIcon';
+import ZoomInIcon from 'src/assets/icons/zoom-in.svg';
+import ZoomOutIcon from 'src/assets/icons/zoom-out.svg';
 
 class ZoomWidget extends React.Component
 {

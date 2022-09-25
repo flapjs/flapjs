@@ -2,7 +2,7 @@ import React from 'react';
 import './OptionGroup.css';
 
 import IconToggle from 'src/app/deprecated/icons/IconToggle';
-import DropDownIcon from 'src/app/components/iconset/ExpandDownIcon';
+import DropDownIcon from 'src/assets/icons/tiny-down.svg';
 
 class OptionGroup extends React.Component
 {

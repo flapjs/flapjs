@@ -1,6 +1,6 @@
 import SessionExporter from 'src/app/session/SessionExporter';
 
-import JSONFileIcon from 'src/app/components/iconset/flat/JSONFileIcon';
+import JSONFileIcon from 'src/assets/icons/file-json.svg';
 
 class REExporter extends SessionExporter
 {

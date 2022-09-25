@@ -2,7 +2,7 @@ import React from 'react';
 import Style from './ToolbarTitle.module.css';
 
 import FormattedInput from 'src/app/deprecated/system/formattedinput/FormattedInput';
-import OfflineIcon from 'src/app/components/iconset/OfflineIcon';
+import OfflineIcon from 'src/assets/icons/offline.svg';
 
 class ToolbarTitle extends React.Component
 {

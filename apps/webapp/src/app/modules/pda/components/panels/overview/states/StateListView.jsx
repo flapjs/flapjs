@@ -3,7 +3,7 @@ import Style from './StateListView.module.css';
 
 import IconButton from 'src/app/experimental/components/IconButton';
 import BoxAddIcon from 'src/assets/icons/box-add.svg';
-import TriangleIcon from 'src/app/components/iconset/TriangleIcon';
+import TriangleIcon from 'src/assets/icons/triangle.svg';
 
 import StateListElement from './StateListElement';
 

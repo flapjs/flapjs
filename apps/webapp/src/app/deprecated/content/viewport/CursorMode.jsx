@@ -2,8 +2,8 @@ import React from 'react';
 import './CursorMode.css';
 
 import IconButton from 'src/app/deprecated/icons/IconButton';
-import CreateIcon from 'src/app/deprecated/icons/CreateIcon';
-import MoveIcon from 'src/app/deprecated/icons/MoveIcon';
+import CreateIcon from 'src/assets/icons/pencil.svg';
+import MoveIcon from 'src/assets/icons/move.svg';
 
 class CursorMode extends React.Component
 {

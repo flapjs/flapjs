@@ -2,10 +2,9 @@ import React from 'react';
 import './StatusButton.css';
 
 import IconButton from 'src/app/deprecated/icons/IconButton';
-import SuccessIcon from 'src/app/deprecated/icons/SuccessIcon';
-import FailureIcon from 'src/app/deprecated/icons/FailureIcon';
-import WorkingIcon from 'src/app/deprecated/icons/WorkingIcon';
-import RunningManIcon from 'src/app/deprecated/icons/RunningManIcon';
+import SuccessIcon from 'src/assets/icons/circle-check.svg';
+import FailureIcon from 'src/assets/icons/circle-cross.svg';
+import RunningManIcon from 'src/assets/icons/man-running.svg';
 
 class StatusButton extends React.Component
 {

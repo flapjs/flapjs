@@ -17,16 +17,16 @@ import ModuleLoaderPanel from 'src/app/experimental/menus/moduleloader/ModuleLoa
 import ToolbarButton, { TOOLBAR_CONTAINER_TOOLBAR, TOOLBAR_CONTAINER_MENU } from 'src/app/experimental/toolbar/ToolbarButton';
 import ToolbarDivider from 'src/app/experimental/toolbar/ToolbarDivider';
 import ToolbarUploadButton from 'src/app/experimental/toolbar/ToolbarUploadButton';
-import PageEmptyIcon from 'src/app/components/iconset/PageEmptyIcon';
-import UndoIcon from 'src/app/components/iconset/UndoIcon';
-import RedoIcon from 'src/app/components/iconset/RedoIcon';
-import UploadIcon from 'src/app/components/iconset/UploadIcon';
-import DownloadIcon from 'src/app/components/iconset/DownloadIcon';
-import BugIcon from 'src/app/components/iconset/BugIcon';
-import WorldIcon from 'src/app/components/iconset/WorldIcon';
-import HelpIcon from 'src/app/components/iconset/HelpIcon';
-import SettingsIcon from 'src/app/components/iconset/SettingsIcon';
-import EditPencilIcon from 'src/app/components/iconset/EditPencilIcon';
+import PageEmptyIcon from 'src/assets/icons/page-empty.svg';
+import UndoIcon from 'src/assets/icons/undo.svg';
+import RedoIcon from 'src/assets/icons/redo.svg';
+import UploadIcon from 'src/assets/icons/upload.svg';
+import DownloadIcon from 'src/assets/icons/download.svg';
+import BugIcon from 'src/assets/icons/bug.svg';
+import WorldIcon from 'src/assets/icons/world.svg';
+import HelpIcon from 'src/assets/icons/help.svg';
+import SettingsIcon from 'src/assets/icons/settings.svg';
+import EditPencilIcon from 'src/assets/icons/pencil.svg';
 
 import AppSaver from 'src/app/experimental/AppSaver';
 import ColorSaver from 'src/app/experimental/ColorSaver';

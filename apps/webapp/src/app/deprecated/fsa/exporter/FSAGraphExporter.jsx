@@ -1,6 +1,6 @@
 import AbstractGraphExporter from './AbstractGraphExporter';
 
-import JSONFileIcon from 'src/app/deprecated/icons/flat/JSONIcon';
+import JSONFileIcon from 'src/assets/icons/file-json.svg';
 import { JSON as JSONGraphParser } from 'src/app/deprecated/fsa/graph/FSAGraphParser';
 import { downloadText } from 'src/app/util/Downloader';
 import { VERSION } from 'src/globals';

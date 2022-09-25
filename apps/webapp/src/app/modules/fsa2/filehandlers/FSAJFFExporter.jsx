@@ -1,6 +1,6 @@
 import SessionExporter from 'src/app/session/SessionExporter';
 
-import XMLFileIcon from 'src/app/components/iconset/flat/XMLFileIcon';
+import XMLFileIcon from 'src/assets/icons/file-xml.svg';
 
 class FSAJFFExporter extends SessionExporter
 {

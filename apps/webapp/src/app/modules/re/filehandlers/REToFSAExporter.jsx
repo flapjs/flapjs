@@ -1,6 +1,6 @@
 import SessionExporter from 'src/app/session/SessionExporter';
 
-import JSONFileIcon from 'src/app/components/iconset/flat/JSONFileIcon';
+import JSONFileIcon from 'src/assets/icons/file-json.svg';
 import { JSON as JSONGraphParser } from 'src/app/modules/fsa2/FSAGraphParser';
 
 import FSAGraph from 'src/app/modules/fsa2/graph/FSAGraph';
