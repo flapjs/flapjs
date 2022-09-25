@@ -1,12 +1,12 @@
 import React from 'react';
 import Style from './TestingPanel.module.css';
 
-import PanelContainer from 'experimental/panels/PanelContainer';
-import PanelSwitch from 'experimental/panels/PanelSwitch';
+import PanelContainer from 'src/app/experimental/panels/PanelContainer';
+import PanelSwitch from 'src/app/experimental/panels/PanelSwitch';
 
 import TestListView from './TestListView';
 
-import {MACHINE_ERROR_NOTIFICATION_TAG} from 'modules/re/components/notifications/RENotifications';
+import {MACHINE_ERROR_NOTIFICATION_TAG} from 'src/app/modules/re/components/notifications/RENotifications';
 
 class TestingPanel extends React.Component
 {

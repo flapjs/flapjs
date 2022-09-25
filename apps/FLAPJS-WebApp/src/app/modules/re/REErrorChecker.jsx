@@ -1,4 +1,4 @@
-import {SUCCESS_LAYOUT_ID, ERROR_LAYOUT_ID} from 'session/manager/notification/NotificationManager';
+import {SUCCESS_LAYOUT_ID, ERROR_LAYOUT_ID} from 'src/app/session/manager/notification/NotificationManager';
 import {
     MACHINE_ERROR_NOTIFICATION_TAG
 } from './components/notifications/RENotifications';

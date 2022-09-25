@@ -1,6 +1,6 @@
-import AbstractModule from 'deprecated/modules/abstract/AbstractModule';
+import AbstractModule from 'src/app/deprecated/modules/abstract/AbstractModule';
 
-import Notifications from 'deprecated/system/notification/Notifications';
+import Notifications from 'src/app/deprecated/system/notification/Notifications';
 
 import OverviewPanel from './panels/overview/OverviewPanel';
 import TestingPanel from './panels/testing/TestingPanel';
@@ -18,7 +18,7 @@ import ViewportRenderer from './renderer/ViewportRenderer';
 import LabelEditor from './editor/LabelEditor';
 import TestingManager from './testing/TestingManager';
 
-import SafeGraphEventHandler from 'deprecated/system/undomanager/SafeGraphEventHandler';
+import SafeGraphEventHandler from 'src/app/deprecated/system/undomanager/SafeGraphEventHandler';
 
 const VERSION = '0.0.1';
 const PANELS = [AboutPanel, TestingPanel, OverviewPanel, AnalysisPanel];

@@ -1,4 +1,4 @@
-import SessionImporter from 'session/SessionImporter';
+import SessionImporter from 'src/app/session/SessionImporter';
 
 /**
  * A class that represents a session importer for the FSA module.

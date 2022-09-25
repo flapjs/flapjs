@@ -1,8 +1,8 @@
-import AbstractInputHandler from 'util/input/AbstractInputHandler';
-import { lerp } from 'util/MathHelper';
+import AbstractInputHandler from 'src/app/util/input/AbstractInputHandler';
+import { lerp } from 'src/app/util/MathHelper';
 
-import { EVENT_SOURCE_FORWARD_ENDPOINT, EVENT_SOURCE_EDGE, EVENT_SOURCE_LABEL } from 'graph2/renderer/EdgeRenderer';
-import { EVENT_SOURCE_NODE } from 'graph2/renderer/NodeRenderer';
+import { EVENT_SOURCE_FORWARD_ENDPOINT, EVENT_SOURCE_EDGE, EVENT_SOURCE_LABEL } from 'src/app/graph2/renderer/EdgeRenderer';
+import { EVENT_SOURCE_NODE } from 'src/app/graph2/renderer/NodeRenderer';
 
 export const GRAPH_EVENT_EDGE_CREATE = 'edge-create';
 export const GRAPH_EVENT_EDGE_DELETE = 'edge-delete';

@@ -1,4 +1,4 @@
-import AbstractEventHandler from 'session/manager/undo/AbstractEventHandler';
+import AbstractEventHandler from 'src/app/session/manager/undo/AbstractEventHandler';
 
 class SafeUndoNodeGraphEventHandler extends AbstractEventHandler
 {

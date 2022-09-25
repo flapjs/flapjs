@@ -1,6 +1,6 @@
-import Eventable from 'util/Eventable';
+import Eventable from 'src/app/util/Eventable';
 
-import { solveFSAByStep } from 'modules/fsa2/machine/FSAUtils';
+import { solveFSAByStep } from 'src/app/modules/fsa2/machine/FSAUtils';
 
 import TapeContext from './TapeContext';
 

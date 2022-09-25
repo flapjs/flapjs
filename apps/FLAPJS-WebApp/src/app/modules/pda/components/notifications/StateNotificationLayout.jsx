@@ -1,5 +1,5 @@
 import React from 'react';
-import DefaultNotificationLayout, {STYLE_TYPE_ERROR} from 'session/manager/notification/components/DefaultNotificationLayout';
+import DefaultNotificationLayout, {STYLE_TYPE_ERROR} from 'src/app/session/manager/notification/components/DefaultNotificationLayout';
 
 class StateNotificationLayout extends React.Component
 {

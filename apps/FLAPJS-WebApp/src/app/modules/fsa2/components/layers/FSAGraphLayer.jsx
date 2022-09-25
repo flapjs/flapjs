@@ -1,10 +1,10 @@
 import React from 'react';
 
-import GraphNodeLayer from 'graph2/components/layers/GraphNodeLayer';
-import GraphEdgeLayer from 'graph2/components/layers/GraphEdgeLayer';
-import SelectionBoxLayer from 'graph2/components/layers/SelectionBoxLayer';
-import IndexedGraphStartMarkerLayer from 'graph2/components/layers/IndexedGraphStartMarkerLayer';
-import GraphHighlightLayer from 'graph2/components/layers/GraphHighlightLayer';
+import GraphNodeLayer from 'src/app/graph2/components/layers/GraphNodeLayer';
+import GraphEdgeLayer from 'src/app/graph2/components/layers/GraphEdgeLayer';
+import SelectionBoxLayer from 'src/app/graph2/components/layers/SelectionBoxLayer';
+import IndexedGraphStartMarkerLayer from 'src/app/graph2/components/layers/IndexedGraphStartMarkerLayer';
+import GraphHighlightLayer from 'src/app/graph2/components/layers/GraphHighlightLayer';
 
 import FSANodeRenderer from '../../graph/renderer/FSANodeRenderer';
 import FSANodeInputHandler from '../../graph/inputhandler/FSANodeInputHandler';

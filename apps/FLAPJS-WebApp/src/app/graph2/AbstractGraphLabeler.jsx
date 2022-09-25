@@ -1,4 +1,4 @@
-import GraphEdge from 'graph2/element/GraphEdge';
+import GraphEdge from 'src/app/graph2/element/GraphEdge';
 
 class AbstractGraphLabeler
 {

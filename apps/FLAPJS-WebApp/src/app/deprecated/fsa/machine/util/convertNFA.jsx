@@ -1,4 +1,4 @@
-import DFA from 'deprecated/fsa/machine/DFA';
+import DFA from 'src/app/deprecated/fsa/machine/DFA';
 
 export function convertToDFA(nfa, dst=null)
 {

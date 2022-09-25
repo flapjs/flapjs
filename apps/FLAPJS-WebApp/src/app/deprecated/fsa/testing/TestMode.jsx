@@ -1,8 +1,8 @@
 //FIXME: FSABUILDER: these should be the other ones
-import { solveDFA } from 'deprecated/fsa/machine/util/solveDFA';
-import { solveNFA, solveNFAbyStep } from 'deprecated/fsa/machine/util/solveNFA';
+import { solveDFA } from 'src/app/deprecated/fsa/machine/util/solveDFA';
+import { solveNFA, solveNFAbyStep } from 'src/app/deprecated/fsa/machine/util/solveNFA';
 
-import { DFA } from 'deprecated/fsa/machine/DFA';
+import { DFA } from 'src/app/deprecated/fsa/machine/DFA';
 
 const STEPTIME = 500;
 const SKIPTIME = 50;

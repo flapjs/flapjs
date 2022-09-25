@@ -1,5 +1,5 @@
-import AbstractLocalSaver from 'deprecated/system/localsave/AbstractLocalSaver';
-import LocalSave from 'deprecated/system/localsave/LocalSave';
+import AbstractLocalSaver from 'src/app/deprecated/system/localsave/AbstractLocalSaver';
+import LocalSave from 'src/app/deprecated/system/localsave/LocalSave';
 
 class AppSaver extends AbstractLocalSaver
 {

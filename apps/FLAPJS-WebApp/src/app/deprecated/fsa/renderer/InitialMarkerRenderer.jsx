@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Node from 'deprecated/fsa/graph/FSANode';
+import Node from 'src/app/deprecated/fsa/graph/FSANode';
 
-import Config from 'deprecated/config';
+import Config from 'src/app/deprecated/config';
 
 class InitialMarkerRenderer extends React.Component
 {

@@ -1,9 +1,9 @@
 import React from 'react';
 
-import ViewportEditLayer from 'graph2/components/layers/ViewportEditLayer';
-import ViewportNavigationLayer from 'graph2/components/layers/ViewportNavigationLayer';
+import ViewportEditLayer from 'src/app/graph2/components/layers/ViewportEditLayer';
+import ViewportNavigationLayer from 'src/app/graph2/components/layers/ViewportNavigationLayer';
 
-import LabelEditorWidget from 'graph2/components/widgets/LabelEditorWidget';
+import LabelEditorWidget from 'src/app/graph2/components/widgets/LabelEditorWidget';
 
 class NodeGraphOverlayLayer extends React.Component
 {

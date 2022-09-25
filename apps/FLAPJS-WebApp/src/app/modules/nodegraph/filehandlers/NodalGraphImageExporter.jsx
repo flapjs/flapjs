@@ -1,11 +1,11 @@
-import SessionExporter from 'session/SessionExporter';
+import SessionExporter from 'src/app/session/SessionExporter';
 
-import * as ColorHelper from 'util/ColorHelper';
+import * as ColorHelper from 'src/app/util/ColorHelper';
 
-import PNGIcon from 'deprecated/icons/flat/PNGIcon';
-import JPGIcon from 'deprecated/icons/flat/JPGIcon';
-import SVGIcon from 'deprecated/icons/flat/SVGIcon';
-import BWIcon from 'components/iconset/flat/PNGFileIcon';
+import PNGIcon from 'src/app/deprecated/icons/flat/PNGIcon';
+import JPGIcon from 'src/app/deprecated/icons/flat/JPGIcon';
+import SVGIcon from 'src/app/deprecated/icons/flat/SVGIcon';
+import BWIcon from 'src/app/components/iconset/flat/PNGFileIcon';
 
 export const IMAGE_TYPE_PNG = 'png';
 export const IMAGE_TYPE_JPG = 'jpg';

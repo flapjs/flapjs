@@ -1,6 +1,6 @@
-import Broadcast from 'util/broadcast/Broadcast';
+import Broadcast from 'src/app/util/broadcast/Broadcast';
 import RemoteSession from './RemoteSession';
-import {stringHash} from 'util/MathHelper';
+import {stringHash} from 'src/app/util/MathHelper';
 
 const SESSION_START_MESSAGE_TYPE = 'session-start';
 const SESSION_UPDATE_MESSAGE_TYPE = 'session-update';

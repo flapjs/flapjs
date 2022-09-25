@@ -1,9 +1,9 @@
 import React from 'react';
 import Router from 'router';
 
-import App from 'deprecated/content/App';
-import Modules from 'modules/Modules';
-import LocalSave from 'deprecated/system/localsave/LocalSave';
+import App from 'src/app/deprecated/content/App';
+import Modules from 'src/app/modules/Modules';
+import LocalSave from 'src/app/deprecated/system/localsave/LocalSave';
 
 export const CURRENT_MODULE_STORAGE_ID = "currentModule";
 const MODULE_LOAD_DELAY = 300;
@@ -50,7 +50,7 @@ class ModuleLoader extends React.Component
         IS_DEFAULT_MODULE = false;
         if (useExperimental)
         {
-          import(/* webpackChunkName: "experimental" */ 'experimental/App')
+          import(/* webpackChunkName: "experimental" */ 'src/app/experimental/App')
             .then(({ default: _ }) => Router.routeTo(ModuleLoader, {
               moduleClass: moduleClass,
               appClass: _

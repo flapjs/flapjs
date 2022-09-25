@@ -1,11 +1,11 @@
 import React from 'react';
 import Style from './AnalysisPanel.module.css';
 
-import { getUnreachableNodes } from 'graph2/util/NodeGraphUtils';
+import { getUnreachableNodes } from 'src/app/graph2/util/NodeGraphUtils';
 
-import PanelContainer from 'experimental/panels/PanelContainer';
-import PanelSection from 'experimental/panels/PanelSection';
-import PanelCheckbox from 'experimental/panels/PanelCheckbox';
+import PanelContainer from 'src/app/experimental/panels/PanelContainer';
+import PanelSection from 'src/app/experimental/panels/PanelSection';
+import PanelCheckbox from 'src/app/experimental/panels/PanelCheckbox';
 
 class AnalysisPanel extends React.Component
 {

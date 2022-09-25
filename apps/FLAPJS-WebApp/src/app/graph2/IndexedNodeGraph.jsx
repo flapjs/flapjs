@@ -1,4 +1,4 @@
-import NodeGraph from 'graph2/NodeGraph';
+import NodeGraph from 'src/app/graph2/NodeGraph';
 
 /**
  * A class that represents a node graph with indexed and ordered node list.

@@ -1,5 +1,5 @@
 import React from 'react';
-import Config from 'deprecated/config';
+import Config from 'src/app/deprecated/config';
 
 const HIGHLIGHT_RADIUS_OFFSET = 4;
 const HIGHLIGHT_LINE_WIDTH = 3;

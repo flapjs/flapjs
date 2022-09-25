@@ -1,5 +1,5 @@
-import DFA from 'deprecated/fsa/machine/DFA';
-import { convertToDFA } from 'deprecated/fsa/machine/util/convertNFA';
+import DFA from 'src/app/deprecated/fsa/machine/DFA';
+import { convertToDFA } from 'src/app/deprecated/fsa/machine/util/convertNFA';
 
 export function isEquivalentFSA(fsa1, fsa2)
 {

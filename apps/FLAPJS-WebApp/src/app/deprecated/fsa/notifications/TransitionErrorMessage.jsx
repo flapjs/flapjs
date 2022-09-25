@@ -1,7 +1,7 @@
 import React from 'react';
-import GraphNode from 'deprecated/graph/elements/GraphNode';
+import GraphNode from 'src/app/deprecated/graph/elements/GraphNode';
 
-import { ARROW } from 'deprecated/fsa/machine/Symbols';
+import { ARROW } from 'src/app/deprecated/fsa/machine/Symbols';
 
 class TransitionErrorMessage extends React.Component
 {

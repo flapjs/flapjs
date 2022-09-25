@@ -1,10 +1,10 @@
-import Parser from 'util/file/Parser';
-import SemanticVersion from 'util/version/SemanticVersion';
+import Parser from 'src/app/util/file/Parser';
+import SemanticVersion from 'src/app/util/version/SemanticVersion';
 import NodeGraph from './NodeGraph';
 
-import GraphNode from 'graph2/element/GraphNode';
-import GraphEdge from 'graph2/element/GraphEdge';
-import QuadraticEdge from 'graph2/element/QuadraticEdge';
+import GraphNode from 'src/app/graph2/element/GraphNode';
+import GraphEdge from 'src/app/graph2/element/GraphEdge';
+import QuadraticEdge from 'src/app/graph2/element/QuadraticEdge';
 
 export const VERSION_STRING = '1.0.0';
 export const VERSION = SemanticVersion.parse(VERSION_STRING);

@@ -1,11 +1,11 @@
 import React from 'react';
 
-import ViewportComponent from 'util/input/components/ViewportComponent';
+import ViewportComponent from 'src/app/util/input/components/ViewportComponent';
 
-import InputController from 'graph2/controller/InputController';
-import InputContext from 'util/input/InputContext';
+import InputController from 'src/app/graph2/controller/InputController';
+import InputContext from 'src/app/util/input/InputContext';
 
-import ViewportInputHandler from 'graph2/inputhandler/ViewportInputHandler';
+import ViewportInputHandler from 'src/app/graph2/inputhandler/ViewportInputHandler';
 
 class GraphView extends React.Component
 {

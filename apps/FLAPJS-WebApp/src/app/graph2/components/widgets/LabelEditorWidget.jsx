@@ -1,11 +1,11 @@
 import React from 'react';
 import Style from './LabelEditorWidget.module.css';
 
-import GraphElement from 'graph2/element/GraphElement';
-import GraphNode from 'graph2/element/GraphNode';
-import GraphEdge from 'graph2/element/GraphEdge';
+import GraphElement from 'src/app/graph2/element/GraphElement';
+import GraphNode from 'src/app/graph2/element/GraphNode';
+import GraphEdge from 'src/app/graph2/element/GraphEdge';
 
-import PatternInput from 'graph2/components/widgets/pattern/PatternInput';
+import PatternInput from 'src/app/graph2/components/widgets/pattern/PatternInput';
 
 class LabelEditorWidget extends React.Component
 {

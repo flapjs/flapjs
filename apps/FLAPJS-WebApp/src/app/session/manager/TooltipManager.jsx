@@ -1,4 +1,4 @@
-import {ONESHOT_MODE} from 'experimental/tooltip/TooltipView';
+import {ONESHOT_MODE} from 'src/app/experimental/tooltip/TooltipView';
 
 class TooltipManager
 {

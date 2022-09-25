@@ -1,12 +1,12 @@
 import React from 'react';
 import Style from './AnalysisPanel.module.css';
-import { getUnreachableNodes } from 'graph2/util/NodeGraphUtils';
+import { getUnreachableNodes } from 'src/app/graph2/util/NodeGraphUtils';
 
-import PanelContainer from 'experimental/panels/PanelContainer';
-import PanelSection from 'experimental/panels/PanelSection';
-import PanelCheckbox from 'experimental/panels/PanelCheckbox';
-import { isEquivalentFSAWithWitness } from 'modules/fsa2/machine/util/EqualFSA';
-import { MACHINE_CONVERSION_LAYOUT_ID, MACHINE_CONVERSION_NOTIFICATION_TAG } from 'modules/fsa2/components/notifications/FSANotifications';
+import PanelContainer from 'src/app/experimental/panels/PanelContainer';
+import PanelSection from 'src/app/experimental/panels/PanelSection';
+import PanelCheckbox from 'src/app/experimental/panels/PanelCheckbox';
+import { isEquivalentFSAWithWitness } from 'src/app/modules/fsa2/machine/util/EqualFSA';
+import { MACHINE_CONVERSION_LAYOUT_ID, MACHINE_CONVERSION_NOTIFICATION_TAG } from 'src/app/modules/fsa2/components/notifications/FSANotifications';
 
 import { createMachineFromFileBlob } from './MachineLoader';
 

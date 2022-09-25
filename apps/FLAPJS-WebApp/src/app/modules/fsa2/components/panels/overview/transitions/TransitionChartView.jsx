@@ -1,8 +1,8 @@
 import React from 'react';
 import Style from './TransitionChartView.module.css';
 
-import { EMPTY_CHAR } from 'modules/fsa2/graph/element/FSAEdge';
-import { EMPTY_SYMBOL } from 'modules/fsa2/machine/FSA';
+import { EMPTY_CHAR } from 'src/app/modules/fsa2/graph/element/FSAEdge';
+import { EMPTY_SYMBOL } from 'src/app/modules/fsa2/machine/FSA';
 
 class TransitionChartView extends React.Component
 {

@@ -4,9 +4,9 @@ import Style from './ToolbarView.module.css';
 import { TOOLBAR_CONTAINER_MENU, TOOLBAR_CONTAINER_TOOLBAR } from './ToolbarButton';
 import ToolbarTitle from './ToolbarTitle';
 
-import IconButton from 'experimental/components/IconButton';
-import MenuIcon from 'components/iconset/MenuIcon';
-import CrossIcon from 'components/iconset/CrossIcon';
+import IconButton from 'src/app/experimental/components/IconButton';
+import MenuIcon from 'src/app/components/iconset/MenuIcon';
+import CrossIcon from 'src/app/components/iconset/CrossIcon';
 
 const TOOLBAR_ALLOW_MENU_BAR = true;
 const TOOLBAR_DEFAULT_MENU_INDEX = -1;

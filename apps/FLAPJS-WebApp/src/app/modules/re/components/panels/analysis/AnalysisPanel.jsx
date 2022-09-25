@@ -1,8 +1,8 @@
 import React from 'react';
 import Style from './AnalysisPanel.module.css';
 
-import PanelContainer from 'experimental/panels/PanelContainer';
-import PanelSection from 'experimental/panels/PanelSection';
+import PanelContainer from 'src/app/experimental/panels/PanelContainer';
+import PanelSection from 'src/app/experimental/panels/PanelSection';
 
 class AnalysisPanel extends React.Component
 {

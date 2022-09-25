@@ -1,4 +1,4 @@
-import FSA, { EMPTY_SYMBOL } from 'modules/fsa2/machine/FSA';
+import FSA, { EMPTY_SYMBOL } from 'src/app/modules/fsa2/machine/FSA';
 import
 {
     EMPTY,

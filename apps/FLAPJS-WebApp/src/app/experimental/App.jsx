@@ -2,61 +2,61 @@ import React from 'react';
 import { hot } from 'react-hot-loader/root';
 import Style from './App.module.css';
 
-import DrawerView, { DRAWER_SIDE_RIGHT, DRAWER_SIDE_BOTTOM, DRAWER_BAR_DIRECTION_VERTICAL, DRAWER_BAR_DIRECTION_HORIZONTAL } from 'experimental/drawer/DrawerView';
-import ToolbarView from 'experimental/toolbar/ToolbarView';
-import TooltipView from 'experimental/tooltip/TooltipView';
-import UploadDropZone from 'experimental/components/UploadDropZone';
-import NotificationView from 'session/manager/notification/components/NotificationView';
-import IconButton from 'experimental/components/IconButton';
-import FullscreenWidget from 'experimental/components/FullscreenWidget';
+import DrawerView, { DRAWER_SIDE_RIGHT, DRAWER_SIDE_BOTTOM, DRAWER_BAR_DIRECTION_VERTICAL, DRAWER_BAR_DIRECTION_HORIZONTAL } from 'src/app/experimental/drawer/DrawerView';
+import ToolbarView from 'src/app/experimental/toolbar/ToolbarView';
+import TooltipView from 'src/app/experimental/tooltip/TooltipView';
+import UploadDropZone from 'src/app/experimental/components/UploadDropZone';
+import NotificationView from 'src/app/session/manager/notification/components/NotificationView';
+import IconButton from 'src/app/experimental/components/IconButton';
+import FullscreenWidget from 'src/app/experimental/components/FullscreenWidget';
 
-import ExportPanel from 'experimental/menus/export/ExportPanel';
-import OptionPanel from 'experimental/menus/option/OptionPanel';
-import LanguagePanel from 'experimental/menus/language/LanguagePanel';
-import ModuleLoaderPanel from 'experimental/menus/moduleloader/ModuleLoaderPanel';
+import ExportPanel from 'src/app/experimental/menus/export/ExportPanel';
+import OptionPanel from 'src/app/experimental/menus/option/OptionPanel';
+import LanguagePanel from 'src/app/experimental/menus/language/LanguagePanel';
+import ModuleLoaderPanel from 'src/app/experimental/menus/moduleloader/ModuleLoaderPanel';
 
-import ToolbarButton, { TOOLBAR_CONTAINER_TOOLBAR, TOOLBAR_CONTAINER_MENU } from 'experimental/toolbar/ToolbarButton';
-import ToolbarDivider from 'experimental/toolbar/ToolbarDivider';
-import ToolbarUploadButton from 'experimental/toolbar/ToolbarUploadButton';
-import PageEmptyIcon from 'components/iconset/PageEmptyIcon';
-import UndoIcon from 'components/iconset/UndoIcon';
-import RedoIcon from 'components/iconset/RedoIcon';
-import UploadIcon from 'components/iconset/UploadIcon';
-import DownloadIcon from 'components/iconset/DownloadIcon';
-import BugIcon from 'components/iconset/BugIcon';
-import WorldIcon from 'components/iconset/WorldIcon';
-import HelpIcon from 'components/iconset/HelpIcon';
-import SettingsIcon from 'components/iconset/SettingsIcon';
-import EditPencilIcon from 'components/iconset/EditPencilIcon';
+import ToolbarButton, { TOOLBAR_CONTAINER_TOOLBAR, TOOLBAR_CONTAINER_MENU } from 'src/app/experimental/toolbar/ToolbarButton';
+import ToolbarDivider from 'src/app/experimental/toolbar/ToolbarDivider';
+import ToolbarUploadButton from 'src/app/experimental/toolbar/ToolbarUploadButton';
+import PageEmptyIcon from 'src/app/components/iconset/PageEmptyIcon';
+import UndoIcon from 'src/app/components/iconset/UndoIcon';
+import RedoIcon from 'src/app/components/iconset/RedoIcon';
+import UploadIcon from 'src/app/components/iconset/UploadIcon';
+import DownloadIcon from 'src/app/components/iconset/DownloadIcon';
+import BugIcon from 'src/app/components/iconset/BugIcon';
+import WorldIcon from 'src/app/components/iconset/WorldIcon';
+import HelpIcon from 'src/app/components/iconset/HelpIcon';
+import SettingsIcon from 'src/app/components/iconset/SettingsIcon';
+import EditPencilIcon from 'src/app/components/iconset/EditPencilIcon';
 
-import AppSaver from 'experimental/AppSaver';
-import ColorSaver from 'experimental/ColorSaver';
-import * as ColorTransform from 'util/ColorTransform';
-import LanguageSaver from 'experimental/LanguageSaver';
+import AppSaver from 'src/app/experimental/AppSaver';
+import ColorSaver from 'src/app/experimental/ColorSaver';
+import * as ColorTransform from 'src/app/util/ColorTransform';
+import LanguageSaver from 'src/app/experimental/LanguageSaver';
 
-import AutoSave from 'util/storage/AutoSave';
-import LocalStorage from 'util/storage/LocalStorage';
+import AutoSave from 'src/app/util/storage/AutoSave';
+import LocalStorage from 'src/app/util/storage/LocalStorage';
 
-import ExportManager from 'util/file/export/ExportManager';
-import ImportManager from 'util/file/import/ImportManager';
+import ExportManager from 'src/app/util/file/export/ExportManager';
+import ImportManager from 'src/app/util/file/import/ImportManager';
 
-import Session from 'session/Session';
-import DrawerManager from 'session/manager/DrawerManager';
-import MenuManager from 'session/manager/MenuManager';
-import ViewportManager from 'session/manager/ViewportManager';
-import HotKeyManager, { CTRL_KEY, SHIFT_KEY } from 'session/manager/hotkey/HotKeyManager';
-import HotKeyView from 'session/manager/hotkey/HotKeyView';
-import UndoManager from 'session/manager/undo/UndoManager';
+import Session from 'src/app/session/Session';
+import DrawerManager from 'src/app/session/manager/DrawerManager';
+import MenuManager from 'src/app/session/manager/MenuManager';
+import ViewportManager from 'src/app/session/manager/ViewportManager';
+import HotKeyManager, { CTRL_KEY, SHIFT_KEY } from 'src/app/session/manager/hotkey/HotKeyManager';
+import HotKeyView from 'src/app/session/manager/hotkey/HotKeyView';
+import UndoManager from 'src/app/session/manager/undo/UndoManager';
 import RenderManager, {
     RENDER_LAYER_WORKSPACE_PRE,
     RENDER_LAYER_WORKSPACE,
     RENDER_LAYER_WORKSPACE_POST,
-} from 'session/manager/RenderManager';
-import TooltipManager from 'session/manager/TooltipManager';
-import NotificationManager, { ERROR_LAYOUT_ID } from 'session/manager/notification/NotificationManager';
+} from 'src/app/session/manager/RenderManager';
+import TooltipManager from 'src/app/session/manager/TooltipManager';
+import NotificationManager, { ERROR_LAYOUT_ID } from 'src/app/session/manager/notification/NotificationManager';
 import ThemeManager from '../util/theme/ThemeManager';
-import BroadcastManager from 'session/manager/broadcast/BroadcastManager';
-import Broadcast from 'util/broadcast/Broadcast';
+import BroadcastManager from 'src/app/session/manager/broadcast/BroadcastManager';
+import Broadcast from 'src/app/util/broadcast/Broadcast';
 
 const BUGREPORT_URL = 'https://goo.gl/forms/XSil43Xl5xLHsa0E2';
 const HELP_URL = 'https://github.com/flapjs/FLAPJS-WebApp/blob/master/docs/HELP.md';

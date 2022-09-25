@@ -1,6 +1,6 @@
-import { guid } from 'util/MathHelper';
+import { guid } from 'src/app/util/MathHelper';
 
-import { solveNFA } from 'deprecated/fsa/machine/util/solveNFA';
+import { solveNFA } from 'src/app/deprecated/fsa/machine/util/solveNFA';
 
 const SUCCESS = true;
 const FAILURE = false;

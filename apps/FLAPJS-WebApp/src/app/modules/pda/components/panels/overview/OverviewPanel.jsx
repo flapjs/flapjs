@@ -1,10 +1,10 @@
 import React from 'react';
 import Style from './OverviewPanel.module.css';
 
-import PanelContainer from 'experimental/panels/PanelContainer';
-import PanelSection from 'experimental/panels/PanelSection';
-import PanelDivider from 'experimental/panels/PanelDivider';
-import PanelSwitch from 'experimental/panels/PanelSwitch';
+import PanelContainer from 'src/app/experimental/panels/PanelContainer';
+import PanelSection from 'src/app/experimental/panels/PanelSection';
+import PanelDivider from 'src/app/experimental/panels/PanelDivider';
+import PanelSwitch from 'src/app/experimental/panels/PanelSwitch';
 
 import StateListView from './states/StateListView';
 import AlphabetListView from './alphabet/AlphabetListView';

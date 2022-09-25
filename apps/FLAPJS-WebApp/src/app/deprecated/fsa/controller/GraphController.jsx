@@ -1,19 +1,19 @@
-import AbstractGraphController from 'modules/abstract/AbstractGraphController';
+import AbstractGraphController from 'src/app/modules/abstract/AbstractGraphController';
 import GraphImageExporter from '../exporter/GraphImageExporter';
-import { FILE_TYPE_PNG, FILE_TYPE_JPG, FILE_TYPE_SVG } from 'util/Downloader';
+import { FILE_TYPE_PNG, FILE_TYPE_JPG, FILE_TYPE_SVG } from 'src/app/util/Downloader';
 
 import GraphImporter from './GraphImporter';
 
-import Eventable from 'util/Eventable';
-import GraphLayout from 'deprecated/fsa/graph/GraphLayout';
-import FSAGraph from 'deprecated/fsa/graph/FSAGraph';
-import FSAGraphLabeler from 'deprecated/fsa/graph/FSAGraphLabeler';
-import * as FSAGraphParser from 'deprecated/fsa/graph/FSAGraphParser';
+import Eventable from 'src/app/util/Eventable';
+import GraphLayout from 'src/app/deprecated/fsa/graph/GraphLayout';
+import FSAGraph from 'src/app/deprecated/fsa/graph/FSAGraph';
+import FSAGraphLabeler from 'src/app/deprecated/fsa/graph/FSAGraphLabeler';
+import * as FSAGraphParser from 'src/app/deprecated/fsa/graph/FSAGraphParser';
 
-import GraphChangeHandler from 'experimental/GraphChangeHandler';
+import GraphChangeHandler from 'src/app/experimental/GraphChangeHandler';
 
-import FSAGraphExporter from 'deprecated/fsa/exporter/FSAGraphExporter';
-import JFLAPGraphExporter from 'deprecated/fsa/exporter/JFLAPGraphExporter';
+import FSAGraphExporter from 'src/app/deprecated/fsa/exporter/FSAGraphExporter';
+import JFLAPGraphExporter from 'src/app/deprecated/fsa/exporter/JFLAPGraphExporter';
 
 export const DEFAULT_IMAGE_EXPORTERS = [
     new GraphImageExporter(FILE_TYPE_PNG),

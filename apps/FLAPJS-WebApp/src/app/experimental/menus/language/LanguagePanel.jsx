@@ -1,8 +1,8 @@
 import React from 'react';
 import Style from './LanguagePanel.module.css';
 
-import PanelContainer from 'experimental/panels/PanelContainer';
-import IconButton from 'experimental/components/IconButton';
+import PanelContainer from 'src/app/experimental/panels/PanelContainer';
+import IconButton from 'src/app/experimental/components/IconButton';
 
 class LanguagePanel extends React.Component
 {

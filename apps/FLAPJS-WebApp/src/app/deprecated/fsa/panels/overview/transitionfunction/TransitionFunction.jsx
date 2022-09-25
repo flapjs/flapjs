@@ -2,7 +2,7 @@ import React from 'react';
 import './TransitionFunction.css';
 
 import InfoBlock from '../infoblock/InfoBlock';
-import { EMPTY } from 'deprecated/fsa/machine/Symbols';
+import { EMPTY } from 'src/app/deprecated/fsa/machine/Symbols';
 
 class TransitionFunction extends React.Component 
 {

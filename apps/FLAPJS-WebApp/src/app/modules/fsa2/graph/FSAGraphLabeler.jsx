@@ -1,6 +1,6 @@
-import AbstractGraphLabeler from 'graph2/AbstractGraphLabeler';
+import AbstractGraphLabeler from 'src/app/graph2/AbstractGraphLabeler';
 
-import { SYMBOL_SEPARATOR, EMPTY_CHAR } from 'modules/fsa2/graph/element/FSAEdge';
+import { SYMBOL_SEPARATOR, EMPTY_CHAR } from 'src/app/modules/fsa2/graph/element/FSAEdge';
 
 const DEFAULT_NODE_LABEL_PREFIX = 'q';
 

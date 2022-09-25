@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { userClearGraph } from 'experimental/UserUtil';
-import { CTRL_KEY } from 'session/manager/hotkey/HotKeyManager';
-import { RENDER_LAYER_WORKSPACE } from 'session/manager/RenderManager';
+import { userClearGraph } from 'src/app/experimental/UserUtil';
+import { CTRL_KEY } from 'src/app/session/manager/hotkey/HotKeyManager';
+import { RENDER_LAYER_WORKSPACE } from 'src/app/session/manager/RenderManager';
 
 import FSAGraph from './graph/FSAGraph';
 import FSAGraphController from './graph/FSAGraphController';
@@ -17,16 +17,16 @@ import FSAImporter from './filehandlers/FSAImporter';
 import FSAJFFImporter from './filehandlers/FSAJFFImporter';
 import FSAExporter from './filehandlers/FSAExporter';
 import FSAJFFExporter from './filehandlers/FSAJFFExporter';
-import { registerImageExporters } from 'modules/nodegraph/filehandlers/NodalGraphImageExporter';
+import { registerImageExporters } from 'src/app/modules/nodegraph/filehandlers/NodalGraphImageExporter';
 
-import SafeGraphEventHandler from 'modules/nodegraph/SafeGraphEventHandler';
+import SafeGraphEventHandler from 'src/app/modules/nodegraph/SafeGraphEventHandler';
 
 import FSABroadcastHandler from './FSABroadcastHandler';
 import TutorialHandler from './TutorialHandler';
 
 /* COMPONENTS */
 
-import PanelContainer from 'experimental/panels/PanelContainer';
+import PanelContainer from 'src/app/experimental/panels/PanelContainer';
 
 import OverviewPanel from './components/panels/overview/OverviewPanel';
 import TestingPanel from './components/panels/testing/TestingPanel';
@@ -36,7 +36,7 @@ import FSAGraphLayer from './components/layers/FSAGraphLayer';
 import FSAGraphOverlayLayer from './components/layers/FSAGraphOverlayLayer';
 import FSATapeGraphOverlayLayer from './components/layers/FSATapeGraphOverlayLayer';
 
-import GraphView from 'graph2/components/GraphView';
+import GraphView from 'src/app/graph2/components/GraphView';
 
 const MODULE_NAME = 'fsa';
 const MODULE_VERSION = '3.0.0';

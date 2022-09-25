@@ -1,4 +1,4 @@
-import {stringHash} from 'util/MathHelper';
+import {stringHash} from 'src/app/util/MathHelper';
 
 import RE from './machine/RE';
 import REParser from './machine/REParser';

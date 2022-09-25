@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Config from 'deprecated/config';
+import Config from 'src/app/deprecated/config';
 
 class NodeRenderer extends React.Component
 {

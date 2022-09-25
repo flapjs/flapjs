@@ -2,7 +2,7 @@ import React from 'react';
 import '../Panel.css';
 import './ExportingPanel.css';
 
-import IconButton from 'deprecated/icons/IconButton';
+import IconButton from 'src/app/deprecated/icons/IconButton';
 
 class ExportingPanel extends React.Component
 {

@@ -1,5 +1,5 @@
-import GraphElement from 'graph2/element/GraphElement';
-import { guid, stringHash } from 'util/MathHelper';
+import GraphElement from 'src/app/graph2/element/GraphElement';
+import { guid, stringHash } from 'src/app/util/MathHelper';
 
 // const FROM_STATE_INDEX = 0;
 const SYMBOL_INDEX = 1;

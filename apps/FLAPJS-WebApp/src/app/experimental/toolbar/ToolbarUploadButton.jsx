@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ToolbarButtonStyle from './ToolbarButton.module.css';
-import IconUploadButton from 'experimental/components/IconUploadButton';
+import IconUploadButton from 'src/app/experimental/components/IconUploadButton';
 
 class ToolbarUploadButton extends React.Component
 {

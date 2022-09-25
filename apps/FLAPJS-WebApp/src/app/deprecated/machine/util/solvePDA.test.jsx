@@ -1,5 +1,5 @@
 import PDA from '../PDA'
-import { EMPTY } from 'deprecated/fsa/machine/Symbols';
+import { EMPTY } from 'src/app/deprecated/fsa/machine/Symbols';
 import { solvePDA, solvePDAbyStep } from './solvePDA';
 
 function testSolvePDA(machine, testString, expectedResult=true)

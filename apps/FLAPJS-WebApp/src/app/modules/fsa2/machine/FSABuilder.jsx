@@ -1,8 +1,8 @@
-import AbstractMachineBuilder from 'modules/abstract/AbstractMachineBuilder';
+import AbstractMachineBuilder from 'src/app/modules/abstract/AbstractMachineBuilder';
 import FSA, { EMPTY_SYMBOL, State } from './FSA';
-import FSANode from 'modules/fsa2/graph/element/FSANode';
-import { SYMBOL_SEPARATOR, EMPTY_CHAR } from 'modules/fsa2/graph/element/FSAEdge';
-import { getUnreachableNodes } from 'graph2/util/NodeGraphUtils';
+import FSANode from 'src/app/modules/fsa2/graph/element/FSANode';
+import { SYMBOL_SEPARATOR, EMPTY_CHAR } from 'src/app/modules/fsa2/graph/element/FSAEdge';
+import { getUnreachableNodes } from 'src/app/graph2/util/NodeGraphUtils';
 
 export const ERROR_UNREACHABLE_STATE = 'unreachable_state';
 export const ERROR_DUPLICATE_STATE = 'duplicate_state';

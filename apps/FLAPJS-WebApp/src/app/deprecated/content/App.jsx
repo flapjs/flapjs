@@ -2,25 +2,25 @@ import React from 'react';
 import { hot } from 'react-hot-loader/root';
 import './App.css';
 
-import Config from 'deprecated/config';
+import Config from 'src/app/deprecated/config';
 
 //import Modules from './Modules';
-import Module from 'deprecated/fsa/FSAModule';
-import ModuleLoader from 'deprecated/modules/ModuleLoader';
+import Module from 'src/app/deprecated/fsa/FSAModule';
+import ModuleLoader from 'src/app/deprecated/modules/ModuleLoader';
 
 import HotKeys from './HotKeys';
-import LocalSave from 'deprecated/system/localsave/LocalSave';
+import LocalSave from 'src/app/deprecated/system/localsave/LocalSave';
 
 import Toolbar from './toolbar/Toolbar';
 import Workspace from './workspace/Workspace';
 import Drawer from './drawer/Drawer';
 import Viewport from './viewport/Viewport';
-import Tutorial from 'deprecated/tutorial/Tutorial';
+import Tutorial from 'src/app/deprecated/tutorial/Tutorial';
 
-import InputAdapter from 'deprecated/system/inputadapter/InputAdapter';
-import Notifications from 'deprecated/system/notification/Notifications';
-import NotificationView from 'deprecated/system/notification/components/NotificationView';
-import UndoManager from 'deprecated/system/undomanager/UndoManager';
+import InputAdapter from 'src/app/deprecated/system/inputadapter/InputAdapter';
+import Notifications from 'src/app/deprecated/system/notification/Notifications';
+import NotificationView from 'src/app/deprecated/system/notification/components/NotificationView';
+import UndoManager from 'src/app/deprecated/system/undomanager/UndoManager';
 
 import AppSaver from './AppSaver';
 

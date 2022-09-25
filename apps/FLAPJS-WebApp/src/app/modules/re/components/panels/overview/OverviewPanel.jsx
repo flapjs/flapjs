@@ -1,12 +1,12 @@
 import React from 'react';
 // import Style from './OverviewPanel.module.css';
 
-import PanelContainer from 'experimental/panels/PanelContainer';
-import PanelSection from 'experimental/panels/PanelSection';
+import PanelContainer from 'src/app/experimental/panels/PanelContainer';
+import PanelSection from 'src/app/experimental/panels/PanelSection';
 
 import AlphabetListView from './alphabet/AlphabetListView';
 
-import {EMPTY, CONCAT, UNION, KLEENE, SIGMA, EMPTY_SET, PLUS} from 'modules/re/machine/RE';
+import {EMPTY, CONCAT, UNION, KLEENE, SIGMA, EMPTY_SET, PLUS} from 'src/app/modules/re/machine/RE';
 
 class OverviewPanel extends React.Component
 {

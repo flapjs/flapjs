@@ -1,5 +1,5 @@
-import { EMPTY , CONCAT , UNION , KLEENE } from 'deprecated/machine/Symbols';
-import Regex from 'deprecated/machine/Regex';
+import { EMPTY , CONCAT , UNION , KLEENE } from 'src/app/deprecated/machine/Symbols';
+import Regex from 'src/app/deprecated/machine/Regex';
 
 class ASTNode {
 

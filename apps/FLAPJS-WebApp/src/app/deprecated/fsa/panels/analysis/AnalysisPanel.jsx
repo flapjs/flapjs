@@ -1,10 +1,10 @@
 import React from 'react';
-import Config from 'deprecated/config';
+import Config from 'src/app/deprecated/config';
 
-import Notifications from 'deprecated/system/notification/Notifications';
-import NFAToDFAConversionWarningMessage from 'deprecated/fsa/notifications/NFAToDFAConversionWarningMessage';
+import Notifications from 'src/app/deprecated/system/notification/Notifications';
+import NFAToDFAConversionWarningMessage from 'src/app/deprecated/fsa/notifications/NFAToDFAConversionWarningMessage';
 
-import { getUnreachableNodes } from 'graph2/util/NodeGraphUtils';
+import { getUnreachableNodes } from 'src/app/graph2/util/NodeGraphUtils';
 
 class AnalysisPanel extends React.Component
 {

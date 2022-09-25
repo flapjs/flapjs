@@ -1,4 +1,4 @@
-import QuadraticEdge from 'graph2/element/QuadraticEdge';
+import QuadraticEdge from 'src/app/graph2/element/QuadraticEdge';
 
 export const SYMBOL_SEPARATOR = ' ';
 export const EMPTY_CHAR = '\u03B5';

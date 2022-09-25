@@ -1,7 +1,7 @@
 import React from 'react';
 import Style from './GrammarView.module.css';
 
-import FormattedInput from 'graph2/components/widgets/formatter/FormattedInput';
+import FormattedInput from 'src/app/graph2/components/widgets/formatter/FormattedInput';
 
 class GrammarView extends React.Component
 {

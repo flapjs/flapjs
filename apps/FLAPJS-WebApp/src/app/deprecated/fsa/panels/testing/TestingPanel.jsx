@@ -2,18 +2,18 @@ import React from 'react';
 import '../Panel.css';
 import './TestingPanel.css';
 
-import { downloadText } from 'util/Downloader';
+import { downloadText } from 'src/app/util/Downloader';
 
-import TestingManager from 'deprecated/fsa/testing/TestingManager';
+import TestingManager from 'src/app/deprecated/fsa/testing/TestingManager';
 import TestingInput from './TestingInput';
 
-import IconButton from 'deprecated/icons/IconButton';
+import IconButton from 'src/app/deprecated/icons/IconButton';
 import UploadTestButton from './components/UploadTestButton';
 
-import UploadIcon from 'deprecated/icons/UploadIcon';
-import CreateIcon from 'deprecated/icons/PageNewContentIcon';
-import SaveIcon from 'deprecated/icons/SaveIcon';
-import CloseIcon from 'deprecated/icons/CloseIcon';
+import UploadIcon from 'src/app/deprecated/icons/UploadIcon';
+import CreateIcon from 'src/app/deprecated/icons/PageNewContentIcon';
+import SaveIcon from 'src/app/deprecated/icons/SaveIcon';
+import CloseIcon from 'src/app/deprecated/icons/CloseIcon';
 
 const TEST_FILENAME = 'test.txt';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import Style from './ViewportView.module.css';
 import ExpressionViewStyle from './ExpressionView.module.css';
 
-import {EMPTY, CONCAT, UNION, KLEENE, SIGMA, EMPTY_SET, PLUS} from 'modules/re/machine/RE';
+import {EMPTY, CONCAT, UNION, KLEENE, SIGMA, EMPTY_SET, PLUS} from 'src/app/modules/re/machine/RE';
 
 const UNION_CHAR = '\u222A';
 

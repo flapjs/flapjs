@@ -1,8 +1,8 @@
-import AbstractMachineBuilder from 'modules/abstract/AbstractMachineBuilder';
+import AbstractMachineBuilder from 'src/app/modules/abstract/AbstractMachineBuilder';
 import PDA, { EMPTY_SYMBOL, State } from './PDA';
 import PDANode from '../graph/element/PDANode';
 import { LINE_SEPARATOR, EMPTY_CHAR } from '../graph/element/PDAEdge';
-import { getUnreachableNodes } from 'graph2/util/NodeGraphUtils';
+import { getUnreachableNodes } from 'src/app/graph2/util/NodeGraphUtils';
 
 export const ERROR_UNREACHABLE_STATE = 'unreachable_state';
 export const ERROR_DUPLICATE_STATE = 'duplicate_state';

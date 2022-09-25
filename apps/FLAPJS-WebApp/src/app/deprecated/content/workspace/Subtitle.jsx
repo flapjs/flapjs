@@ -1,7 +1,7 @@
 import React from 'react';
 import './Subtitle.css';
 
-import Config from 'deprecated/config';
+import Config from 'src/app/deprecated/config';
 
 class Subtitle extends React.Component
 {

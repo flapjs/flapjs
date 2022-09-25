@@ -1,9 +1,9 @@
-import AbstractMachineBuilder from 'modules/abstract/AbstractMachineBuilder';
+import AbstractMachineBuilder from 'src/app/modules/abstract/AbstractMachineBuilder';
 
 import FSAErrorChecker from './FSAErrorChecker';
-import DFA from 'deprecated/fsa/machine/DFA';
-import NFA from 'deprecated/fsa/machine/NFA';
-import Node from 'deprecated/fsa/graph/FSANode';
+import DFA from 'src/app/deprecated/fsa/machine/DFA';
+import NFA from 'src/app/deprecated/fsa/machine/NFA';
+import Node from 'src/app/deprecated/fsa/graph/FSANode';
 
 class FSABuilder extends AbstractMachineBuilder
 {

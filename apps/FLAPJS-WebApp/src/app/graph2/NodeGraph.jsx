@@ -1,6 +1,6 @@
 import GraphNode from './element/GraphNode';
 import GraphEdge from './element/GraphEdge';
-import { guid, stringHash } from 'util/MathHelper';
+import { guid, stringHash } from 'src/app/util/MathHelper';
 
 /**
  * A class that represents a graph that coordinates nodes and edges.

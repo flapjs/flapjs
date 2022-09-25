@@ -1,7 +1,7 @@
 import React from 'react';
 import './FormalDefinition.css';
 
-import { EMPTY_CHAR } from 'modules/fsa2/graph/element/FSAEdge';
+import { EMPTY_CHAR } from 'src/app/modules/fsa2/graph/element/FSAEdge';
 
 const EMPTY_SET = '\u2205';
 const EQUAL = '=';

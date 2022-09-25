@@ -1,9 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const package = require('./package.json');
 const NODE_ENV = process.env.NODE_ENV || 'development';
-const PACKAGE_VERSION = package.version;
-const PACKAGE_TITLE = package.name;
 const DEV_SERVER_IP = '0.0.0.0';
 const DEV_SERVER_PORT = 8080;
 
@@ -18,14 +15,9 @@ const HtmlPlugin = require('html-webpack-plugin');
 //Save generated html as file
 const HtmlHardDiskPlugin = require('html-webpack-harddisk-plugin');
 
-const GLOBAL_VARS = {
-  'process.env.VERSION': JSON.stringify(PACKAGE_VERSION),
-  'process.env.TITLE': JSON.stringify(PACKAGE_TITLE),
-  'process.env.NODE_ENV': JSON.stringify(NODE_ENV)
-};
 const OUTPUT_PATH = path.resolve(__dirname, 'dist');
 const ALIAS = {
-  '@res': './res'
+  'src': path.resolve(__dirname, 'src'),
 };
 const MODULE_PATHS = [
   //For webpack HMR dev server
@@ -33,8 +25,7 @@ const MODULE_PATHS = [
   'webpack/hot/only-dev-server',//HMR, but does NOT reload on error
   //'webpack/hot/dev-server'//HMR, but reloads on error
   //The used entrypoints
-  './node_modules',
-  './src/app'
+  './node_modules'
 ];
 const ENTRIES = {
   app: './src/app/index.js'

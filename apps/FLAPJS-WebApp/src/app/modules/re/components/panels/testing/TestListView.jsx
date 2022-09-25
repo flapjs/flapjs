@@ -1,22 +1,22 @@
 import React from 'react';
 import Style from './TestListView.module.css';
 
-import { guid } from 'util/MathHelper';
-import { downloadText } from 'util/Downloader';
+import { guid } from 'src/app/util/MathHelper';
+import { downloadText } from 'src/app/util/Downloader';
 
-import IconButton from 'experimental/components/IconButton';
-import IconUploadButton from 'experimental/components/IconUploadButton';
+import IconButton from 'src/app/experimental/components/IconButton';
+import IconUploadButton from 'src/app/experimental/components/IconUploadButton';
 
-import PageContentIcon from 'components/iconset/PageContentIcon';
-import UploadIcon from 'components/iconset/UploadIcon';
-import DownloadIcon from 'components/iconset/DownloadIcon';
-import CrossIcon from 'components/iconset/CrossIcon';
-import AddIcon from 'components/iconset/AddIcon';
-import RunningManIcon from 'components/iconset/RunningManIcon';
+import PageContentIcon from 'src/app/components/iconset/PageContentIcon';
+import UploadIcon from 'src/app/components/iconset/UploadIcon';
+import DownloadIcon from 'src/app/components/iconset/DownloadIcon';
+import CrossIcon from 'src/app/components/iconset/CrossIcon';
+import AddIcon from 'src/app/components/iconset/AddIcon';
+import RunningManIcon from 'src/app/components/iconset/RunningManIcon';
 
 import TestItem, {SUCCESS_MODE, FAILURE_MODE, WORKING_MODE} from './TestItem';
 
-import {solveFSA} from 'modules/fsa2/machine/FSAUtils';
+import {solveFSA} from 'src/app/modules/fsa2/machine/FSAUtils';
 
 const ACCEPT_FILE_TYPES = ['.txt'];
 const TEST_FILENAME = 'test.txt';

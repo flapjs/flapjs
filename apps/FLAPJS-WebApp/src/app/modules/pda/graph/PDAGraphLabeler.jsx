@@ -1,4 +1,4 @@
-import AbstractGraphLabeler from 'graph2/AbstractGraphLabeler';
+import AbstractGraphLabeler from 'src/app/graph2/AbstractGraphLabeler';
 
 import
 {

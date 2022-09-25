@@ -1,4 +1,4 @@
-import IndexedNodeGraph from 'graph2/IndexedNodeGraph';
+import IndexedNodeGraph from 'src/app/graph2/IndexedNodeGraph';
 
 import PDANode from './element/PDANode';
 import PDAEdge from './element/PDAEdge';

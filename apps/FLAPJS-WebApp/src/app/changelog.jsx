@@ -105,7 +105,9 @@ const changeLog = [
 ];
 */
 
-const changeVersion = process.env.VERSION;
+import { VERSION } from 'src/globals';
+
+const changeVersion = VERSION;
 const result = {
     show: changeLog && changeLog.length > 0,
     log: '\nChangelog v' + changeVersion + ':\n - ' + changeLog.join('\n - '),

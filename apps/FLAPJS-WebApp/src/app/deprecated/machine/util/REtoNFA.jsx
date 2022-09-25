@@ -1,5 +1,5 @@
-import NFA from 'deprecated/machine/NFA';
-import { EMPTY , CONCAT , UNION , KLEENE } from 'deprecated/machine/Symbols';
+import NFA from 'src/app/deprecated/machine/NFA';
+import { EMPTY , CONCAT , UNION , KLEENE } from 'src/app/deprecated/machine/Symbols';
 
 
 const SRC = 0;

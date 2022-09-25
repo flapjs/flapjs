@@ -1,4 +1,4 @@
-import GraphNode from 'graph2/element/GraphNode';
+import GraphNode from 'src/app/graph2/element/GraphNode';
 
 class FSANode extends GraphNode
 {

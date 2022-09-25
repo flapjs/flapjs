@@ -1,9 +1,9 @@
-import GraphController from 'graph2/controller/GraphController';
+import GraphController from 'src/app/graph2/controller/GraphController';
 
-import { GRAPH_EVENT_NODE_EDIT_WHILE_DELETE } from 'graph2/inputhandler/GraphNodeInputHandler';
-import { GRAPH_EVENT_EDGE_EDIT_WHILE_DELETE } from 'graph2/inputhandler/GraphEdgeInputHandler';
+import { GRAPH_EVENT_NODE_EDIT_WHILE_DELETE } from 'src/app/graph2/inputhandler/GraphNodeInputHandler';
+import { GRAPH_EVENT_EDGE_EDIT_WHILE_DELETE } from 'src/app/graph2/inputhandler/GraphEdgeInputHandler';
 
-import { WARNING_LAYOUT_ID } from 'session/manager/notification/NotificationManager';
+import { WARNING_LAYOUT_ID } from 'src/app/session/manager/notification/NotificationManager';
 
 export const TRASH_EDITING_NOTIFICATION_TAG = 'tryCreateWhileTrash';
 

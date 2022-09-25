@@ -1,4 +1,4 @@
-import Importer from 'util/file/import/Importer';
+import Importer from 'src/app/util/file/import/Importer';
 
 class SessionImporter extends Importer
 {

@@ -1,7 +1,7 @@
 import React from 'react';
 import Style from './AutoStateLabelView.module.css';
 
-import FormattedInput from 'deprecated/system/formattedinput/FormattedInput';
+import FormattedInput from 'src/app/deprecated/system/formattedinput/FormattedInput';
 
 class AutoStateLabelView extends React.Component
 {

@@ -1,8 +1,8 @@
 import React from 'react';
 import Style from './FocusCenterWidget.module.css';
 
-import IconButton from 'experimental/components/IconButton';
-import PinpointIcon from 'components/iconset/PinpointIcon';
+import IconButton from 'src/app/experimental/components/IconButton';
+import PinpointIcon from 'src/app/components/iconset/PinpointIcon';
 
 const OFFSET_EPSILON = 0.1;
 

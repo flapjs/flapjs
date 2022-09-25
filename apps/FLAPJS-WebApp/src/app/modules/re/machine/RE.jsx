@@ -1,4 +1,4 @@
-import { stringHash } from 'util/MathHelper';
+import { stringHash } from 'src/app/util/MathHelper';
 
 export const EMPTY = '\u03B5';
 export const CONCAT = '\u25E6';

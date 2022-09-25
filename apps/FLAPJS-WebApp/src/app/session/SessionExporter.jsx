@@ -1,4 +1,5 @@
-import Exporter from 'util/file/export/Exporter';
+import Exporter from 'src/app/util/file/export/Exporter';
+import { VERSION } from 'src/globals';
 
 class SessionExporter extends Exporter
 {
@@ -20,7 +21,7 @@ class SessionExporter extends Exporter
         dst['_metadata'] = {
             name: session.getProjectName(),
             module: currentModule.getModuleName(),
-            version: process.env.VERSION + ':' + currentModule.getModuleVersion(),
+            version: VERSION + ':' + currentModule.getModuleVersion(),
             timestamp: new Date().toString()
         };
     }

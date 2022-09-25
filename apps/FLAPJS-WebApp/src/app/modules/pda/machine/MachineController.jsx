@@ -1,8 +1,8 @@
-import AbstractMachineController from 'modules/abstract/AbstractMachineController';
+import AbstractMachineController from 'src/app/modules/abstract/AbstractMachineController';
 
-import PDABuilder from 'modules/pda/machine/PDABuilder';
+import PDABuilder from 'src/app/modules/pda/machine/PDABuilder';
 
-import GraphLayout from 'modules/fsa2/GraphLayout';
+import GraphLayout from 'src/app/modules/fsa2/GraphLayout';
 
 class MachineController extends AbstractMachineController
 {

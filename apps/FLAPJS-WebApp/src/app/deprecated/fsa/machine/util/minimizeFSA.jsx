@@ -1,5 +1,5 @@
-import {convertToDFA} from 'deprecated/fsa/machine/util/convertNFA';
-import DFA from 'deprecated/fsa/machine/DFA';
+import {convertToDFA} from 'src/app/deprecated/fsa/machine/util/convertNFA';
+import DFA from 'src/app/deprecated/fsa/machine/DFA';
 // const SRC = 0;
 // const SYMBOL = 1;
 const DST = 2;

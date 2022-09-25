@@ -1,7 +1,7 @@
 import React from 'react';
 import './StateTag.css';
 
-import Config from 'deprecated/config';
+import Config from 'src/app/deprecated/config';
 
 class StateTag extends React.Component
 {

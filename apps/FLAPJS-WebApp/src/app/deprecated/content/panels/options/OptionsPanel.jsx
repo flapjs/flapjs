@@ -2,23 +2,23 @@ import React from 'react';
 import '../Panel.css';
 import './OptionsPanel.css';
 
-import Config from 'deprecated/config';
-import { saveConfig } from 'deprecated/config';
+import Config from 'src/app/deprecated/config';
+import { saveConfig } from 'src/app/deprecated/config';
 
-import LocalSave from 'deprecated/system/localsave/LocalSave';
-import * as ColorHelper from 'util/ColorHelper';
-import StyleOptionRegistry from 'deprecated/system/styleopt/StyleOptionRegistry';
-import StyleInput from 'deprecated/system/styleopt/components/StyleInput';
+import LocalSave from 'src/app/deprecated/system/localsave/LocalSave';
+import * as ColorHelper from 'src/app/util/ColorHelper';
+import StyleOptionRegistry from 'src/app/deprecated/system/styleopt/StyleOptionRegistry';
+import StyleInput from 'src/app/deprecated/system/styleopt/components/StyleInput';
 
 import OptionGroup from './OptionGroup';
 import OptionHotkey from './OptionHotkey';
 
-import Modules from 'modules/Modules'
-import ModuleLoader from 'deprecated/modules/ModuleLoader';
+import Modules from 'src/app/modules/Modules'
+import ModuleLoader from 'src/app/deprecated/modules/ModuleLoader';
 
 //This should be the same as the one referred to by index.js
 const LOCAL_STORAGE_ID = "skipWelcome";
-const ENABLE_MODULES = process.env.NODE_ENV === 'development';
+const ENABLE_MODULES = true;
 
 class OptionsPanel extends React.Component
 {

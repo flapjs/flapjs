@@ -1,7 +1,7 @@
 import React from 'react';
 
-import GraphNodeRenderer from 'graph2/renderer/GraphNodeRenderer';
-import GraphNodeInputHandler from 'graph2/inputhandler/GraphNodeInputHandler';
+import GraphNodeRenderer from 'src/app/graph2/renderer/GraphNodeRenderer';
+import GraphNodeInputHandler from 'src/app/graph2/inputhandler/GraphNodeInputHandler';
 
 class GraphNodeLayer extends React.Component
 {

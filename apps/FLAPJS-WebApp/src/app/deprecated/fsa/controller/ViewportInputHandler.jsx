@@ -1,4 +1,4 @@
-import AbstractInputHandler from 'deprecated/system/inputadapter/AbstractInputHandler';
+import AbstractInputHandler from 'src/app/deprecated/system/inputadapter/AbstractInputHandler';
 
 class ViewportInputHandler extends AbstractInputHandler
 {

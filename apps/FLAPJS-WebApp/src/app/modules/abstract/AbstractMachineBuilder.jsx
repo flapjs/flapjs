@@ -1,4 +1,4 @@
-import MachineChangeHandler from 'experimental/MachineChangeHandler';
+import MachineChangeHandler from 'src/app/experimental/MachineChangeHandler';
 
 class AbstractMachineBuilder
 {

@@ -1,6 +1,6 @@
 import React from 'react';
 import DefaultNotificationLayout, { STYLE_TYPE_ERROR }
-    from 'session/manager/notification/components/DefaultNotificationLayout';
+    from 'src/app/session/manager/notification/components/DefaultNotificationLayout';
 
 /**
  * A class representing the layout for a notification referring to states

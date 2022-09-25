@@ -1,10 +1,10 @@
 import React from 'react';
 
-import BoxRenderer from 'graph2/renderer/BoxRenderer';
+import BoxRenderer from 'src/app/graph2/renderer/BoxRenderer';
 import GraphHighlightLayer from './GraphHighlightLayer';
 
-import SelectionBox from 'graph2/controller/SelectionBox';
-import SelectionBoxInputHandler from 'graph2/inputhandler/SelectionBoxInputHandler';
+import SelectionBox from 'src/app/graph2/controller/SelectionBox';
+import SelectionBoxInputHandler from 'src/app/graph2/inputhandler/SelectionBoxInputHandler';
 
 class SelectionBoxLayer extends React.Component
 {

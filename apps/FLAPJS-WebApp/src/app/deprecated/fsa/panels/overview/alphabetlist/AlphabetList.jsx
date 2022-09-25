@@ -2,8 +2,8 @@ import React from 'react';
 import './AlphabetList.css';
 
 import InfoBlock from '../infoblock/InfoBlock';
-import IconButton from 'deprecated/icons/IconButton';
-import BoxAddIcon from 'deprecated/icons/BoxAddIcon';
+import IconButton from 'src/app/deprecated/icons/IconButton';
+import BoxAddIcon from 'src/app/deprecated/icons/BoxAddIcon';
 
 import AlphabetTag from './AlphabetTag';
 

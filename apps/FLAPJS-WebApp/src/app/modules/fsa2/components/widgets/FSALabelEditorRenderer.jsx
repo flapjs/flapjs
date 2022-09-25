@@ -1,10 +1,10 @@
 import React from 'react';
 import Style from './FSALabelEditorRenderer.module.css';
 
-import GraphEdge from 'graph2/element/GraphEdge';
-import GraphNode from 'graph2/element/GraphNode';
-import PatternInputButton from 'graph2/components/widgets/pattern/PatternInputButton';
-import { SYMBOL_SEPARATOR, EMPTY_CHAR } from 'modules/fsa2/graph/element/FSAEdge';
+import GraphEdge from 'src/app/graph2/element/GraphEdge';
+import GraphNode from 'src/app/graph2/element/GraphNode';
+import PatternInputButton from 'src/app/graph2/components/widgets/pattern/PatternInputButton';
+import { SYMBOL_SEPARATOR, EMPTY_CHAR } from 'src/app/modules/fsa2/graph/element/FSAEdge';
 
 const RECOMMENDED_SYMBOLS = ['0', '1'];
 const DEFAULT_SYMBOLS = [EMPTY_CHAR];

@@ -1,4 +1,4 @@
-import Logger from 'util/logger/Logger';
+import Logger from 'src/app/util/logger/Logger';
 const LOGGER_TAG = 'UndoManager';
 
 const MAX_HISTORY_LENGTH = 1000;

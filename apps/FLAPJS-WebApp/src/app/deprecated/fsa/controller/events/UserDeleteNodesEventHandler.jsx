@@ -1,6 +1,6 @@
 import EventHandler from './EventHandler';
 
-import * as FSAGraphParser from 'deprecated/fsa/graph/FSAGraphParser';
+import * as FSAGraphParser from 'src/app/deprecated/fsa/graph/FSAGraphParser';
 
 class UserDeleteNodesEventHandler extends EventHandler
 {

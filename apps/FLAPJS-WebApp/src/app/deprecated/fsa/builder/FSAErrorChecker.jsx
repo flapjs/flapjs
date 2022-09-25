@@ -1,13 +1,13 @@
-import Config from 'deprecated/config';
-import { EMPTY } from 'deprecated/fsa/machine/Symbols';
+import Config from 'src/app/deprecated/config';
+import { EMPTY } from 'src/app/deprecated/fsa/machine/Symbols';
 
-import Notifications from 'deprecated/system/notification/Notifications';
-import StateUnreachableWarningMessage from 'deprecated/fsa/notifications/StateUnreachableWarningMessage';
-import TransitionErrorMessage from 'deprecated/fsa/notifications/TransitionErrorMessage';
+import Notifications from 'src/app/deprecated/system/notification/Notifications';
+import StateUnreachableWarningMessage from 'src/app/deprecated/fsa/notifications/StateUnreachableWarningMessage';
+import TransitionErrorMessage from 'src/app/deprecated/fsa/notifications/TransitionErrorMessage';
 
-import StateMissingTransitionErrorMessage from 'deprecated/fsa/notifications/StateMissingTransitionErrorMessage';
+import StateMissingTransitionErrorMessage from 'src/app/deprecated/fsa/notifications/StateMissingTransitionErrorMessage';
 
-import { getUnreachableNodes } from 'graph2/util/NodeGraphUtils';
+import { getUnreachableNodes } from 'src/app/graph2/util/NodeGraphUtils';
 
 class FSAErrorChecker
 {

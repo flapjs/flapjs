@@ -1,29 +1,29 @@
 import React from 'react';
 import './Toolbar.css';
 
-import Config from 'deprecated/config';
+import Config from 'src/app/deprecated/config';
 
 import UploadButton from "./UploadButton.js";
 import HelpButton from "./HelpButton.js";
 import MachineName from './MachineName';
 
-import IconButton from 'deprecated/icons/IconButton';
+import IconButton from 'src/app/deprecated/icons/IconButton';
 
-import MoreIcon from 'deprecated/icons/MoreIcon';
-import UploadIcon from 'deprecated/icons/UploadIcon';
-import CreateIcon from 'deprecated/icons/PageNewIcon';
-//import CreateIcon from 'deprecated/icons/CreateIcon';
-import SaveIcon from 'deprecated/icons/SaveIcon';
-//import SaveIcon from 'deprecated/icons/DiskSaveIcon';
-import UndoIcon from 'deprecated/icons/UndoIcon';
-import RedoIcon from 'deprecated/icons/RedoIcon';
-import HelpIcon from 'deprecated/icons/HelpIcon';
-import LanguageIcon from 'deprecated/icons/LanguageIcon';
-import OfflineIcon from 'deprecated/icons/OfflineIcon';
-import OfflinePinIcon from 'deprecated/icons/OfflinePinIcon';
-import BugReportIcon from 'deprecated/icons/BugReportIcon';
+import MoreIcon from 'src/app/deprecated/icons/MoreIcon';
+import UploadIcon from 'src/app/deprecated/icons/UploadIcon';
+import CreateIcon from 'src/app/deprecated/icons/PageNewIcon';
+//import CreateIcon from 'src/app/deprecated/icons/CreateIcon';
+import SaveIcon from 'src/app/deprecated/icons/SaveIcon';
+//import SaveIcon from 'src/app/deprecated/icons/DiskSaveIcon';
+import UndoIcon from 'src/app/deprecated/icons/UndoIcon';
+import RedoIcon from 'src/app/deprecated/icons/RedoIcon';
+import HelpIcon from 'src/app/deprecated/icons/HelpIcon';
+import LanguageIcon from 'src/app/deprecated/icons/LanguageIcon';
+import OfflineIcon from 'src/app/deprecated/icons/OfflineIcon';
+import OfflinePinIcon from 'src/app/deprecated/icons/OfflinePinIcon';
+import BugReportIcon from 'src/app/deprecated/icons/BugReportIcon';
 
-import Drawer from 'deprecated/content/drawer/Drawer';
+import Drawer from 'src/app/deprecated/content/drawer/Drawer';
 
 const BUG_REPORT_URL = "https://goo.gl/forms/XSil43Xl5xLHsa0E2";
 

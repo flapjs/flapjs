@@ -1,7 +1,7 @@
-import AbstractGraphLabeler from 'deprecated/graph/AbstractGraphLabeler';
+import AbstractGraphLabeler from 'src/app/deprecated/graph/AbstractGraphLabeler';
 
-import { SYMBOL_SEPARATOR } from 'deprecated/fsa/graph/FSAEdge';
-import { EMPTY } from 'deprecated/fsa/machine/Symbols';
+import { SYMBOL_SEPARATOR } from 'src/app/deprecated/fsa/graph/FSAEdge';
+import { EMPTY } from 'src/app/deprecated/fsa/machine/Symbols';
 
 const DEFAULT_NODE_LABEL_PREFIX = 'q';
 

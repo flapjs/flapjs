@@ -1,7 +1,7 @@
 import FSA, { EMPTY_SYMBOL } from '../FSA';
 import { solveFSA, convertToDFA } from '../FSAUtils';
-import FSAGraph from 'modules/fsa2/graph/FSAGraph';
-import FSABuilder from 'modules/fsa2/machine/FSABuilder';
+import FSAGraph from 'src/app/modules/fsa2/graph/FSAGraph';
+import FSABuilder from 'src/app/modules/fsa2/machine/FSABuilder';
 
 function testSolveFSA(machine, testString, expectedResult=true)
 {

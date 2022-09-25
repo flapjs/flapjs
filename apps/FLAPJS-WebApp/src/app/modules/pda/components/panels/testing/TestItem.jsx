@@ -1,12 +1,12 @@
 import React from 'react';
 import Style from './TestItem.module.css';
 
-import IconButton from 'experimental/components/IconButton';
-import SubtractIcon from 'components/iconset/SubtractIcon';
-import CheckCircleIcon from 'components/iconset/CheckCircleIcon';
-import CrossCircleIcon from 'components/iconset/CrossCircleIcon';
-import PendingIcon from 'components/iconset/PendingIcon';
-import RunningManIcon from 'components/iconset/RunningManIcon';
+import IconButton from 'src/app/experimental/components/IconButton';
+import SubtractIcon from 'src/app/components/iconset/SubtractIcon';
+import CheckCircleIcon from 'src/app/components/iconset/CheckCircleIcon';
+import CrossCircleIcon from 'src/app/components/iconset/CrossCircleIcon';
+import PendingIcon from 'src/app/components/iconset/PendingIcon';
+import RunningManIcon from 'src/app/components/iconset/RunningManIcon';
 
 export const DEFAULT_MODE = 'default';
 export const SUCCESS_MODE = 'success';

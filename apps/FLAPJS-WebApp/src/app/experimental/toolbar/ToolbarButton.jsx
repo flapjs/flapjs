@@ -1,7 +1,7 @@
 import React from 'react';
 import Style from './ToolbarButton.module.css';
 
-import IconButton from 'experimental/components/IconButton';
+import IconButton from 'src/app/experimental/components/IconButton';
 
 export const TOOLBAR_CONTAINER_MENU = 'menu';
 export const TOOLBAR_CONTAINER_TOOLBAR = 'toolbar';

@@ -1,10 +1,10 @@
 import AbstractGraphExporter from './AbstractGraphExporter';
 
-import PNGIcon from 'deprecated/icons/flat/PNGIcon';
-import JPGIcon from 'deprecated/icons/flat/JPGIcon';
-// import XMLIcon from 'deprecated/icons/flat/XMLIcon';
-import SVGIcon from 'deprecated/icons/flat/SVGIcon';
-import { FILE_TYPE_PNG, FILE_TYPE_JPG, FILE_TYPE_SVG, downloadImageFromSVG } from 'util/Downloader';
+import PNGIcon from 'src/app/deprecated/icons/flat/PNGIcon';
+import JPGIcon from 'src/app/deprecated/icons/flat/JPGIcon';
+// import XMLIcon from 'src/app/deprecated/icons/flat/XMLIcon';
+import SVGIcon from 'src/app/deprecated/icons/flat/SVGIcon';
+import { FILE_TYPE_PNG, FILE_TYPE_JPG, FILE_TYPE_SVG, downloadImageFromSVG } from 'src/app/util/Downloader';
 
 const EXPORT_PADDING_X = 30;
 const EXPORT_PADDING_Y = 0;

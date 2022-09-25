@@ -1,8 +1,8 @@
 import AbstractGraphExporter from './AbstractGraphExporter';
 
-import XMLFileIcon from 'deprecated/icons/flat/XMLIcon';
-import { XML as XMLGraphParser } from 'deprecated/fsa/graph/FSAGraphParser';
-import { downloadText } from 'util/Downloader';
+import XMLFileIcon from 'src/app/deprecated/icons/flat/XMLIcon';
+import { XML as XMLGraphParser } from 'src/app/deprecated/fsa/graph/FSAGraphParser';
+import { downloadText } from 'src/app/util/Downloader';
 
 class JFLAPGraphExporter extends AbstractGraphExporter
 {

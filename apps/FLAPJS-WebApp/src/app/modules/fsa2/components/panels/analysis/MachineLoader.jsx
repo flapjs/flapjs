@@ -1,8 +1,8 @@
-import TextUploader from 'util/file/import/TextUploader';
-import FSAGraphParser from 'modules/fsa2/filehandlers/FSAGraphParser';
-import FSAGraph from 'modules/fsa2/graph/FSAGraph';
-import FSABuilder from 'modules/fsa2/machine/FSABuilder';
-import FSA from 'modules/fsa2/machine/FSA';
+import TextUploader from 'src/app/util/file/import/TextUploader';
+import FSAGraphParser from 'src/app/modules/fsa2/filehandlers/FSAGraphParser';
+import FSAGraph from 'src/app/modules/fsa2/graph/FSAGraph';
+import FSABuilder from 'src/app/modules/fsa2/machine/FSABuilder';
+import FSA from 'src/app/modules/fsa2/machine/FSA';
 
 export function createMachineFromFileBlob(fileBlob)
 {

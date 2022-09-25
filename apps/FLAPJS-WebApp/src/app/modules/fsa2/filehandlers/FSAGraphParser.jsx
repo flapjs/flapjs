@@ -1,4 +1,4 @@
-import Parser from 'util/file/Parser';
+import Parser from 'src/app/util/file/Parser';
 import FSAGraph from '../graph/FSAGraph';
 
 export const VERSION = '1.0.0';

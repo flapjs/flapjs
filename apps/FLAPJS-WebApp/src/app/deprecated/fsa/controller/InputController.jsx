@@ -1,4 +1,4 @@
-import AbstractInputController from 'modules/abstract/AbstractInputController';
+import AbstractInputController from 'src/app/modules/abstract/AbstractInputController';
 
 import ViewportInputHandler from './ViewportInputHandler';
 import GraphPicker from './GraphPicker';

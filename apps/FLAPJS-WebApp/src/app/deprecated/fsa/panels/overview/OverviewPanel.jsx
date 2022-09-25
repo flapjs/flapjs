@@ -2,9 +2,9 @@ import React from 'react';
 import '../Panel.css';
 import './OverviewPanel.css';
 
-import Config from 'deprecated/config';
+import Config from 'src/app/deprecated/config';
 
-import FormattedInput from 'deprecated/system/formattedinput/FormattedInput';
+import FormattedInput from 'src/app/deprecated/system/formattedinput/FormattedInput';
 
 import StatesList from './stateslist/StatesList';
 import AlphabetList from './alphabetlist/AlphabetList';

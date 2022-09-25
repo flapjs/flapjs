@@ -1,10 +1,10 @@
 import React from 'react';
 import Style from './REGrammarView.module.css';
 
-import FormattedInput from 'graph2/components/widgets/formatter/FormattedInput';
-import DebounceButton from 'graph2/components/widgets/formatter/DebounceButton';
+import FormattedInput from 'src/app/graph2/components/widgets/formatter/FormattedInput';
+import DebounceButton from 'src/app/graph2/components/widgets/formatter/DebounceButton';
 
-import { UNION } from 'modules/re/machine/RE';
+import { UNION } from 'src/app/modules/re/machine/RE';
 
 export const UNION_CHAR = 'U';
 

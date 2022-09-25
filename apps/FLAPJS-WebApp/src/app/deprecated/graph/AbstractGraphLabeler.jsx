@@ -1,4 +1,4 @@
-import GraphEdge from 'deprecated/graph/elements/GraphEdge';
+import GraphEdge from 'src/app/deprecated/graph/elements/GraphEdge';
 
 class AbstractGraphLabeler
 {

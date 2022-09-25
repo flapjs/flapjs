@@ -1,4 +1,4 @@
-import Logger from 'util/logger/Logger';
+import Logger from 'src/app/util/logger/Logger';
 import StyleEntry from './style/StyleEntry';
 
 const LOGGER_TAG = 'Theme';

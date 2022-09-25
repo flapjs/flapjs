@@ -1,10 +1,10 @@
-import GraphController from 'graph2/controller/GraphController';
+import GraphController from 'src/app/graph2/controller/GraphController';
 
-import { GRAPH_EVENT_NODE_EDIT_WHILE_DELETE, GRAPH_EVENT_NODE_DELETE, GRAPH_EVENT_NODE_DELETE_ALL } from 'graph2/inputhandler/GraphNodeInputHandler';
-import { GRAPH_EVENT_EDGE_EDIT_WHILE_DELETE, GRAPH_EVENT_EDGE_DELETE, GRAPH_EVENT_EDGE_CREATE } from 'graph2/inputhandler/GraphEdgeInputHandler';
-import { GRAPH_EVENT_START_MARKER_CHANGE } from 'graph2/inputhandler/IndexedGraphStartMarkerInputHandler';
+import { GRAPH_EVENT_NODE_EDIT_WHILE_DELETE, GRAPH_EVENT_NODE_DELETE, GRAPH_EVENT_NODE_DELETE_ALL } from 'src/app/graph2/inputhandler/GraphNodeInputHandler';
+import { GRAPH_EVENT_EDGE_EDIT_WHILE_DELETE, GRAPH_EVENT_EDGE_DELETE, GRAPH_EVENT_EDGE_CREATE } from 'src/app/graph2/inputhandler/GraphEdgeInputHandler';
+import { GRAPH_EVENT_START_MARKER_CHANGE } from 'src/app/graph2/inputhandler/IndexedGraphStartMarkerInputHandler';
 
-import { WARNING_LAYOUT_ID } from 'session/manager/notification/NotificationManager';
+import { WARNING_LAYOUT_ID } from 'src/app/session/manager/notification/NotificationManager';
 import FSAGraphLabeler from './FSAGraphLabeler';
 
 import { SYMBOL_SEPARATOR } from './element/FSAEdge';
@@ -13,7 +13,7 @@ export const TRASH_EDITING_NOTIFICATION_TAG = 'tryCreateWhileTrash';
 
 
 // This really shouldn't be here....
-import GraphLayout from 'modules/fsa2/GraphLayout';
+import GraphLayout from 'src/app/modules/fsa2/GraphLayout';
 const DEFAULT_AUTO_RENAME = true;
 const NODE_SPAWN_RADIUS = 64;
 

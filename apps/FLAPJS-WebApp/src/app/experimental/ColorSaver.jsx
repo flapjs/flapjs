@@ -1,4 +1,4 @@
-import AbstractAutoSaveHandler from 'util/storage/AbstractAutoSaveHandler';
+import AbstractAutoSaveHandler from 'src/app/util/storage/AbstractAutoSaveHandler';
 
 export const THEME_STORAGE_ID = 'prefs-theme';
 export const COLOR_STORAGE_ID = 'prefs-color';

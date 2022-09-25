@@ -1,5 +1,5 @@
-import GraphNode from 'deprecated/graph/elements/GraphNode';
-import Config from 'deprecated/config';
+import GraphNode from 'src/app/deprecated/graph/elements/GraphNode';
+import Config from 'src/app/deprecated/config';
 
 class FSANode extends GraphNode
 {

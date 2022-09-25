@@ -1,4 +1,4 @@
-import { guid } from 'util/MathHelper';
+import { guid } from 'src/app/util/MathHelper';
 
 class Message
 {

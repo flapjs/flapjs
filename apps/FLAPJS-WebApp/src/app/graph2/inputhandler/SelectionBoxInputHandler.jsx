@@ -1,4 +1,4 @@
-import AbstractInputHandler from 'util/input/AbstractInputHandler';
+import AbstractInputHandler from 'src/app/util/input/AbstractInputHandler';
 
 class SelectionBoxInputHandler extends AbstractInputHandler
 {

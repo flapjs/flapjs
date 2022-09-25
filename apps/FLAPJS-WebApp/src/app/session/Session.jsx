@@ -1,9 +1,9 @@
-import Modules from 'modules/Modules';
-import LocalStorage from 'util/storage/LocalStorage';
-import * as URLHelper from 'util/URLHelper';
-import { guid } from 'util/MathHelper';
+import Modules from 'src/app/modules/Modules';
+import LocalStorage from 'src/app/util/storage/LocalStorage';
+import * as URLHelper from 'src/app/util/URLHelper';
+import { guid } from 'src/app/util/MathHelper';
 
-import Logger from 'util/logger/Logger';
+import Logger from 'src/app/util/logger/Logger';
 const LOGGER_TAG = 'Session';
 
 const DEFAULT_MODULE_ID = 'fsa';

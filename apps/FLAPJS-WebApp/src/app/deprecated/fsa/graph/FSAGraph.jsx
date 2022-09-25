@@ -1,4 +1,4 @@
-import NodeGraph from 'deprecated/graph/NodeGraph';
+import NodeGraph from 'src/app/deprecated/graph/NodeGraph';
 import FSANode from './FSANode';
 import FSAEdge, { SYMBOL_SEPARATOR } from './FSAEdge';
 

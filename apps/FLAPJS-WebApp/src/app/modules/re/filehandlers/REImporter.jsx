@@ -1,4 +1,4 @@
-import SessionImporter from 'session/SessionImporter';
+import SessionImporter from 'src/app/session/SessionImporter';
 
 class REImporter extends SessionImporter
 {

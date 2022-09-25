@@ -1,4 +1,4 @@
-import QuadraticEdge from 'deprecated/graph/elements/QuadraticEdge';
+import QuadraticEdge from 'src/app/deprecated/graph/elements/QuadraticEdge';
 
 export const SYMBOL_SEPARATOR = ' ';
 export const EMPTY_CHAR = '\u03B5';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import EdgeRenderer, {DIRECTED_FORWARD} from 'graph2/renderer/EdgeRenderer';
+import EdgeRenderer, {DIRECTED_FORWARD} from 'src/app/graph2/renderer/EdgeRenderer';
 
 class GraphEdgeRenderer extends React.Component
 {

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { userClearGraph } from 'experimental/UserUtil';
-import { CTRL_KEY } from 'session/manager/hotkey/HotKeyManager';
-import { RENDER_LAYER_WORKSPACE } from 'session/manager/RenderManager';
+import { userClearGraph } from 'src/app/experimental/UserUtil';
+import { CTRL_KEY } from 'src/app/session/manager/hotkey/HotKeyManager';
+import { RENDER_LAYER_WORKSPACE } from 'src/app/session/manager/RenderManager';
 
 import PDAGraph from './graph/PDAGraph';
 import PDAGraphController from './graph/PDAGraphController';
@@ -15,13 +15,13 @@ import { registerNotifications } from './components/notifications/PDANotificatio
 import * as PDAGraphParser from './PDAGraphParser';
 import PDAImporter from './filehandlers/PDAImporter';
 import PDAExporter from './filehandlers/PDAExporter';
-import { registerImageExporters } from 'modules/nodegraph/filehandlers/NodalGraphImageExporter';
+import { registerImageExporters } from 'src/app/modules/nodegraph/filehandlers/NodalGraphImageExporter';
 
-import SafeGraphEventHandler from 'modules/nodegraph/SafeGraphEventHandler';
+import SafeGraphEventHandler from 'src/app/modules/nodegraph/SafeGraphEventHandler';
 
 /* COMPONENTS */
 
-import PanelContainer from 'experimental/panels/PanelContainer';
+import PanelContainer from 'src/app/experimental/panels/PanelContainer';
 
 import OverviewPanel from './components/panels/overview/OverviewPanel';
 import TestingPanel from './components/panels/testing/TestingPanel';
@@ -31,7 +31,7 @@ import PDAGraphLayer from './components/layers/PDAGraphLayer';
 import PDAGraphOverlayLayer from './components/layers/PDAGraphOverlayLayer';
 import PDATapeGraphOverlayLayer from './components/layers/PDATapeGraphOverlayLayer';
 
-import GraphView from 'graph2/components/GraphView';
+import GraphView from 'src/app/graph2/components/GraphView';
 
 const MODULE_NAME = 'pda';
 const MODULE_LOCALIZED_NAME = 'Pushdown Automata';

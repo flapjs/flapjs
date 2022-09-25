@@ -3,8 +3,8 @@ import './Drawer.css';
 
 import DrawerExpander from './DrawerExpander';
 
-import ExportingPanel from 'deprecated/content/panels/exporting/ExportingPanel';
-import OptionsPanel from 'deprecated/content/panels/options/OptionsPanel';
+import ExportingPanel from 'src/app/deprecated/content/panels/exporting/ExportingPanel';
+import OptionsPanel from 'src/app/deprecated/content/panels/options/OptionsPanel';
 
 const DEFAULT_PANELS = [ExportingPanel, OptionsPanel];
 const DEFAULT_TAB_INDEX = 0;

@@ -1,15 +1,16 @@
 import React from 'react';
 import Style from './OptionPanel.module.css';
 
-import LocalStorage from 'util/storage/LocalStorage';
-import StyleInput from 'util/theme/components/StyleInput';
+import LocalStorage from 'src/app/util/storage/LocalStorage';
+import StyleInput from 'src/app/util/theme/components/StyleInput';
 
-import PanelContainer from 'experimental/panels/PanelContainer';
-import PanelSection from 'experimental/panels/PanelSection';
-import PanelSwitch from 'experimental/panels/PanelSwitch';
-import PanelButton from 'experimental/panels/PanelButton';
+import PanelContainer from 'src/app/experimental/panels/PanelContainer';
+import PanelSection from 'src/app/experimental/panels/PanelSection';
+import PanelSwitch from 'src/app/experimental/panels/PanelSwitch';
+import PanelButton from 'src/app/experimental/panels/PanelButton';
 
 import PreviewView from './PreviewView';
+import { VERSION } from 'src/globals';
 
 const HIDDEN_STYLE_GROUP_NAME = 'hidden';
 
@@ -130,7 +131,7 @@ class OptionPanel extends React.Component
                         LocalStorage.setData(DISABLE_EXIT_WARNING_STORAGE_ID, '' + result);
                     }} />
                 <label className={Style.version}>
-                    {`v${process.env.VERSION}`}
+                    {`v${VERSION}`}
                 </label>
             </PanelContainer>
         );

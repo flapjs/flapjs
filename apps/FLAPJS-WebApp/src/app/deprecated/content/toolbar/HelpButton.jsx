@@ -1,5 +1,5 @@
 import React from 'react';
-import Notifications from 'deprecated/system/notification/Notifications';
+import Notifications from 'src/app/deprecated/system/notification/Notifications';
 
 class HelpButton extends React.Component
 {

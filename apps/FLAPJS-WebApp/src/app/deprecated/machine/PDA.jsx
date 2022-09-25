@@ -5,7 +5,7 @@ const DST = 2;
 const POP_SYMBOL = 3;
 const PUSH_SYMBOL = 4;
 
-import { EMPTY } from 'deprecated/fsa/machine/Symbols';
+import { EMPTY } from 'src/app/deprecated/fsa/machine/Symbols';
 
 class PDA
 {

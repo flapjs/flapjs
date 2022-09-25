@@ -1,8 +1,8 @@
 import React from 'react';
 import Style from '../MenuPanel.module.css';
 
-import SessionExporter from 'session/SessionExporter';
-import IconButton from 'experimental/components/IconButton';
+import SessionExporter from 'src/app/session/SessionExporter';
+import IconButton from 'src/app/experimental/components/IconButton';
 
 class ExportPanel extends React.Component
 {

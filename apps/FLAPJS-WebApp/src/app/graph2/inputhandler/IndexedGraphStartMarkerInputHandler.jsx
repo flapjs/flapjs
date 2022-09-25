@@ -1,5 +1,5 @@
-import AbstractInputHandler from 'util/input/AbstractInputHandler';
-import { lerp } from 'util/MathHelper';
+import AbstractInputHandler from 'src/app/util/input/AbstractInputHandler';
+import { lerp } from 'src/app/util/MathHelper';
 
 import { EVENT_SOURCE_START_MARKER } from '../renderer/StartMarkerRenderer';
 import { EVENT_SOURCE_NODE } from '../renderer/NodeRenderer';

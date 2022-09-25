@@ -1,28 +1,28 @@
 import React from 'react';
 
-import { userClearGraph } from 'experimental/UserUtil';
-import { CTRL_KEY } from 'session/manager/hotkey/HotKeyManager';
-import { RENDER_LAYER_WORKSPACE } from 'session/manager/RenderManager';
+import { userClearGraph } from 'src/app/experimental/UserUtil';
+import { CTRL_KEY } from 'src/app/session/manager/hotkey/HotKeyManager';
+import { RENDER_LAYER_WORKSPACE } from 'src/app/session/manager/RenderManager';
 
-import NodeGraph from 'graph2/NodeGraph';
-import GraphNode from 'graph2/element/GraphNode';
-import QuadraticEdge from 'graph2/element/QuadraticEdge';
+import NodeGraph from 'src/app/graph2/NodeGraph';
+import GraphNode from 'src/app/graph2/element/GraphNode';
+import QuadraticEdge from 'src/app/graph2/element/QuadraticEdge';
 
-import NodeGraphParser from 'graph2/NodeGraphParser';
+import NodeGraphParser from 'src/app/graph2/NodeGraphParser';
 import NodeGraphController from './graph/NodeGraphController';
 
 import { registerImageExporters } from './filehandlers/NodalGraphImageExporter';
 
-import SafeUndoNodeGraphEventHandler from 'graph2/SafeUndoNodeGraphEventHandler';
+import SafeUndoNodeGraphEventHandler from 'src/app/graph2/SafeUndoNodeGraphEventHandler';
 
 /* COMPONENTS */
 
-import PanelContainer from 'experimental/panels/PanelContainer';
+import PanelContainer from 'src/app/experimental/panels/PanelContainer';
 
 import NodeGraphLayer from './components/layers/NodeGraphLayer';
 import NodeGraphOverlayLayer from './components/layers/NodeGraphOverlayLayer';
 
-import GraphView from 'graph2/components/GraphView';
+import GraphView from 'src/app/graph2/components/GraphView';
 
 const MODULE_NAME = 'nodegraph';
 const MODULE_VERSION = '0.0.1';

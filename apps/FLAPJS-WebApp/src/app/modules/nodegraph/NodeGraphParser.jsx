@@ -1,8 +1,8 @@
-import NodeGraph from 'graph2/NodeGraph';
+import NodeGraph from 'src/app/graph2/NodeGraph';
 
-import GraphNode from 'graph2/element/GraphNode';
-import GraphEdge from 'graph2/element/GraphEdge';
-import QuadraticEdge from 'graph2/element/QuadraticEdge';
+import GraphNode from 'src/app/graph2/element/GraphNode';
+import GraphEdge from 'src/app/graph2/element/GraphEdge';
+import QuadraticEdge from 'src/app/graph2/element/QuadraticEdge';
 
 const GRAPH_PARSER_VERSION = '1.0.0';
 

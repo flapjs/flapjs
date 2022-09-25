@@ -1,6 +1,6 @@
-import Notifications from 'deprecated/system/notification/Notifications';
-import LocalSave from 'deprecated/system/localsave/LocalSave';
-import Config from 'deprecated/config';
+import Notifications from 'src/app/deprecated/system/notification/Notifications';
+import LocalSave from 'src/app/deprecated/system/localsave/LocalSave';
+import Config from 'src/app/deprecated/config';
 
 class Tutorial
 {

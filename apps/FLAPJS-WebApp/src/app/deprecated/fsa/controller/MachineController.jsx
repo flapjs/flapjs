@@ -1,13 +1,13 @@
-import AbstractMachineController from 'modules/abstract/AbstractMachineController';
-import Eventable from 'util/Eventable';
+import AbstractMachineController from 'src/app/modules/abstract/AbstractMachineController';
+import Eventable from 'src/app/util/Eventable';
 
-//import FSABuilder from 'modules/fsa2/machine/FSABuilder';
+//import FSABuilder from 'src/app/modules/fsa2/machine/FSABuilder';
 //HACK: this is only to support the old FSABuilder (remove this once finished)
-import FSABuilder from 'deprecated/fsa/builder/FSABuilder';
+import FSABuilder from 'src/app/deprecated/fsa/builder/FSABuilder';
 
-import GraphLayout from 'deprecated/fsa/graph/GraphLayout';
-import { convertToDFA } from 'deprecated/fsa/machine/util/convertNFA';
-import DFA from 'deprecated/fsa/machine/DFA';
+import GraphLayout from 'src/app/deprecated/fsa/graph/GraphLayout';
+import { convertToDFA } from 'src/app/deprecated/fsa/machine/util/convertNFA';
+import DFA from 'src/app/deprecated/fsa/machine/DFA';
 
 class MachineController extends AbstractMachineController
 {

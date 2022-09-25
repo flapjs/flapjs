@@ -1,8 +1,9 @@
 import AbstractGraphExporter from './AbstractGraphExporter';
 
-import JSONFileIcon from 'deprecated/icons/flat/JSONIcon';
-import { JSON as JSONGraphParser } from 'deprecated/fsa/graph/FSAGraphParser';
-import { downloadText } from 'util/Downloader';
+import JSONFileIcon from 'src/app/deprecated/icons/flat/JSONIcon';
+import { JSON as JSONGraphParser } from 'src/app/deprecated/fsa/graph/FSAGraphParser';
+import { downloadText } from 'src/app/util/Downloader';
+import { VERSION } from 'src/globals';
 
 class FSAGraphExporter extends AbstractGraphExporter
 {
@@ -49,7 +50,7 @@ class FSAGraphExporter extends AbstractGraphExporter
         const dst = {};
         dst['_metadata'] = {
             module: module.getModuleName(),
-            version: process.env.VERSION + ':' + module.getModuleVersion(),
+            version: VERSION + ':' + module.getModuleVersion(),
             timestamp: new Date().toString()
         };
         dst['graphData'] = graphData;

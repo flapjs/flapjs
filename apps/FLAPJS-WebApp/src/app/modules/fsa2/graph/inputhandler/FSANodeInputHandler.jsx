@@ -1,5 +1,5 @@
-import AbstractInputHandler from 'util/input/AbstractInputHandler';
-import { EVENT_SOURCE_NODE } from 'graph2/renderer/NodeRenderer';
+import AbstractInputHandler from 'src/app/util/input/AbstractInputHandler';
+import { EVENT_SOURCE_NODE } from 'src/app/graph2/renderer/NodeRenderer';
 
 export const GRAPH_EVENT_NODE_ACCEPT_CHANGE = 'node-accept-change';
 

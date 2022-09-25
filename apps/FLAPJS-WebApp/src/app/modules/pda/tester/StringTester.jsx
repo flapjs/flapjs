@@ -1,6 +1,6 @@
-import Eventable from 'util/Eventable';
+import Eventable from 'src/app/util/Eventable';
 
-import { solvePDAByStep } from 'modules/pda/machine/PDAUtils';
+import { solvePDAByStep } from 'src/app/modules/pda/machine/PDAUtils';
 
 import TapeContext from './TapeContext';
 

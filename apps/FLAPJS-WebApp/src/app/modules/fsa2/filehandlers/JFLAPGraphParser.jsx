@@ -1,6 +1,6 @@
-import Parser from 'util/file/Parser';
-import FSAGraph from 'modules/fsa2/graph/FSAGraph';
-import { SYMBOL_SEPARATOR } from 'modules/fsa2/graph/element/FSAEdge';
+import Parser from 'src/app/util/file/Parser';
+import FSAGraph from 'src/app/modules/fsa2/graph/FSAGraph';
+import { SYMBOL_SEPARATOR } from 'src/app/modules/fsa2/graph/element/FSAEdge';
 
 export const VERSION = '1.0.0';
 

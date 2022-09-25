@@ -1,7 +1,7 @@
 import React from 'react';
 import './Workspace.css';
 
-import Config from 'deprecated/config';
+import Config from 'src/app/deprecated/config';
 
 import Subtitle from './Subtitle';
 

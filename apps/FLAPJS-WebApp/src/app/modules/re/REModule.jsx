@@ -1,10 +1,10 @@
 import React from 'react';
-import PanelContainer from 'experimental/panels/PanelContainer';
+import PanelContainer from 'src/app/experimental/panels/PanelContainer';
 
 import MachineController from './MachineController';
 import REErrorChecker from './REErrorChecker';
 import SafeExpressionEventHandler from './SafeExpressionEventHandler';
-import { RENDER_LAYER_WORKSPACE } from 'session/manager/RenderManager';
+import { RENDER_LAYER_WORKSPACE } from 'src/app/session/manager/RenderManager';
 
 import { registerNotifications } from './components/notifications/RENotifications';
 
@@ -13,7 +13,7 @@ import AnalysisPanel from './components/panels/analysis/AnalysisPanel';
 import TestingPanel from './components/panels/testing/TestingPanel';
 
 import ExpressionView from './components/views/ExpressionView';
-import { CTRL_KEY, SHIFT_KEY } from 'session/manager/hotkey/HotKeyManager';
+import { CTRL_KEY, SHIFT_KEY } from 'src/app/session/manager/hotkey/HotKeyManager';
 
 import REImporter from './filehandlers/REImporter';
 import REExporter from './filehandlers/REExporter';

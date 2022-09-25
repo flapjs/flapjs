@@ -1,4 +1,4 @@
-import Viewport from 'deprecated/content/viewport/Viewport';
+import Viewport from 'src/app/deprecated/content/viewport/Viewport';
 import TestMode from './TestMode';
 import TestingInputList from './TestingInputList';
 

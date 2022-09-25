@@ -2,8 +2,8 @@ import {DEFAULT_LABEL_FORMATTER} from './LabelFormatter';
 
 import GraphChangeHandler from './GraphChangeHandler';
 
-import GraphNode from 'graph2/element/GraphNode';
-import GraphEdge from 'graph2/element/GraphEdge';
+import GraphNode from 'src/app/graph2/element/GraphNode';
+import GraphEdge from 'src/app/graph2/element/GraphEdge';
 
 export const GRAPH_EVENT_CLEAR = 'graph-clear';
 

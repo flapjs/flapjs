@@ -1,5 +1,5 @@
 import GraphEdge from './GraphEdge';
-import { getDirectionalVector, getMidPoint } from 'util/MathHelper';
+import { getDirectionalVector, getMidPoint } from 'src/app/util/MathHelper';
 
 /**
  * A class that represents the curved edge elements of a graph.

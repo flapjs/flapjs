@@ -1,6 +1,6 @@
 import React from 'react';
 
-import NodeRenderer from 'graph2/renderer/NodeRenderer';
+import NodeRenderer from 'src/app/graph2/renderer/NodeRenderer';
 
 class GraphNodeRenderer extends React.Component
 {

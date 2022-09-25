@@ -1,6 +1,6 @@
-import LocalStorage from 'util/storage/LocalStorage';
+import LocalStorage from 'src/app/util/storage/LocalStorage';
 
-import { SEQUENCE_LAYOUT_ID } from 'session/manager/notification/NotificationManager';
+import { SEQUENCE_LAYOUT_ID } from 'src/app/session/manager/notification/NotificationManager';
 const TUTORIAL_NOTIFICATION_ID = 'tutorial';
 
 const TUTORIAL_STORAGE_ID = 'prefs-tut_fsa';

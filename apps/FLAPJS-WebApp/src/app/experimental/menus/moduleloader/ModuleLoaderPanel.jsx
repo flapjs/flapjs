@@ -1,10 +1,10 @@
 import React from 'react';
 import Style from './ModuleLoaderPanel.module.css';
 
-import PanelContainer from 'experimental/panels/PanelContainer';
-import IconButton from 'experimental/components/IconButton';
+import PanelContainer from 'src/app/experimental/panels/PanelContainer';
+import IconButton from 'src/app/experimental/components/IconButton';
 
-import Modules from 'modules/Modules';
+import Modules from 'src/app/modules/Modules';
 
 class ModuleLoaderPanel extends React.Component
 {

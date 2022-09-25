@@ -1,9 +1,9 @@
-import AbstractMachineController from 'modules/abstract/AbstractMachineController';
+import AbstractMachineController from 'src/app/modules/abstract/AbstractMachineController';
 
-import FSABuilder from 'modules/fsa2/machine/FSABuilder';
-import { convertToDFA, invertDFA } from 'modules/fsa2/machine/FSAUtils';
+import FSABuilder from 'src/app/modules/fsa2/machine/FSABuilder';
+import { convertToDFA, invertDFA } from 'src/app/modules/fsa2/machine/FSAUtils';
 
-import GraphLayout from 'modules/fsa2/GraphLayout';
+import GraphLayout from 'src/app/modules/fsa2/GraphLayout';
 
 class MachineController extends AbstractMachineController
 {

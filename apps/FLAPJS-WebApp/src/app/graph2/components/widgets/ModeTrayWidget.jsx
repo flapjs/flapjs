@@ -1,9 +1,9 @@
 import React from 'react';
 import Style from './ModeTrayWidget.module.css';
 
-import IconButton from 'experimental/components/IconButton';
-import EditPencilIcon from 'components/iconset/EditPencilIcon';
-import MoveIcon from 'components/iconset/MoveIcon';
+import IconButton from 'src/app/experimental/components/IconButton';
+import EditPencilIcon from 'src/app/components/iconset/EditPencilIcon';
+import MoveIcon from 'src/app/components/iconset/MoveIcon';
 
 export const MODE_ACTION = 0;
 export const MODE_MOVE = 1;

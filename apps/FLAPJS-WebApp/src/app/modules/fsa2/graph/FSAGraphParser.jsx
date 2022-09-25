@@ -1,6 +1,6 @@
-import NodeGraphParser from 'graph2/NodeGraphParser';
+import NodeGraphParser from 'src/app/graph2/NodeGraphParser';
 
-import SemanticVersion from 'util/version/SemanticVersion';
+import SemanticVersion from 'src/app/util/version/SemanticVersion';
 import FSAGraph from './FSAGraph';
 
 export const VERSION_STRING = '1.0.0';

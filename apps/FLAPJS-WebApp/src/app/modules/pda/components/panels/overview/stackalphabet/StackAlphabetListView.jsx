@@ -1,8 +1,8 @@
 import React from 'react';
 import Style from './StackAlphabetListView.module.css';
 
-import IconButton from 'experimental/components/IconButton';
-import BoxAddIcon from 'components/iconset/BoxAddIcon';
+import IconButton from 'src/app/experimental/components/IconButton';
+import BoxAddIcon from 'src/app/components/iconset/BoxAddIcon';
 
 import StackAlphabetListElement from './StackAlphabetListElement';
 

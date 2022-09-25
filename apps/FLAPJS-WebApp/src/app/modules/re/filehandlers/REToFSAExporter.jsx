@@ -1,12 +1,12 @@
-import SessionExporter from 'session/SessionExporter';
+import SessionExporter from 'src/app/session/SessionExporter';
 
-import JSONFileIcon from 'components/iconset/flat/JSONFileIcon';
-import { JSON as JSONGraphParser } from 'modules/fsa2/FSAGraphParser';
+import JSONFileIcon from 'src/app/components/iconset/flat/JSONFileIcon';
+import { JSON as JSONGraphParser } from 'src/app/modules/fsa2/FSAGraphParser';
 
-import FSAGraph from 'modules/fsa2/graph/FSAGraph';
-import {EMPTY_SYMBOL} from 'modules/fsa2/machine/FSA';
-import {EMPTY_CHAR, SYMBOL_SEPARATOR} from 'modules/fsa2/graph/element/FSAEdge';
-import GraphLayout from 'modules/fsa2/GraphLayout';
+import FSAGraph from 'src/app/modules/fsa2/graph/FSAGraph';
+import {EMPTY_SYMBOL} from 'src/app/modules/fsa2/machine/FSA';
+import {EMPTY_CHAR, SYMBOL_SEPARATOR} from 'src/app/modules/fsa2/graph/element/FSAEdge';
+import GraphLayout from 'src/app/modules/fsa2/GraphLayout';
 
 class REToFSAExporter extends SessionExporter
 {

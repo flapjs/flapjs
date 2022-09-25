@@ -1,4 +1,4 @@
-import AbstractAutoSaveHandler from 'util/storage/AbstractAutoSaveHandler';
+import AbstractAutoSaveHandler from 'src/app/util/storage/AbstractAutoSaveHandler';
 
 class AppSaver extends AbstractAutoSaveHandler
 {
