@@ -7,6 +7,6 @@ const PACKAGE_VERSION = packageJson.version;
 const PACKAGE_TITLE = packageJson.name;
 
 ghPages.publish('dist', {
-    branch: `staging-v${PACKAGE_VERSION}`,
+    branch: `public`,
     message: `Deploy ${PACKAGE_TITLE} v${PACKAGE_VERSION}`,
 });
