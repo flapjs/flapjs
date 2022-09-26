@@ -11,7 +11,8 @@
         "downlevelIteration": true,
         "paths": {
             "src/*": ["./src/*"]
-        }
+        },
+        "moduleResolution": "node"
     },
     "exclude": [
         "node_modules",
