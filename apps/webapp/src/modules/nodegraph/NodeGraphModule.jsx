@@ -2,7 +2,6 @@ import React from 'react';
 
 import { userClearGraph } from 'src/components/UserUtil';
 import { CTRL_KEY } from 'src/session/manager/hotkey/HotKeyManager';
-import { RENDER_LAYER_WORKSPACE } from 'src/session/manager/RenderManager';
 
 import NodeGraph from 'src/graph2/NodeGraph';
 import GraphNode from 'src/graph2/element/GraphNode';
@@ -19,16 +18,28 @@ import SafeUndoNodeGraphEventHandler from 'src/graph2/SafeUndoNodeGraphEventHand
 
 import PanelContainer from 'src/components/panels/PanelContainer';
 
-import NodeGraphLayer from './components/layers/NodeGraphLayer';
-import NodeGraphOverlayLayer from './components/layers/NodeGraphOverlayLayer';
-
-import GraphView from 'src/graph2/components/GraphView';
+import { Playground } from './Playground';
 
 const MODULE_NAME = 'nodegraph';
 const MODULE_VERSION = '0.0.1';
 const MODULE_LOCALIZED_NAME = 'Node Graph';
 
 class NodalGraphModule {
+
+  static get moduleId() {
+    return 'nodegraph';
+  }
+
+  static get moduleVersion() {
+    return '0.0.1';
+  }
+
+  static get renderers() {
+    return [
+      { render: Playground, on: 'playground' },
+    ];
+  }
+
   constructor(app) {
     this._app = app;
 
@@ -36,29 +47,6 @@ class NodalGraphModule {
     this._graphParser = new NodeGraphParser();
     this._graphController = new NodeGraphController(app, this._graph);
     this._graphViewComponent = React.createRef();
-
-    const graphController = this._graphController;
-
-    app
-      .getRenderManager()
-      .addRenderer(RENDER_LAYER_WORKSPACE, (props) => (
-        <GraphView
-          ref={this._graphViewComponent}
-          renderGraph={(graphView) => (
-            <NodeGraphLayer
-              graphView={graphView}
-              graphController={graphController}
-              editable={true}
-            />
-          )}
-          renderOverlay={(graphView) => (
-            <NodeGraphOverlayLayer
-              graphView={graphView}
-              graphController={graphController}
-              session={this._app.getSession()}
-            />
-          )}></GraphView>
-      ));
   }
 
   /** @override */

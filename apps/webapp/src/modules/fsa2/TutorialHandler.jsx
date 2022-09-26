@@ -6,8 +6,6 @@ const TUTORIAL_NOTIFICATION_ID = 'tutorial';
 const TUTORIAL_STORAGE_ID = 'prefs-tut_fsa';
 
 class TutorialHandler {
-  constructor() {}
-
   start(app, forceStart = false) {
     if (!forceStart && LocalStorage.getData(TUTORIAL_STORAGE_ID)) return;
     app.getNotificationManager().pushNotification(

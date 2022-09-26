@@ -2,7 +2,6 @@ import React from 'react';
 
 import { userClearGraph } from 'src/components/UserUtil';
 import { CTRL_KEY } from 'src/session/manager/hotkey/HotKeyManager';
-import { RENDER_LAYER_WORKSPACE } from 'src/session/manager/RenderManager';
 
 import FSAGraph from './graph/FSAGraph';
 import FSAGraphController from './graph/FSAGraphController';
@@ -32,16 +31,29 @@ import OverviewPanel from './components/panels/overview/OverviewPanel';
 import TestingPanel from './components/panels/testing/TestingPanel';
 import AnalysisPanel from './components/panels/analysis/AnalysisPanel';
 
-import FSAGraphLayer from './components/layers/FSAGraphLayer';
-import FSAGraphOverlayLayer from './components/layers/FSAGraphOverlayLayer';
-import FSATapeGraphOverlayLayer from './components/layers/FSATapeGraphOverlayLayer';
-
-import GraphView from 'src/graph2/components/GraphView';
+import { Playground } from './Playground';
+import { Init } from './Init';
 
 const MODULE_NAME = 'fsa';
 const MODULE_VERSION = '3.0.0';
 
 class FSAModule {
+
+  static get moduleId() {
+    return 'fsa';
+  }
+
+  static get moduleVersion() {
+    return '5.0.0';
+  }
+
+  static get renderers() {
+    return [
+      { render: Init, on: 'init' },
+      { render: Playground, on: 'playground' },
+    ];
+  }
+
   constructor(app) {
     this._app = app;
 
@@ -49,40 +61,6 @@ class FSAModule {
     this._graphController = new FSAGraphController(app, this._graph, null);
     this._graphViewComponent = React.createRef();
 
-    const graphController = this._graphController;
-
-    app.getRenderManager().addRenderer(RENDER_LAYER_WORKSPACE, (props) => (
-      <GraphView
-        ref={this._graphViewComponent}
-        renderGraph={(graphView) => {
-          return (
-            <FSAGraphLayer
-              graphView={graphView}
-              graphController={graphController}
-              editable={!this._testMode}
-              session={this._app.getSession()}
-            />
-          );
-        }}
-        renderOverlay={(graphView) => {
-          if (!this._testMode) {
-            return (
-              <FSAGraphOverlayLayer
-                graphView={graphView}
-                graphController={graphController}
-                session={this._app.getSession()}
-              />
-            );
-          } else {
-            return (
-              <FSATapeGraphOverlayLayer
-                graphView={graphView}
-                tester={this._tester}
-              />
-            );
-          }
-        }}></GraphView>
-    ));
     this._machineController = new MachineController(this);
 
     this._errorChecker = new FSAErrorChecker(
@@ -94,7 +72,7 @@ class FSAModule {
     this._testMode = false;
 
     this._broadcastHandler = new FSABroadcastHandler();
-    this._tutorialHandler = new TutorialHandler(app);
+    this._tutorialHandler = new TutorialHandler();
   }
 
   /** @override */

@@ -2,7 +2,6 @@ import React from 'react';
 
 import { userClearGraph } from 'src/components/UserUtil';
 import { CTRL_KEY } from 'src/session/manager/hotkey/HotKeyManager';
-import { RENDER_LAYER_WORKSPACE } from 'src/session/manager/RenderManager';
 
 import PDAGraph from './graph/PDAGraph';
 import PDAGraphController from './graph/PDAGraphController';
@@ -27,57 +26,33 @@ import OverviewPanel from './components/panels/overview/OverviewPanel';
 import TestingPanel from './components/panels/testing/TestingPanel';
 import AnalysisPanel from './components/panels/analysis/AnalysisPanel';
 
-import PDAGraphLayer from './components/layers/PDAGraphLayer';
-import PDAGraphOverlayLayer from './components/layers/PDAGraphOverlayLayer';
-import PDATapeGraphOverlayLayer from './components/layers/PDATapeGraphOverlayLayer';
-
-import GraphView from 'src/graph2/components/GraphView';
+import { Playground } from './Playground';
 
 const MODULE_NAME = 'pda';
 const MODULE_LOCALIZED_NAME = 'Pushdown Automata';
 const MODULE_VERSION = '0.0.1';
 
 class PDAModule {
+  static get moduleId() {
+    return 'pda';
+  }
+
+  static get moduleVersion() {
+    return '2.0.0';
+  }
+
+  static get renderers() {
+    return [
+      { render: Playground, on: 'playground' },
+    ];
+  }
+
   constructor(app) {
     this._app = app;
 
     this._graph = new PDAGraph();
     this._graphController = new PDAGraphController(app, this._graph, null);
     this._graphViewComponent = React.createRef();
-
-    const graphController = this._graphController;
-
-    app.getRenderManager().addRenderer(RENDER_LAYER_WORKSPACE, (props) => (
-      <GraphView
-        ref={this._graphViewComponent}
-        renderGraph={(graphView) => {
-          return (
-            <PDAGraphLayer
-              graphView={graphView}
-              graphController={graphController}
-              editable={!this._testMode}
-            />
-          );
-        }}
-        renderOverlay={(graphView) => {
-          if (!this._testMode) {
-            return (
-              <PDAGraphOverlayLayer
-                graphView={graphView}
-                graphController={graphController}
-                session={this._app.getSession()}
-              />
-            );
-          } else {
-            return (
-              <PDATapeGraphOverlayLayer
-                graphView={graphView}
-                tester={this._tester}
-              />
-            );
-          }
-        }}></GraphView>
-    ));
 
     this._machineController = new MachineController(this);
 

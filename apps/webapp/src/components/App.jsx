@@ -36,13 +36,7 @@ import HelpIcon from 'src/assets/icons/help.svg';
 import SettingsIcon from 'src/assets/icons/settings.svg';
 import EditPencilIcon from 'src/assets/icons/pencil.svg';
 
-import AppSaver from 'src/components/AppSaver';
-import ColorSaver from 'src/components/ColorSaver';
 import * as ColorTransform from 'src/util/ColorTransform';
-import LanguageSaver from 'src/components/LanguageSaver';
-
-import AutoSave from 'src/util/storage/AutoSave';
-import LocalStorage from 'src/util/storage/LocalStorage';
 
 import ExportManager from 'src/util/file/export/ExportManager';
 import ImportManager from 'src/util/file/import/ImportManager';
@@ -57,11 +51,6 @@ import HotKeyManager, {
 } from 'src/session/manager/hotkey/HotKeyManager';
 import HotKeyView from 'src/session/manager/hotkey/HotKeyView';
 import UndoManager from 'src/session/manager/undo/UndoManager';
-import RenderManager, {
-  RENDER_LAYER_WORKSPACE_PRE,
-  RENDER_LAYER_WORKSPACE,
-  RENDER_LAYER_WORKSPACE_POST,
-} from 'src/session/manager/RenderManager';
 import TooltipManager from 'src/session/manager/TooltipManager';
 import NotificationManager, {
   ERROR_LAYOUT_ID,
@@ -69,6 +58,7 @@ import NotificationManager, {
 import ThemeManager from 'src/util/theme/ThemeManager';
 import BroadcastManager from 'src/session/manager/broadcast/BroadcastManager';
 import Broadcast from 'src/util/broadcast/Broadcast';
+import { Slot } from 'src/libs/slot/Slot';
 
 const BUGREPORT_URL = 'https://goo.gl/forms/XSil43Xl5xLHsa0E2';
 const HELP_URL =
@@ -193,9 +183,6 @@ class App extends React.Component {
     this._labeleditor = null;
 
     this._themeManager = new ThemeManager();
-    this._colorSaver = new ColorSaver(this._themeManager);
-    this._langSaver = new LanguageSaver();
-    this._saver = new AppSaver(this);
 
     this._exportManager = new ExportManager();
     this._importManager = new ImportManager();
@@ -205,7 +192,6 @@ class App extends React.Component {
     this._drawerManager = new DrawerManager();
     this._menuManager = new MenuManager();
     this._viewportManager = new ViewportManager();
-    this._renderManager = new RenderManager();
     this._tooltipManager = new TooltipManager();
     this._notificationManager = new NotificationManager();
     this._broadcastManager = new BroadcastManager(this);
@@ -216,7 +202,6 @@ class App extends React.Component {
       .addListener(this._drawerManager)
       .addListener(this._menuManager)
       .addListener(this._viewportManager)
-      .addListener(this._renderManager)
       .addListener(this._tooltipManager)
       .addListener(this._notificationManager)
       .addListener(this._broadcastManager)
@@ -259,7 +244,6 @@ class App extends React.Component {
    * static since React instances are not yet available.
    */
   static onWindowLoad() {
-    AutoSave.initialize(LocalStorage);
     Broadcast.initialize(BROADCAST_CHANNEL_ID);
   }
 
@@ -270,8 +254,6 @@ class App extends React.Component {
    * available.
    */
   static onWindowUnload() {
-    AutoSave.destroy();
-
     if (App.INSTANCE) {
       App.INSTANCE.componentWillUnmount();
     }
@@ -326,20 +308,12 @@ class App extends React.Component {
 
     registerAppStyles(this._themeManager);
 
-    AutoSave.registerHandler(this._saver);
-    AutoSave.registerHandler(this._colorSaver);
-    AutoSave.registerHandler(this._langSaver);
-
     this._init = true;
   }
 
   //DuckType
   onSessionStop(session) {
     this._init = false;
-
-    AutoSave.unregisterHandler(this._saver);
-    AutoSave.unregisterHandler(this._colorSaver);
-    AutoSave.unregisterHandler(this._langSaver);
 
     this._themeManager.clear();
     this._importManager.clear();
@@ -398,9 +372,6 @@ class App extends React.Component {
   getViewportManager() {
     return this._viewportManager;
   }
-  getRenderManager() {
-    return this._renderManager;
-  }
   getTooltipManager() {
     return this._tooltipManager;
   }
@@ -442,18 +413,6 @@ class App extends React.Component {
     );
   }
 
-  renderRenderLayer(renderLayerName, props) {
-    const sessionID = this._session.getSessionID();
-    const renderers = this._renderManager.getRenderersByLayer(renderLayerName);
-    if (renderers && renderers.length > 0) {
-      return renderers.map((R, i) => (
-        <R key={sessionID + '.' + R.constructor.name + '.' + i} {...props} />
-      ));
-    } else {
-      return null;
-    }
-  }
-
   /** @override */
   render() {
     const session = this._session;
@@ -484,6 +443,9 @@ class App extends React.Component {
     const menuPanelClasses = menuManager.getPanelClasses();
     const menuPanelProps = menuManager.getPanelProps() || { session: session };
     const MenuSubtitleClass = menuManager.getSubtitleComponentClass();
+
+    // HACK: Force self-update
+    requestAnimationFrame(() => this.forceUpdate());
 
     return (
       <div className={Style.app_container + (currentModule ? ' active ' : '')}>
@@ -601,14 +563,9 @@ class App extends React.Component {
                 ))}
               </TooltipView>
 
-              {/* RENDER_LAYER_WORKSPACE_PRE */}
-              {this.renderRenderLayer(RENDER_LAYER_WORKSPACE_PRE)}
-
-              {/* RENDER_LAYER_WORKSPACE */}
-              {this.renderRenderLayer(RENDER_LAYER_WORKSPACE)}
-
-              {/* RENDER_LAYER_WORKSPACE_POST */}
-              {this.renderRenderLayer(RENDER_LAYER_WORKSPACE_POST)}
+              <Slot name="background"/>
+              <Slot name="playground"/>
+              <Slot name="foreground"/>
 
               <FullscreenWidget
                 className={Style.fullscreen_widget}

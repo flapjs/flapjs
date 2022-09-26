@@ -4,7 +4,6 @@ import PanelContainer from 'src/components/panels/PanelContainer';
 import MachineController from './MachineController';
 import REErrorChecker from './REErrorChecker';
 import SafeExpressionEventHandler from './SafeExpressionEventHandler';
-import { RENDER_LAYER_WORKSPACE } from 'src/session/manager/RenderManager';
 
 import { registerNotifications } from './components/notifications/RENotifications';
 
@@ -12,29 +11,38 @@ import OverviewPanel from './components/panels/overview/OverviewPanel';
 import AnalysisPanel from './components/panels/analysis/AnalysisPanel';
 import TestingPanel from './components/panels/testing/TestingPanel';
 
-import ExpressionView from './components/views/ExpressionView';
 import { CTRL_KEY, SHIFT_KEY } from 'src/session/manager/hotkey/HotKeyManager';
 
 import REImporter from './filehandlers/REImporter';
 import REExporter from './filehandlers/REExporter';
 import REToFSAExporter from './filehandlers/REToFSAExporter';
 
+import { Playground } from './Playground';
+
 const MODULE_NAME = 're';
 const MODULE_VERSION = '0.0.1';
 const MODULE_LOCALIZED_NAME = 'RE';
 
 class REModule {
+  static get moduleId() {
+    return 're';
+  }
+
+  static get moduleVersion() {
+    return '1.0.0';
+  }
+
+  static get renderers() {
+    return [
+      { render: Playground, on: 'playground' },
+    ];
+  }
+
   constructor(app) {
     this._app = app;
 
     this._machineController = new MachineController();
     this._errorChecker = new REErrorChecker(app, this._machineController);
-
-    app
-      .getRenderManager()
-      .addRenderer(RENDER_LAYER_WORKSPACE, (props) => (
-        <ExpressionView session={app.getSession()} />
-      ));
   }
 
   /** @override */

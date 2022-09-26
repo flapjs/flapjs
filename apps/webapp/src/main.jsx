@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import App from 'src/components/App';
+import { Slot, SlotProvider } from './libs/slot';
 
 window.addEventListener('DOMContentLoaded', () => {
   try {
@@ -13,13 +14,12 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   const root = ReactDOM.createRoot(document.querySelector('#root'));
-  function render() {
-    requestAnimationFrame(render);
-    root.render(
+  root.render(
       <React.StrictMode>
-        <App />
+        <SlotProvider name="app">
+          <Slot name="init"/>
+          <App/>
+        </SlotProvider>
       </React.StrictMode>
-    );
-  }
-  render();
+  );
 });

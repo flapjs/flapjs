@@ -3,13 +3,42 @@ import LocalStorage from 'src/util/storage/LocalStorage';
 import * as URLHelper from 'src/util/URLHelper';
 import { guid } from 'src/util/MathHelper';
 
+import { AppModule } from '../components/AppModule';
+
 import Logger from 'src/util/logger/Logger';
+import { SlotProvider } from 'src/libs/slot/SlotContext';
 const LOGGER_TAG = 'Session';
 
 const DEFAULT_MODULE_ID = 'fsa';
 export const CURRENT_MODULE_STORAGE_ID = 'currentModule';
 const MODULE_LOAD_DELAY = 300;
 let MODULE_TIMEOUT = null;
+
+/**
+ * @param {object} app 
+ * @param {Array<?>} modules
+ */
+function getSlottedForModules(app, modules) {
+  let slotted = [];
+  for(let module of modules) {
+    let moduleClass = module.constructor;
+    let superProps = {
+      app,
+      module,
+    };
+    let i = 1;
+    if ('renderers' in moduleClass) {
+      for(let { render, props = {}, on } of moduleClass.renderers) {
+        let key = `${moduleClass.moduleId}${i++}`;
+        slotted.push(SlotProvider.createSlotted('app', on, render, {
+          ...props,
+          ...superProps,
+        }, key));
+      }
+    }
+  }
+  return slotted;
+}
 
 class Session {
   constructor() {
@@ -59,22 +88,6 @@ class Session {
         return;
       }
     }
-    const useExperimental = moduleInfo['experimental'];
-    if (useExperimental && !app.isExperimental()) {
-      window.alert(
-        "Cannot load experimental module with id '" +
-          moduleName +
-          "' on stable app version."
-      );
-      return;
-    } else if (!useExperimental && app.isExperimental()) {
-      window.alert(
-        "Cannot load stable module with id '" +
-          moduleName +
-          "' on experimental app version."
-      );
-      return;
-    }
 
     // Overwrite any past calls...
     if (MODULE_TIMEOUT) clearTimeout(MODULE_TIMEOUT);
@@ -87,7 +100,15 @@ class Session {
         this._moduleClass = ModuleClass;
         this._sessionID = '#' + guid();
         try {
-          this._module = new ModuleClass(app);
+          let appModuleInstance = new AppModule();
+          let moduleInstance = new ModuleClass(app)
+          this._module = moduleInstance;
+          
+          let slotted = getSlottedForModules(app, [
+            moduleInstance,
+            appModuleInstance,
+          ]);
+          SlotProvider.refresh('app', slotted);
 
           // Allows renderers to be created...
           app.forceUpdate();
