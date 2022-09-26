@@ -3,7 +3,7 @@ import LocalStorage from 'src/util/storage/LocalStorage';
 import * as URLHelper from 'src/util/URLHelper';
 import { guid } from 'src/util/MathHelper';
 
-import { AppModule } from '../components/AppModule';
+import AppModule from 'src/modules/app/AppModule';
 
 import Logger from 'src/util/logger/Logger';
 import { SlotProvider } from 'src/libs/slot/SlotContext';

@@ -1,6 +1,6 @@
 import { AppInit } from './AppInit';
 
-export class AppModule {
+export default class AppModule {
     static get moduleId() {
         return 'app';
     }
