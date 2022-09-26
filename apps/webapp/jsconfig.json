@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "ES5",
+        "target": "ES2021",
         "lib": [
             "ES2021",
             "DOM"
@@ -20,6 +20,9 @@
         "public"
     ],
     "include": [
+        "declarations.d.ts",
+        "src/**/*.ts",
+        "src/**/*.tsx",
         "src/**/*.js",
         "src/**/*.jsx"
     ]
