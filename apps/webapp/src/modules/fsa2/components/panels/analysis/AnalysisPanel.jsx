@@ -12,7 +12,7 @@ import {
 } from 'src/modules/fsa2/components/notifications/FSANotifications';
 
 import { createMachineFromFileBlob } from './MachineLoader';
-import { LocaleString } from 'src/libs/i18n';
+import { LocaleConsumer, LocaleString } from 'src/libs/i18n';
 
 class AnalysisPanel extends React.Component {
   constructor(props) {
@@ -59,7 +59,7 @@ class AnalysisPanel extends React.Component {
       .getApp()
       .getNotificationManager()
       .pushNotification(
-        I18N.toString('message.warning.convertNFAToDFA'),
+        { unlocalized: 'message.warning.convertNFAToDFA' },
         MACHINE_CONVERSION_LAYOUT_ID,
         MACHINE_CONVERSION_NOTIFICATION_TAG,
         props,
@@ -144,82 +144,82 @@ class AnalysisPanel extends React.Component {
     const machineController = currentModule.getMachineController();
 
     return (
-      <PanelContainer
-        id={this.props.id}
-        className={this.props.className}
-        style={this.props.style}
-        title={AnalysisPanel.TITLE}>
-        <PanelSection title={'Optimizations'} initial={true}>
-          <PanelCheckbox
-            ref={(ref) => (this.optimizeUnreachOption = ref)}
-            id="opt-unreach"
-            title="Unreachables"
-            value="unreach"
-          />
-          <PanelCheckbox
-            ref={(ref) => (this.optimizeRedundOption = ref)}
-            disabled={true}
-            id="opt-redund"
-            title="Redundant States"
-            value="redund"
-          />
-          <button
-            className={Style.analysis_button}
-            onClick={this.onOptimizeMachine}
-            disabled={!this.canOptimize()}>
-            Optimize
-          </button>
-          {machineController.getMachineType() == 'DFA' ? (
-            <button
-              className={Style.analysis_button}
-              onClick={this.onConvertToNFA}>
-              <LocaleString entity="action.overview.convertnfa"/>
-            </button>
-          ) : machineController.getMachineType() == 'NFA' ? (
-            <button
-              className={Style.analysis_button}
-              onClick={this.onConvertToDFA}>
-              <LocaleString entity="action.overview.convertdfa"/>
-            </button>
-          ) : null}
-        </PanelSection>
-        <PanelSection title={'Related Machines'}>
-          {machineController.getMachineType() === 'DFA' && (
-            <button
-              className={Style.analysis_button}
-              onClick={this.onInvertDFA}>
-              {'Flip all accept states'}
-            </button>
-          )}
-        </PanelSection>
-        <PanelSection title={'Equivalent Test'}>
-          <input
-            type="file"
-            name="import"
-            className={Style.upload_input}
-            onChange={this.onFileUpload}
-          />
-          <div>
-            <label>
-              {this.state.isEqual === null
-                ? '-- ??? --'
-                : this.state.isEqual
-                ? '-- Equivalent --'
-                : '-- Not Equivalent --'}
-            </label>
-          </div>
-          <div>
-            <label>{this.state.witnessString}</label>
-          </div>
-        </PanelSection>
-      </PanelContainer>
+      <LocaleConsumer>
+        {locale => (
+          <PanelContainer
+            id={this.props.id}
+            className={this.props.className}
+            style={this.props.style}
+            unlocalizedTitle={AnalysisPanel.UNLOCALIZED}>
+            <PanelSection title={'Optimizations'} initial={true}>
+              <PanelCheckbox
+                ref={(ref) => (this.optimizeUnreachOption = ref)}
+                id="opt-unreach"
+                title="Unreachables"
+                value="unreach"
+              />
+              <PanelCheckbox
+                ref={(ref) => (this.optimizeRedundOption = ref)}
+                disabled={true}
+                id="opt-redund"
+                title="Redundant States"
+                value="redund"
+              />
+              <button
+                className={Style.analysis_button}
+                onClick={this.onOptimizeMachine}
+                disabled={!this.canOptimize()}>
+                Optimize
+              </button>
+              {machineController.getMachineType() == 'DFA' ? (
+                <button
+                  className={Style.analysis_button}
+                  onClick={this.onConvertToNFA}>
+                  <LocaleString entity="action.overview.convertnfa"/>
+                </button>
+              ) : machineController.getMachineType() == 'NFA' ? (
+                <button
+                  className={Style.analysis_button}
+                  onClick={this.onConvertToDFA}>
+                  <LocaleString entity="action.overview.convertdfa"/>
+                </button>
+              ) : null}
+            </PanelSection>
+            <PanelSection title={'Related Machines'}>
+              {machineController.getMachineType() === 'DFA' && (
+                <button
+                  className={Style.analysis_button}
+                  onClick={this.onInvertDFA}>
+                  {'Flip all accept states'}
+                </button>
+              )}
+            </PanelSection>
+            <PanelSection title={'Equivalent Test'}>
+              <input
+                type="file"
+                name="import"
+                className={Style.upload_input}
+                onChange={this.onFileUpload}
+              />
+              <div>
+                <label>
+                  {this.state.isEqual === null
+                    ? '-- ??? --'
+                    : this.state.isEqual
+                    ? '-- Equivalent --'
+                    : '-- Not Equivalent --'}
+                </label>
+              </div>
+              <div>
+                <label>{this.state.witnessString}</label>
+              </div>
+            </PanelSection>
+          </PanelContainer>
+        )}
+      </LocaleConsumer>
     );
   }
 }
-Object.defineProperty(AnalysisPanel, 'TITLE', {
-  get: function () {
-    return I18N.toString('component.analysis.title');
-  },
-});
+AnalysisPanel.UNLOCALIZED = 'component.analysis.title';
 
 export default AnalysisPanel;

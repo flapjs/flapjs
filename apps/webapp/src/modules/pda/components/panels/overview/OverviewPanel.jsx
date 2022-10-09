@@ -60,7 +60,7 @@ class OverviewPanel extends React.Component {
         id={this.props.id}
         className={this.props.className}
         style={this.props.style}
-        title={OverviewPanel.TITLE}>
+        unlocalizedTitle={OverviewPanel.UNLOCALIZED}>
         <PanelSection title={'States'} initial={true} full={drawerFull}>
           <StateListView graphController={graphController} />
         </PanelSection>
@@ -108,10 +108,6 @@ class OverviewPanel extends React.Component {
     );
   }
 }
-Object.defineProperty(OverviewPanel, 'TITLE', {
-  get: function () {
-    return I18N.toString('component.overview.title');
-  },
-});
+OverviewPanel.UNLOCALIZED = 'component.overview.title';
 
 export default OverviewPanel;

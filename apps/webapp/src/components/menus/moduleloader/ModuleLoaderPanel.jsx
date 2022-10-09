@@ -40,7 +40,7 @@ class ModuleLoaderPanel extends React.Component {
         id={this.props.id}
         className={this.props.className}
         style={this.props.style}
-        title={'Change Modules'}>
+        unlocalizedTitle="Change Modules">
         <div className={Style.module_button_list}>
           {Object.keys(Modules).map((e) =>
             this.renderModuleButton(e, Modules[e])

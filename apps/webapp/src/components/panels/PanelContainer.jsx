@@ -1,4 +1,5 @@
 import React from 'react';
+import { LocaleString } from 'src/libs/i18n';
 import Style from './PanelContainer.module.css';
 
 class PanelContainer extends React.Component {
@@ -8,7 +9,7 @@ class PanelContainer extends React.Component {
 
   /** @override */
   render() {
-    const title = this.props.title;
+    const unlocalizedTitle = this.props.unlocalizedTitle;
 
     return (
       <div
@@ -16,7 +17,7 @@ class PanelContainer extends React.Component {
         className={Style.panel_container + ' ' + this.props.className}
         style={this.props.style}>
         <div className={Style.panel_title}>
-          <h1>{title}</h1>
+          <h1><LocaleString entity={unlocalizedTitle}/></h1>
         </div>
         <div className={Style.panel_content}>{this.props.children}</div>
         <div className={Style.panel_bottom}></div>

@@ -40,7 +40,7 @@ class REErrorChecker {
     notificationManager.clearNotifications(MACHINE_ERROR_NOTIFICATION_TAG);
     if (errors.length <= 0) {
       notificationManager.pushNotification(
-        I18N.toString('message.error.none'),
+        { unlocalized: 'message.error.none' },
         SUCCESS_LAYOUT_ID,
         MACHINE_ERROR_NOTIFICATION_TAG,
         null,

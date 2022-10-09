@@ -29,7 +29,7 @@ class LanguagePanel extends React.Component {
             id={this.props.id}
             className={this.props.className}
             style={this.props.style}
-            title={locale.getLocaleString('component.language.title')}>
+            unlocalizedTitle="component.language.title">
             <div className={Style.language_button_list}>
               {this.renderLanguageButton(locale, 'English', 'en_us')}
               {this.renderLanguageButton(locale, 'Pirate Speak', 'xx_pirate')}

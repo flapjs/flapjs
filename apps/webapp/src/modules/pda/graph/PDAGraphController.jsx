@@ -52,7 +52,7 @@ class PDAGraphController extends GraphController {
         this._app
           .getNotificationManager()
           .pushNotification(
-            I18N.toString('message.warning.cannotmodify'),
+            { unlocalized: 'message.warning.cannotmodify' },
             WARNING_LAYOUT_ID,
             TRASH_EDITING_NOTIFICATION_TAG,
             null,

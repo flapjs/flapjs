@@ -1,4 +1,5 @@
 import React from 'react';
+import { LocaleString } from 'src/libs/i18n';
 import DefaultNotificationLayout, {
   STYLE_TYPE_ERROR,
 } from 'src/session/manager/notification/components/DefaultNotificationLayout';
@@ -85,7 +86,10 @@ class StateNotificationLayout extends React.Component {
         style={this.props.style}
         styleType={STYLE_TYPE_ERROR}
         notification={this.props.notification}>
-        <p>{message.text + ': ' + this._targetLabel}</p>
+        <p>
+          {message.text || <LocaleString entity={message.unlocalized}/>}
+          {': ' + this._targetLabel}
+        </p>
         <button value="locate" onClick={this.onClick}>
           <LocaleString entity="message.action.locate"/>
         </button>

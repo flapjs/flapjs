@@ -56,7 +56,7 @@ class REModule {
           id={props.id}
           className={props.className}
           style={props.style}
-          title={'Regular Expressions'}>
+          unlocalizedTitle={'Regular Expressions'}>
           <p>{'Brought to you with \u2764 by the Flap.js team.'}</p>
           <p>{'<- Tap on a tab to begin!'}</p>
         </PanelContainer>

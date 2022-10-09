@@ -79,7 +79,7 @@ class TestingPanel extends React.Component {
         id={this.props.id}
         className={Style.panel_container + ' ' + this.props.className}
         style={this.props.style}
-        title={TestingPanel.TITLE}>
+        unlocalizedTitle={TestingPanel.UNLOCALIZED}>
         <TestListView
           tester={tester}
           graphController={graphController}
@@ -102,10 +102,6 @@ class TestingPanel extends React.Component {
     );
   }
 }
-Object.defineProperty(TestingPanel, 'TITLE', {
-  get: function () {
-    return I18N.toString('component.testing.title');
-  },
-});
+TestingPanel.UNLOCALIZED = 'component.testing.title';
 
 export default TestingPanel;

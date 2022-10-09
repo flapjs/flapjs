@@ -47,7 +47,7 @@ class AnalysisPanel extends React.Component {
         id={this.props.id}
         className={this.props.className}
         style={this.props.style}
-        title={AnalysisPanel.TITLE}>
+        unlocalizedTitle={AnalysisPanel.UNLOCALIZED}>
         <PanelSection title={'Optimizations'} initial={true}>
           <PanelCheckbox
             ref={(ref) => (this.optimizeUnreachOption = ref)}
@@ -73,10 +73,6 @@ class AnalysisPanel extends React.Component {
     );
   }
 }
-Object.defineProperty(AnalysisPanel, 'TITLE', {
-  get: function () {
-    return I18N.toString('component.analysis.title');
-  },
-});
+AnalysisPanel.UNLOCALIZED = 'component.analysis.title';
 
 export default AnalysisPanel;

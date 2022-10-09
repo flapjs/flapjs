@@ -97,7 +97,7 @@ class PDAModule {
           id={props.id}
           className={props.className}
           style={props.style}
-          title={'Pushdown Automata'}>
+          unlocalizedTitle={'Pushdown Automata'}>
           <p>{'Brought to you with \u2764 by the Flap.js team.'}</p>
           <p>{'<- Tap on a tab to begin!'}</p>
         </PanelContainer>

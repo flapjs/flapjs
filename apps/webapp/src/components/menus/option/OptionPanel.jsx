@@ -87,7 +87,7 @@ class OptionPanel extends React.Component {
             id={this.props.id}
             className={this.props.className}
             style={this.props.style}
-            title={locale.getLocaleString('component.options.title')}>
+            unlocalizedTitle="component.options.title">
             <PanelSection title="Theme">
               <div style={{ display: 'flex' }}>
                 <div style={{ width: '60%' }}>

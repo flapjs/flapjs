@@ -11,7 +11,7 @@ import AlphabetListView from './alphabet/AlphabetListView';
 import TransitionChartView from './transitions/TransitionChartView';
 import TransitionTableView from './transitions/TransitionTableView';
 import AutoStateLabelView from './AutoStateLabelView';
-import { LocaleString } from 'src/libs/i18n';
+import { LocaleConsumer, LocaleString } from 'src/libs/i18n';
 
 const MACHINE_TYPE_DFA = 'DFA';
 const MACHINE_TYPE_NFA = 'NFA';
@@ -86,87 +86,87 @@ class OverviewPanel extends React.Component {
     const drawerFull = drawer.isDrawerFullscreen();
 
     return (
-      <PanelContainer
-        id={this.props.id}
-        className={this.props.className}
-        style={this.props.style}
-        title={OverviewPanel.TITLE}>
-        <select
-          className={Style.machine_type_select}
-          value={machineType}
-          onChange={this.onMachineTypeChange}>
-          <option>{MACHINE_TYPE_DFA}</option>
-          <option>{MACHINE_TYPE_NFA}</option>
-        </select>
+      <LocaleConsumer>
+        {locale => (
+          <PanelContainer
+            id={this.props.id}
+            className={this.props.className}
+            style={this.props.style}
+            unlocalizedTitle={OverviewPanel.UNLOCALIZED}>
+            <select
+              className={Style.machine_type_select}
+              value={machineType}
+              onChange={this.onMachineTypeChange}>
+              <option>{MACHINE_TYPE_DFA}</option>
+              <option>{MACHINE_TYPE_NFA}</option>
+            </select>
 
-        <PanelDivider />
+            <PanelDivider />
 
-        <PanelSection title={'States'} initial={true} full={drawerFull}>
-          <StateListView
-            graphController={graphController}
-            graphView={graphView}
-          />
-        </PanelSection>
-        <PanelSection title={'Alphabet'} initial={true} full={drawerFull}>
-          <AlphabetListView machineController={machineController} />
-        </PanelSection>
+            <PanelSection title={'States'} initial={true} full={drawerFull}>
+              <StateListView
+                graphController={graphController}
+                graphView={graphView}
+              />
+            </PanelSection>
+            <PanelSection title={'Alphabet'} initial={true} full={drawerFull}>
+              <AlphabetListView machineController={machineController} />
+            </PanelSection>
 
-        <PanelDivider />
+            <PanelDivider />
 
-        <PanelSection
-          title={'Transition Chart'}
-          full={drawerFull}
-          disabled={graphController.getGraph().getEdgeCount() <= 0}>
-          <TransitionChartView machineController={machineController} />
-        </PanelSection>
-        <PanelSection
-          title={'Transition Table'}
-          full={drawerFull}
-          disabled={graphController.getGraph().getNodeCount() <= 0}>
-          <TransitionTableView machineController={machineController} />
-        </PanelSection>
+            <PanelSection
+              title={'Transition Chart'}
+              full={drawerFull}
+              disabled={graphController.getGraph().getEdgeCount() <= 0}>
+              <TransitionChartView machineController={machineController} />
+            </PanelSection>
+            <PanelSection
+              title={'Transition Table'}
+              full={drawerFull}
+              disabled={graphController.getGraph().getNodeCount() <= 0}>
+              <TransitionTableView machineController={machineController} />
+            </PanelSection>
 
-        <PanelDivider />
+            <PanelDivider />
 
-        <AutoStateLabelView graphController={graphController} />
+            <AutoStateLabelView graphController={graphController} />
 
-        <button
-          className={Style.autolayout_button}
-          onClick={this.onAutoLayoutApply}
-          disabled={graphController.getGraph().isEmpty()}>
-          <LocaleString entity="action.overview.autolayout"/>
-        </button>
+            <button
+              className={Style.autolayout_button}
+              onClick={this.onAutoLayoutApply}
+              disabled={graphController.getGraph().isEmpty()}>
+              <LocaleString entity="action.overview.autolayout"/>
+            </button>
 
-        <PanelDivider />
+            <PanelDivider />
 
-        <PanelSwitch
-          id={'overview-auto-label'}
-          checked={autoRename}
-          title={'Auto rename nodes'}
-          onChange={this.onAutoLabelChange}
-        />
-        <PanelSwitch
-          id={'overview-auto-layout'}
-          checked={false}
-          title={'Auto layout nodes'}
-          disabled={true}
-          onChange={this.onAutoLayoutChange}
-        />
-        <PanelSwitch
-          id={'overview-snap-grid'}
-          checked={false}
-          title={'Snap-to-grid'}
-          disabled={true}
-          onChange={this.onSnapToGridChange}
-        />
-      </PanelContainer>
+            <PanelSwitch
+              id={'overview-auto-label'}
+              checked={autoRename}
+              title={'Auto rename nodes'}
+              onChange={this.onAutoLabelChange}
+            />
+            <PanelSwitch
+              id={'overview-auto-layout'}
+              checked={false}
+              title={'Auto layout nodes'}
+              disabled={true}
+              onChange={this.onAutoLayoutChange}
+            />
+            <PanelSwitch
+              id={'overview-snap-grid'}
+              checked={false}
+              title={'Snap-to-grid'}
+              disabled={true}
+              onChange={this.onSnapToGridChange}
+            />
+          </PanelContainer>
+        )}
+      </LocaleConsumer>
     );
   }
 }
-Object.defineProperty(OverviewPanel, 'TITLE', {
-  get: function () {
-    return I18N.toString('component.overview.title');
-  },
-});
+OverviewPanel.UNLOCALIZED = 'component.overview.title';
 
 export default OverviewPanel;

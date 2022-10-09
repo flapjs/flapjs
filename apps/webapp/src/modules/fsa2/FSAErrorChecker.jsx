@@ -60,7 +60,7 @@ class FSAErrorChecker {
     notificationManager.clearNotifications(MACHINE_ERROR_NOTIFICATION_TAG);
     if (errors.length <= 0 && warnings.length <= 0) {
       notificationManager.pushNotification(
-        I18N.toString('message.error.none'),
+        { unlocalized: 'message.error.none' },
         SUCCESS_LAYOUT_ID,
         MACHINE_ERROR_NOTIFICATION_TAG,
         null,
@@ -98,7 +98,7 @@ class FSAErrorChecker {
           case ERROR_INCOMPLETE_TRANSITION:
             notificationManager.pushNotification(
               {
-                text: I18N.toString('message.error.incomplete'),
+                unlocalized: 'message.error.incomplete',
                 targets: error.edges,
               },
               TRANSITION_LAYOUT_ID,
@@ -110,7 +110,7 @@ class FSAErrorChecker {
           case ERROR_DUPLICATE_TRANSITION:
             notificationManager.pushNotification(
               {
-                text: I18N.toString('message.error.dupe'),
+                unlocalized: 'message.error.dupe',
                 targets: error.edges,
               },
               TRANSITION_LAYOUT_ID,
@@ -134,7 +134,7 @@ class FSAErrorChecker {
           case ERROR_EMPTY_TRANSITION:
             notificationManager.pushNotification(
               {
-                text: I18N.toString('message.error.empty'),
+                unlocalized: 'message.error.empty',
                 targets: error.edges,
               },
               TRANSITION_LAYOUT_ID,

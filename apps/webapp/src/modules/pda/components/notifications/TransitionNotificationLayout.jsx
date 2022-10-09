@@ -79,7 +79,10 @@ class TransitionNotificationLayout extends React.Component {
         style={this.props.style}
         styleType={STYLE_TYPE_ERROR}
         notification={this.props.notification}>
-        <p>{this.props.message.text + ': ' + this.targetLabel}</p>
+        <p>
+          {this.props.message.text || <LocaleString entity={this.props.message.unlocalized}/>}
+          {': ' + this.targetLabel}
+        </p>
         <button value="locate" onClick={this.onClick}>
           <LocaleString entity="message.action.locate"/>
         </button>

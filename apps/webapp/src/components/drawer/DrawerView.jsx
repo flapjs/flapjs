@@ -3,6 +3,7 @@ import Style from './DrawerView.module.css';
 
 import IconButton from 'src/components/IconButton';
 import ExpandDownIcon from 'src/assets/icons/expand-down.svg';
+import { LocaleConsumer, LocaleString } from 'src/libs/i18n';
 
 const DRAWER_WIDTH_CSSVAR = '--drawer-width';
 const DRAWER_HANDLE_DRAG_OFFSET = 6;
@@ -355,20 +356,20 @@ class DrawerView extends React.Component {
                 drawerPanels &&
                 drawerPanels.map((e, i) => {
                   if (!e) return null;
-                  if (!e['TITLE']) return null;
-                  const title = e['TITLE'];
+                  if (!e.UNLOCALIZED) return null;
+                  const unlocalized = e.UNLOCALIZED;
                   const current = this.isCurrentTab(i);
                   const disabled = drawerSoloClass && drawerSoloClass !== e;
                   return (
                     <a
-                      key={title + ':' + i}
+                      key={unlocalized + ':' + i}
                       className={
                         Style.drawer_tab +
                         (current ? ' active ' : '') +
                         (disabled ? ' disabled ' : '')
                       }
                       onClick={() => this.setCurrentTab(i)}>
-                      <label>{title}</label>
+                      <label><LocaleString entity={unlocalized}/></label>
                     </a>
                   );
                 })}
@@ -379,12 +380,12 @@ class DrawerView extends React.Component {
                   drawerPanels.map((e, i) => {
                     if (!e) return null;
                     const ComponentClass = e;
-                    const title = e['TITLE'] || '';
+                    const unlocalized = e.UNLOCALIZED || '';
                     const current = this.isCurrentTab(i);
                     const disabled = drawerSoloClass && drawerSoloClass !== e;
                     return (
                       <div
-                        key={title + ':' + i}
+                        key={unlocalized + ':' + i}
                         className={
                           Style.drawer_panel_container +
                           (!current ? ' hide ' : '') +
