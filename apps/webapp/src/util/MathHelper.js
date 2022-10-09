@@ -36,6 +36,7 @@ export function guid() {
  * @returns {String} the universally unique id
  */
 export function uuid() {
+  // @ts-ignore
   return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
     (
       c ^
