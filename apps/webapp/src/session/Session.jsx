@@ -5,9 +5,10 @@ import { guid } from 'src/util/MathHelper';
 
 import AppModule from 'src/modules/app/AppModule';
 
-import Logger from 'src/util/logger/Logger';
-import { SlotProvider } from 'src/libs/slot/SlotContext';
-const LOGGER_TAG = 'Session';
+import { SlotProvider } from 'src/libs/slot';
+import { Logger } from 'src/libs/logger';
+
+const LOGGER = new Logger('Session');
 
 const DEFAULT_MODULE_ID = 'fsa';
 export const CURRENT_MODULE_STORAGE_ID = 'currentModule';
@@ -61,8 +62,6 @@ class Session {
   startSession(app, moduleName = null) {
     if (this._module !== null) return;
 
-    Logger.out(LOGGER_TAG, `Starting session for module '${moduleName}'...`);
-
     // Load from storage, url, or default, if not specified...
     if (!moduleName || moduleName.length <= 0) {
       const urlParams = URLHelper.getURLParameters(URLHelper.getCurrentURL());
@@ -74,6 +73,8 @@ class Session {
         }
       }
     }
+
+    LOGGER.info(`Starting session for module '${moduleName}'...`);
 
     // Check registered module info...
     let moduleInfo = Modules[moduleName];
@@ -101,7 +102,7 @@ class Session {
         this._sessionID = '#' + guid();
         try {
           let appModuleInstance = new AppModule();
-          let moduleInstance = new ModuleClass(app)
+          let moduleInstance = new ModuleClass(app);
           this._module = moduleInstance;
           
           let slotted = getSlottedForModules(app, [
@@ -148,13 +149,14 @@ class Session {
   stopSession(app) {
     if (this._module === null) return;
 
-    Logger.out(LOGGER_TAG, 'Stopping session...');
+    LOGGER.info('Stopping session...');
 
     for (const listener of this._listeners) {
       listener.onSessionStop(this);
     }
 
     this._module.destroy(this._app);
+    SlotProvider.clearAll('app');
     this._moduleStarted = false;
     this._moduleClass = null;
     this._module = null;
