@@ -1,6 +1,15 @@
 /* eslint-disable no-console */
 /* global __NODE_ENV__ */
 
+/**
+ * @typedef {5} TRACE
+ * @typedef {4} DEBUG
+ * @typedef {3} INFO
+ * @typedef {2} WARN
+ * @typedef {1} ERROR
+ * @typedef {0} OFF
+ */
+
 // Log levels
 const TRACE = 5;
 const DEBUG = 4;
@@ -8,6 +17,10 @@ const INFO = 3;
 const WARN = 2;
 const ERROR = 1;
 const OFF = 0;
+
+// Current log configs
+let DEFAULT_LEVEL = TRACE;
+let DEFAULT_DOMAIN = 'app';
 
 const LOG_LEVEL_STYLES = {
     [TRACE]: styledLogLevel('#7F8C8D'), // Gray
@@ -77,20 +90,26 @@ function prependMessageTags(out, name, domain, level) {
 const LEVEL = Symbol('level');
 const DOMAIN = Symbol('domain');
 const LOGGERS = { /** To be populated by logger instances. */ };
-let DEFAULT_LEVEL = TRACE; //__NODE_ENV__ === 'development' ? TRACE : WARN;
-let DEFAULT_DOMAIN = 'app';
+
 export class Logger {
+    /** @returns {TRACE} */
     static get TRACE() { return TRACE; }
+    /** @returns {DEBUG} */
     static get DEBUG() { return DEBUG; }
+    /** @returns {INFO} */
     static get INFO() { return INFO; }
+    /** @returns {WARN} */
     static get WARN() { return WARN; }
+    /** @returns {ERROR} */
     static get ERROR() { return ERROR; }
+    /** @returns {OFF} */
     static get OFF() { return OFF; }
 
     /**
-     * Creates or gets the logger for the given unique name.
-     * @param {String} name 
-     * @returns {Logger} The logger with the name.
+     * Create or get the logger for the given unique name.
+     * 
+     * @param {string} name 
+     * @returns {Logger} The logger with the given name.
      */
     static getLogger(name) {
         if (name in LOGGERS) {
@@ -101,73 +120,120 @@ export class Logger {
         }
     }
 
-    static useDefaultLevel(level) {
-        DEFAULT_LEVEL = level;
-        return this;
-    }
-
-    static useDefaultDomain(domain) {
-        DEFAULT_DOMAIN = domain;
-        return this;
-    }
-
-    constructor(name) {
-        this.name = name;
-        this[LEVEL] = DEFAULT_LEVEL;
-        this[DOMAIN] = DEFAULT_DOMAIN;
-    }
-
-    setLevel(level) {
-        this[LEVEL] = level;
-        return this;
-    }
-
-    getLevel() {
-        return this[LEVEL];
-    }
-
-    setDomain(domain) {
+    /**
+     * @param {string} domain 
+     * @returns {typeof Logger}
+     */
+    static setDomain(domain) {
         this[DOMAIN] = domain;
         return this;
     }
 
-    getDomain() {
-        return this[DOMAIN];
+    /**
+     * @returns {string}
+     */
+    static getDomain() {
+        if (DOMAIN in this) {
+            return this[DOMAIN];
+        } else {
+            return DEFAULT_DOMAIN;
+        }
     }
 
+    /**
+     * @param {TRACE|DEBUG|INFO|WARN|ERROR|OFF} level 
+     * @returns {typeof Logger}
+     */
+    static setLevel(level) {
+        this[LEVEL] = level;
+        return this;
+    }
+
+    /**
+     * @param {TRACE|DEBUG|INFO|WARN|ERROR|OFF} level 
+     * @returns {boolean}
+     */
+    static isAllowedLevel(level) {
+        let target;
+        if (LEVEL in this) {
+            target = this[LEVEL];
+        } else {
+            target = DEFAULT_LEVEL;
+        }
+        return compareLogLevel(target, level) >= 0;
+    }
+
+    /**
+     * @param {string} name 
+     */
+    constructor(name) {
+        this.name = name;
+    }
+
+    /**
+     * @param {TRACE|DEBUG|INFO|WARN|ERROR|OFF} level 
+     * @param  {...any} messages 
+     * @returns {Logger}
+     */
     log(level, ...messages) {
-        if (compareLogLevel(this[LEVEL], level) < 0) return this;
-        prependMessageTags(messages, this.name, this[DOMAIN], level);
+        if (!Logger.isAllowedLevel(level)) return this;
+        prependMessageTags(messages, this.name, Logger.getDomain(), level);
         getConsoleFunction(level)(...messages);
+        return this;
     }
 
+    /**
+     * @param  {...any} messages 
+     * @returns {Logger}
+     */
     trace(...messages) {
-        if (compareLogLevel(this[LEVEL], TRACE) < 0) return this;
-        prependMessageTags(messages, this.name, this[DOMAIN], TRACE);
+        if (!Logger.isAllowedLevel(TRACE)) return this;
+        prependMessageTags(messages, this.name, Logger.getDomain(), TRACE);
         getConsoleFunction(TRACE)(...messages);
+        return this;
     }
 
+    /**
+     * @param  {...any} messages 
+     * @returns {Logger}
+     */
     debug(...messages) {
-        if (compareLogLevel(this[LEVEL], DEBUG) < 0) return this;
-        prependMessageTags(messages, this.name, this[DOMAIN], DEBUG);
+        if (!Logger.isAllowedLevel(DEBUG)) return this;
+        prependMessageTags(messages, this.name, Logger.getDomain(), DEBUG);
         getConsoleFunction(DEBUG)(...messages);
+        return this;
     }
 
+    /**
+     * @param  {...any} messages 
+     * @returns {Logger}
+     */
     info(...messages) {
-        if (compareLogLevel(this[LEVEL], INFO) < 0) return this;
-        prependMessageTags(messages, this.name, this[DOMAIN], INFO);
+        if (!Logger.isAllowedLevel(INFO)) return this;
+        prependMessageTags(messages, this.name, Logger.getDomain(), INFO);
         getConsoleFunction(INFO)(...messages);
+        return this;
     }
 
+    /**
+     * @param  {...any} messages 
+     * @returns {Logger}
+     */
     warn(...messages) {
-        if (compareLogLevel(this[LEVEL], WARN) < 0) return this;
-        prependMessageTags(messages, this.name, this[DOMAIN], WARN);
+        if (!Logger.isAllowedLevel(WARN)) return this;
+        prependMessageTags(messages, this.name, Logger.getDomain(), WARN);
         getConsoleFunction(WARN)(...messages);
+        return this;
     }
 
+    /**
+     * @param  {...any} messages 
+     * @returns {Logger}
+     */
     error(...messages) {
-        if (compareLogLevel(this[LEVEL], ERROR) < 0) return this;
-        prependMessageTags(messages, this.name, this[DOMAIN], ERROR);
+        if (!Logger.isAllowedLevel(ERROR)) return this;
+        prependMessageTags(messages, this.name, Logger.getDomain(), ERROR);
         getConsoleFunction(ERROR)(...messages);
+        return this;
     }
 }
