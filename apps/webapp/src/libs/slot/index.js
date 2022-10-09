@@ -9,5 +9,6 @@ export { SlotProvider } from './SlotContext';
  * 
  * ## Usage
  * - Put `<Slot/>` wherever you want to inject content.
- * - Call `SlotProvider.refresh()` to clear and inject content.
+ * - Call `SlotProvider.clearAll()` to clear content, usually on destroy.
+ * - Call `SlotProvider.refresh()` to inject content, usually on load.
  */

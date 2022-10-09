@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { DIRTY_KEY, updateDirty, refresh, createSlotted, createSlotManager, getSlotManager, clearAll } from './SlotHelpers';
+import { DIRTY_KEY, updateDirty, refresh, createSlotted, createSlotManager, getSlotManager, clearAll, contains, inject, reject, clear } from './SlotHelpers';
 
 export const SlotContext = React.createContext(null);
 const SlotProviderNameContext = React.createContext(null);
@@ -33,7 +33,11 @@ export function SlotProvider({ name, children }) {
     </SlotProviderNameContext.Provider>
   );
 }
+SlotProvider.inject = inject;
+SlotProvider.reject = reject;
+SlotProvider.clear = clear;
 SlotProvider.clearAll = clearAll;
+SlotProvider.contains = contains;
 SlotProvider.refresh = refresh;
 SlotProvider.createSlotted = createSlotted;
 
