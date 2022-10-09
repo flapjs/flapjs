@@ -33,7 +33,7 @@ class FormattedInput extends React.Component {
   }
 
   /** @override */
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     //Don't overwrite user input...
     if (this.hasFocus()) return;
 

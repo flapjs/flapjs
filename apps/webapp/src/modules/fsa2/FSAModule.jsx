@@ -195,7 +195,12 @@ class FSAModule {
 
   /** @override */
   clear(app, graphOnly = false) {
-    userClearGraph(app, graphOnly, () => app.getToolbarComponent().closeBar());
+    userClearGraph(app, graphOnly, () => {
+      let toolbar = app.getToolbarComponent();
+      if (toolbar) {
+        toolbar.closeBar();
+      }
+    });
   }
 
   getMachineController() {

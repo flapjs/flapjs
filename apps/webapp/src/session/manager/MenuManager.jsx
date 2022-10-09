@@ -24,7 +24,11 @@ class MenuManager {
 
   //DuckType(SessionListener)
   onSessionStop(session) {
-    session.getApp().getToolbarComponent().closeBar();
+    let app = session.getApp();
+    let toolbar = app.getToolbarComponent();
+    if (toolbar) {
+      toolbar.closeBar();
+    }
 
     this._panelClasses.length = 0;
     this._panelProps = null;

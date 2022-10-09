@@ -52,7 +52,7 @@ import { SlotContext } from './SlotContext';
  * 
  * @param {object} props
  * @param {string} props.name
- * @param {'default'|'consumer'|'wrapper'} [props.mode = 'default']
+ * @param {'renderer'|'consumer'|'provider'} [props.mode]
  * @param {React.ReactNode} [props.children]
  */
 export class Slot extends React.Component {

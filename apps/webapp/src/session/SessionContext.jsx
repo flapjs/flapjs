@@ -1,6 +1,4 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 
 import App from 'src/components/App';
 import Session from 'src/session/Session';

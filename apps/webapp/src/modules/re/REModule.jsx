@@ -110,7 +110,10 @@ class REModule {
       this._machineController.setMachineExpression('');
       app.getUndoManager().clear();
       app.getSession().setProjectName(null);
-      app.getToolbarComponent().closeBar();
+      let toolbar = app.getToolbarComponent();
+      if (toolbar) {
+        toolbar.closeBar();
+      }
     }
   }
 

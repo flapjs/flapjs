@@ -43,7 +43,7 @@ export function useAutoSave(saveKey, serializer, deserializer, opts = {}) {
             let shouldPerformLoad = true;
             const timeoutHandle = setTimeout(async () => {
                 if (shouldPerformLoad) {
-                    LOGGER.debug(`Auto loading '${saveKey}' data from localStorage...`);
+                    LOGGER.trace(`Auto loading '${saveKey}' data from localStorage...`);
                     const saveDataString = LocalStorage.getItem(saveKey);
                     if (saveDataString) {
                         try {
@@ -64,7 +64,7 @@ export function useAutoSave(saveKey, serializer, deserializer, opts = {}) {
             let shouldPerformSave = true;
             const timeoutHandle = setTimeout(async () => {
                 if (shouldPerformSave) {
-                    LOGGER.debug(`Auto saving '${saveKey}' data to localStorage...`);
+                    LOGGER.trace(`Auto saving '${saveKey}' data to localStorage...`);
                     try {
                         let saveData = {};
                         await serializer(saveData);
