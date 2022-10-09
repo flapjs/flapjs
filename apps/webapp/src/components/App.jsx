@@ -196,7 +196,7 @@ class App extends React.Component {
     this._notificationManager = new NotificationManager();
     this._broadcastManager = new BroadcastManager(this);
 
-    this._session = new Session()
+    this._session = props.session
       .addListener(this._undoManager)
       .addListener(this._hotKeyManager)
       .addListener(this._drawerManager)
@@ -224,18 +224,6 @@ class App extends React.Component {
     // this._notificationManager.pushNotification("Welcome to Flap.js");
     this.onModuleTitleClick = this.onModuleTitleClick.bind(this);
     this.onToolbarClearButton = this.onToolbarClearButton.bind(this);
-  }
-
-  /** @override */
-  componentDidMount() {
-    //Start session
-    this._session.startSession(this);
-  }
-
-  /** @override */
-  componentWillUnmount() {
-    //Stop session
-    this._session.stopSession(this);
   }
 
   /**
