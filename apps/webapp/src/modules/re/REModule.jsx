@@ -106,7 +106,7 @@ class REModule {
 
   /** @override */
   clear(app) {
-    if (window.confirm(I18N.toString('alert.graph.clear'))) {
+    if (window.confirm(app.getLocale().getLocaleString('alert.graph.clear'))) {
       this._machineController.setMachineExpression('');
       app.getUndoManager().clear();
       app.getSession().setProjectName(null);

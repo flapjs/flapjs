@@ -10,6 +10,7 @@ import StateListView from './states/StateListView';
 import AlphabetListView from './alphabet/AlphabetListView';
 import StackAlphabetListView from './stackalphabet/StackAlphabetListView';
 import AutoStateLabelView from './AutoStateLabelView';
+import { LocaleString } from 'src/libs/i18n';
 
 class OverviewPanel extends React.Component {
   constructor(props) {
@@ -78,7 +79,7 @@ class OverviewPanel extends React.Component {
           className={Style.autolayout_button}
           onClick={this.onAutoLayoutApply}
           disabled={graphController.getGraph().isEmpty()}>
-          {I18N.toString('action.overview.autolayout')}
+          <LocaleString entity="action.overview.autolayout"/>
         </button>
 
         <PanelDivider />

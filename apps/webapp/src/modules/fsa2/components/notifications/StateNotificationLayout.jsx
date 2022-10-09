@@ -87,10 +87,10 @@ class StateNotificationLayout extends React.Component {
         notification={this.props.notification}>
         <p>{message.text + ': ' + this._targetLabel}</p>
         <button value="locate" onClick={this.onClick}>
-          {I18N.toString('message.action.locate')}
+          <LocaleString entity="message.action.locate"/>
         </button>
         <button value="deleteall" onClick={this.onClick}>
-          {I18N.toString('message.action.deleteall')}
+          <LocaleString entity="message.action.deleteall"/>
         </button>
       </DefaultNotificationLayout>
     );

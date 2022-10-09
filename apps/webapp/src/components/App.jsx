@@ -59,6 +59,7 @@ import ThemeManager from 'src/util/theme/ThemeManager';
 import BroadcastManager from 'src/session/manager/broadcast/BroadcastManager';
 import Broadcast from 'src/util/broadcast/Broadcast';
 import { Slot } from 'src/libs/slot/Slot';
+import { LocaleConsumer } from 'src/libs/i18n';
 
 const BUGREPORT_URL = 'https://goo.gl/forms/XSil43Xl5xLHsa0E2';
 const HELP_URL =
@@ -183,6 +184,7 @@ class App extends React.Component {
     this._labeleditor = null;
 
     this._themeManager = new ThemeManager();
+    this._locale = null;
 
     this._exportManager = new ExportManager();
     this._importManager = new ImportManager();
@@ -249,6 +251,7 @@ class App extends React.Component {
 
   //DuckType
   onSessionStart(session) {
+    console.log('SESSION START');
     const currentModule = session.getCurrentModule();
 
     // Default values
@@ -301,6 +304,7 @@ class App extends React.Component {
 
   //DuckType
   onSessionStop(session) {
+    console.log('SESSION STOP');
     this._init = false;
 
     this._themeManager.clear();
@@ -379,6 +383,9 @@ class App extends React.Component {
   getCurrentModule() {
     return this._session.getCurrentModule();
   }
+  getLocale() {
+    return this._locale;
+  }
 
   isExperimental() {
     return true;
@@ -436,139 +443,146 @@ class App extends React.Component {
     requestAnimationFrame(() => this.forceUpdate());
 
     return (
-      <div className={Style.app_container + (currentModule ? ' active ' : '')}>
-        <ToolbarView
-          ref={this._toolbarComponent}
-          className={Style.app_bar}
-          menus={menuPanelClasses}
-          menuProps={menuPanelProps}
-          subtitle={MenuSubtitleClass}
-          hide={isFullscreen}
-          title={currentModuleLocalizedName}
-          session={session}
-          onTitleClick={this.onModuleTitleClick}>
-          <ToolbarButton
-            title={I18N.toString('action.toolbar.newmachine')}
-            icon={PageEmptyIcon}
-            containerOnly={TOOLBAR_CONTAINER_TOOLBAR}
-            onClick={this.onToolbarClearButton}
-            disabled={!currentModule}
-          />
-          <ToolbarUploadButton
-            title={I18N.toString('action.toolbar.uploadmachine')}
-            icon={UploadIcon}
-            containerOnly={TOOLBAR_CONTAINER_TOOLBAR}
-            accept={importManager.getFileTypesAsAcceptString()}
-            onUpload={(fileBlob) => {
-              importManager
-                .tryImportFile(fileBlob)
-                .catch((e) =>
-                  notificationManager.pushNotification(
-                    'ERROR: Unable to import invalid file.\n' + e.message,
-                    ERROR_LAYOUT_ID,
-                    ERROR_UPLOAD_NOTIFICATION_TAG
-                  )
-                )
-                .finally(() => toolbarComponent.closeBar());
-            }}
-            disabled={importManager.isEmpty()}
-          />
-          <ToolbarButton
-            title={I18N.toString('action.toolbar.undo')}
-            icon={UndoIcon}
-            containerOnly={TOOLBAR_CONTAINER_TOOLBAR}
-            disabled={!undoManager.canUndo()}
-            onClick={() => undoManager.undo()}
-          />
-          <ToolbarButton
-            title={I18N.toString('action.toolbar.redo')}
-            icon={RedoIcon}
-            containerOnly={TOOLBAR_CONTAINER_TOOLBAR}
-            disabled={!undoManager.canRedo()}
-            onClick={() => undoManager.redo()}
-          />
-          <ToolbarButton
-            title={I18N.toString('component.exporting.title')}
-            icon={DownloadIcon}
-            containerOnly={TOOLBAR_CONTAINER_TOOLBAR}
-            onClick={() => toolbarComponent.setCurrentMenu(MENU_INDEX_EXPORT)}
-            disabled={exportManager.isEmpty()}
-          />
-          <ToolbarDivider />
-          <ToolbarButton
-            title={I18N.toString('action.toolbar.changemodule')}
-            icon={EditPencilIcon}
-            containerOnly={TOOLBAR_CONTAINER_MENU}
-            onClick={() => toolbarComponent.setCurrentMenu(MENU_INDEX_MODULE)}
-          />
-          <ToolbarButton
-            title={I18N.toString('action.toolbar.lang')}
-            icon={WorldIcon}
-            containerOnly={TOOLBAR_CONTAINER_MENU}
-            onClick={() => toolbarComponent.setCurrentMenu(MENU_INDEX_LANGUAGE)}
-          />
-          <ToolbarButton
-            title={I18N.toString('component.options.title')}
-            icon={SettingsIcon}
-            containerOnly={TOOLBAR_CONTAINER_MENU}
-            onClick={() => toolbarComponent.setCurrentMenu(MENU_INDEX_OPTION)}
-          />
-          <ToolbarButton
-            title={I18N.toString('action.toolbar.help')}
-            icon={HelpIcon}
-            onClick={() => window.open(HELP_URL, '_blank')}
-          />
-          <ToolbarButton
-            title={I18N.toString('action.toolbar.bug')}
-            icon={BugIcon}
-            containerOnly={TOOLBAR_CONTAINER_MENU}
-            onClick={() => window.open(BUGREPORT_URL, '_blank')}
-          />
-        </ToolbarView>
+      <LocaleConsumer>
+        {(locale) => {
+          this._locale = locale;
+          return (
+            <div className={Style.app_container + (currentModule ? ' active ' : '')}>
+              <ToolbarView
+                ref={this._toolbarComponent}
+                className={Style.app_bar}
+                menus={menuPanelClasses}
+                menuProps={menuPanelProps}
+                subtitle={MenuSubtitleClass}
+                hide={isFullscreen}
+                title={currentModuleLocalizedName}
+                session={session}
+                onTitleClick={this.onModuleTitleClick}>
+                <ToolbarButton
+                  title={locale.getLocaleString('action.toolbar.newmachine')}
+                  icon={PageEmptyIcon}
+                  containerOnly={TOOLBAR_CONTAINER_TOOLBAR}
+                  onClick={this.onToolbarClearButton}
+                  disabled={!currentModule}
+                />
+                <ToolbarUploadButton
+                  title={locale.getLocaleString('action.toolbar.uploadmachine')}
+                  icon={UploadIcon}
+                  containerOnly={TOOLBAR_CONTAINER_TOOLBAR}
+                  accept={importManager.getFileTypesAsAcceptString()}
+                  onUpload={(fileBlob) => {
+                    importManager
+                      .tryImportFile(fileBlob)
+                      .catch((e) =>
+                        notificationManager.pushNotification(
+                          'ERROR: Unable to import invalid file.\n' + e.message,
+                          ERROR_LAYOUT_ID,
+                          ERROR_UPLOAD_NOTIFICATION_TAG
+                        )
+                      )
+                      .finally(() => toolbarComponent.closeBar());
+                  }}
+                  disabled={importManager.isEmpty()}
+                />
+                <ToolbarButton
+                  title={locale.getLocaleString('action.toolbar.undo')}
+                  icon={UndoIcon}
+                  containerOnly={TOOLBAR_CONTAINER_TOOLBAR}
+                  disabled={!undoManager.canUndo()}
+                  onClick={() => undoManager.undo()}
+                />
+                <ToolbarButton
+                  title={locale.getLocaleString('action.toolbar.redo')}
+                  icon={RedoIcon}
+                  containerOnly={TOOLBAR_CONTAINER_TOOLBAR}
+                  disabled={!undoManager.canRedo()}
+                  onClick={() => undoManager.redo()}
+                />
+                <ToolbarButton
+                  title={locale.getLocaleString('component.exporting.title')}
+                  icon={DownloadIcon}
+                  containerOnly={TOOLBAR_CONTAINER_TOOLBAR}
+                  onClick={() => toolbarComponent.setCurrentMenu(MENU_INDEX_EXPORT)}
+                  disabled={exportManager.isEmpty()}
+                />
+                <ToolbarDivider />
+                <ToolbarButton
+                  title={locale.getLocaleString('action.toolbar.changemodule')}
+                  icon={EditPencilIcon}
+                  containerOnly={TOOLBAR_CONTAINER_MENU}
+                  onClick={() => toolbarComponent.setCurrentMenu(MENU_INDEX_MODULE)}
+                />
+                <ToolbarButton
+                  title={locale.getLocaleString('action.toolbar.lang')}
+                  icon={WorldIcon}
+                  containerOnly={TOOLBAR_CONTAINER_MENU}
+                  onClick={() => toolbarComponent.setCurrentMenu(MENU_INDEX_LANGUAGE)}
+                />
+                <ToolbarButton
+                  title={locale.getLocaleString('component.options.title')}
+                  icon={SettingsIcon}
+                  containerOnly={TOOLBAR_CONTAINER_MENU}
+                  onClick={() => toolbarComponent.setCurrentMenu(MENU_INDEX_OPTION)}
+                />
+                <ToolbarButton
+                  title={locale.getLocaleString('action.toolbar.help')}
+                  icon={HelpIcon}
+                  onClick={() => window.open(HELP_URL, '_blank')}
+                />
+                <ToolbarButton
+                  title={locale.getLocaleString('action.toolbar.bug')}
+                  icon={BugIcon}
+                  containerOnly={TOOLBAR_CONTAINER_MENU}
+                  onClick={() => window.open(BUGREPORT_URL, '_blank')}
+                />
+              </ToolbarView>
 
-        <DrawerView
-          ref={this._drawerComponent}
-          className={Style.app_content}
-          panels={drawerPanelClasses}
-          panelProps={drawerPanelProps}
-          side={hasSmallWidth ? DRAWER_SIDE_BOTTOM : DRAWER_SIDE_RIGHT}
-          direction={
-            hasSmallHeight
-              ? DRAWER_BAR_DIRECTION_VERTICAL
-              : DRAWER_BAR_DIRECTION_HORIZONTAL
-          }
-          hide={isFullscreen}>
-          <UploadDropZone>
-            <div className="viewport">
-              <TooltipView
-                mode={tooltipManager.getTransitionMode()}
-                visible={
-                  /* TODO: For the initial fade-in animation */ this._init &&
-                  !undoManager.canUndo()
-                }>
-                {tooltipManager.getTooltips().map((e, i) => (
-                  <label key={e + ':' + i}>{e}</label>
-                ))}
-              </TooltipView>
+              <DrawerView
+                ref={this._drawerComponent}
+                className={Style.app_content}
+                panels={drawerPanelClasses}
+                panelProps={drawerPanelProps}
+                side={hasSmallWidth ? DRAWER_SIDE_BOTTOM : DRAWER_SIDE_RIGHT}
+                direction={
+                  hasSmallHeight
+                    ? DRAWER_BAR_DIRECTION_VERTICAL
+                    : DRAWER_BAR_DIRECTION_HORIZONTAL
+                }
+                hide={isFullscreen}>
+                <UploadDropZone>
+                  <div className="viewport">
+                    <TooltipView
+                      mode={tooltipManager.getTransitionMode()}
+                      visible={
+                        /* TODO: For the initial fade-in animation */ this._init &&
+                        !undoManager.canUndo()
+                      }>
+                      {tooltipManager.getTooltips().map((e, i) => (
+                        <label key={e + ':' + i}>{e}</label>
+                      ))}
+                    </TooltipView>
 
-              <Slot name="background"/>
-              <Slot name="playground"/>
-              <Slot name="foreground"/>
+                    <Slot name="background"/>
+                    <Slot name="playground"/>
+                    <Slot name="foreground"/>
 
-              <FullscreenWidget
-                className={Style.fullscreen_widget}
-                app={this}
-              />
+                    <FullscreenWidget
+                      className={Style.fullscreen_widget}
+                      app={this}
+                    />
 
-              <NotificationView notificationManager={notificationManager} />
+                    <NotificationView notificationManager={notificationManager} />
 
-              {this._hotKeyManager.isEnabled() && (
-                <HotKeyView hotKeyManager={this._hotKeyManager} />
-              )}
+                    {this._hotKeyManager.isEnabled() && (
+                      <HotKeyView hotKeyManager={this._hotKeyManager} />
+                    )}
+                  </div>
+                </UploadDropZone>
+              </DrawerView>
             </div>
-          </UploadDropZone>
-        </DrawerView>
-      </div>
+          );
+        }}
+      </LocaleConsumer>
     );
   }
 }

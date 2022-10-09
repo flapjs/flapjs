@@ -1,4 +1,5 @@
 import React from 'react';
+import { LocaleString } from 'src/libs/i18n';
 import Style from './DefaultNotificationLayout.module.css';
 
 export const STYLE_TYPE_DEFAULT = 'default';
@@ -32,7 +33,7 @@ class DefaultNotificationLayout extends React.Component {
         {this.props.children}
         {notification && (
           <button onClick={(e) => notification.close()}>
-            {I18N.toString('message.action.close')}
+            <LocaleString entity="message.action.close"/>
           </button>
         )}
       </div>

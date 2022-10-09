@@ -1,4 +1,5 @@
 import React from 'react';
+import { LocaleString } from 'src/libs/i18n';
 import DefaultNotificationLayout, {
   STYLE_TYPE_WARNING,
 } from 'src/session/manager/notification/components/DefaultNotificationLayout';
@@ -66,15 +67,14 @@ class StateUnreachableNotificationLayout extends React.Component {
         styleType={STYLE_TYPE_WARNING}
         notification={this.props.notification}>
         <p>
-          {I18N.toString('message.warning.unreachable') +
-            ': ' +
-            this.targetLabel}
+          <LocaleString entity="message.warning.unreachable"/>
+          {': ' + this.targetLabel}
         </p>
         <button value="locate" onClick={this.onClick}>
-          {I18N.toString('message.action.locate')}
+          <LocaleString entity="message.action.locate"/>
         </button>
         <button value="deleteall" onClick={this.onClick}>
-          {I18N.toString('message.action.deleteall')}
+          <LocaleString entity="message.action.deleteall"/>
         </button>
       </DefaultNotificationLayout>
     );

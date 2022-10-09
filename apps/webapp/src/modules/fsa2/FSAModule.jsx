@@ -33,6 +33,7 @@ import AnalysisPanel from './components/panels/analysis/AnalysisPanel';
 
 import { Playground } from './Playground';
 import { Init } from './Init';
+import { LocaleString } from 'src/libs/i18n';
 
 const MODULE_NAME = 'fsa';
 const MODULE_VERSION = '3.0.0';
@@ -128,7 +129,7 @@ class FSAModule {
                   app.getDrawerComponent().closeDrawer();
                   this._tutorialHandler.start(app, true);
                 }}>
-                {I18N.toString('message.action.next')}
+                <LocaleString entity="message.action.next"/>
               </button>
             </div>
           </div>
@@ -160,7 +161,7 @@ class FSAModule {
 
     app
       .getTooltipManager()
-      .addTooltip(I18N.toString('message.workspace.empty'))
+      .addTooltip(app.getLocale().getLocaleString('message.workspace.empty'))
       .addTooltip("If you need help, try the '?' at the top.")
       .addTooltip('Or you can choose to do nothing.')
       .addTooltip("I can't do anything about that.")
@@ -171,7 +172,7 @@ class FSAModule {
       .addTooltip('You do you.')
       .addTooltip('Please do something.')
       .addTooltip('I need my job.')
-      .addTooltip(I18N.toString('message.workspace.empty'));
+      .addTooltip(app.getLocale().getLocaleString('message.workspace.empty'));
 
     app.getBroadcastManager().addMessageHandler(this._broadcastHandler);
 

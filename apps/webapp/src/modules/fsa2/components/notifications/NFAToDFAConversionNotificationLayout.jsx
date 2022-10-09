@@ -1,4 +1,5 @@
 import React from 'react';
+import { LocaleString } from 'src/libs/i18n';
 import DefaultNotificationLayout, {
   STYLE_TYPE_WARNING,
 } from 'src/session/manager/notification/components/DefaultNotificationLayout';
@@ -39,10 +40,12 @@ class NFAToDFAConversionNotificationLayout extends React.Component {
         style={this.props.style}
         styleType={STYLE_TYPE_WARNING}
         notification={this.props.notification}>
-        <p>{I18N.toString('message.warning.convertNFAToDFA')}</p>
+        <p>
+          <LocaleString entity="message.warning.convertNFAToDFA"/>
+        </p>
         <p>{`${stateCount} states -> ${Math.pow(2, stateCount)} states`}</p>
         <button value="convert" onClick={this.onClick}>
-          {I18N.toString('message.action.convert')}
+          <LocaleString entity="message.action.convert"/>
         </button>
       </DefaultNotificationLayout>
     );

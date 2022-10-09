@@ -3,6 +3,7 @@ import Style from '../MenuPanel.module.css';
 
 import SessionExporter from 'src/session/SessionExporter';
 import IconButton from 'src/components/IconButton';
+import { LocaleString } from 'src/libs/i18n';
 
 class ExportPanel extends React.Component {
   constructor(props) {
@@ -46,7 +47,7 @@ class ExportPanel extends React.Component {
         className={Style.panel_container + ' ' + this.props.className}
         style={this.props.style}>
         <div className={Style.panel_title}>
-          <h1>{I18N.toString('component.exporting.title')}</h1>
+          <h1><LocaleString entity="component.exporting.title"/></h1>
         </div>
         <div className={Style.panel_content}>
           {exportTypes.map((e) => this.renderExporterButton(e))}

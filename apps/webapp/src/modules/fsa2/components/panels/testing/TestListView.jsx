@@ -20,6 +20,7 @@ import TestItem, {
   WORKING_MODE,
   DEFAULT_MODE,
 } from './TestItem';
+import { LocaleConsumer } from 'src/libs/i18n';
 
 const ACCEPT_FILE_TYPES = ['.txt'];
 const TEST_FILENAME = 'test.txt';
@@ -78,7 +79,7 @@ class TestListView extends React.Component {
         this._testName = fileBlob.name;
         this._testList.length = 0;
 
-        const tests = event.target.result.split('\n');
+        const tests = String(event.target.result).split('\n');
         for (let test of tests) {
           test = test.trim();
           if (test.length > 0) {
@@ -198,33 +199,39 @@ class TestListView extends React.Component {
         className={Style.test_container + ' ' + this.props.className}
         style={this.props.style}>
         <div className={Style.test_control_tray}>
-          <IconButton
-            className={Style.test_control_button}
-            title={I18N.toString('action.testing.new')}
-            onClick={this.onTestNew}>
-            <PageContentIcon />
-          </IconButton>
-          <IconUploadButton
-            className={Style.test_control_button}
-            title={I18N.toString('action.testing.import')}
-            accept={ACCEPT_FILE_TYPES.join(',')}
-            onUpload={this.onTestUpload}>
-            <UploadIcon />
-          </IconUploadButton>
-          <IconButton
-            className={Style.test_control_button}
-            title={I18N.toString('action.testing.save')}
-            disabled={empty}
-            onClick={this.onTestDownload}>
-            <DownloadIcon />
-          </IconButton>
-          <IconButton
-            className={Style.test_control_button}
-            title={I18N.toString('action.testing.clear')}
-            disabled={empty}
-            onClick={this.onTestClose}>
-            <CrossIcon />
-          </IconButton>
+          <LocaleConsumer>
+            {locale => (
+              <>
+              <IconButton
+                className={Style.test_control_button}
+                title={locale.getLocaleString('action.testing.new')}
+                onClick={this.onTestNew}>
+                <PageContentIcon />
+              </IconButton>
+              <IconUploadButton
+                className={Style.test_control_button}
+                title={locale.getLocaleString('action.testing.import')}
+                accept={ACCEPT_FILE_TYPES.join(',')}
+                onUpload={this.onTestUpload}>
+                <UploadIcon />
+              </IconUploadButton>
+              <IconButton
+                className={Style.test_control_button}
+                title={locale.getLocaleString('action.testing.save')}
+                disabled={empty}
+                onClick={this.onTestDownload}>
+                <DownloadIcon />
+              </IconButton>
+              <IconButton
+                className={Style.test_control_button}
+                title={locale.getLocaleString('action.testing.clear')}
+                disabled={empty}
+                onClick={this.onTestClose}>
+                <CrossIcon />
+              </IconButton>
+              </>
+            )}
+          </LocaleConsumer>
         </div>
         <div
           className={

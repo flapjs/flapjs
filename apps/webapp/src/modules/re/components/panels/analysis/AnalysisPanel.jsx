@@ -3,6 +3,7 @@ import Style from './AnalysisPanel.module.css';
 
 import PanelContainer from 'src/components/panels/PanelContainer';
 import PanelSection from 'src/components/panels/PanelSection';
+import { LocaleString } from 'src/libs/i18n';
 
 class AnalysisPanel extends React.Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class AnalysisPanel extends React.Component {
           <button
             className={Style.analysis_button}
             onClick={this.onConvertToNFA}>
-            {I18N.toString('action.overview.convertnfa')}
+            <LocaleString entity="action.overview.convertnfa"/>
           </button>
         </PanelSection>
         <PanelSection title={'Related Machines'}></PanelSection>

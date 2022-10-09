@@ -4,6 +4,7 @@ import Style from './ModeTrayWidget.module.css';
 import IconButton from 'src/components/IconButton';
 import EditPencilIcon from 'src/assets/icons/pencil.svg';
 import MoveIcon from 'src/assets/icons/move.svg';
+import { LocaleConsumer } from 'src/libs/i18n';
 
 export const MODE_ACTION = 0;
 export const MODE_MOVE = 1;
@@ -30,24 +31,30 @@ class ModeTrayWidget extends React.Component {
           this.props.className
         }
         style={this.props.style}>
-        <IconButton
-          className={
-            Style.tray_button + (mode === MODE_ACTION ? ' active ' : '')
-          }
-          onClick={() => {
-            if (onChange) onChange(MODE_ACTION);
-          }}
-          title={I18N.toString('cursor.actionmode')}>
-          <EditPencilIcon />
-        </IconButton>
-        <IconButton
-          className={Style.tray_button + (mode === MODE_MOVE ? ' active ' : '')}
-          onClick={() => {
-            if (onChange) onChange(MODE_MOVE);
-          }}
-          title={I18N.toString('cursor.movemode')}>
-          <MoveIcon />
-        </IconButton>
+          <LocaleConsumer>
+            {locale => (
+              <>
+              <IconButton
+                className={
+                  Style.tray_button + (mode === MODE_ACTION ? ' active ' : '')
+                }
+                onClick={() => {
+                  if (onChange) onChange(MODE_ACTION);
+                }}
+                title={locale.getLocaleString('cursor.actionmode')}>
+                <EditPencilIcon />
+              </IconButton>
+              <IconButton
+                className={Style.tray_button + (mode === MODE_MOVE ? ' active ' : '')}
+                onClick={() => {
+                  if (onChange) onChange(MODE_MOVE);
+                }}
+                title={locale.getLocaleString('cursor.movemode')}>
+                <MoveIcon />
+              </IconButton>
+              </>
+            )}
+          </LocaleConsumer>
       </div>
     );
   }

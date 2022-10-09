@@ -1,4 +1,5 @@
 import React from 'react';
+import { LocaleString } from 'src/libs/i18n';
 
 import Style from './DefaultNotificationLayout.module.css';
 
@@ -17,11 +18,11 @@ class SequenceNotificationLayout extends React.Component {
           message.split('\n').map((e, i) => <p key={e + ':' + i}>{e}</p>)}
         {this.props.children}
         <button style={{ marginBottom: '1em' }} onClick={onClick}>
-          {I18N.toString('message.action.next')}
+          <LocaleString entity="message.action.next"/>
         </button>
         {notification && (
           <button onClick={(e) => notification.close()}>
-            {I18N.toString('message.action.close')}
+            <LocaleString entity="message.action.close"/>
           </button>
         )}
       </div>

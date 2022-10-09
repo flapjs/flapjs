@@ -43,10 +43,11 @@ function getSlottedForModules(app, modules) {
 
 class Session {
   constructor() {
-    this._name = I18N.toString('file.untitled');
+    this._name = 'Untitled';
     this._module = null;
     this._moduleClass = null;
     this._moduleStarted = false;
+    /** @type {import('../components/App').default} */
     this._app = null;
 
     this._sessionID = null;
@@ -166,7 +167,7 @@ class Session {
 
   setProjectName(name) {
     if (!name || name.length <= 0) {
-      this._name = I18N.toString('file.untitled');
+      this._name = this._app.getLocale().getLocaleString('file.untitled');
     } else {
       this._name = name;
     }

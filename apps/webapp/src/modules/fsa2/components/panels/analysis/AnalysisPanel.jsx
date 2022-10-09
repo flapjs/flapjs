@@ -12,6 +12,7 @@ import {
 } from 'src/modules/fsa2/components/notifications/FSANotifications';
 
 import { createMachineFromFileBlob } from './MachineLoader';
+import { LocaleString } from 'src/libs/i18n';
 
 class AnalysisPanel extends React.Component {
   constructor(props) {
@@ -172,13 +173,13 @@ class AnalysisPanel extends React.Component {
             <button
               className={Style.analysis_button}
               onClick={this.onConvertToNFA}>
-              {I18N.toString('action.overview.convertnfa')}
+              <LocaleString entity="action.overview.convertnfa"/>
             </button>
           ) : machineController.getMachineType() == 'NFA' ? (
             <button
               className={Style.analysis_button}
               onClick={this.onConvertToDFA}>
-              {I18N.toString('action.overview.convertdfa')}
+              <LocaleString entity="action.overview.convertdfa"/>
             </button>
           ) : null}
         </PanelSection>

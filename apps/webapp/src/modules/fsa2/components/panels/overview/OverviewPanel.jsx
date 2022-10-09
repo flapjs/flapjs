@@ -11,6 +11,7 @@ import AlphabetListView from './alphabet/AlphabetListView';
 import TransitionChartView from './transitions/TransitionChartView';
 import TransitionTableView from './transitions/TransitionTableView';
 import AutoStateLabelView from './AutoStateLabelView';
+import { LocaleString } from 'src/libs/i18n';
 
 const MACHINE_TYPE_DFA = 'DFA';
 const MACHINE_TYPE_NFA = 'NFA';
@@ -133,7 +134,7 @@ class OverviewPanel extends React.Component {
           className={Style.autolayout_button}
           onClick={this.onAutoLayoutApply}
           disabled={graphController.getGraph().isEmpty()}>
-          {I18N.toString('action.overview.autolayout')}
+          <LocaleString entity="action.overview.autolayout"/>
         </button>
 
         <PanelDivider />
