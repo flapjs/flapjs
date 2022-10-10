@@ -37,12 +37,8 @@ class REToFSAExporter extends SessionExporter {
     return JSONFileIcon;
   }
   /** @override */
-  getLabel() {
-    return I18N.toString('file.export.convertfsa');
-  }
-  /** @override */
-  getTitle() {
-    return I18N.toString('file.export.convertfsa');
+  getUnlocalizedLabel() {
+    return 'file.export.convertfsa';
   }
 }
 

@@ -3,7 +3,7 @@ import Style from '../MenuPanel.module.css';
 
 import SessionExporter from 'src/session/SessionExporter';
 import IconButton from 'src/components/IconButton';
-import { LocaleString } from 'src/libs/i18n';
+import { LocaleConsumer, LocaleString } from 'src/libs/i18n';
 
 class ExportPanel extends React.Component {
   constructor(props) {
@@ -20,18 +20,22 @@ class ExportPanel extends React.Component {
     const IconClass = exporter.getIconClass();
 
     return (
-      <IconButton
-        key={exporter.getLabel() + ':' + exportType}
-        className={Style.panel_button}
-        title={exporter.getLabel()}
-        onClick={() =>
-          this.props.session
-            .getApp()
-            .getExportManager()
-            .tryExportFile(exportType, this.props.session)
-        }>
-        {IconClass && <IconClass />}
-      </IconButton>
+      <LocaleConsumer>
+        {locale => (
+          <IconButton
+            key={exporter.getUnlocalizedLabel() + ':' + exportType}
+            className={Style.panel_button}
+            title={locale.getLocaleString(exporter.getUnlocalizedLabel())}
+            onClick={() =>
+              this.props.session
+                .getApp()
+                .getExportManager()
+                .tryExportFile(exportType, this.props.session)
+            }>
+            {IconClass && <IconClass />}
+          </IconButton>
+        )}
+      </LocaleConsumer>
     );
   }
 

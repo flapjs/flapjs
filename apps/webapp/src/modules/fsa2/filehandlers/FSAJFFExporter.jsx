@@ -26,12 +26,8 @@ class FSAJFFExporter extends SessionExporter {
     return XMLFileIcon;
   }
   /** @override */
-  getLabel() {
-    return I18N.toString('file.export.jff');
-  }
-  /** @override */
-  getTitle() {
-    return I18N.toString('file.export.jff.hint');
+  getUnlocalizedLabel() {
+    return 'file.export.jff';
   }
 }
 

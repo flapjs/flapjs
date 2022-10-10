@@ -4,10 +4,10 @@
  *
  * Any additional properties are also passed to the downloader.
  *
- * @typedef {Object} ExportData
+ * @typedef {object} ExportData
  * @property {String} name  the file name for the exported object
  * @property {String} type  the download type (this is NOT the same as export type or file type)
- * @property {*} data       the processed target data to put into a file
+ * @property {object} data       the processed target data to put into a file
  */
 
 /**
@@ -21,11 +21,11 @@ class Exporter {
    * Exports the target to an export data object. This is then usually passed to a
    * downloader to process and download to the client's machine.
    *
-   * @param {String} exportType the export type for the target
-   * @param {*} target the target to export
-   * @returns {ExportData} the processed export data that represents the target's current state
+   * @param {string} exportType the export type for the target
+   * @param {object} target the target to export
+   * @returns {Promise<ExportData>} the processed export data that represents the target's current state
    */
-  exportTarget(exportType, target) {
+  async exportTarget(exportType, target) {
     return Promise.resolve({
       name: 'untitled.json',
       type: 'text',
@@ -36,23 +36,16 @@ class Exporter {
   /**
    * The representive icon class for this exporter.
    *
-   * @returns {React.Component} the icon component class
+   * @returns {React.FunctionComponent} the icon component class
    */
   getIconClass() {
     return null;
   }
-
   /**
-   * The label for the exporter.
+   * The unlocalized label for the exporter.
+   * @return {string}
    */
-  getLabel() {
-    return 'Export';
-  }
-
-  /**
-   * The hint for the exporter.
-   */
-  getTitle() {
+  getUnlocalizedLabel() {
     return 'Export';
   }
 }

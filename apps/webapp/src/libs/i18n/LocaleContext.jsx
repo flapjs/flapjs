@@ -6,6 +6,15 @@ import { Logger } from 'src/libs/logger';
 // @ts-ignore : always include at least 1 default language file (so we don't always have to fetch).
 import DEFAULT_LANGUAGE_FILE from 'src/../public/lang/en_us.lang?raw';
 const DEFAULT_LANGUAGE_CODE = 'en_us';
+const NULL_LOCALE_API = {
+    setLanguage(langCode) {
+        throw new Error('I18NService not yet available.');
+    },
+    getLocaleString(entity) {
+        return entity;
+    },
+    langCode: null,
+};
 
 const LOGGER = new Logger('I18NService');
 
@@ -14,15 +23,7 @@ export const SUPPORTED_LANGUAGES = {
     'xx_pirate': 'Pirate Speak',
 };
 
-const ContextAPI = createContextAPI(LocaleContextAPI, {
-    setLanguage() {
-        throw new Error('Not yet ready.');
-    },
-    getLocaleString(entity) {
-        return entity;
-    },
-    langCode: '',
-});
+const ContextAPI = createContextAPI(LocaleContextAPI, NULL_LOCALE_API);
 
 export const LANGS_URL = 'lang/';
 

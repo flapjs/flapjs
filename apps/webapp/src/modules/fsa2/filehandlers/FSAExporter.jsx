@@ -34,12 +34,8 @@ class FSAExporter extends SessionExporter {
     return JSONFileIcon;
   }
   /** @override */
-  getLabel() {
-    return I18N.toString('file.export.machine');
-  }
-  /** @override */
-  getTitle() {
-    return I18N.toString('file.export.machine.hint');
+  getUnlocalizedLabel() {
+    return 'file.export.machine';
   }
 }
 

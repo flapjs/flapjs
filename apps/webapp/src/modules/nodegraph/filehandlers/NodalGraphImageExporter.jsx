@@ -137,34 +137,18 @@ class NodalGraphImageExporter extends SessionExporter {
   }
 
   /** @override */
-  getLabel() {
+  getUnlocalizedLabel() {
     switch (this._imageType) {
       case IMAGE_TYPE_PNG:
-        return I18N.toString('file.export.png');
+        return 'file.export.png';
       case IMAGE_TYPE_JPG:
-        return I18N.toString('file.export.jpg');
+        return 'file.export.jpg';
       case IMAGE_TYPE_SVG:
-        return I18N.toString('file.export.svg');
+        return 'file.export.svg';
       case IMAGE_TYPE_BW:
-        return I18N.toString('file.export.bw');
+        return 'file.export.bw';
       default:
-        return super.getLabel();
-    }
-  }
-
-  /** @override */
-  getTitle() {
-    switch (this._imageType) {
-      case IMAGE_TYPE_PNG:
-        return I18N.toString('file.export.png.hint');
-      case IMAGE_TYPE_JPG:
-        return I18N.toString('file.export.jpg.hint');
-      case IMAGE_TYPE_SVG:
-        return I18N.toString('file.export.svg.hint');
-      case IMAGE_TYPE_BW:
-        return I18N.toString('file.export.bw.hint');
-      default:
-        return super.getTitle();
+        return super.getUnlocalizedLabel();
     }
   }
 
