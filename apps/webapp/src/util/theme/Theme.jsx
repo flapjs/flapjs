@@ -1,7 +1,7 @@
-import Logger from 'src/util/logger/Logger';
+import { Logger } from 'src/libs/logger';
 import StyleEntry from './style/StyleEntry';
 
-const LOGGER_TAG = 'Theme';
+const LOGGER = new Logger('Theme');
 //TODO: this should be only lang/ when have server
 const BASE_URL = 'theme/';
 
@@ -12,7 +12,7 @@ class Theme {
   }
 
   static fetchThemeFile(themeName, callback) {
-    Logger.out(LOGGER_TAG, `Fetching theme file '${themeName}'...`);
+    LOGGER.info(`Fetching theme file '${themeName}'...`);
     const request = new XMLHttpRequest();
     request.onreadystatechange = function () {
       if (
@@ -24,7 +24,7 @@ class Theme {
       }
     };
     request.onerror = function () {
-      Logger.out(LOGGER_TAG, `Unable to find theme file for '${themeName}'.`);
+      LOGGER.error(`Unable to find theme file for '${themeName}'.`);
     };
     request.open('GET', BASE_URL + themeName + '.theme', true);
     request.setRequestHeader('Content-Type', 'text/strings');
@@ -32,7 +32,7 @@ class Theme {
   }
 
   static loadThemeFile(themeName, themeData, callback) {
-    Logger.out(LOGGER_TAG, `Loading theme file '${themeName}'...`);
+    LOGGER.info(`Loading theme file '${themeName}'...`);
 
     const result = new Theme(themeName);
 
@@ -43,8 +43,7 @@ class Theme {
       line = line.trim();
       if (line.startsWith('//')) continue;
       if (line.startsWith('//TODO:')) {
-        Logger.out(
-          LOGGER_TAG,
+        LOGGER.warn(
           `Warning - found incomplete theme file: theme file '${line
             .substring('//'.length)
             .trim()}'.`
@@ -61,7 +60,7 @@ class Theme {
       result._styles.set(key, new StyleEntry(key, value));
     }
 
-    Logger.out(LOGGER_TAG, `Theme file '${themeName}' loaded.`);
+    LOGGER.info(`Theme file '${themeName}' loaded.`);
 
     callback(result);
   }

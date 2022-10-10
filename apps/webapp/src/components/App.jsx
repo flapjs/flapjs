@@ -41,7 +41,6 @@ import * as ColorTransform from 'src/util/ColorTransform';
 import ExportManager from 'src/util/file/export/ExportManager';
 import ImportManager from 'src/util/file/import/ImportManager';
 
-import Session from 'src/session/Session';
 import DrawerManager from 'src/session/manager/DrawerManager';
 import MenuManager from 'src/session/manager/MenuManager';
 import ViewportManager from 'src/session/manager/ViewportManager';

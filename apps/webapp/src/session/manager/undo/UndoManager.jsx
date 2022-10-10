@@ -1,5 +1,5 @@
-import Logger from 'src/util/logger/Logger';
-const LOGGER_TAG = 'UndoManager';
+import { Logger } from 'src/libs/logger';
+const LOGGER = new Logger('UndoManager');
 
 const MAX_HISTORY_LENGTH = 1000;
 
@@ -33,8 +33,7 @@ class UndoManager {
         throw new Error('Cannot create valid undo event handler for capture');
       }
     } else {
-      Logger.error(
-        LOGGER_TAG,
+      LOGGER.error(
         'Missing default undo event handler for event capture'
       );
     }

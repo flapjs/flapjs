@@ -1,5 +1,5 @@
 import Parser from 'src/util/file/Parser';
-import SemanticVersion from 'src/util/version/SemanticVersion';
+import SemanticVersion from 'src/util/SemanticVersion';
 import NodeGraph from './NodeGraph';
 
 import GraphNode from 'src/graph2/element/GraphNode';
