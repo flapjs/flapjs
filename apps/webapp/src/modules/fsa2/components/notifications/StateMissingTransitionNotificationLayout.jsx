@@ -55,7 +55,6 @@ class StateMissingTransitionNotificationLayout extends React.Component {
 
   /** @override */
   render() {
-    // TODO: I18N - look out for localization
     return (
       <DefaultNotificationLayout
         id={this.props.id}

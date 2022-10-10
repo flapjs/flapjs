@@ -53,10 +53,8 @@ class GraphController {
   destroy() {}
 
   clearGraph() {
-    if (window.confirm(I18N.toString('alert.graph.clear'))) {
-      this._graph.clear();
-      this.emitGraphEvent(GRAPH_EVENT_CLEAR);
-    }
+    this._graph.clear();
+    this.emitGraphEvent(GRAPH_EVENT_CLEAR);
   }
 
   onGraphEvent(eventName, eventData) {

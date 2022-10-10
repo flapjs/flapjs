@@ -36,26 +36,25 @@ function LocaleContextAPI(props) {
     const dictionary = useRef({});
 
     // Initialize to default language pack.
-    useEffect(() => setLanguage(DEFAULT_LANGUAGE_CODE), []);
+    useEffect(() => {
+        setLanguage(DEFAULT_LANGUAGE_CODE);
+    }, []);
 
     const langCode = state.language;
 
-    function setLanguage(langCode) {
+    async function setLanguage(langCode) {
         let temp = {};
         dictionary.current = temp;
-        loadLanguageDictionary(langCode)
-            .then(result => {
-                if (dictionary.current === temp) {
-                    LOGGER.info(`Language changed to '${langCode}'.`);
-
-                    dictionary.current = result;
-                    setState(state => {
-                        state.language = langCode;
-                        return { ...state };
-                    });
-                }
-            })
-            .catch(e => LOGGER.error(`Failed to change to language '${langCode}'.`, e));
+        try {
+            let result = await loadLanguageDictionary(langCode);
+            if (dictionary.current === temp) {
+                LOGGER.info(`Language changed to '${langCode}'.`);
+                dictionary.current = result;
+                setState({ language: langCode });
+            }
+        } catch (e) {
+            LOGGER.error(`Failed to change to language '${langCode}'.`, e)
+        }
     }
 
     function getLocaleString(entityName, ...args) {
@@ -67,8 +66,13 @@ function LocaleContextAPI(props) {
         }
     }
 
+    function getLanguageDictionary() {
+        return dictionary.current;
+    }
+
     return {
         setLanguage,
+        getLanguageDictionary,
         getLocaleString,
         langCode,
     };

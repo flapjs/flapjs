@@ -1,9 +1,10 @@
 import React from 'react';
 
 import { useAutoSave } from 'src/libs/autosave';
+import { useLocale } from 'src/libs/i18n';
 
 /**
- * @typedef {import('./App').default} App
+ * @typedef {import('../../components/App').default} App
  */
 
 /**
@@ -26,16 +27,14 @@ export function AppInit({ app, module }) {
 function useLangSaver(app, module) {
     const storageKey = 'prefs-lang';
 
+    const locale = useLocale();
+
     async function serializer(dst) {
-        for(let key of I18N.languageMapping.keys()) {
-            dst[key] = I18N.languageMapping.get(key);
-        }
+        Object.assign(dst, locale.getLanguageDictionary());
     }
 
     async function deserializer(src) {
-        for(let key of Object.keys(src)) {
-            I18N.languageMapping.set(key, src[key]);
-        }
+        Object.assign(locale.getLanguageDictionary(), src);
     }
 
     useAutoSave(storageKey, serializer, deserializer, { autosave: 1_000 });

@@ -6,13 +6,13 @@ import ModeTrayWidget, {
   MODE_ACTION,
   MODE_MOVE,
 } from '../widgets/ModeTrayWidget';
+import { LocaleConsumer } from 'src/libs/i18n';
 
 class ViewportEditLayer extends React.Component {
   constructor(props) {
     super(props);
 
     this.onTrashChange = this.onTrashChange.bind(this);
-    this.onTrashClear = this.onTrashClear.bind(this);
     this.onModeChange = this.onModeChange.bind(this);
   }
 
@@ -26,10 +26,6 @@ class ViewportEditLayer extends React.Component {
     } else {
       this.props.session.getApp().getDrawerComponent().setViewportColor(null);
     }
-  }
-
-  onTrashClear() {
-    this.props.graphController.clearGraph();
   }
 
   onModeChange(value) {
@@ -55,31 +51,39 @@ class ViewportEditLayer extends React.Component {
     }
 
     return (
-      <div
-        id={this.props.id}
-        className={Style.view_container + ' ' + this.props.className}
-        style={this.props.style}>
-        <TrashCanWidget
-          className={Style.view_widget}
-          style={{ bottom: 0, right: 0 }}
-          visible={
-            !graph.isEmpty() &&
-            viewport &&
-            (!viewport.getInputAdapter().isUsingTouch() ||
-              !viewport.getInputAdapter().isDragging())
-          }
-          onChange={this.onTrashChange}
-          onClear={this.onTrashClear}
-        />
-        <ModeTrayWidget
-          className={Style.view_widget}
-          style={{ bottom: 0, left: 0 }}
-          visible={inputController}
-          mode={moveMode}
-          onChange={this.onModeChange}
-        />
-        {this.props.children}
-      </div>
+      <LocaleConsumer>
+        {locale => (
+          <div
+            id={this.props.id}
+            className={Style.view_container + ' ' + this.props.className}
+            style={this.props.style}>
+            <TrashCanWidget
+              className={Style.view_widget}
+              style={{ bottom: 0, right: 0 }}
+              visible={
+                !graph.isEmpty() &&
+                viewport &&
+                (!viewport.getInputAdapter().isUsingTouch() ||
+                  !viewport.getInputAdapter().isDragging())
+              }
+              onChange={this.onTrashChange}
+              onClear={() => {
+                if (window.confirm(locale.getLocaleString('alert.graph.clear'))) {
+                  this.props.graphController.clearGraph();
+                }
+              }}
+            />
+            <ModeTrayWidget
+              className={Style.view_widget}
+              style={{ bottom: 0, left: 0 }}
+              visible={inputController}
+              mode={moveMode}
+              onChange={this.onModeChange}
+            />
+            {this.props.children}
+          </div>
+        )}
+      </LocaleConsumer>
     );
   }
 }
