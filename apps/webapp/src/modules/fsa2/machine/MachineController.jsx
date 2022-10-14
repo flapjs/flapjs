@@ -2,6 +2,7 @@ import AbstractMachineController from 'src/modules/abstract/AbstractMachineContr
 
 import FSABuilder from 'src/modules/fsa2/machine/FSABuilder';
 import { convertToDFA, invertDFA } from 'src/modules/fsa2/machine/FSAUtils';
+import { transform } from '../transformer/ConvertToDFA';
 
 import GraphLayout from 'src/modules/fsa2/GraphLayout';
 
@@ -70,6 +71,7 @@ class MachineController extends AbstractMachineController {
       const result = convertToDFA(this.getMachineBuilder().getMachine());
       this.setGraphToMachine(this.graphController.getGraph(), result);
       this.setMachineType(machineType);
+      // TODO: transform(this.graphController, this);
     } else if (machineType == 'NFA' && currentMachineType == 'DFA') {
       this.changeMachineTo(machineType);
     } else {

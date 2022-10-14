@@ -25,6 +25,12 @@ const DEFAULT_AUTO_RENAME = true;
 const NODE_SPAWN_RADIUS = 64;
 
 class FSAGraphController extends GraphController {
+  /**
+   * 
+   * @param {import('../../../components/App').default} app 
+   * @param {import('./FSAGraph').default} graph 
+   * @param {import('./FSAGraphParser').default} graphParser 
+   */
   constructor(app, graph, graphParser) {
     super(graph);
 

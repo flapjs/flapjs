@@ -10,6 +10,8 @@ import FSANodeRenderer from '../../graph/renderer/FSANodeRenderer';
 import FSANodeInputHandler from '../../graph/inputhandler/FSANodeInputHandler';
 
 import FSAEdgeRenderer from '../../graph/renderer/FSAEdgeRenderer';
+import FSANode from '../../graph/element/FSANode';
+import FSAEdge from '../../graph/element/FSAEdge';
 
 class FSAGraphLayer extends React.Component {
   constructor(props) {
@@ -93,6 +95,10 @@ class FSAGraphLayer extends React.Component {
           inputPriority={-1}
         />
         <GraphHighlightLayer nodes={testTargetNodes} />
+        <GraphHighlightLayer
+          nodes={graphController.getTargets().filter(n => n instanceof FSANode)}
+          edges={graphController.getTargets().filter(n => n instanceof FSAEdge)} />
+        
       </React.Fragment>
     );
   }
