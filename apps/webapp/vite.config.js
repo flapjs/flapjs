@@ -11,6 +11,12 @@ export default defineConfig({
       { find: 'src', replacement: path.resolve('.', 'src') },
     ]
   },
+  server: {
+    fs: {
+      // NOTE: To serve other workspace module files.
+      allow: ['../..']
+    }
+  },
   plugins: [
     svgr({
       exportAsDefault: true,

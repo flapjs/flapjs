@@ -1,7 +1,7 @@
-// import { convertToDFA as transform1 } from './FSAUtils';
-// import { transform as transform2 } from '../transformer/ConvertToDFA';
-import { Builder, subsetConstructionToDFA as transform3 } from '@flapjs/module-fa';
+import { Builder, subsetConstructionToDFA, invertDFA as transform } from '@flapjs/module-fa';
 import { graphToNFA } from '../transformer/FiniteAutomataGraph';
+
+import GraphLayout from '../GraphLayout';
 
 /**
  * @param {import('./MachineController').default} machineController 
@@ -9,7 +9,10 @@ import { graphToNFA } from '../transformer/FiniteAutomataGraph';
 export async function convertToDFA(machineController) {
     let src = graphToNFA(machineController.graphController);
     let dst = Builder.fromIdentity(src).build();
-    await transform3(dst, src);
+    await subsetConstructionToDFA(dst, src);
+
+    GraphLayout.applyLayout(machineController.graphController.getGraph());
+    machineController.setMachineType('DFA');
 
     /*
     // Original
@@ -17,9 +20,10 @@ export async function convertToDFA(machineController) {
     machineController.setGraphToMachine(machineController.graphController.getGraph(), result);
     machineController.setMachineType('DFA');
     */
+}
 
-    /*
-    // Attempt 2
-    transform(this.graphController, this);
-    */
+export async function invertDFA(machineController) {
+    let src = graphToNFA(machineController.graphController);
+    let dst = Builder.fromIdentity(src).build();
+    await transform(dst, src);
 }
