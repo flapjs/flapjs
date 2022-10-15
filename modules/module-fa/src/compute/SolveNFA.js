@@ -1,8 +1,8 @@
-import { epsilonClosureFrom, readClosureFrom } from './Helper.js';
+import { epsilonClosureFrom, readClosureFrom } from '../Helper.js';
 
 /**
- * @typedef {import('./FiniteAutomata').FiniteAutomata<?>} FiniteAutomata
- * @typedef {import('./FiniteAutomata').Symbol<?>} Symbol
+ * @typedef {import('../FiniteAutomata').FiniteAutomata<?>} FiniteAutomata
+ * @typedef {import('../FiniteAutomata').Symbol<?>} Symbol
  */
 
 const MAX_COMPUTATION_STEPS = 1_000;

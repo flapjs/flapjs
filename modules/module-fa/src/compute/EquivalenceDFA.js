@@ -1,6 +1,6 @@
 
 /**
- * @typedef {import('./FiniteAutomata').FiniteAutomata<?>} FiniteAutomata
+ * @typedef {import('../FiniteAutomata').FiniteAutomata<?>} FiniteAutomata
  */
 
 /**

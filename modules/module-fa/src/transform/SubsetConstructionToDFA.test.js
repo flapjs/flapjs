@@ -1,10 +1,10 @@
 /* eslint mocha */
 
 import assert from 'assert';
-import { Builder } from './Builder.js';
-import { findStateByName, findSymbolByName, readTransitionFrom } from './Helper.js';
+import { Builder } from '../Builder.js';
+import { findStateByName, findSymbolByName, readTransitionFrom } from '../Helper.js';
 import { subsetConstructionToDFA } from './SubsetConstructionToDFA.js';
-import { assertDFAAccepts, assertDFARejects } from './TestHelper.js';
+import { assertDFAAccepts, assertDFARejects } from '../TestHelper.js';
 
 describe('SubsetConstructionToDFA', () => {
     it('can convert empty NFA', async () => {

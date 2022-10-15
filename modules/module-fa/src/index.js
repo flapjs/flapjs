@@ -8,8 +8,6 @@ export {
     deriveSetFromState,
     deriveStateFromSet,
     findStateByName,
-} from './Helper';
-export { subsetConstructionToDFA } from './SubsetConstructionToDFA.js';
-export { solveDFA } from './SolveDFA.js';
-export { solveNFA } from './SolveNFA.js';
-export { invertDFA } from './InvertDFA.js';
+} from './Helper.js';
+export * from './transform/index.js';
+export * from './compute/index.js';

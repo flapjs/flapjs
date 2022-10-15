@@ -1,8 +1,8 @@
-import { readTransitionFrom } from './Helper.js';
+import { readTransitionFrom } from '../Helper.js';
 
 /**
- * @typedef {import('./FiniteAutomata').FiniteAutomata<?>} FiniteAutomata
- * @typedef {import('./FiniteAutomata').State<?>} State
+ * @typedef {import('../FiniteAutomata').FiniteAutomata<?>} FiniteAutomata
+ * @typedef {import('../FiniteAutomata').State<?>} State
  */
 
 /**

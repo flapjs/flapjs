@@ -1,5 +1,5 @@
-import { dispatchEvent, Events } from './FiniteAutomata.js';
-import { epsilonClosureFrom, deriveStateFromSet, deriveSetFromState, startTransition, readTransitionFrom, endTransition, readClosureFrom } from './Helper.js';
+import { dispatchEvent, Events } from '../FiniteAutomata.js';
+import { epsilonClosureFrom, deriveStateFromSet, deriveSetFromState, startTransition, readTransitionFrom, endTransition, readClosureFrom } from '../Helper.js';
 
 /**
  * @typedef {import('./FiniteAutomata').FiniteAutomata<?>} FiniteAutomata

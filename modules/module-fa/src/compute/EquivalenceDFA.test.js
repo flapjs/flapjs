@@ -1,7 +1,7 @@
 /* eslint mocha */
 import assert from 'assert';
 
-import { Builder } from './Builder.js';
+import { Builder } from '../Builder.js';
 import { equivalenceDFA } from './EquivalenceDFA.js';
 
 describe.skip('EquivalenceDFA', () => {

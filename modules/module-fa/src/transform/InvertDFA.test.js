@@ -1,7 +1,7 @@
 import assert from 'assert';
 
-import { Builder } from './Builder.js';
-import { findStateByName } from './Helper.js';
+import { Builder } from '../Builder.js';
+import { findStateByName } from '../Helper.js';
 import { invertDFA } from './InvertDFA.js';
 
 describe('InvertDFA', () => {

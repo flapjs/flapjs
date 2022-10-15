@@ -1,8 +1,7 @@
 import assert from 'assert';
 
 import { findSymbolByName } from './Helper.js';
-import { solveDFA } from './SolveDFA.js';
-import { solveNFA } from './SolveNFA.js';
+import { solveDFA, solveNFA } from './compute/index.js';
 
 /**
  * @typedef {import('./FiniteAutomata').FiniteAutomata<?>} FiniteAutomata

@@ -1,8 +1,8 @@
-import { dispatchEvent, Events } from './FiniteAutomata';
-import { copy } from './Helper.js';
+import { dispatchEvent, Events } from '../FiniteAutomata.js';
+import { copy } from '../Helper.js';
 
 /**
- * @typedef {import('./FiniteAutomata').FiniteAutomata<?>} FiniteAutomata
+ * @typedef {import('../FiniteAutomata').FiniteAutomata<?>} FiniteAutomata
  */
 
 /**

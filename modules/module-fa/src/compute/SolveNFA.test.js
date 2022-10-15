@@ -1,7 +1,7 @@
 /* eslint mocha */
 
-import { Builder } from './Builder.js';
-import { assertNFAAccepts, assertNFARejects } from './TestHelper.js';
+import { Builder } from '../Builder.js';
+import { assertNFAAccepts, assertNFARejects } from '../TestHelper.js';
 
 describe('SolveNFA', () => {
     it('can solve 1* (same as DFA)', async () => {
