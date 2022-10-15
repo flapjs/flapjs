@@ -8,6 +8,9 @@ import GraphEdge from 'src/graph2/element/GraphEdge';
 export const GRAPH_EVENT_CLEAR = 'graph-clear';
 
 class GraphController {
+  /**
+   * @param {import('../NodeGraph.js').default} graph 
+   */
   constructor(graph) {
     this._graph = graph;
     this._graphChangeHandler = new GraphChangeHandler();
@@ -16,6 +19,7 @@ class GraphController {
     this._labelFormatter = null;
 
     this._listeners = [];
+    this._targets = [];
   }
 
   setLabelEditor(labelEditor) {
@@ -109,6 +113,20 @@ class GraphController {
   }
   getGraph() {
     return this._graph;
+  }
+
+  getTargets() {
+    return this._targets;
+  }
+  addTarget(target) {
+    this._targets.push(target);
+  }
+  removeTarget(target) {
+    let i = this._targets.indexOf(target);
+    this._targets.splice(i, 1);
+  }
+  clearTargets() {
+    this._targets.length = 0;
   }
 }
 

@@ -10,22 +10,22 @@ class InputController {
     this._handlingInput = false;
 
     /*
-            This is the current target for the event. If this is a multi-stage event,
-            such as dragging, then this will only refer to the first target, the source
-            of the event.
-        */
+      This is the current target for the event. If this is a multi-stage event,
+      such as dragging, then this will only refer to the first target, the source
+      of the event.
+    */
     this._target = {
       source: null,
       type: null,
     };
 
     /*
-            This is the active target. It can only be manually set by binding source and
-            type through bindActiveTarget(). This allows future input handling to ignore
-            this target for intersection tests, etc.
+      This is the active target. It can only be manually set by binding source and
+      type through bindActiveTarget(). This allows future input handling to ignore
+      this target for intersection tests, etc.
 
-            NOTE: You must bind AND unbind the active target.
-        */
+      NOTE: You must bind AND unbind the active target.
+    */
     this._activeTarget = {
       source: null,
       type: null,
@@ -33,10 +33,10 @@ class InputController {
     };
 
     /*
-            This is the immediate target under the cursor. Regardless of input event, this
-            will always refer to the element directly intersecting the cursor. The active target
-            with the proper options may be ignored as possible candidates.
-        */
+      This is the immediate target under the cursor. Regardless of input event, this
+      will always refer to the element directly intersecting the cursor. The active target
+      with the proper options may be ignored as possible candidates.
+    */
     this._immediateTarget = {
       source: null,
       type: null,

@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+        "target": "ES2021",
+        "lib": [
+            "ES2021",
+            "DOM"
+        ],
+        "jsx": "react",
+        "allowJs": true,
+        "checkJs": true,
+        "downlevelIteration": true,
+        "paths": {
+            "src/*": ["./src/*"]
+        },
+        "moduleResolution": "node"
+    },
+    "exclude": [
+        "node_modules",
+        "dist",
+        "out",
+        "public"
+    ],
+    "include": [
+        "declarations.d.ts",
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "src/**/*.js",
+        "src/**/*.jsx"
+    ]
+}

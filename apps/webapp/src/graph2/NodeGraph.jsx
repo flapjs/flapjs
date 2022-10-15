@@ -257,7 +257,7 @@ class NodeGraph {
   /**
    * Delete edge from graph. The from and to nodes of the target edge are not
    * modified.
-   * @param  {GraphEdge} edge      target edge to be deleted.
+   * @param {GraphEdge} edge      target edge to be deleted.
    */
   deleteEdge(edge) {
     const elementID = edge.getGraphElementID();

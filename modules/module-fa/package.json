@@ -1,0 +1,18 @@
+{
+  "name": "@flapjs/module-fa",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "",
+    "test": "mocha \"src/**/*.test.js\"",
+    "format": "prettier --write \"src/**/*.js\" --single-quote --bracket-same-line"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "gh-pages": "~4.0.0",
+    "prettier": "~2.7.1",
+    "mocha": "~10.0.0"
+  }
+}

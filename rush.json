@@ -410,6 +410,10 @@
     {
       "packageName": "flapjs-v2",
       "projectFolder": "apps/FLAPJS-V2"
+    },
+    {
+      "packageName": "@flapjs/module-fa",
+      "projectFolder": "modules/module-fa"
     }
     // {
     //   /**

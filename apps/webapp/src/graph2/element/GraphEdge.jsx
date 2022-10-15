@@ -40,7 +40,6 @@ class GraphEdge extends GraphElement {
    *
    * Assumes the label is NOT null.
    * @param {String} label  The new edge label.
-   * @returns {this}
    */
   setEdgeLabel(label) {
     this._label = label;
