@@ -67,8 +67,12 @@ export class Slot extends React.Component {
   }
 
   render() {
-    const props = this.props;
-    const { name = DEFAULT_SLOT_NAME, mode = 'renderer', children } = props;
+    const {
+      name = DEFAULT_SLOT_NAME,
+      mode = 'renderer',
+      children = undefined,
+      ...childProps
+    } = this.props;
     return (
       <SlotContext.Consumer>
         {(slotManager) => {
@@ -82,7 +86,7 @@ export class Slot extends React.Component {
               case 'provider':
                 return Object.values(slots[name]).reduceRight(
                   (prev, { component: Component, props }) => {
-                    return <Component {...props}> {prev} </Component>;
+                    return <Component {...childProps} {...props}> {prev} </Component>;
                   },
                   children
                 );
@@ -90,7 +94,7 @@ export class Slot extends React.Component {
               default:
                 return Object.entries(slots[name]).map(
                   ([key, { component: Component, props }]) => {
-                    return <Component key={key} {...props} />;
+                    return <Component key={key} {...childProps} {...props} />;
                   }
                 );
             }

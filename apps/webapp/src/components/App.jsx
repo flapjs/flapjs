@@ -224,7 +224,6 @@ class App extends React.Component {
 
     // this._notificationManager.pushNotification("Welcome to Flap.js");
     this.onModuleTitleClick = this.onModuleTitleClick.bind(this);
-    this.onToolbarClearButton = this.onToolbarClearButton.bind(this);
   }
 
   /**
@@ -325,13 +324,6 @@ class App extends React.Component {
 
     e.preventDefault();
     e.stopPropagation();
-  }
-
-  onToolbarClearButton(e) {
-    const currentModule = this._session.getCurrentModule();
-    if (currentModule) {
-      currentModule.clear(this);
-    }
   }
 
   getToolbarComponent() {
@@ -457,83 +449,7 @@ class App extends React.Component {
                 title={currentModuleLocalizedName}
                 session={session}
                 onTitleClick={this.onModuleTitleClick}>
-                <ToolbarButton
-                  title={locale.getLocaleString('action.toolbar.newmachine')}
-                  icon={PageEmptyIcon}
-                  containerOnly={TOOLBAR_CONTAINER_TOOLBAR}
-                  onClick={this.onToolbarClearButton}
-                  disabled={!currentModule}
-                />
-                <ToolbarUploadButton
-                  title={locale.getLocaleString('action.toolbar.uploadmachine')}
-                  icon={UploadIcon}
-                  containerOnly={TOOLBAR_CONTAINER_TOOLBAR}
-                  accept={importManager.getFileTypesAsAcceptString()}
-                  onUpload={(fileBlob) => {
-                    importManager
-                      .tryImportFile(fileBlob)
-                      .catch((e) =>
-                        notificationManager.pushNotification(
-                          'ERROR: Unable to import invalid file.\n' + e.message,
-                          ERROR_LAYOUT_ID,
-                          ERROR_UPLOAD_NOTIFICATION_TAG
-                        )
-                      )
-                      .finally(() => toolbarComponent.closeBar());
-                  }}
-                  disabled={importManager.isEmpty()}
-                />
-                <ToolbarButton
-                  title={locale.getLocaleString('action.toolbar.undo')}
-                  icon={UndoIcon}
-                  containerOnly={TOOLBAR_CONTAINER_TOOLBAR}
-                  disabled={!undoManager.canUndo()}
-                  onClick={() => undoManager.undo()}
-                />
-                <ToolbarButton
-                  title={locale.getLocaleString('action.toolbar.redo')}
-                  icon={RedoIcon}
-                  containerOnly={TOOLBAR_CONTAINER_TOOLBAR}
-                  disabled={!undoManager.canRedo()}
-                  onClick={() => undoManager.redo()}
-                />
-                <ToolbarButton
-                  title={locale.getLocaleString('component.exporting.title')}
-                  icon={DownloadIcon}
-                  containerOnly={TOOLBAR_CONTAINER_TOOLBAR}
-                  onClick={() => toolbarComponent.setCurrentMenu(MENU_INDEX_EXPORT)}
-                  disabled={exportManager.isEmpty()}
-                />
-                <ToolbarDivider />
-                <ToolbarButton
-                  title={locale.getLocaleString('action.toolbar.changemodule')}
-                  icon={EditPencilIcon}
-                  containerOnly={TOOLBAR_CONTAINER_MENU}
-                  onClick={() => toolbarComponent.setCurrentMenu(MENU_INDEX_MODULE)}
-                />
-                <ToolbarButton
-                  title={locale.getLocaleString('action.toolbar.lang')}
-                  icon={WorldIcon}
-                  containerOnly={TOOLBAR_CONTAINER_MENU}
-                  onClick={() => toolbarComponent.setCurrentMenu(MENU_INDEX_LANGUAGE)}
-                />
-                <ToolbarButton
-                  title={locale.getLocaleString('component.options.title')}
-                  icon={SettingsIcon}
-                  containerOnly={TOOLBAR_CONTAINER_MENU}
-                  onClick={() => toolbarComponent.setCurrentMenu(MENU_INDEX_OPTION)}
-                />
-                <ToolbarButton
-                  title={locale.getLocaleString('action.toolbar.help')}
-                  icon={HelpIcon}
-                  onClick={() => window.open(HELP_URL, '_blank')}
-                />
-                <ToolbarButton
-                  title={locale.getLocaleString('action.toolbar.bug')}
-                  icon={BugIcon}
-                  containerOnly={TOOLBAR_CONTAINER_MENU}
-                  onClick={() => window.open(BUGREPORT_URL, '_blank')}
-                />
+                <Slot name="appbar" app={this} module={currentModule} toolbar={toolbarComponent}/>
               </ToolbarView>
 
               <DrawerView
@@ -561,9 +477,9 @@ class App extends React.Component {
                       ))}
                     </TooltipView>
 
-                    <Slot name="background"/>
-                    <Slot name="playground"/>
-                    <Slot name="foreground"/>
+                    <Slot name="background" app={this} module={currentModule}/>
+                    <Slot name="playground" app={this} module={currentModule}/>
+                    <Slot name="foreground" app={this} module={currentModule}/>
 
                     <FullscreenWidget
                       className={Style.fullscreen_widget}

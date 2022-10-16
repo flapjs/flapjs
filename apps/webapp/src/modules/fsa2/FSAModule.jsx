@@ -36,6 +36,8 @@ import { Init } from './Init';
 import { LocaleString } from 'src/libs/i18n';
 import InputController from 'src/graph2/controller/InputController';
 
+import { AppBar } from './AppBar';
+
 const MODULE_NAME = 'fsa';
 const MODULE_VERSION = '3.0.0';
 
@@ -53,6 +55,7 @@ class FSAModule {
     return [
       { render: Init, on: 'init' },
       { render: Playground, on: 'playground' },
+      { render: AppBar, on: 'appbar' },
     ];
   }
 
