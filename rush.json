@@ -414,6 +414,10 @@
     {
       "packageName": "@flapjs/module-fa",
       "projectFolder": "modules/module-fa"
+    },
+    {
+      "packageName": "@flapjs/module-re",
+      "projectFolder": "modules/module-re"
     }
     // {
     //   /**

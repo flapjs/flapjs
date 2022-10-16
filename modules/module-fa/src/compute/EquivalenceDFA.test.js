@@ -15,7 +15,8 @@ describe.skip('EquivalenceDFA', () => {
         let src = new Builder()
             .startState('q0')
             .transition('t0', 'q0', '0', 'q1')
-            .finalState('q1');
+            .finalState('q1')
+            .build();
         assert(await equivalenceDFA(src, src), 'self is equal.');
     });
 
