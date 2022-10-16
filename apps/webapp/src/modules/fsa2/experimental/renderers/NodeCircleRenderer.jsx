@@ -40,9 +40,13 @@ export function NodeCircleRenderer(props) {
         {labels && labels.length > 0 && labels.map((s, i) => (
             <text className={RendererStyle.decorative}
                 key={`${s}:${i}`}
-                x={x} y={y + 3}
-                transform={`translate(0 ${(i * -15)})`}
-                style={{ fontSize: `${magicFontSize(s.length)}em` }}
+                x={x} y={y}
+                transform={`translate(0 ${(i * 14)})`}
+                style={{
+                    fontFamily: 'monospace',
+                    fontSize: `${magicFontSize(s.length)}em`,
+                }}
+                alignmentBaseline="middle"
                 textAnchor="middle"
                 {...styleProps}
                 {...labelProps}>
@@ -56,6 +60,7 @@ export function NodeCircleRenderer(props) {
     );
 }
 
+// NOTE: Configured for `monospace` font.
 function magicFontSize(labelLength) {
-    return (1 - Math.min(Math.max(labelLength, 0) / 6, 0.5));
+    return (1 - Math.min(Math.max(labelLength, 0) / 8, 0.7)) * 1.5;
 }
