@@ -1,5 +1,4 @@
 import React from 'react';
-import { useRef } from 'react';
 import Style from 'src/components/App.module.css';
 import { Slot } from 'src/libs/slot';
 import ToolbarView from './toolbar/ToolbarView';

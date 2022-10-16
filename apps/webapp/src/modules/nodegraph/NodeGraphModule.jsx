@@ -16,12 +16,11 @@ import SafeUndoNodeGraphEventHandler from 'src/graph2/SafeUndoNodeGraphEventHand
 
 /* COMPONENTS */
 
-import PanelContainer from 'src/components/panels/PanelContainer';
-
 import { Playground } from './Playground';
 import InputController from 'src/graph2/controller/InputController';
 import { AppBar } from '../fsa2/AppBar';
 import { MenuBar } from '../fsa2/MenuBar';
+import { AboutPanel, DrawerTab } from 'src/components/drawer/DrawerView';
 
 const MODULE_NAME = 'nodegraph';
 const MODULE_VERSION = '0.0.1';
@@ -42,6 +41,9 @@ class NodalGraphModule {
       { render: Playground, on: 'playground' },
       { render: AppBar, on: 'appbar' },
       { render: MenuBar, on: 'menubar' },
+      // NOTE: Order matters! Each tab will match the drawer by index.
+      { render: AboutPanel, props: { unlocalized: 'Your Average Graph Editor' }, on: 'drawer' },
+      { render: DrawerTab, props: { hidden: true }, on: 'drawer.tab' },
     ];
   }
 
@@ -69,17 +71,6 @@ class NodalGraphModule {
             this._graphParser
           )
       );
-
-    app.getDrawerManager().addPanelClass((props) => (
-      <PanelContainer
-        id={props.id}
-        className={props.className}
-        style={props.style}
-        unlocalizedTitle={'Your Average Graph Editor'}>
-        <p>{'Brought to you with \u2764 by the Flap.js team.'}</p>
-        <p>{'<- Tap on a tab to begin!'}</p>
-      </PanelContainer>
-    ));
 
     app
       .getHotKeyManager()

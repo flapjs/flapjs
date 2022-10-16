@@ -21,31 +21,31 @@ export function MenuBar({ app, module, toolbarRef }) {
   const locale = useLocale();
   return (
     <>
-      <ToolbarButton
-        title={locale.getLocaleString('action.toolbar.changemodule')}
-        icon={EditPencilIcon}
-        onClick={() => toolbarRef.current.setCurrentMenu(MENU_INDEX_MODULE)}
-      />
-      <ToolbarButton
-        title={locale.getLocaleString('action.toolbar.lang')}
-        icon={WorldIcon}
-        onClick={() => toolbarRef.current.setCurrentMenu(MENU_INDEX_LANGUAGE)}
-      />
-      <ToolbarButton
-        title={locale.getLocaleString('component.options.title')}
-        icon={SettingsIcon}
-        onClick={() => toolbarRef.current.setCurrentMenu(MENU_INDEX_OPTION)}
-      />
-      <ToolbarButton
-        title={locale.getLocaleString('action.toolbar.help')}
-        icon={HelpIcon}
-        onClick={() => window.open(HELP_URL, '_blank')}
-      />
-      <ToolbarButton
-        title={locale.getLocaleString('action.toolbar.bug')}
-        icon={BugIcon}
-        onClick={() => window.open(BUGREPORT_URL, '_blank')}
-      />
+    <ToolbarButton
+      title={locale.getLocaleString('action.toolbar.changemodule')}
+      icon={EditPencilIcon}
+      onClick={() => toolbarRef.current.setCurrentMenu(MENU_INDEX_MODULE)}
+    />
+    <ToolbarButton
+      title={locale.getLocaleString('action.toolbar.lang')}
+      icon={WorldIcon}
+      onClick={() => toolbarRef.current.setCurrentMenu(MENU_INDEX_LANGUAGE)}
+    />
+    <ToolbarButton
+      title={locale.getLocaleString('component.options.title')}
+      icon={SettingsIcon}
+      onClick={() => toolbarRef.current.setCurrentMenu(MENU_INDEX_OPTION)}
+    />
+    <ToolbarButton
+      title={locale.getLocaleString('action.toolbar.help')}
+      icon={HelpIcon}
+      onClick={() => window.open(HELP_URL, '_blank')}
+    />
+    <ToolbarButton
+      title={locale.getLocaleString('action.toolbar.bug')}
+      icon={BugIcon}
+      onClick={() => window.open(BUGREPORT_URL, '_blank')}
+    />
     </>
   );
 }

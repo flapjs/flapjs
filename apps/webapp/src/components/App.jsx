@@ -23,7 +23,6 @@ import * as ColorTransform from 'src/util/ColorTransform';
 import ExportManager from 'src/util/file/export/ExportManager';
 import ImportManager from 'src/util/file/import/ImportManager';
 
-import DrawerManager from 'src/session/manager/DrawerManager';
 import MenuManager from 'src/session/manager/MenuManager';
 import ViewportManager from 'src/session/manager/ViewportManager';
 import HotKeyManager, {
@@ -160,7 +159,6 @@ class App extends React.Component {
 
     this._undoManager = new UndoManager();
     this._hotKeyManager = new HotKeyManager();
-    this._drawerManager = new DrawerManager();
     this._menuManager = new MenuManager();
     this._viewportManager = new ViewportManager();
     this._tooltipManager = new TooltipManager();
@@ -172,7 +170,6 @@ class App extends React.Component {
     this._session = props.session
       .addListener(this._undoManager)
       .addListener(this._hotKeyManager)
-      .addListener(this._drawerManager)
       .addListener(this._menuManager)
       .addListener(this._viewportManager)
       .addListener(this._tooltipManager)
@@ -304,9 +301,6 @@ class App extends React.Component {
   getHotKeyManager() {
     return this._hotKeyManager;
   }
-  getDrawerManager() {
-    return this._drawerManager;
-  }
   getMenuManager() {
     return this._menuManager;
   }
@@ -370,14 +364,8 @@ class App extends React.Component {
     const isFullscreen = this.state.hide;
 
     const undoManager = this._undoManager;
-    const drawerManager = this._drawerManager;
     const tooltipManager = this._tooltipManager;
-    const notificationManager = this._notificationManager;
-
-    const drawerPanelClasses = drawerManager.getPanelClasses();
-    const drawerPanelProps = drawerManager.getPanelProps() || {
-      session: session,
-    };
+    const notificationManager = this._notificationManager;;
 
     // HACK: Force self-update
     requestAnimationFrame(() => this.forceUpdate());
@@ -398,8 +386,7 @@ class App extends React.Component {
               <DrawerView
                 ref={this._drawerComponent}
                 className={Style.app_content}
-                panels={drawerPanelClasses}
-                panelProps={drawerPanelProps}
+                panelProps={{ session }}
                 side={hasSmallWidth ? DRAWER_SIDE_BOTTOM : DRAWER_SIDE_RIGHT}
                 direction={
                   hasSmallHeight
