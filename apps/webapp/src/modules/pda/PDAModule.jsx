@@ -28,6 +28,9 @@ import AnalysisPanel from './components/panels/analysis/AnalysisPanel';
 
 import { Playground } from './Playground';
 import InputController from 'src/graph2/controller/InputController';
+import { AppBar } from '../fsa2/AppBar';
+import { MenuBar } from '../fsa2/MenuBar';
+import { DrawerTab } from 'src/components/drawer/DrawerView';
 
 const MODULE_NAME = 'pda';
 const MODULE_LOCALIZED_NAME = 'Pushdown Automata';
@@ -45,6 +48,12 @@ class PDAModule {
   static get renderers() {
     return [
       { render: Playground, on: 'playground' },
+      { render: AppBar, on: 'appbar' },
+      { render: MenuBar, on: 'menubar' },
+      // NOTE: Order matters! Each tab will match the drawer by index.
+      { render: DrawerTab, props: { unlocalized: 'component.overview.title' }, on: 'drawer.tab' },
+      { render: DrawerTab, props: { unlocalized: 'component.testing.title' }, on: 'drawer.tab' },
+      { render: DrawerTab, props: { unlocalized: 'component.analysis.title' }, on: 'drawer.tab' },
     ];
   }
 

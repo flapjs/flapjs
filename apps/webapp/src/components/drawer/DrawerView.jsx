@@ -4,6 +4,7 @@ import Style from './DrawerView.module.css';
 import IconButton from 'src/components/IconButton';
 import ExpandDownIcon from 'src/assets/icons/expand-down.svg';
 import { LocaleConsumer, LocaleString } from 'src/libs/i18n';
+import { Slot } from 'src/libs/slot';
 
 const DRAWER_WIDTH_CSSVAR = '--drawer-width';
 const DRAWER_HANDLE_DRAG_OFFSET = 6;
@@ -307,7 +308,7 @@ class DrawerView extends React.Component {
       !isDrawerOpen;
     const showDrawerTabs = isDrawerOpen || !DRAWER_SHOULD_HIDE_TAB_LIST;
 
-    //Used to handle sideways logic
+    // Used to handle sideways logic
     this._sideways = shouldDrawerBarSideways;
 
     let viewportStyle = {};
@@ -353,26 +354,16 @@ class DrawerView extends React.Component {
                 <ExpandDownIcon />
               </IconButton>
               {showDrawerTabs &&
-                drawerPanels &&
-                drawerPanels.map((e, i) => {
-                  if (!e) return null;
-                  if (!e.UNLOCALIZED) return null;
-                  const unlocalized = e.UNLOCALIZED;
-                  const current = this.isCurrentTab(i);
-                  const disabled = drawerSoloClass && drawerSoloClass !== e;
-                  return (
-                    <a
-                      key={unlocalized + ':' + i}
-                      className={
-                        Style.drawer_tab +
-                        (current ? ' active ' : '') +
-                        (disabled ? ' disabled ' : '')
-                      }
-                      onClick={() => this.setCurrentTab(i)}>
-                      <label><LocaleString entity={unlocalized}/></label>
-                    </a>
-                  );
-                })}
+                <Slot name="drawer.tab" onSlottedProps={(props, key, index) => {
+                  let drawerIndex = index + 1;
+                  return {
+                    ...props,
+                    tabIndex: drawerIndex,
+                    current: this.isCurrentTab(drawerIndex),
+                    disabled: drawerSoloClass && !this.isCurrentTab(drawerIndex),
+                    onClick: () => this.setCurrentTab(drawerIndex),
+                  };
+                }}/>}
             </nav>
             <div className={Style.drawer_content_panel_container}>
               <div className={Style.drawer_content_panel}>
@@ -408,6 +399,22 @@ class DrawerView extends React.Component {
   }
 }
 export default DrawerView;
+
+export function DrawerTab(props) {
+  const { unlocalized, tabIndex, current, disabled, onClick } = props;
+  return (
+    <a key={unlocalized + ':' + tabIndex}
+      className={
+        Style.drawer_tab +
+        (current ? ' active ' : '') +
+        (disabled ? ' disabled ' : '')}
+      onClick={onClick}>
+      <label>
+        <LocaleString entity={unlocalized}/>
+      </label>
+    </a>
+  );
+}
 
 function getCSSDrawerWidth(drawerElement) {
   return parseInt(

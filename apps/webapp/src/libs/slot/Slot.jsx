@@ -49,13 +49,20 @@ import { SlotContext } from './SlotContext';
  * "contentKey" that unique identifies that piece of content. Any injections with the same
  * key (in the same slot) will be treated as an "override" of content, otherwise they will
  * be rendered as siblings.
- * 
- * @param {object} props
- * @param {string} props.name
- * @param {'renderer'|'consumer'|'provider'} [props.mode]
- * @param {React.ReactNode} [props.children]
  */
 export class Slot extends React.Component {
+
+  /**
+   * @param {object} props
+   * @param {string} props.name
+   * @param {'renderer'|'consumer'|'provider'} [props.mode]
+   * @param {(props: object, key: string, index: number) => object} [props.onSlottedProps]
+   * @param {React.ReactNode} [props.children]
+   */
+  constructor(props) {
+    super(props);
+  }
+
   /** @override */
   shouldComponentUpdate(nextProps, nextState) {
     /*
@@ -70,6 +77,7 @@ export class Slot extends React.Component {
     const {
       name = DEFAULT_SLOT_NAME,
       mode = 'renderer',
+      onSlottedProps = undefined,
       children = undefined,
       ...childProps
     } = this.props;
@@ -82,19 +90,30 @@ export class Slot extends React.Component {
             switch(mode) {
               case 'consumer':
                 // @ts-ignore => It expects a function as it's child.
+                if (onSlottedProps) {
+                  throw new Error(`Unsupported operation - 'onSlottedProps' cannot be used for consumer slots.`);
+                }
                 return children.call(undefined, Object.values(slots[name]));
               case 'provider':
-                return Object.values(slots[name]).reduceRight(
-                  (prev, { component: Component, props }) => {
-                    return <Component {...childProps} {...props}> {prev} </Component>;
+                return Object.entries(slots[name]).reduceRight(
+                  (prev, [key, { component: Component, props }], i) => {
+                    let preparedProps = { ...childProps, ...props };
+                    let slottedProps = (onSlottedProps && onSlottedProps(preparedProps, key, i)) || preparedProps;
+                    return (
+                      <Component key={key} {...slottedProps}>
+                        {prev}
+                      </Component>
+                    );
                   },
                   children
                 );
               case 'renderer':
               default:
                 return Object.entries(slots[name]).map(
-                  ([key, { component: Component, props }]) => {
-                    return <Component key={key} {...childProps} {...props} />;
+                  ([key, { component: Component, props }], i) => {
+                    let preparedProps = { ...childProps, ...props };
+                    let slottedProps = (onSlottedProps && onSlottedProps(preparedProps, key, i)) || preparedProps;
+                    return <Component key={key} {...childProps} {...slottedProps} />;
                   }
                 );
             }

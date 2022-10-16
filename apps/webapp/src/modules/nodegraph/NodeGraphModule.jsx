@@ -20,6 +20,8 @@ import PanelContainer from 'src/components/panels/PanelContainer';
 
 import { Playground } from './Playground';
 import InputController from 'src/graph2/controller/InputController';
+import { AppBar } from '../fsa2/AppBar';
+import { MenuBar } from '../fsa2/MenuBar';
 
 const MODULE_NAME = 'nodegraph';
 const MODULE_VERSION = '0.0.1';
@@ -38,6 +40,8 @@ class NodalGraphModule {
   static get renderers() {
     return [
       { render: Playground, on: 'playground' },
+      { render: AppBar, on: 'appbar' },
+      { render: MenuBar, on: 'menubar' },
     ];
   }
 

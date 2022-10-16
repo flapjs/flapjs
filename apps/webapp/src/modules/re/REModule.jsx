@@ -18,6 +18,9 @@ import REExporter from './filehandlers/REExporter';
 import REToFSAExporter from './filehandlers/REToFSAExporter';
 
 import { Playground } from './Playground';
+import { AppBar } from '../fsa2/AppBar';
+import { MenuBar } from '../fsa2/MenuBar';
+import { DrawerTab } from 'src/components/drawer/DrawerView';
 
 const MODULE_NAME = 're';
 const MODULE_VERSION = '0.0.1';
@@ -35,6 +38,12 @@ class REModule {
   static get renderers() {
     return [
       { render: Playground, on: 'playground' },
+      { render: AppBar, on: 'appbar' },
+      { render: MenuBar, on: 'menubar' },
+      // NOTE: Order matters! Each tab will match the drawer by index.
+      { render: DrawerTab, props: { unlocalized: 'component.overview.title' }, on: 'drawer.tab' },
+      { render: DrawerTab, props: { unlocalized: 'component.testing.title' }, on: 'drawer.tab' },
+      { render: DrawerTab, props: { unlocalized: 'component.analysis.title' }, on: 'drawer.tab' },
     ];
   }
 

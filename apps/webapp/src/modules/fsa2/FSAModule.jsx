@@ -38,6 +38,7 @@ import InputController from 'src/graph2/controller/InputController';
 
 import { AppBar } from './AppBar';
 import { MenuBar } from './MenuBar';
+import { DrawerTab } from 'src/components/drawer/DrawerView';
 
 const MODULE_NAME = 'fsa';
 const MODULE_VERSION = '3.0.0';
@@ -58,6 +59,10 @@ class FSAModule {
       { render: Playground, on: 'playground' },
       { render: AppBar, on: 'appbar' },
       { render: MenuBar, on: 'menubar' },
+      // NOTE: Order matters! Each tab will match the drawer by index.
+      { render: DrawerTab, props: { unlocalized: 'component.overview.title' }, on: 'drawer.tab' },
+      { render: DrawerTab, props: { unlocalized: 'component.testing.title' }, on: 'drawer.tab' },
+      { render: DrawerTab, props: { unlocalized: 'component.analysis.title' }, on: 'drawer.tab' },
     ];
   }
 
