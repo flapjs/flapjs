@@ -1,0 +1,9 @@
+.decorative {
+    pointer-events: none;
+    user-select: none;
+}
+
+.mask {
+    fill: transparent;
+    stroke: transparent;
+}

@@ -1,65 +1,56 @@
 import React from 'react';
 
-import NodeRenderer from 'src/graph2/renderer/NodeRenderer';
+import { NodeCircleRenderer } from 'src/modules/fsa2/experimental/renderers/NodeCircleRenderer.jsx';
 
-class FSANodeRenderer extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+/**
+ * @param {object} props
+ */
+export default function FSANodeRenderer(props) {
+  const {
+    node,
+    fill,
+    stroke,
+    onMouseOver,
+    onMouseOut,
+    pointerEvents,
+  } = props;
 
-  /** @override */
-  render() {
-    const node = this.props.node;
-    const fill = this.props.fill;
-    const stroke = this.props.stroke;
-    const onMouseOver = this.props.onMouseOver;
-    const onMouseOut = this.props.onMouseOut;
-    const pointerEvents = this.props.pointerEvents;
-
-    const label = node.getNodeLabel();
-    const radius = node.getNodeSize();
-
-    const accept = node.getNodeAccept();
-
-    return (
-      <React.Fragment>
-        <NodeRenderer
-          position={node}
-          radius={radius}
-          label={label}
-          color={fill}
-          outline={stroke}
-          onMouseOver={
-            onMouseOver
-              ? (e) => {
-                  const value = e.target['value'] || (e.target['value'] = {});
-                  value.source = node;
-                  onMouseOver(e);
-                }
-              : null
+  const label = node.getNodeLabel();
+  const radius = node.getNodeSize();
+  const accept = node.getNodeAccept();
+  
+  return (
+    <NodeCircleRenderer
+      x={node.x} y={node.y}
+      radius={radius}
+      label={label}
+      inner={accept ? radius * 0.8 : undefined}
+      maskProps={{
+        onMouseOut: onMouseOut
+          ? (e) => {
+            const value = e.target.value || (e.target.value = {});
+            value.source = node;
+            value.type = 'node';
+            onMouseOut(e);
           }
-          onMouseOut={
-            onMouseOut
-              ? (e) => {
-                  const value = e.target['value'] || (e.target['value'] = {});
-                  value.source = node;
-                  onMouseOut(e);
-                }
-              : null
+          : null,
+        onMouseOver: onMouseOver
+          ? (e) => {
+            const value = e.target.value || (e.target.value = {});
+            value.source = node;
+            value.type = 'node';
+            onMouseOver(e);
           }
-          pointerEvents={pointerEvents}
-        />
-        {accept && (
-          <NodeRenderer
-            position={node}
-            radius={radius * 0.7}
-            color="none"
-            outline={stroke}
-          />
-        )}
-      </React.Fragment>
-    );
-  }
+          : null,
+        pointerEvents,
+      }}
+      styleProps={{
+        fill,
+        stroke,
+      }}
+      labelProps={{
+        fill: stroke,
+        stroke: 'none',
+      }}/>
+  );
 }
-
-export default FSANodeRenderer;

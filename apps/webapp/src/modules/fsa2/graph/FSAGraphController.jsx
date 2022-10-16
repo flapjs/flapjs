@@ -19,6 +19,8 @@ import { SYMBOL_SEPARATOR } from './element/FSAEdge';
 
 export const TRASH_EDITING_NOTIFICATION_TAG = 'tryCreateWhileTrash';
 
+/** @typedef {import('./FSAGraph').default} FSAGraph */
+
 // This really shouldn't be here....
 import GraphLayout from 'src/modules/fsa2/GraphLayout';
 const DEFAULT_AUTO_RENAME = true;
@@ -193,6 +195,11 @@ class FSAGraphController extends GraphController {
     node.setNodeLabel(newLabel);
     node.setNodeCustom(true);
     this._app.getUndoManager().captureEvent();
+  }
+
+  /** @override */
+  getGraph() {
+    return /** @type {FSAGraph} */ (super.getGraph());
   }
 }
 
