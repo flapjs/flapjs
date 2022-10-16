@@ -18,10 +18,10 @@ import { AppBar } from '../fsa2/AppBar';
 import { MenuBar } from '../fsa2/MenuBar';
 import { AboutPanel, DrawerTab } from 'src/components/drawer/DrawerView';
 
-import ExportPanel from 'src/components/menus/export/ExportPanel';
-import OptionPanel from 'src/components/menus/option/OptionPanel';
-import LanguagePanel from 'src/components/menus/language/LanguagePanel';
-import ModuleLoaderPanel from 'src/components/menus/moduleloader/ModuleLoaderPanel';
+import ExportPanel from 'src/components/appbar/menus/export/ExportPanel';
+import OptionPanel from 'src/components/appbar/menus/option/OptionPanel';
+import LanguagePanel from 'src/components/appbar/menus/language/LanguagePanel';
+import ModuleLoaderPanel from 'src/components/appbar/menus/moduleloader/ModuleLoaderPanel';
 import { AboutMenu } from 'src/components/appbar/toolbar/ToolbarView';
 import { useSerDes } from './RESerializer';
 
