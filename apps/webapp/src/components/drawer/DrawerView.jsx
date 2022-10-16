@@ -5,6 +5,7 @@ import IconButton from 'src/components/IconButton';
 import ExpandDownIcon from 'src/assets/icons/expand-down.svg';
 import { LocaleString } from 'src/libs/i18n';
 import { Slot } from 'src/libs/slot';
+import PanelContainer from '../panels/PanelContainer';
 
 const DRAWER_WIDTH_CSSVAR = '--drawer-width';
 const DRAWER_HANDLE_DRAG_OFFSET = 6;
@@ -108,8 +109,6 @@ class DrawerView extends React.Component {
   }
 
   setCurrentTab(tabIndex) {
-    if (!this.props.panels) return;
-    if (tabIndex >= this.props.panels.length) tabIndex = 0;
     if (this.state.open && this.state.tabIndex === tabIndex) {
       //Toggle fullscreen
       if (this._isfull) {
@@ -127,7 +126,7 @@ class DrawerView extends React.Component {
     return this.state.tabIndex;
   }
 
-  isCurrentTab(tabIndex) {
+  isCurrentTab(tabIndex, length) {
     return this.state.tabIndex === tabIndex;
   }
 
@@ -287,12 +286,12 @@ class DrawerView extends React.Component {
 
   /** @override */
   render() {
-    const drawerPanels = this.props.panels;
     const drawerSide = this.props.side || DRAWER_SIDE_RIGHT;
     const drawerDirection =
       this.props.direction || DRAWER_BAR_DIRECTION_HORIZONTAL;
     const shouldDrawerHide = this.props.hide || false;
-    const drawerSoloClass = this.state.soloClass;
+
+    const panelProps = this.props.panelProps;
 
     const isDrawerOpen = this.state.open;
     //Assumes that parent container has flex and flex-direction: column for bottom, row for right.
@@ -354,35 +353,34 @@ class DrawerView extends React.Component {
                 <ExpandDownIcon />
               </IconButton>
               {showDrawerTabs &&
-                <Slot name="drawer.tab" onSlottedProps={(props, key, index) => {
-                  let drawerIndex = index + 1;
-                  return {
-                    ...props,
-                    current: this.isCurrentTab(drawerIndex),
-                    disabled: drawerSoloClass && !this.isCurrentTab(drawerIndex),
-                    onClick: () => this.setCurrentTab(drawerIndex),
-                  };
+                <Slot name="drawer.tab" onSlotted={(Component, props, children, key, index, array) => {
+                  const disabled = false; // TODO: Drawer solo class was removed :(
+                  return (
+                    <Component {...props }
+                      key={key}
+                      current={this.isCurrentTab(index)}
+                      disabled={disabled}
+                      onClick = {() => {
+                        this.setCurrentTab(index);
+                      }} />
+                  );
                 }}/>}
             </nav>
             <div className={Style.drawer_content_panel_container}>
               <div className={Style.drawer_content_panel}>
-                {drawerPanels &&
-                  drawerPanels.map((e, i) => {
-                    if (!e) return null;
-                    const ComponentClass = e;
-                    const unlocalized = e.UNLOCALIZED || '';
-                    const current = this.isCurrentTab(i);
-                    const disabled = drawerSoloClass && drawerSoloClass !== e;
-                    return (
-                      <DrawerPanel
-                        key={unlocalized + ':' + i}
-                        unlocalized={unlocalized}
-                        current={current}
-                        disabled={disabled}
-                        panelProps={this.props.panelProps}
-                        ComponentClass={ComponentClass}/>
-                    );
-                  })}
+                <Slot name="drawer" onSlotted={(Component, props, children, key, index) => {
+                  const current = this.isCurrentTab(index);
+                  const disabled = false; // TODO: Drawer solo class was removed :(
+                  return (
+                    <div key={key} className={
+                        Style.drawer_panel_container +
+                        (!current ? ' hide ' : '') +
+                        (disabled ? ' disabled ' : '')
+                      }>
+                      <Component className={Style.drawer_panel} {...props} {...panelProps}/>
+                    </div>
+                  );
+                }}/>
               </div>
             </div>
           </div>
@@ -393,24 +391,11 @@ class DrawerView extends React.Component {
 }
 export default DrawerView;
 
-export function DrawerPanel(props) {
-  const { current, disabled, ComponentClass, panelProps } = props;
-  return (
-    <div className={
-        Style.drawer_panel_container +
-        (!current ? ' hide ' : '') +
-        (disabled ? ' disabled ' : '')
-      }>
-      <ComponentClass
-        className={Style.drawer_panel}
-        {...panelProps}
-      />
-    </div>
-  );
-}
-
 export function DrawerTab(props) {
-  const { unlocalized, current, disabled, onClick } = props;
+  const { hidden, unlocalized, current, disabled, onClick } = props;
+  if (hidden) {
+    return (<></>);
+  }
   return (
     <a className={
         Style.drawer_tab +
@@ -421,6 +406,39 @@ export function DrawerTab(props) {
         <LocaleString entity={unlocalized}/>
       </label>
     </a>
+  );
+}
+
+export function AboutPanel(props) {
+  const app = props.session.getApp();
+  return (
+    <PanelContainer
+      id={props.id}
+      className={props.className}
+      style={props.style}
+      unlocalizedTitle={props.unlocalized}>
+      <p>{'Brought to you with \u2764 by the Flap.js team.'}</p>
+      <p>{'<- Tap on a tab to begin!'}</p>
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          right: 0,
+          marginRight: '1em',
+        }}>
+        {"Looking for Bab's Tutorial?"}
+        <div style={{ display: 'flex', margin: '0.5em 0' }}>
+          <button
+            style={{ flex: 1 }}
+            onClick={(e) => {
+              app.getDrawerComponent().closeDrawer();
+              app.getTutorialHandler().start(app, true);
+            }}>
+            <LocaleString entity="message.action.next"/>
+          </button>
+        </div>
+      </div>
+    </PanelContainer>
   );
 }
 

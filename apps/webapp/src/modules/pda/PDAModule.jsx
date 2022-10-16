@@ -20,8 +20,6 @@ import SafeGraphEventHandler from 'src/modules/nodegraph/SafeGraphEventHandler';
 
 /* COMPONENTS */
 
-import PanelContainer from 'src/components/panels/PanelContainer';
-
 import OverviewPanel from './components/panels/overview/OverviewPanel';
 import TestingPanel from './components/panels/testing/TestingPanel';
 import AnalysisPanel from './components/panels/analysis/AnalysisPanel';
@@ -30,7 +28,7 @@ import { Playground } from './Playground';
 import InputController from 'src/graph2/controller/InputController';
 import { AppBar } from '../fsa2/AppBar';
 import { MenuBar } from '../fsa2/MenuBar';
-import { DrawerTab } from 'src/components/drawer/DrawerView';
+import { AboutPanel, DrawerTab } from 'src/components/drawer/DrawerView';
 
 const MODULE_NAME = 'pda';
 const MODULE_LOCALIZED_NAME = 'Pushdown Automata';
@@ -51,6 +49,11 @@ class PDAModule {
       { render: AppBar, on: 'appbar' },
       { render: MenuBar, on: 'menubar' },
       // NOTE: Order matters! Each tab will match the drawer by index.
+      { render: AboutPanel, props: { unlocalized: 'Pushdown Automata' }, on: 'drawer' },
+      { render: OverviewPanel, on: 'drawer' },
+      { render: TestingPanel, on: 'drawer' },
+      { render: AnalysisPanel, on: 'drawer' },
+      { render: DrawerTab, props: { hidden: true }, on: 'drawer.tab' },
       { render: DrawerTab, props: { unlocalized: 'component.overview.title' }, on: 'drawer.tab' },
       { render: DrawerTab, props: { unlocalized: 'component.testing.title' }, on: 'drawer.tab' },
       { render: DrawerTab, props: { unlocalized: 'component.analysis.title' }, on: 'drawer.tab' },
@@ -101,22 +104,6 @@ class PDAModule {
         (...args) =>
           new SafeGraphEventHandler(this._graphController, PDAGraphParser.JSON)
       );
-
-    app
-      .getDrawerManager()
-      .addPanelClass((props) => (
-        <PanelContainer
-          id={props.id}
-          className={props.className}
-          style={props.style}
-          unlocalizedTitle={'Pushdown Automata'}>
-          <p>{'Brought to you with \u2764 by the Flap.js team.'}</p>
-          <p>{'<- Tap on a tab to begin!'}</p>
-        </PanelContainer>
-      ))
-      .addPanelClass(OverviewPanel)
-      .addPanelClass(TestingPanel)
-      .addPanelClass(AnalysisPanel);
 
     app
       .getHotKeyManager()

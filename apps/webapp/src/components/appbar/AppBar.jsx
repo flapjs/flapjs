@@ -43,10 +43,10 @@ export function AppBar({ app, module, session, toolbarRef, drawerRef, isFullscre
             session={session}
             onTitleClick={onModuleTitleClick}
             renderMenu={() => (
-                <Slot name="menubar" app={app} module={module} toolbarRef={toolbarRef}/>
+                <Slot name="menubar" slottedProps={{ app, module, toolbarRef }} />
             )}
             renderBar={() => (
-                <Slot name="appbar" app={app} module={module} toolbarRef={toolbarRef}/>
+                <Slot name="appbar" slottedProps={{ app, module, toolbarRef }} />
             )}/>
     )
 }

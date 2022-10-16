@@ -20,7 +20,7 @@ import REToFSAExporter from './filehandlers/REToFSAExporter';
 import { Playground } from './Playground';
 import { AppBar } from '../fsa2/AppBar';
 import { MenuBar } from '../fsa2/MenuBar';
-import { DrawerTab } from 'src/components/drawer/DrawerView';
+import { AboutPanel, DrawerTab } from 'src/components/drawer/DrawerView';
 
 const MODULE_NAME = 're';
 const MODULE_VERSION = '0.0.1';
@@ -41,6 +41,11 @@ class REModule {
       { render: AppBar, on: 'appbar' },
       { render: MenuBar, on: 'menubar' },
       // NOTE: Order matters! Each tab will match the drawer by index.
+      { render: AboutPanel, props: { unlocalized: 'Regular Expression' }, on: 'drawer' },
+      { render: OverviewPanel, on: 'drawer' },
+      { render: TestingPanel, on: 'drawer' },
+      { render: AnalysisPanel, on: 'drawer' },
+      { render: DrawerTab, props: { hidden: true }, on: 'drawer.tab' },
       { render: DrawerTab, props: { unlocalized: 'component.overview.title' }, on: 'drawer.tab' },
       { render: DrawerTab, props: { unlocalized: 'component.testing.title' }, on: 'drawer.tab' },
       { render: DrawerTab, props: { unlocalized: 'component.analysis.title' }, on: 'drawer.tab' },
@@ -57,22 +62,6 @@ class REModule {
   /** @override */
   initialize(app) {
     registerNotifications(app.getNotificationManager());
-
-    app
-      .getDrawerManager()
-      .addPanelClass((props) => (
-        <PanelContainer
-          id={props.id}
-          className={props.className}
-          style={props.style}
-          unlocalizedTitle={'Regular Expressions'}>
-          <p>{'Brought to you with \u2764 by the Flap.js team.'}</p>
-          <p>{'<- Tap on a tab to begin!'}</p>
-        </PanelContainer>
-      ))
-      .addPanelClass(OverviewPanel)
-      .addPanelClass(AnalysisPanel)
-      .addPanelClass(TestingPanel);
 
     app
       .getUndoManager()

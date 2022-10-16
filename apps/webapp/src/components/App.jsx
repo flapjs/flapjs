@@ -41,6 +41,7 @@ import { Slot } from 'src/libs/slot/Slot';
 import { LocaleConsumer } from 'src/libs/i18n';
 
 import { AppBar } from 'src/components/appbar/AppBar';
+import TutorialHandler from 'src/modules/fsa2/TutorialHandler';
 
 const BROADCAST_CHANNEL_ID = 'fla';
 
@@ -166,6 +167,8 @@ class App extends React.Component {
     this._notificationManager = new NotificationManager();
     this._broadcastManager = new BroadcastManager(this);
 
+    this._tutorialHandler = new TutorialHandler();
+
     this._session = props.session
       .addListener(this._undoManager)
       .addListener(this._hotKeyManager)
@@ -266,6 +269,8 @@ class App extends React.Component {
     registerAppStyles(this._themeManager);
 
     this._init = true;
+
+    this._tutorialHandler.start(this);
   }
 
   //DuckType
@@ -319,6 +324,9 @@ class App extends React.Component {
   }
   getBroadcastManager() {
     return this._broadcastManager;
+  }
+  getTutorialHandler() {
+    return this._tutorialHandler;
   }
 
   getSession() {
@@ -387,7 +395,6 @@ class App extends React.Component {
                 toolbarRef={this._toolbarComponent}
                 drawerRef={this._drawerComponent}
                 isFullscreen={isFullscreen}/>
-
               <DrawerView
                 ref={this._drawerComponent}
                 className={Style.app_content}
@@ -413,9 +420,9 @@ class App extends React.Component {
                       ))}
                     </TooltipView>
 
-                    <Slot name="background" app={this} module={currentModule}/>
-                    <Slot name="playground" app={this} module={currentModule}/>
-                    <Slot name="foreground" app={this} module={currentModule}/>
+                    <Slot name="background" slottedProps={{ app: this, module: currentModule }} />
+                    <Slot name="playground" slottedProps={{ app: this, module: currentModule }} />
+                    <Slot name="foreground" slottedProps={{ app: this, module: currentModule }} />
 
                     <FullscreenWidget
                       className={Style.fullscreen_widget}

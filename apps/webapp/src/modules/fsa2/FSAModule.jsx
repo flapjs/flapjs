@@ -21,11 +21,8 @@ import { registerImageExporters } from 'src/modules/nodegraph/filehandlers/Nodal
 import SafeGraphEventHandler from 'src/modules/nodegraph/SafeGraphEventHandler';
 
 import FSABroadcastHandler from './FSABroadcastHandler';
-import TutorialHandler from './TutorialHandler';
 
 /* COMPONENTS */
-
-import PanelContainer from 'src/components/panels/PanelContainer';
 
 import OverviewPanel from './components/panels/overview/OverviewPanel';
 import TestingPanel from './components/panels/testing/TestingPanel';
@@ -33,12 +30,11 @@ import AnalysisPanel from './components/panels/analysis/AnalysisPanel';
 
 import { Playground } from './Playground';
 import { Init } from './Init';
-import { LocaleString } from 'src/libs/i18n';
 import InputController from 'src/graph2/controller/InputController';
 
 import { AppBar } from './AppBar';
 import { MenuBar } from './MenuBar';
-import { DrawerTab } from 'src/components/drawer/DrawerView';
+import { AboutPanel, DrawerTab } from 'src/components/drawer/DrawerView';
 
 const MODULE_NAME = 'fsa';
 const MODULE_VERSION = '3.0.0';
@@ -60,6 +56,11 @@ class FSAModule {
       { render: AppBar, on: 'appbar' },
       { render: MenuBar, on: 'menubar' },
       // NOTE: Order matters! Each tab will match the drawer by index.
+      { render: AboutPanel, props: { unlocalized: 'Finite Automata' }, on: 'drawer' },
+      { render: OverviewPanel, on: 'drawer' },
+      { render: TestingPanel, on: 'drawer' },
+      { render: AnalysisPanel, on: 'drawer' },
+      { render: DrawerTab, props: { hidden: true }, on: 'drawer.tab' },
       { render: DrawerTab, props: { unlocalized: 'component.overview.title' }, on: 'drawer.tab' },
       { render: DrawerTab, props: { unlocalized: 'component.testing.title' }, on: 'drawer.tab' },
       { render: DrawerTab, props: { unlocalized: 'component.analysis.title' }, on: 'drawer.tab' },
@@ -86,7 +87,6 @@ class FSAModule {
     this._testMode = false;
 
     this._broadcastHandler = new FSABroadcastHandler();
-    this._tutorialHandler = new TutorialHandler();
   }
 
   /** @override */
@@ -116,41 +116,6 @@ class FSAModule {
         (...args) =>
           new SafeGraphEventHandler(this._graphController, FSAGraphParser.JSON)
       );
-
-    app
-      .getDrawerManager()
-      .addPanelClass((props) => (
-        <PanelContainer
-          id={props.id}
-          className={props.className}
-          style={props.style}
-          unlocalizedTitle="Finite State Automata">
-          <p>{'Brought to you with \u2764 by the Flap.js team.'}</p>
-          <p>{'<- Tap on a tab to begin!'}</p>
-          <div
-            style={{
-              position: 'absolute',
-              bottom: 0,
-              right: 0,
-              marginRight: '1em',
-            }}>
-            {"Looking for Bab's Tutorial?"}
-            <div style={{ display: 'flex', margin: '0.5em 0' }}>
-              <button
-                style={{ flex: 1 }}
-                onClick={(e) => {
-                  app.getDrawerComponent().closeDrawer();
-                  this._tutorialHandler.start(app, true);
-                }}>
-                <LocaleString entity="message.action.next"/>
-              </button>
-            </div>
-          </div>
-        </PanelContainer>
-      ))
-      .addPanelClass(OverviewPanel)
-      .addPanelClass(TestingPanel)
-      .addPanelClass(AnalysisPanel);
 
     app
       .getHotKeyManager()
@@ -191,8 +156,6 @@ class FSAModule {
 
     this._machineController.initialize(this);
     this._graphController.initialize();
-
-    this._tutorialHandler.start(app);
   }
 
   /** @override */
