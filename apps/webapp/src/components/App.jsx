@@ -7,7 +7,6 @@ import DrawerView, {
   DRAWER_BAR_DIRECTION_VERTICAL,
   DRAWER_BAR_DIRECTION_HORIZONTAL,
 } from 'src/components/drawer/DrawerView';
-import ToolbarView from 'src/components/toolbar/ToolbarView';
 import TooltipView from 'src/components/tooltip/TooltipView';
 import UploadDropZone from 'src/components/UploadDropZone';
 import NotificationView from 'src/session/manager/notification/components/NotificationView';
@@ -18,23 +17,6 @@ import ExportPanel from 'src/components/menus/export/ExportPanel';
 import OptionPanel from 'src/components/menus/option/OptionPanel';
 import LanguagePanel from 'src/components/menus/language/LanguagePanel';
 import ModuleLoaderPanel from 'src/components/menus/moduleloader/ModuleLoaderPanel';
-
-import ToolbarButton, {
-  TOOLBAR_CONTAINER_TOOLBAR,
-  TOOLBAR_CONTAINER_MENU,
-} from 'src/components/toolbar/ToolbarButton';
-import ToolbarDivider from 'src/components/toolbar/ToolbarDivider';
-import ToolbarUploadButton from 'src/components/toolbar/ToolbarUploadButton';
-import PageEmptyIcon from 'src/assets/icons/page-empty.svg';
-import UndoIcon from 'src/assets/icons/undo.svg';
-import RedoIcon from 'src/assets/icons/redo.svg';
-import UploadIcon from 'src/assets/icons/upload.svg';
-import DownloadIcon from 'src/assets/icons/download.svg';
-import BugIcon from 'src/assets/icons/bug.svg';
-import WorldIcon from 'src/assets/icons/world.svg';
-import HelpIcon from 'src/assets/icons/help.svg';
-import SettingsIcon from 'src/assets/icons/settings.svg';
-import EditPencilIcon from 'src/assets/icons/pencil.svg';
 
 import * as ColorTransform from 'src/util/ColorTransform';
 
@@ -51,27 +33,14 @@ import HotKeyManager, {
 import HotKeyView from 'src/session/manager/hotkey/HotKeyView';
 import UndoManager from 'src/session/manager/undo/UndoManager';
 import TooltipManager from 'src/session/manager/TooltipManager';
-import NotificationManager, {
-  ERROR_LAYOUT_ID,
-} from 'src/session/manager/notification/NotificationManager';
+import NotificationManager from 'src/session/manager/notification/NotificationManager';
 import ThemeManager from 'src/util/theme/ThemeManager';
 import BroadcastManager from 'src/session/manager/broadcast/BroadcastManager';
 import Broadcast from 'src/util/broadcast/Broadcast';
 import { Slot } from 'src/libs/slot/Slot';
 import { LocaleConsumer } from 'src/libs/i18n';
 
-const BUGREPORT_URL = 'https://goo.gl/forms/XSil43Xl5xLHsa0E2';
-const HELP_URL =
-  'https://github.com/flapjs/FLAPJS-WebApp/blob/master/docs/HELP.md';
-
-const DRAWER_INDEX_ABOUT = 0;
-
-const MENU_INDEX_EXPORT = 0;
-const MENU_INDEX_OPTION = 1;
-const MENU_INDEX_LANGUAGE = 2;
-const MENU_INDEX_MODULE = 3;
-
-const ERROR_UPLOAD_NOTIFICATION_TAG = 'error_upload';
+import { AppBar } from 'src/components/appbar/AppBar';
 
 const BROADCAST_CHANNEL_ID = 'fla';
 
@@ -223,7 +192,6 @@ class App extends React.Component {
     );
 
     // this._notificationManager.pushNotification("Welcome to Flap.js");
-    this.onModuleTitleClick = this.onModuleTitleClick.bind(this);
   }
 
   /**
@@ -311,21 +279,6 @@ class App extends React.Component {
     this._menuManager.setSubtitleComponentClass(null);
   }
 
-  onModuleTitleClick(e) {
-    const drawer = this._drawerComponent.current;
-    if (!drawer.isDrawerOpen() || !drawer.isCurrentTab(DRAWER_INDEX_ABOUT)) {
-      //Open current module info panel
-      drawer.setCurrentTab(DRAWER_INDEX_ABOUT);
-    } else {
-      //On another click... open module change panel
-      const toolbarComponent = this._toolbarComponent.current;
-      toolbarComponent.setCurrentMenu(MENU_INDEX_MODULE);
-    }
-
-    e.preventDefault();
-    e.stopPropagation();
-  }
-
   getToolbarComponent() {
     return this._toolbarComponent.current;
   }
@@ -403,32 +356,20 @@ class App extends React.Component {
   render() {
     const session = this._session;
     const currentModule = session.getCurrentModule();
-    const currentModuleLocalizedName = currentModule
-      ? currentModule.getLocalizedModuleName()
-      : null;
 
     const hasSmallWidth = this._mediaQuerySmallWidthList.matches;
     const hasSmallHeight = this._mediaQuerySmallHeightList.matches;
     const isFullscreen = this.state.hide;
 
-    const exportManager = this._exportManager;
-    const importManager = this._importManager;
-
     const undoManager = this._undoManager;
     const drawerManager = this._drawerManager;
-    const menuManager = this._menuManager;
     const tooltipManager = this._tooltipManager;
     const notificationManager = this._notificationManager;
-
-    const toolbarComponent = this._toolbarComponent.current;
 
     const drawerPanelClasses = drawerManager.getPanelClasses();
     const drawerPanelProps = drawerManager.getPanelProps() || {
       session: session,
     };
-    const menuPanelClasses = menuManager.getPanelClasses();
-    const menuPanelProps = menuManager.getPanelProps() || { session: session };
-    const MenuSubtitleClass = menuManager.getSubtitleComponentClass();
 
     // HACK: Force self-update
     requestAnimationFrame(() => this.forceUpdate());
@@ -439,18 +380,13 @@ class App extends React.Component {
           this._locale = locale;
           return (
             <div className={Style.app_container + (currentModule ? ' active ' : '')}>
-              <ToolbarView
-                ref={this._toolbarComponent}
-                className={Style.app_bar}
-                menus={menuPanelClasses}
-                menuProps={menuPanelProps}
-                subtitle={MenuSubtitleClass}
-                hide={isFullscreen}
-                title={currentModuleLocalizedName}
+              <AppBar
+                app={this}
+                module={currentModule}
                 session={session}
-                onTitleClick={this.onModuleTitleClick}>
-                <Slot name="appbar" app={this} module={currentModule} toolbar={toolbarComponent}/>
-              </ToolbarView>
+                toolbarRef={this._toolbarComponent}
+                drawerRef={this._drawerComponent}
+                isFullscreen={isFullscreen}/>
 
               <DrawerView
                 ref={this._drawerComponent}

@@ -85,18 +85,6 @@ class ToolbarView extends React.Component {
     this.props.session.setProjectName(value);
   }
 
-  renderMenuButtons(children) {
-    return React.Children.map(children, (child) => {
-      if (child.props.containerOnly !== TOOLBAR_CONTAINER_TOOLBAR) return child;
-    });
-  }
-
-  renderToolbarButtons(children) {
-    return React.Children.map(children, (child) => {
-      if (child.props.containerOnly !== TOOLBAR_CONTAINER_MENU) return child;
-    });
-  }
-
   /** @override */
   render() {
     const title = this.props.title;
@@ -114,6 +102,8 @@ class ToolbarView extends React.Component {
     const isBarOpen = this.state.open;
     const shouldBarHide = this.props.hide || false;
     const showBarExpander = isBarOpen || (hasButtons && TOOLBAR_ALLOW_MENU_BAR);
+
+    const { renderMenu, renderBar } = this.props;
 
     return (
       <div
@@ -159,7 +149,7 @@ class ToolbarView extends React.Component {
             )}
           </div>
           <div className={Style.menu_button_container}>
-            {this.renderMenuButtons(this.props.children)}
+            {renderMenu()}
           </div>
         </div>
         <div
@@ -175,7 +165,7 @@ class ToolbarView extends React.Component {
           />
 
           <div className={Style.toolbar_button_container}>
-            {this.renderToolbarButtons(this.props.children)}
+            {renderBar()}
           </div>
 
           {showBarExpander && isBarOpen ? (
