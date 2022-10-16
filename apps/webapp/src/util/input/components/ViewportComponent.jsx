@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Style from './ViewportComponent.module.css';
 
 import ViewportAdapter from '../ViewportAdapter';
@@ -47,23 +47,6 @@ class ViewportComponent extends React.Component {
     this._inputAdapter.update();
   }
 
-  getSVGTransformString() {
-    const viewport = this._viewportAdapter;
-    return (
-      'translate(' + viewport.getOffsetX() + ' ' + viewport.getOffsetY() + ')'
-    );
-  }
-
-  getSVGViewBoxString(baseViewSize) {
-    const viewport = this._viewportAdapter;
-    const viewSize =
-      baseViewSize * Math.max(Number.MIN_VALUE, viewport.getScale());
-    const halfViewSize = viewSize / 2;
-    return (
-      -halfViewSize + ' ' + -halfViewSize + ' ' + viewSize + ' ' + viewSize
-    );
-  }
-
   getSVGElement() {
     return this._ref.current;
   }
@@ -73,15 +56,20 @@ class ViewportComponent extends React.Component {
   }
 
   getViewportAdapter() {
-    return this._inputAdapter.getViewportAdapter();
+    return this._viewportAdapter;
   }
 
   /** @override */
   render() {
-    const viewBox = this.getSVGViewBoxString(
-      this.props.viewSize || DEFAULT_VIEW_SIZE
+    const viewport = this._viewportAdapter;
+    const baseViewSize = this.props.viewSize || DEFAULT_VIEW_SIZE;
+    const viewSize =
+      baseViewSize * Math.max(Number.MIN_VALUE, viewport.getScale());
+    const halfViewSize = viewSize / 2;
+    const viewBox = (
+      -halfViewSize + ' ' + -halfViewSize + ' ' + viewSize + ' ' + viewSize
     );
-    const transform = this.getSVGTransformString();
+    const transform = 'translate(' + viewport.getOffsetX() + ' ' + viewport.getOffsetY() + ')'
 
     return (
       <svg

@@ -45,6 +45,7 @@ class PDAErrorChecker {
     const props = {
       graphController: this._graphController,
       machineController: this._machineController,
+      app: this._app,
     };
     const machineBuilder = this._machineController.getMachineBuilder();
     const errors = machineBuilder.getMachineErrors();

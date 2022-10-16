@@ -6,10 +6,10 @@ import PanelSection from 'src/components/panels/PanelSection';
 import PanelDivider from 'src/components/panels/PanelDivider';
 import PanelSwitch from 'src/components/panels/PanelSwitch';
 
-import StateListView from './states/StateListView';
-import AlphabetListView from './alphabet/AlphabetListView';
+import StateListView from 'src/modules/fsa2/components/panels/overview/states/StateListView';
+import AlphabetListView from 'src/modules/fsa2/components/panels/overview/alphabet/AlphabetListView';
 import StackAlphabetListView from './stackalphabet/StackAlphabetListView';
-import AutoStateLabelView from './AutoStateLabelView';
+import AutoStateLabelView from 'src/modules/fsa2/components/panels/overview/AutoStateLabelView';
 import { LocaleString } from 'src/libs/i18n';
 
 class OverviewPanel extends React.Component {
@@ -50,6 +50,7 @@ class OverviewPanel extends React.Component {
     const session = this.props.session;
     const currentModule = session.getCurrentModule();
     const graphController = currentModule.getGraphController();
+    const graphView = currentModule.getGraphView();
     const machineController = currentModule.getMachineController();
     const autoRename = graphController.shouldAutoRenameNodes();
 
@@ -62,7 +63,7 @@ class OverviewPanel extends React.Component {
         style={this.props.style}
         unlocalizedTitle={OverviewPanel.UNLOCALIZED}>
         <PanelSection title={'States'} initial={true} full={drawerFull}>
-          <StateListView graphController={graphController} />
+          <StateListView graphController={graphController} graphView={graphView}/>
         </PanelSection>
         <PanelSection title={'Alphabet'} initial={true} full={drawerFull}>
           <AlphabetListView machineController={machineController} />

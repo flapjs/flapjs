@@ -1,61 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { LocaleString } from 'src/libs/i18n';
 import DefaultNotificationLayout, {
   STYLE_TYPE_ERROR,
 } from 'src/session/manager/notification/components/DefaultNotificationLayout';
+import { locateTarget } from './NotificationHelper';
 
 /**
  * A class representing the layout for a notification referring to states
  */
-class StateNotificationLayout extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this._targetIndex = 0;
-    this._targetLabel = '';
-    const targets = props.message.targets;
-    for (const target of targets) {
-      if (this._targetLabel.length > 0) {
-        this._targetLabel += ', ';
-      }
-      // TODO: make a helper function for this type of constructor
-      this._targetLabel += target.getNodeLabel();
-    }
-
-    this.onClick = this.onClick.bind(this);
-  }
+export default function StateNotificationLayout(props) {
+  const [targetIndex, setTargetIndex] = useState(0);
+  const targetLabel = props.message
+    .map(t => t.getNodeLabel())
+    .join(', ');
 
   /**
    * Handles onclick events for the buttons
-   *
-   * @param {Event} e the input event
    */
-  onClick(e) {
-    const notification = this.props.notification;
-    const message = this.props.message;
-    const app = this.props.app;
+  function onClick(e) {
+    const notification = props.notification;
+    const message = props.message;
+    const app = props.app;
 
-    const graphController = this.props.graphController;
+    const graphController = props.graphController;
 
     switch (e.target.value) {
       // Cycle through all of the targets and center the viewport on it
       case 'locate':
-        {
-          const targets = message.targets;
-          const targetLength = targets.length;
-          if (targetLength > 0 && this._targetIndex < targetLength) {
-            // Locate the target edge
-            const target = targets[this._targetIndex++];
-            if (this._targetIndex >= targetLength) this._targetIndex = 0;
-
-            // Move pointer to target
-            const graphView = app
-              .getSession()
-              .getCurrentModule()
-              .getGraphView();
-            graphView.moveViewToPosition(target.x, target.y);
-          }
-        }
+        locateTarget(app, message.targets, targetIndex, setTargetIndex);
         break;
       // Delete all targets
       case 'deleteall':
@@ -63,10 +35,8 @@ class StateNotificationLayout extends React.Component {
           const targets = message.targets;
           // Delete all target nodes
           graphController.deleteTargetNodes(targets);
-
           // Sort the nodes after deleting if enabled...
           graphController.applyAutoRename();
-
           // Exit the message
           notification.close();
         }
@@ -74,31 +44,26 @@ class StateNotificationLayout extends React.Component {
     }
   }
 
-  /** @override */
-  render() {
-    const message = this.props.message;
+  const message = props.message;
 
-    // TODO: localization issues
-    return (
-      <DefaultNotificationLayout
-        id={this.props.id}
-        className={this.props.className}
-        style={this.props.style}
-        styleType={STYLE_TYPE_ERROR}
-        notification={this.props.notification}>
-        <p>
-          {message.text || <LocaleString entity={message.unlocalized}/>}
-          {': ' + this._targetLabel}
-        </p>
-        <button value="locate" onClick={this.onClick}>
-          <LocaleString entity="message.action.locate"/>
-        </button>
-        <button value="deleteall" onClick={this.onClick}>
-          <LocaleString entity="message.action.deleteall"/>
-        </button>
-      </DefaultNotificationLayout>
-    );
-  }
+  // TODO: localization issues
+  return (
+    <DefaultNotificationLayout
+      id={props.id}
+      className={props.className}
+      style={props.style}
+      styleType={STYLE_TYPE_ERROR}
+      notification={props.notification}>
+      <p>
+        {message.text || <LocaleString entity={message.unlocalized}/>}
+        {': ' + targetLabel}
+      </p>
+      <button value="locate" onClick={onClick}>
+        <LocaleString entity="message.action.locate"/>
+      </button>
+      <button value="deleteall" onClick={onClick}>
+        <LocaleString entity="message.action.deleteall"/>
+      </button>
+    </DefaultNotificationLayout>
+  );
 }
-
-export default StateNotificationLayout;

@@ -1,65 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DefaultNotificationLayout, {
   STYLE_TYPE_ERROR,
 } from 'src/session/manager/notification/components/DefaultNotificationLayout';
 import GraphNode from 'src/graph2/element/GraphNode';
 import { LocaleString } from 'src/libs/i18n';
+import { locateTarget } from './NotificationHelper';
 
 const ARROW = '\u2192';
 
-class TransitionNotificationLayout extends React.Component {
-  constructor(props) {
-    super(props);
+export default function TransitionNotificationLayout(props) {
+  const [targetIndex, setTargetIndex] = useState(0);
+  const targetLabel = props.message.targets
+    .map(t => `(${t.getEdgeFrom().getNodeLabel()}`
+      + `, ${t.getEdgeLabel()})${ARROW} `
+      + `${(t.getEdgeTo() instanceof GraphNode
+        ? t.getEdgeTo().getNodeLabel()
+        : 'null')}`)
+    .join(', ');
 
-    this.targetIndex = 0;
-    this.targetLabel = '';
-    const targets = props.message.targets;
-    for (const target of targets) {
-      if (this.targetLabel.length > 0) {
-        this.targetLabel += ', ';
-      }
-      this.targetLabel +=
-        '(' +
-        target.getEdgeFrom().getNodeLabel() +
-        ', ' +
-        target.getEdgeLabel() +
-        ') ' +
-        ARROW +
-        ' ' +
-        (target.getEdgeTo() instanceof GraphNode
-          ? target.getEdgeTo().getNodeLabel()
-          : 'null');
-    }
+  function onClick(e) {
+    const notification = props.notification;
+    const message = props.message;
+    const app = props.app;
 
-    this.onClick = this.onClick.bind(this);
-  }
-
-  onClick(e) {
-    const notification = this.props.notification;
-    const message = this.props.message;
-    const app = this.props.app;
-
-    const graphController = this.props.graphController;
+    const graphController = props.graphController;
 
     switch (e.target.value) {
       case 'locate':
-        {
-          const targets = message.targets;
-          const targetLength = targets.length;
-          if (targetLength > 0 && this.targetIndex < targetLength) {
-            //Locate the target edge
-            const target = targets[this.targetIndex++];
-            if (this.targetIndex >= targetLength) this.targetIndex = 0;
-
-            //Move pointer to target
-            const graphView = app
-              .getSession()
-              .getCurrentModule()
-              .getGraphView();
-            const center = target.getCenterPoint();
-            graphView.moveViewToPosition(center.x, center.y);
-          }
-        }
+        locateTarget(app, message.targets, targetIndex, setTargetIndex);
         break;
       case 'deleteall':
         {
@@ -74,30 +42,23 @@ class TransitionNotificationLayout extends React.Component {
     }
   }
 
-  /** @override */
-  render() {
-    // const message = this.props.message;
-
-    return (
-      <DefaultNotificationLayout
-        id={this.props.id}
-        className={this.props.className}
-        style={this.props.style}
-        styleType={STYLE_TYPE_ERROR}
-        notification={this.props.notification}>
-        <p>
-          {this.props.message.text || <LocaleString entity={this.props.message.unlocalized}/>}
-          {': ' + this.targetLabel}
-        </p>
-        <button value="locate" onClick={this.onClick}>
-          <LocaleString entity="message.action.locate"/>
-        </button>
-        <button value="deleteall" onClick={this.onClick}>
-          <LocaleString entity="message.action.deleteall"/>
-        </button>
-      </DefaultNotificationLayout>
-    );
-  }
+  return (
+    <DefaultNotificationLayout
+      id={props.id}
+      className={props.className}
+      style={props.style}
+      styleType={STYLE_TYPE_ERROR}
+      notification={props.notification}>
+      <p>
+        {props.message.text || <LocaleString entity={props.message.unlocalized}/>}
+        {': ' + targetLabel}
+      </p>
+      <button value="locate" onClick={onClick}>
+        <LocaleString entity="message.action.locate"/>
+      </button>
+      <button value="deleteall" onClick={onClick}>
+        <LocaleString entity="message.action.deleteall"/>
+      </button>
+    </DefaultNotificationLayout>
+  );
 }
-
-export default TransitionNotificationLayout;

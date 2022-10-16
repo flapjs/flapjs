@@ -6,42 +6,35 @@ import BoxAddIcon from 'src/assets/icons/box-add.svg';
 import TriangleIcon from 'src/assets/icons/triangle.svg';
 
 import StateListElement from './StateListElement';
+import { useState } from 'react';
 
-class StateListView extends React.Component {
-  constructor(props) {
-    super(props);
+export default function StateListView(props) {
+  const [prev, setPrev] = useState({ x: 0, y: 0 });
 
-    this._prevX = 0;
-    this._prevY = 0;
-
-    this.onElementAdd = this.onElementAdd.bind(this);
-    this.onElementFocus = this.onElementFocus.bind(this);
-    this.onElementBlur = this.onElementBlur.bind(this);
-    this.onElementChange = this.onElementChange.bind(this);
+  function onElementAdd(e) {
+    const graphController = props.graphController;
+    setPrev(prev => ({ x: prev.x + 16, y: prev.y + 16 }));
+    const node = graphController.createNode(prev.x, prev.y);
+    const graphView = props.graphView;
+    if (graphView) {
+      graphView.moveViewToPosition(node.x, node.y);
+    }
   }
 
-  onElementAdd(e) {
-    const graphController = this.props.graphController;
-    this._prevX += 16;
-    this._prevY += 16;
-    const node = graphController.createNode(this._prevX, this._prevY);
-    const graphView = this.props.graphView;
-    graphView.moveViewToPosition(node.x, node.y);
-  }
-
-  onElementFocus(e, element) {
+  function onElementFocus(e, element) {
     const node = element.props.node;
-    this._prevX = node.x;
-    this._prevY = node.y;
-    const graphView = this.props.graphView;
-    graphView.moveViewToPosition(node.x, node.y);
+    setPrev({ x: node.x, y: node.y });
+    const graphView = props.graphView;
+    if (graphView) {
+      graphView.moveViewToPosition(node.x, node.y);
+    }
   }
 
-  onElementBlur(e, element, nextLabel) {
+  function onElementBlur(e, element, nextLabel) {
     const node = element.props.node;
     if (!node) return;
 
-    const graphController = this.props.graphController;
+    const graphController = props.graphController;
 
     //The value is already processed, abort
     if (nextLabel !== null) {
@@ -65,8 +58,8 @@ class StateListView extends React.Component {
     }
   }
 
-  onElementChange(e, element, value) {
-    const graphController = this.props.graphController;
+  function onElementChange(e, element, value) {
+    const graphController = props.graphController;
 
     if (value.length > 0) {
       const graph = graphController.getGraph();
@@ -83,38 +76,32 @@ class StateListView extends React.Component {
     }
   }
 
-  /** @override */
-  render() {
-    const graphController = this.props.graphController;
-    const graph = graphController.getGraph();
-    const nodes = graph.getNodes();
+  const graphController = props.graphController;
+  const graph = graphController.getGraph();
+  const nodes = graph.getNodes();
 
-    return (
-      <div
-        id={this.props.id}
-        className={Style.list_container}
-        style={this.props.style}>
-        <div className={Style.element_list}>
-          <TriangleIcon className={Style.first_marker} />
-          {nodes.map((e) => (
-            <StateListElement
-              key={e.getGraphElementID()}
-              node={e}
-              onFocus={this.onElementFocus}
-              onBlur={this.onElementBlur}
-              onChange={this.onElementChange}
-            />
-          ))}
-        </div>
-        <IconButton
-          className={Style.add_button}
-          title="Add State"
-          onClick={this.onElementAdd}>
-          <BoxAddIcon />
-        </IconButton>
+  return (
+    <div id={props.id}
+      className={Style.list_container}
+      style={props.style}>
+      <div className={Style.element_list}>
+        <TriangleIcon className={Style.first_marker} />
+        {nodes.map((e) => (
+          <StateListElement
+            key={e.getGraphElementID()}
+            node={e}
+            onFocus={onElementFocus}
+            onBlur={onElementBlur}
+            onChange={onElementChange}
+          />
+        ))}
       </div>
-    );
-  }
+      <IconButton
+        className={Style.add_button}
+        title="Add State"
+        onClick={onElementAdd}>
+        <BoxAddIcon />
+      </IconButton>
+    </div>
+  );
 }
-
-export default StateListView;
