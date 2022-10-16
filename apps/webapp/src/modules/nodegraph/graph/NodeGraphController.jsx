@@ -31,8 +31,6 @@ class NodeGraphController extends GraphController {
             true
           );
         break;
-      default:
-        this._app.getUndoManager().captureEvent();
     }
   }
 

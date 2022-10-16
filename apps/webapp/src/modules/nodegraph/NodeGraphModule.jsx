@@ -12,8 +12,6 @@ import NodeGraphController from './graph/NodeGraphController';
 
 import { registerImageExporters } from './filehandlers/NodalGraphImageExporter';
 
-import SafeUndoNodeGraphEventHandler from 'src/graph2/SafeUndoNodeGraphEventHandler';
-
 /* COMPONENTS */
 
 import { Playground } from './Playground';
@@ -26,6 +24,7 @@ import OptionPanel from 'src/components/menus/option/OptionPanel';
 import LanguagePanel from 'src/components/menus/language/LanguagePanel';
 import ModuleLoaderPanel from 'src/components/menus/moduleloader/ModuleLoaderPanel';
 import { AboutMenu } from 'src/components/appbar/toolbar/ToolbarView';
+import { useSerDes } from './NodeGraphSerializer';
 
 const MODULE_NAME = 'nodegraph';
 const MODULE_VERSION = '0.0.1';
@@ -44,7 +43,7 @@ class NodalGraphModule {
   static get renderers() {
     return [
       { render: Playground, on: 'playground' },
-      { render: AppBar, on: 'appbar' },
+      { render: AppBar, props: { useSerDes }, on: 'appbar' },
       { render: MenuBar, on: 'menubar' },
       // NOTE: Order matters! Each tab will match the drawer by index.
       { render: AboutPanel, props: { unlocalized: 'Your Average Graph Editor' }, on: 'drawer' },
@@ -71,16 +70,6 @@ class NodalGraphModule {
   /** @override */
   initialize(app) {
     registerImageExporters(app.getExportManager());
-
-    app
-      .getUndoManager()
-      .setEventHandlerFactory(
-        (...args) =>
-          new SafeUndoNodeGraphEventHandler(
-            this._graphController,
-            this._graphParser
-          )
-      );
 
     app
       .getHotKeyManager()

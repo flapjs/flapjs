@@ -33,7 +33,6 @@ class REGrammarView extends React.Component {
     result = result.replace(new RegExp(UNION_CHAR, 'g'), UNION);
 
     machineController.setMachineExpression(result);
-    session.getApp().getUndoManager().captureEvent();
   }
 
   onClick(e) {
@@ -83,8 +82,6 @@ class REGrammarView extends React.Component {
     const machineController = currentModule.getMachineController();
     const terminals = machineController.getMachineTerminals();
     const error = !machineController.getMachine().isValid();
-
-    //TODO: Undo/Redo doesn't work.
 
     return (
       <div className={Style.grammar_container}>

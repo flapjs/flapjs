@@ -1,9 +1,5 @@
-import React from 'react';
-import PanelContainer from 'src/components/panels/PanelContainer';
-
 import MachineController from './MachineController';
 import REErrorChecker from './REErrorChecker';
-import SafeExpressionEventHandler from './SafeExpressionEventHandler';
 
 import { registerNotifications } from './components/notifications/RENotifications';
 
@@ -27,6 +23,7 @@ import OptionPanel from 'src/components/menus/option/OptionPanel';
 import LanguagePanel from 'src/components/menus/language/LanguagePanel';
 import ModuleLoaderPanel from 'src/components/menus/moduleloader/ModuleLoaderPanel';
 import { AboutMenu } from 'src/components/appbar/toolbar/ToolbarView';
+import { useSerDes } from './RESerializer';
 
 const MODULE_NAME = 're';
 const MODULE_VERSION = '0.0.1';
@@ -44,7 +41,7 @@ class REModule {
   static get renderers() {
     return [
       { render: Playground, on: 'playground' },
-      { render: AppBar, on: 'appbar' },
+      { render: AppBar, props: { useSerDes }, on: 'appbar' },
       { render: MenuBar, on: 'menubar' },
       // NOTE: Order matters! Each tab will match the drawer by index.
       { render: AboutPanel, props: { unlocalized: 'Regular Expression' }, on: 'drawer' },
@@ -75,12 +72,6 @@ class REModule {
     registerNotifications(app.getNotificationManager());
 
     app
-      .getUndoManager()
-      .setEventHandlerFactory(
-        (...args) => new SafeExpressionEventHandler(this._machineController)
-      );
-
-    app
       .getExportManager()
       .registerExporter(new REExporter(), 'session')
       .registerExporter(new REToFSAExporter(), 're2fsa');
@@ -98,10 +89,10 @@ class REModule {
         this.clear(app);
       })
       .registerHotKey('Undo', [CTRL_KEY, 'KeyZ'], () => {
-        app.getUndoManager().undo();
+        // app.getUndoManager().undo();
       })
       .registerHotKey('Redo', [CTRL_KEY, SHIFT_KEY, 'KeyZ'], () => {
-        app.getUndoManager().redo();
+        // app.getUndoManager().redo();
       });
   }
 
@@ -117,7 +108,6 @@ class REModule {
   clear(app) {
     if (window.confirm(app.getLocale().getLocaleString('alert.graph.clear'))) {
       this._machineController.setMachineExpression('');
-      app.getUndoManager().clear();
       app.getSession().setProjectName(null);
       let toolbar = app.getToolbarComponent();
       if (toolbar) {

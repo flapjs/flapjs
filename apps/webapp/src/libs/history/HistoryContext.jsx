@@ -21,14 +21,12 @@ function HistoryContextAPI(props) {
             if (historyKey in state.history) {
                 const historyState = state.history[historyKey];
                 const nextHistoryIndex = historyState.index + historyIndexOffset;
-                return nextHistoryIndex >= 0
+                return nextHistoryIndex > 0
                     && nextHistoryIndex < historyState.snapshots.length;
-            }
-            else {
+            } else {
                 return false;
             }
-        },
-        [state.history]);
+        }, [state.history]);
 
     /**
      * Restores the state to an earlier or later snapshot (determined by the offset).
@@ -56,8 +54,7 @@ function HistoryContextAPI(props) {
                     },
                 };
             });
-        },
-        []);
+        }, []);
 
     /**
      * Commits a snapshot and record it in the history.
@@ -72,13 +69,16 @@ function HistoryContextAPI(props) {
                 let historyState = state.history[historyKey];
                 let snapshots = historyState.snapshots;
                 const length = snapshots.length;
-                if (length >= MAX_HISTORY_LENGTH) {
-                    // Cycle out old ones for space for the new.
-                    snapshots.shift();
-                    historyState.index -= 1;
-                }
-                else {
-                    // Advance the end.
+                if (historyState.index >= length - 1) {
+                    if (length >= MAX_HISTORY_LENGTH) {
+                        // Cycle out old ones for space for the new.
+                        snapshots.shift();
+                    } else {
+                        // Advance the end.
+                        historyState.index += 1;
+                    }
+                } else {
+                    historyState.snapshots.length = historyState.index + 1;
                     historyState.index += 1;
                 }
 
@@ -86,8 +86,7 @@ function HistoryContextAPI(props) {
                 snapshotSerializer(nextSnapshot);
                 if (Object.keys(nextSnapshot).length > 0) {
                     snapshots.push(nextSnapshot);
-                }
-                else {
+                } else {
                     return state;
                 }
 
@@ -104,8 +103,7 @@ function HistoryContextAPI(props) {
                     },
                 };
             });
-        },
-        []);
+        }, []);
 
     /**
      * Clears the history for the given history key.
@@ -121,8 +119,7 @@ function HistoryContextAPI(props) {
                     },
                 };
             });
-        },
-        []);
+        }, []);
 
     /**
      * Gets the state of the history for the given history key.
@@ -130,8 +127,7 @@ function HistoryContextAPI(props) {
     const getState = useCallback(
         function getState(historyKey) {
             return state.history[historyKey];
-        },
-        [state]);
+        }, [state]);
 
     /**
      * Resets the state of the history for the given history key.
@@ -157,8 +153,7 @@ function HistoryContextAPI(props) {
                     },
                 };
             });
-        },
-        []);
+        }, []);
 
     return {
         canRestore,
@@ -173,7 +168,10 @@ function HistoryContextAPI(props) {
 function createHistoryState(historyKey) {
     return {
         id: historyKey,
-        index: -1,
-        snapshots: [],
+        index: 0,
+        snapshots: [
+            // NOTE: Always start with an empty.
+            {}
+        ],
     };
 }

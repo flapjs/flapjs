@@ -17,11 +17,6 @@ class REImporter extends SessionImporter {
     const currentModule = session.getCurrentModule();
     const machineController = currentModule.getMachineController();
     this._prevExpression = machineController.getMachineExpression();
-
-    // TODO: this should not be here, this should exist somewhere in graphController
-    if (!this._prevExpression) {
-      session.getApp().getUndoManager().captureEvent();
-    }
   }
 
   /** @override */
@@ -41,10 +36,6 @@ class REImporter extends SessionImporter {
 
     // Compares the graph hash before and after import, captures event if they are not equal
     const nextExpression = machineController.getMachineExpression();
-    if (this._prevExpression !== nextExpression) {
-      // TODO: this should not be here
-      session.getApp().getUndoManager().captureEvent();
-    }
   }
 }
 

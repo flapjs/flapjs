@@ -11,15 +11,11 @@ class SessionImporter extends Importer {
     return fileData;
   }
 
-  onPreImportSession(session) {
-    session.getApp().getUndoManager().captureEvent();
-  }
+  onPreImportSession(session) {}
 
   onImportSession(session, sessionData) {}
 
-  onPostImportSession(session) {
-    session.getApp().getUndoManager().captureEvent();
-  }
+  onPostImportSession(session) {}
 
   /** @override */
   importFileData(fileName, fileType, fileData) {

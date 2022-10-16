@@ -24,7 +24,6 @@ import HotKeyManager, {
   SHIFT_KEY,
 } from 'src/session/manager/hotkey/HotKeyManager';
 import HotKeyView from 'src/session/manager/hotkey/HotKeyView';
-import UndoManager from 'src/session/manager/undo/UndoManager';
 import TooltipManager from 'src/session/manager/TooltipManager';
 import NotificationManager from 'src/session/manager/notification/NotificationManager';
 import ThemeManager from 'src/util/theme/ThemeManager';
@@ -151,7 +150,6 @@ class App extends React.Component {
     this._exportManager = new ExportManager();
     this._importManager = new ImportManager();
 
-    this._undoManager = new UndoManager();
     this._hotKeyManager = new HotKeyManager();
     this._viewportManager = new ViewportManager();
     this._tooltipManager = new TooltipManager();
@@ -161,7 +159,6 @@ class App extends React.Component {
     this._tutorialHandler = new TutorialHandler();
 
     this._session = props.session
-      .addListener(this._undoManager)
       .addListener(this._hotKeyManager)
       .addListener(this._viewportManager)
       .addListener(this._tooltipManager)
@@ -220,6 +217,7 @@ class App extends React.Component {
       });
 
     // Only register undo / redo hotkeys if undo is possible
+    /*
     if (this._undoManager.getEventHandlerFactory()) {
       this._hotKeyManager
         .registerHotKey('Undo', [CTRL_KEY, 'KeyZ'], () =>
@@ -229,6 +227,7 @@ class App extends React.Component {
           this.getUndoManager().redo()
         );
     }
+    */
 
     if (!this._tooltipManager.hasTooltips()) {
       this._tooltipManager
@@ -277,9 +276,6 @@ class App extends React.Component {
     return this._importManager;
   }
 
-  getUndoManager() {
-    return this._undoManager;
-  }
   getHotKeyManager() {
     return this._hotKeyManager;
   }
@@ -342,7 +338,6 @@ class App extends React.Component {
     const hasSmallHeight = this._mediaQuerySmallHeightList.matches;
     const isFullscreen = this.state.hide;
 
-    const undoManager = this._undoManager;
     const tooltipManager = this._tooltipManager;
     const notificationManager = this._notificationManager;;
 
@@ -378,8 +373,8 @@ class App extends React.Component {
                     <TooltipView
                       mode={tooltipManager.getTransitionMode()}
                       visible={
-                        /* TODO: For the initial fade-in animation */ this._init &&
-                        !undoManager.canUndo()
+                        /* TODO: For the initial fade-in animation */ this._init
+                        /* && !undoManager.canUndo() */
                       }>
                       {tooltipManager.getTooltips().map((e, i) => (
                         <label key={e + ':' + i}>{e}</label>

@@ -24,7 +24,7 @@ import { useHistoryContext } from './HistoryContext';
  * @param {Boolean} [opts.commitImmediately] Whether to commit immediately on change, in addition to on the recheck interval.
  */
 export function useHistory(historyKey, serializer, deserializer, opts = {}) {
-    const { recheckTimeInterval = 300, commitImmediately = false } = opts;
+    const { recheckTimeInterval = 1_000, commitImmediately = false } = opts;
 
     const { canRestore, restore, commit, clear, getState } = useHistoryContext();
 
@@ -43,8 +43,7 @@ export function useHistory(historyKey, serializer, deserializer, opts = {}) {
         if (!isCurrentSnapshot(historyState, nextSnapshot)) {
             commit(historyKey, dst => Object.assign(dst, nextSnapshot));
         }
-    },
-        [historySnapshotSerializer, getState, historyKey, commit]);
+    }, [historySnapshotSerializer, getState, historyKey, commit]);
 
     useEffect(() => {
         // This will commit the change immediately, instead of waiting a buffer time to commit.
@@ -62,8 +61,7 @@ export function useHistory(historyKey, serializer, deserializer, opts = {}) {
                 if (canUpdate) {
                     historyCommitCallback();
                 }
-            },
-                recheckTimeInterval);
+            }, recheckTimeInterval);
 
             // Be sure to clean up any leftover event listeners to prevent memory leaks.
             return () => {
@@ -71,43 +69,37 @@ export function useHistory(historyKey, serializer, deserializer, opts = {}) {
                 clearInterval(intervalHandle);
             };
         }
-    },
-        [commitImmediately, historyCommitCallback, recheckTimeInterval]);
+    }, [commitImmediately, historyCommitCallback, recheckTimeInterval]);
 
     /** Perform an undo and restore the previous snapshot state, if exists. */
     const doUndoHistory = useCallback(
         function doUndoHistory() {
             restore(historyKey, -1, historySnapshotDeserializer);
-        },
-        [historyKey, historySnapshotDeserializer, restore]);
+        }, [historyKey, historySnapshotDeserializer, restore]);
 
     /** Whether a previous snapshot state exists for an undo. */
     const canUndoHistory = useCallback(
         function canUndoHistory() {
             return canRestore(historyKey, -1);
-        },
-        [canRestore, historyKey]);
+        }, [canRestore, historyKey]);
 
     /** Perform a redo and restore the next snapshot state, if exists. */
     const doRedoHistory = useCallback(
         function doRedoHistory() {
             restore(historyKey, 1, historySnapshotDeserializer);
-        },
-        [historyKey, historySnapshotDeserializer, restore]);
+        }, [historyKey, historySnapshotDeserializer, restore]);
 
     /** Whether a next snapshot state exists for a redo. */
     const canRedoHistory = useCallback(
         function canRedoHistory() {
             return canRestore(historyKey, 1);
-        },
-        [canRestore, historyKey]);
+        }, [canRestore, historyKey]);
 
     /** Remove all committed snapshot states. */
     const clearHistory = useCallback(
         function clearHistory() {
             clear(historyKey);
-        },
-        [clear, historyKey]);
+        }, [clear, historyKey]);
 
     return {
         doUndoHistory,

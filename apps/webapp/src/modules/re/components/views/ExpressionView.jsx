@@ -33,7 +33,6 @@ class ExpressionView extends React.Component {
     const result = value.replace(new RegExp(UNION_CHAR, 'g'), UNION);
 
     machineController.setMachineExpression(result);
-    session.getApp().getUndoManager().captureEvent();
   }
 
   onClick(e) {
@@ -58,7 +57,6 @@ class ExpressionView extends React.Component {
       symbol +
       currentExpression.slice(cursorPos);
     machineController.setMachineExpression(newExpression);
-    session.getApp().getUndoManager().captureEvent();
     this._inputElement.focus();
   }
 

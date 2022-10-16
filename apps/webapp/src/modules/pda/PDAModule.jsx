@@ -16,8 +16,6 @@ import PDAImporter from './filehandlers/PDAImporter';
 import PDAExporter from './filehandlers/PDAExporter';
 import { registerImageExporters } from 'src/modules/nodegraph/filehandlers/NodalGraphImageExporter';
 
-import SafeGraphEventHandler from 'src/modules/nodegraph/SafeGraphEventHandler';
-
 /* COMPONENTS */
 
 import OverviewPanel from './components/panels/overview/OverviewPanel';
@@ -35,6 +33,7 @@ import OptionPanel from 'src/components/menus/option/OptionPanel';
 import LanguagePanel from 'src/components/menus/language/LanguagePanel';
 import ModuleLoaderPanel from 'src/components/menus/moduleloader/ModuleLoaderPanel';
 import { AboutMenu } from 'src/components/appbar/toolbar/ToolbarView';
+import { useSerDes } from './PDASerializer';
 
 const MODULE_NAME = 'pda';
 const MODULE_LOCALIZED_NAME = 'Pushdown Automata';
@@ -52,7 +51,7 @@ class PDAModule {
   static get renderers() {
     return [
       { render: Playground, on: 'playground' },
-      { render: AppBar, on: 'appbar' },
+      { render: AppBar, props: { useSerDes }, on: 'appbar' },
       { render: MenuBar, on: 'menubar' },
       // NOTE: Order matters! Each tab will match the drawer by index.
       { render: AboutPanel, props: { unlocalized: 'Pushdown Automata' }, on: 'drawer' },
@@ -107,13 +106,6 @@ class PDAModule {
         new PDAImporter(app, PDAGraphParser.JSON),
         '.pda.json',
         '.json'
-      );
-
-    app
-      .getUndoManager()
-      .setEventHandlerFactory(
-        (...args) =>
-          new SafeGraphEventHandler(this._graphController, PDAGraphParser.JSON)
       );
 
     app

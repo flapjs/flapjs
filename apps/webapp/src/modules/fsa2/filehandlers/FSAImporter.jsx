@@ -22,11 +22,6 @@ class FSAImporter extends SessionImporter {
     const graphController = currentModule.getGraphController();
     const graph = graphController.getGraph();
     this._prevGraphHash = graph.getHashCode(true);
-
-    // TODO: this should not be here, this should exist somewhere in graphController
-    if (!graph.isEmpty()) {
-      session.getApp().getUndoManager().captureEvent();
-    }
   }
 
   /** @override */
@@ -50,13 +45,6 @@ class FSAImporter extends SessionImporter {
     const currentModule = session.getCurrentModule();
     const graphController = currentModule.getGraphController();
     const graph = graphController.getGraph();
-
-    // Compares the graph hash before and after import, captures event if they are not equal
-    const nextGraphHash = graph.getHashCode(true);
-    if (this._prevGraphHash !== nextGraphHash) {
-      // TODO: this should not be here
-      session.getApp().getUndoManager().captureEvent();
-    }
   }
 }
 

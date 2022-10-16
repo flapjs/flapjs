@@ -14,10 +14,7 @@ export function userClearGraph(app, graphOnly = false, callback = null) {
     const module = app.getCurrentModule();
     module.getGraphController().getGraph().clear();
     if (!graphOnly) {
-      app.getUndoManager().clear();
       app.getSession().setProjectName(null);
-    } else {
-      app.getUndoManager().captureEvent();
     }
     if (callback) callback();
   }

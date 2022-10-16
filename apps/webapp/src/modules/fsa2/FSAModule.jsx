@@ -18,8 +18,6 @@ import FSAExporter from './filehandlers/FSAExporter';
 import FSAJFFExporter from './filehandlers/FSAJFFExporter';
 import { registerImageExporters } from 'src/modules/nodegraph/filehandlers/NodalGraphImageExporter';
 
-import SafeGraphEventHandler from 'src/modules/nodegraph/SafeGraphEventHandler';
-
 import FSABroadcastHandler from './FSABroadcastHandler';
 
 /* COMPONENTS */
@@ -41,6 +39,7 @@ import LanguagePanel from 'src/components/menus/language/LanguagePanel';
 import ModuleLoaderPanel from 'src/components/menus/moduleloader/ModuleLoaderPanel';
 import { AboutMenu } from 'src/components/appbar/toolbar/ToolbarView';
 import { DeterminismToggle } from './DeterminismToggle';
+import { useSerDes } from './FSASerializer';
 
 const MODULE_NAME = 'fsa';
 const MODULE_VERSION = '3.0.0';
@@ -59,7 +58,7 @@ class FSAModule {
     return [
       { render: Init, on: 'init' },
       { render: Playground, on: 'playground' },
-      { render: AppBar, on: 'appbar' },
+      { render: AppBar, props: { useSerDes }, on: 'appbar' },
       { render: MenuBar, on: 'menubar' },
       { render: DeterminismToggle, on: 'appbar.subtitle' },
       // NOTE: Order matters! Each tab will match the drawer by index.
@@ -121,13 +120,6 @@ class FSAModule {
         '.json'
       )
       .addImporter(new FSAJFFImporter(app, FSAGraphParser.XML), '.jff');
-
-    app
-      .getUndoManager()
-      .setEventHandlerFactory(
-        (...args) =>
-          new SafeGraphEventHandler(this._graphController, FSAGraphParser.JSON)
-      );
 
     app
       .getHotKeyManager()

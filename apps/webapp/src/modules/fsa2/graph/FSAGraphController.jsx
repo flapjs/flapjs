@@ -59,7 +59,6 @@ class FSAGraphController extends GraphController {
         if (this.shouldAutoLabel) {
           this.applyAutoRename();
         }
-        this._app.getUndoManager().captureEvent();
         break;
       case GRAPH_EVENT_NODE_EDIT_WHILE_DELETE:
       case GRAPH_EVENT_EDGE_EDIT_WHILE_DELETE:
@@ -73,8 +72,6 @@ class FSAGraphController extends GraphController {
             true
           );
         break;
-      default:
-        this._app.getUndoManager().captureEvent();
     }
   }
 
@@ -103,8 +100,6 @@ class FSAGraphController extends GraphController {
 
   applyAutoLayout() {
     GraphLayout.applyLayout(this.getGraph());
-
-    this._app.getUndoManager().captureEvent();
   }
 
   applyAutoRename() {
@@ -186,15 +181,12 @@ class FSAGraphController extends GraphController {
 
     const newNodeLabel = this.getGraphLabeler().getDefaultNodeLabel();
     node.setNodeLabel(newNodeLabel);
-
-    this._app.getUndoManager().captureEvent();
     return node;
   }
 
   renameNode(node, newLabel) {
     node.setNodeLabel(newLabel);
     node.setNodeCustom(true);
-    this._app.getUndoManager().captureEvent();
   }
 
   /** @override */

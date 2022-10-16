@@ -1,41 +1,42 @@
 import React from 'react';
 
-import IconButton from 'src/components/IconButton';
 import UndoIcon from 'src/assets/icons/undo.svg';
 import RedoIcon from 'src/assets/icons/redo.svg';
 import { useHistory } from './HistoryHooks';
 
 /**
  * @param {object} props 
- * @param {EventListener} props.onClick
+ * @param {React.MouseEventHandler} props.onClick
  * @param {() => boolean} props.canClick
  * @param {string} [props.title]
  */
 export function UndoButton(props) {
     const { onClick, canClick, title="Undo" } = props;
     return (
-        <IconButton
-            iconClass={UndoIcon}
+        <button
             onClick={onClick}
             disabled={!canClick()}
-            title={title} />
+            title={title}>
+            <UndoIcon/>
+        </button>
     );
 }
 
 /**
  * @param {object} props 
- * @param {EventListener} props.onClick
+ * @param {React.MouseEventHandler} props.onClick
  * @param {() => boolean} props.canClick
  * @param {string} [props.title]
  */
 export function RedoButton(props) {
     const { onClick, canClick, title="Redo" } = props;
     return (
-        <IconButton
-            iconClass={RedoIcon}
+        <button
             onClick={onClick}
             disabled={!canClick()}
-            title={title} />
+            title={title}>
+            <RedoIcon/>
+        </button>
     );
 }
 

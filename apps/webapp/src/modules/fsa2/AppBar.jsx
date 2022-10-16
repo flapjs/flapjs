@@ -4,8 +4,6 @@ import ToolbarButton from 'src/components/appbar/toolbar/ToolbarButton';
 import ToolbarDivider from 'src/components/appbar/toolbar/ToolbarDivider';
 import ToolbarUploadButton from 'src/components/appbar/toolbar/ToolbarUploadButton';
 import PageEmptyIcon from 'src/assets/icons/page-empty.svg';
-import UndoIcon from 'src/assets/icons/undo.svg';
-import RedoIcon from 'src/assets/icons/redo.svg';
 import UploadIcon from 'src/assets/icons/upload.svg';
 import DownloadIcon from 'src/assets/icons/download.svg';
 import HelpIcon from 'src/assets/icons/help.svg';
@@ -13,24 +11,29 @@ import HelpIcon from 'src/assets/icons/help.svg';
 import { ERROR_LAYOUT_ID } from 'src/session/manager/notification/NotificationManager';
 import { useLocale } from 'src/libs/i18n';
 import { MENU_INDEX_EXPORT } from './MenuBar';
+import { HistoryButtons, useHistory } from 'src/libs/history';
 
 const HELP_URL =
   'https://github.com/flapjs/FLAPJS-WebApp/blob/master/docs/HELP.md';
 
 const ERROR_UPLOAD_NOTIFICATION_TAG = 'error_upload';
 
-export function AppBar({ app, module, toolbarRef }) {
+export function AppBar({ app, module, toolbarRef, useSerDes }) {
   const locale = useLocale();
   const currentModule = module;
   const importManager = app.getImportManager();
   const exportManager = app.getExportManager();
   const notificationManager = app.getNotificationManager();
-  const undoManager = app.getUndoManager();
+
+  const historyKey = `${module.getModuleName()}.graph.history`;
+  const [serializer, deserializer] = useSerDes(app, module);
+  const { clearHistory } = useHistory(historyKey, serializer, deserializer);
 
   function onToolbarClearButton() {
     if (currentModule) {
       currentModule.clear(app);
     }
+    clearHistory();
   }
 
   async function onToolbarUploadButton(fileBlob) {
@@ -61,18 +64,10 @@ export function AppBar({ app, module, toolbarRef }) {
         onUpload={onToolbarUploadButton}
         disabled={importManager.isEmpty()}
       />
-      <ToolbarButton
-        title={locale.getLocaleString('action.toolbar.undo')}
-        icon={UndoIcon}
-        disabled={!undoManager.canUndo()}
-        onClick={() => undoManager.undo()}
-      />
-      <ToolbarButton
-        title={locale.getLocaleString('action.toolbar.redo')}
-        icon={RedoIcon}
-        disabled={!undoManager.canRedo()}
-        onClick={() => undoManager.redo()}
-      />
+      <HistoryButtons
+        historyKey={historyKey}
+        serializer={serializer}
+        deserializer={deserializer}/>
       <ToolbarButton
         title={locale.getLocaleString('component.exporting.title')}
         icon={DownloadIcon}

@@ -6,6 +6,7 @@ import { Logger } from './libs/logger';
 import { Slot, SlotProvider } from './libs/slot';
 import { SessionProvider, useSession } from './session/SessionContext';
 import { LocaleProvider } from './libs/i18n';
+import { HistoryProvider } from './libs/history';
 
 Logger.setLevel(Logger.DEBUG);
 
@@ -25,10 +26,12 @@ window.addEventListener('DOMContentLoaded', () => {
         <SessionProvider>
           <SlotProvider name="app">
             <LocaleProvider>
-            {/*<Slot name="providers" mode="provider">*/}
-              <Slot name="init"/>
-              <SessionApp/>
-            {/*</Slot>*/}
+              <HistoryProvider>
+                {/*<Slot name="providers" mode="provider">*/}
+                  <Slot name="init"/>
+                  <SessionApp/>
+                {/*</Slot>*/}
+              </HistoryProvider>
             </LocaleProvider>
           </SlotProvider>
         </SessionProvider>
