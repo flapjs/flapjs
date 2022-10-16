@@ -46,7 +46,6 @@ class OverviewPanel extends React.Component {
 
   /** @override */
   render() {
-    const drawer = this.props.drawer;
     const session = this.props.session;
     const currentModule = session.getCurrentModule();
     const graphController = currentModule.getGraphController();
@@ -54,21 +53,19 @@ class OverviewPanel extends React.Component {
     const machineController = currentModule.getMachineController();
     const autoRename = graphController.shouldAutoRenameNodes();
 
-    const drawerFull = drawer.isDrawerFullscreen();
-
     return (
       <PanelContainer
         id={this.props.id}
         className={this.props.className}
         style={this.props.style}
         unlocalizedTitle={OverviewPanel.UNLOCALIZED}>
-        <PanelSection title={'States'} initial={true} full={drawerFull}>
+        <PanelSection title={'States'} initial={true}>
           <StateListView graphController={graphController} graphView={graphView}/>
         </PanelSection>
-        <PanelSection title={'Alphabet'} initial={true} full={drawerFull}>
+        <PanelSection title={'Alphabet'} initial={true}>
           <AlphabetListView machineController={machineController} />
         </PanelSection>
-        <PanelSection title={'Stack Alphabet'} initial={true} full={drawerFull}>
+        <PanelSection title={'Stack Alphabet'} initial={true}>
           <StackAlphabetListView machineController={machineController} />
         </PanelSection>
 

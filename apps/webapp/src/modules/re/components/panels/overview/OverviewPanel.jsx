@@ -23,12 +23,10 @@ class OverviewPanel extends React.Component {
 
   /** @override */
   render() {
-    const drawer = this.props.drawer;
     const session = this.props.session;
     const currentModule = session.getCurrentModule();
 
     const machineController = currentModule.getMachineController();
-    const drawerFull = drawer.isDrawerFullscreen();
 
     return (
       <PanelContainer
@@ -36,10 +34,10 @@ class OverviewPanel extends React.Component {
         className={this.props.className}
         style={this.props.style}
         unlocalizedTitle={OverviewPanel.UNLOCALIZED}>
-        <PanelSection title={'Terminals'} initial={true} full={drawerFull}>
+        <PanelSection title={'Terminals'} initial={true}>
           <AlphabetListView machineController={machineController} />
         </PanelSection>
-        <PanelSection title={'Symbol Key'} initial={true} full={true}>
+        <PanelSection title={'Symbol Key'} initial={true}>
           <table>
             <tbody>
               <tr>

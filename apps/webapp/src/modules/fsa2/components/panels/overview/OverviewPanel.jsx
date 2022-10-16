@@ -69,7 +69,6 @@ class OverviewPanel extends React.Component {
 
   /** @override */
   render() {
-    const drawer = this.props.drawer;
     const session = this.props.session;
     const currentModule = session.getCurrentModule();
     const graphController = currentModule.getGraphController();
@@ -82,8 +81,6 @@ class OverviewPanel extends React.Component {
       ? MACHINE_TYPE_DFA
       : MACHINE_TYPE_NFA;
     const autoRename = graphController.shouldAutoRenameNodes();
-
-    const drawerFull = drawer.isDrawerFullscreen();
 
     return (
       <LocaleConsumer>
@@ -103,13 +100,13 @@ class OverviewPanel extends React.Component {
 
             <PanelDivider />
 
-            <PanelSection title={'States'} initial={true} full={drawerFull}>
+            <PanelSection title={'States'} initial={true}>
               <StateListView
                 graphController={graphController}
                 graphView={graphView}
               />
             </PanelSection>
-            <PanelSection title={'Alphabet'} initial={true} full={drawerFull}>
+            <PanelSection title={'Alphabet'} initial={true}>
               <AlphabetListView machineController={machineController} />
             </PanelSection>
 
@@ -117,13 +114,11 @@ class OverviewPanel extends React.Component {
 
             <PanelSection
               title={'Transition Chart'}
-              full={drawerFull}
               disabled={graphController.getGraph().getEdgeCount() <= 0}>
               <TransitionChartView machineController={machineController} />
             </PanelSection>
             <PanelSection
               title={'Transition Table'}
-              full={drawerFull}
               disabled={graphController.getGraph().getNodeCount() <= 0}>
               <TransitionTableView machineController={machineController} />
             </PanelSection>

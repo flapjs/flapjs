@@ -34,7 +34,6 @@ class PanelSection extends React.Component {
     const isOpen = this.state.open;
     const isDisabled =
       this.props.disabled || React.Children.count(this.props.children) <= 0;
-    const isFull = this.props.full;
     const title = this.props.title;
     return (
       <section
@@ -51,8 +50,7 @@ class PanelSection extends React.Component {
         <div
           className={
             Style.section_content_container +
-            (isOpen ? ' open ' : '') +
-            (isFull ? ' full ' : '')
+            (isOpen ? ' open ' : '')
           }>
           <div className={Style.section_content}>{this.props.children}</div>
         </div>

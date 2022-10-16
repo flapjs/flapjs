@@ -3,7 +3,7 @@ import Style from './DrawerView.module.css';
 
 import IconButton from 'src/components/IconButton';
 import ExpandDownIcon from 'src/assets/icons/expand-down.svg';
-import { LocaleConsumer, LocaleString } from 'src/libs/i18n';
+import { LocaleString } from 'src/libs/i18n';
 import { Slot } from 'src/libs/slot';
 
 const DRAWER_WIDTH_CSSVAR = '--drawer-width';
@@ -358,7 +358,6 @@ class DrawerView extends React.Component {
                   let drawerIndex = index + 1;
                   return {
                     ...props,
-                    tabIndex: drawerIndex,
                     current: this.isCurrentTab(drawerIndex),
                     disabled: drawerSoloClass && !this.isCurrentTab(drawerIndex),
                     onClick: () => this.setCurrentTab(drawerIndex),
@@ -375,19 +374,13 @@ class DrawerView extends React.Component {
                     const current = this.isCurrentTab(i);
                     const disabled = drawerSoloClass && drawerSoloClass !== e;
                     return (
-                      <div
+                      <DrawerPanel
                         key={unlocalized + ':' + i}
-                        className={
-                          Style.drawer_panel_container +
-                          (!current ? ' hide ' : '') +
-                          (disabled ? ' disabled ' : '')
-                        }>
-                        <ComponentClass
-                          className={Style.drawer_panel}
-                          {...this.props.panelProps}
-                          drawer={this}
-                        />
-                      </div>
+                        unlocalized={unlocalized}
+                        current={current}
+                        disabled={disabled}
+                        panelProps={this.props.panelProps}
+                        ComponentClass={ComponentClass}/>
                     );
                   })}
               </div>
@@ -400,11 +393,26 @@ class DrawerView extends React.Component {
 }
 export default DrawerView;
 
-export function DrawerTab(props) {
-  const { unlocalized, tabIndex, current, disabled, onClick } = props;
+export function DrawerPanel(props) {
+  const { current, disabled, ComponentClass, panelProps } = props;
   return (
-    <a key={unlocalized + ':' + tabIndex}
-      className={
+    <div className={
+        Style.drawer_panel_container +
+        (!current ? ' hide ' : '') +
+        (disabled ? ' disabled ' : '')
+      }>
+      <ComponentClass
+        className={Style.drawer_panel}
+        {...panelProps}
+      />
+    </div>
+  );
+}
+
+export function DrawerTab(props) {
+  const { unlocalized, current, disabled, onClick } = props;
+  return (
+    <a className={
         Style.drawer_tab +
         (current ? ' active ' : '') +
         (disabled ? ' disabled ' : '')}

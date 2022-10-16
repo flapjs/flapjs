@@ -47,10 +47,6 @@
 
   display: none;
 }
-.section_content_container:not(:global(.full)) {
-  overflow-y: auto;
-  max-height: 30vh;
-}
 
 .section_content_container:global(.open) {
   display: block;
