@@ -13,7 +13,6 @@ export function locateTarget(app, targets, targetIndex, setTargetIndex) {
     setTargetIndex(nextIndex);
 
     const graphView = app.getSession().getCurrentModule().getGraphView();
-    console.log(target, target instanceof GraphNode);
     if (target instanceof GraphNode) {
         graphView.moveViewToPosition(target.x, target.y);
     } else if (target instanceof GraphEdge) {
