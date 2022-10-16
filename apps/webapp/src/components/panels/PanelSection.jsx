@@ -31,22 +31,23 @@ class PanelSection extends React.Component {
 
   /** @override */
   render() {
-    const isOpen = this.state.open;
+    const title = this.props.title;
+    const isOpen = !title || this.state.open;
     const isDisabled =
       this.props.disabled || React.Children.count(this.props.children) <= 0;
-    const title = this.props.title;
     return (
       <section
         id={this.props.id}
         className={Style.section_container + ' ' + this.props.className}
         style={this.props.style}>
-        <IconButton
-          className={Style.section_header}
-          title={title}
-          disabled={isDisabled}
-          onClick={this.onClick}>
-          {!isOpen ? <TinyDownIcon /> : <TinyUpIcon />}
-        </IconButton>
+        {title &&
+          <IconButton
+            className={Style.section_header}
+            title={title}
+            disabled={isDisabled}
+            onClick={this.onClick}>
+            {!isOpen ? <TinyDownIcon /> : <TinyUpIcon />}
+          </IconButton>}
         <div
           className={
             Style.section_content_container +
