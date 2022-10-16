@@ -13,18 +13,12 @@ class ModuleLoaderPanel extends React.Component {
 
   renderModuleButton(moduleKey, moduleInfo) {
     const session = this.props.session;
-    const app = session.getApp();
-    const useExperimental = app.isExperimental();
-
     return (
       <IconButton
         key={moduleKey}
         className={Style.module_button}
         title={moduleInfo.name + ' (' + moduleInfo.version + ')'}
-        disabled={
-          moduleInfo['experimental'] !== useExperimental ||
-          moduleInfo['disabled']
-        }
+        disabled={moduleInfo['disabled']}
         onClick={(e) => {
           session.restartSession(session.getApp(), moduleKey);
         }}></IconButton>
@@ -33,8 +27,6 @@ class ModuleLoaderPanel extends React.Component {
 
   /** @override */
   render() {
-    //const session = this.props.session;
-
     return (
       <PanelContainer
         id={this.props.id}

@@ -78,7 +78,8 @@ class OptionPanel extends React.Component {
   /** @override */
   render() {
     const session = this.props.session;
-    const themeManager = session.getApp().getThemeManager();
+    const app = session.getApp();
+    const themeManager = app.getThemeManager();
 
     return (
       <LocaleConsumer>
@@ -88,7 +89,7 @@ class OptionPanel extends React.Component {
             className={this.props.className}
             style={this.props.style}
             unlocalizedTitle="component.options.title">
-            <PanelSection title="Theme">
+            <PanelSection>
               <div style={{ display: 'flex' }}>
                 <div style={{ width: '60%' }}>
                   <div id="options-theme-select-container">
@@ -110,10 +111,9 @@ class OptionPanel extends React.Component {
                       </PanelButton>
                     )}
                   </div>
-                  {this.state.customTheme && (
+                  {this.state.customTheme && themeManager && (
                     <div>
                       {this.renderStyleGroups()}
-
                       <PanelButton
                         onClick={(e) => {
                           themeManager.reset();

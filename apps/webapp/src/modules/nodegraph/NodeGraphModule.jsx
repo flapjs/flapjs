@@ -21,6 +21,11 @@ import InputController from 'src/graph2/controller/InputController';
 import { AppBar } from '../fsa2/AppBar';
 import { MenuBar } from '../fsa2/MenuBar';
 import { AboutPanel, DrawerTab } from 'src/components/drawer/DrawerView';
+import ExportPanel from 'src/components/menus/export/ExportPanel';
+import OptionPanel from 'src/components/menus/option/OptionPanel';
+import LanguagePanel from 'src/components/menus/language/LanguagePanel';
+import ModuleLoaderPanel from 'src/components/menus/moduleloader/ModuleLoaderPanel';
+import { AboutMenu } from 'src/components/appbar/toolbar/ToolbarView';
 
 const MODULE_NAME = 'nodegraph';
 const MODULE_VERSION = '0.0.1';
@@ -44,6 +49,11 @@ class NodalGraphModule {
       // NOTE: Order matters! Each tab will match the drawer by index.
       { render: AboutPanel, props: { unlocalized: 'Your Average Graph Editor' }, on: 'drawer' },
       { render: DrawerTab, props: { hidden: true }, on: 'drawer.tab' },
+      { render: AboutMenu, on: 'menu' },
+      { render: ModuleLoaderPanel, on: 'menu' },
+      { render: LanguagePanel, on: 'menu' },
+      { render: OptionPanel, on: 'menu' },
+      { render: ExportPanel, on: 'menu' },
     ];
   }
 

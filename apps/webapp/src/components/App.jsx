@@ -23,7 +23,6 @@ import * as ColorTransform from 'src/util/ColorTransform';
 import ExportManager from 'src/util/file/export/ExportManager';
 import ImportManager from 'src/util/file/import/ImportManager';
 
-import MenuManager from 'src/session/manager/MenuManager';
 import ViewportManager from 'src/session/manager/ViewportManager';
 import HotKeyManager, {
   CTRL_KEY,
@@ -159,7 +158,6 @@ class App extends React.Component {
 
     this._undoManager = new UndoManager();
     this._hotKeyManager = new HotKeyManager();
-    this._menuManager = new MenuManager();
     this._viewportManager = new ViewportManager();
     this._tooltipManager = new TooltipManager();
     this._notificationManager = new NotificationManager();
@@ -170,7 +168,6 @@ class App extends React.Component {
     this._session = props.session
       .addListener(this._undoManager)
       .addListener(this._hotKeyManager)
-      .addListener(this._menuManager)
       .addListener(this._viewportManager)
       .addListener(this._tooltipManager)
       .addListener(this._notificationManager)
@@ -217,15 +214,7 @@ class App extends React.Component {
 
   //DuckType
   onSessionStart(session) {
-    console.log('SESSION START');
     const currentModule = session.getCurrentModule();
-
-    // Default values
-    this._menuManager
-      .addPanelClass(ExportPanel) // MENU_INDEX_EXPORT
-      .addPanelClass(OptionPanel) // MENU_INDEX_OPTION
-      .addPanelClass(LanguagePanel) // MENU_INDEX_LANGUAGE
-      .addPanelClass(ModuleLoaderPanel); // MENU_INDEX_MODULE
 
     this._hotKeyManager
       .registerHotKey('New', [CTRL_KEY, 'KeyN'], () =>
@@ -272,13 +261,11 @@ class App extends React.Component {
 
   //DuckType
   onSessionStop(session) {
-    console.log('SESSION STOP');
     this._init = false;
 
     this._themeManager.clear();
     this._importManager.clear();
     this._exportManager.clear();
-    this._menuManager.setSubtitleComponentClass(null);
   }
 
   getToolbarComponent() {
@@ -300,9 +287,6 @@ class App extends React.Component {
   }
   getHotKeyManager() {
     return this._hotKeyManager;
-  }
-  getMenuManager() {
-    return this._menuManager;
   }
   getViewportManager() {
     return this._viewportManager;

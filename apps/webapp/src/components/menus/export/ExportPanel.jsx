@@ -3,62 +3,68 @@ import Style from '../MenuPanel.module.css';
 
 import SessionExporter from 'src/session/SessionExporter';
 import IconButton from 'src/components/IconButton';
-import { LocaleConsumer, LocaleString } from 'src/libs/i18n';
+import { useLocale } from 'src/libs/i18n';
+import PanelContainer from 'src/components/panels/PanelContainer';
+import PanelSection from 'src/components/panels/PanelSection';
 
-class ExportPanel extends React.Component {
+export default class ExportPanel extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  renderExporterButton(exportType) {
-    const exporter = this.props.session
-      .getApp()
-      .getExportManager()
-      .getExporterByExportType(exportType);
-    if (!(exporter instanceof SessionExporter)) return <span></span>;
-
-    const IconClass = exporter.getIconClass();
-
-    return (
-      <LocaleConsumer>
-        {locale => (
-          <IconButton
-            key={exporter.getUnlocalizedLabel() + ':' + exportType}
-            className={Style.panel_button}
-            title={locale.getLocaleString(exporter.getUnlocalizedLabel())}
-            onClick={() =>
-              this.props.session
-                .getApp()
-                .getExportManager()
-                .tryExportFile(exportType, this.props.session)
-            }>
-            {IconClass && <IconClass />}
-          </IconButton>
-        )}
-      </LocaleConsumer>
-    );
-  }
-
   /** @override */
   render() {
+    const props = this.props;
     const session = this.props.session;
-    const exportManager = session.getApp().getExportManager();
+    const app = session.getApp();
+    const exportManager = app.getExportManager();
     const exportTypes = exportManager.getExportTypes();
-
     return (
-      <div
-        id={this.props.id}
-        className={Style.panel_container + ' ' + this.props.className}
-        style={this.props.style}>
-        <div className={Style.panel_title}>
-          <h1><LocaleString entity="component.exporting.title"/></h1>
-        </div>
-        <div className={Style.panel_content}>
-          {exportTypes.map((e) => this.renderExporterButton(e))}
-        </div>
-      </div>
+      <PanelContainer
+        id={props.id}
+        className={props.className}
+        style={props.style}
+        unlocalizedTitle="component.exporting.title">
+        <PanelSection>
+          {exportTypes.map((e) => {
+              const exporter = session
+                .getApp()
+                .getExportManager()
+                .getExporterByExportType(e);
+              let key = exporter.getUnlocalizedLabel() + ':' + e;
+              if (!(exporter instanceof SessionExporter)) {
+                return <span key={key}></span>
+              }
+              return (
+                <ExporterButton
+                  key={key}
+                  exporter={exporter}
+                  session={session}
+                  onClick={() =>
+                    session
+                      .getApp()
+                      .getExportManager()
+                      .tryExportFile(e, session)
+                  }/>
+              );
+            })}
+        </PanelSection>
+      </PanelContainer>
     );
   }
 }
 
-export default ExportPanel;
+export function ExporterButton(props) {
+  const { exporter, session, onClick } = props;
+  const IconClass = exporter.getIconClass();
+  const locale = useLocale();
+
+  return (
+    <IconButton
+      className={Style.panel_button}
+      title={locale.getLocaleString(exporter.getUnlocalizedLabel())}
+      onClick={onClick}>
+      {IconClass && <IconClass />}
+    </IconButton>
+  );
+}

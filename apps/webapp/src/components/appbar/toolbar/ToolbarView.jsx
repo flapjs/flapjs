@@ -1,18 +1,15 @@
 import React from 'react';
 import Style from './ToolbarView.module.css';
 
-import {
-  TOOLBAR_CONTAINER_MENU,
-  TOOLBAR_CONTAINER_TOOLBAR,
-} from './ToolbarButton';
 import ToolbarTitle from './ToolbarTitle';
 
 import IconButton from 'src/components/IconButton';
 import MenuIcon from 'src/assets/icons/menu.svg';
 import CrossIcon from 'src/assets/icons/cross.svg';
+import { Slot } from 'src/libs/slot';
 
 const TOOLBAR_ALLOW_MENU_BAR = true;
-const TOOLBAR_DEFAULT_MENU_INDEX = -1;
+const TOOLBAR_DEFAULT_MENU_INDEX = 0;
 
 class ToolbarView extends React.Component {
   constructor(props) {
@@ -61,10 +58,6 @@ class ToolbarView extends React.Component {
   }
 
   setCurrentMenu(menuIndex) {
-    if (!this.props.menus) return;
-    if (menuIndex >= this.props.menus.length)
-      menuIndex = TOOLBAR_DEFAULT_MENU_INDEX;
-
     //Open and set tab index
     this.setState({ open: true, menuIndex: menuIndex });
   }
@@ -88,12 +81,6 @@ class ToolbarView extends React.Component {
   /** @override */
   render() {
     const title = this.props.title;
-    const subtitle = this.props.subtitle;
-    const toolbarMenus = this.props.menus;
-    const toolbarMenuIndex = this.state.menuIndex;
-    const ToolbarMenu =
-      toolbarMenuIndex >= 0 ? toolbarMenus[toolbarMenuIndex] : null;
-    const showCustomToolbarMenu = ToolbarMenu != null;
     const onTitleClick = this.props.onTitleClick;
 
     const session = this.props.session;
@@ -103,7 +90,7 @@ class ToolbarView extends React.Component {
     const shouldBarHide = this.props.hide || false;
     const showBarExpander = isBarOpen || (hasButtons && TOOLBAR_ALLOW_MENU_BAR);
 
-    const { renderMenu, renderBar } = this.props;
+    const { renderMenu, renderBar, renderSubtitle } = this.props;
 
     return (
       <div
@@ -119,34 +106,15 @@ class ToolbarView extends React.Component {
         style={this.props.style}>
         <div className={Style.bar_menu}>
           <div className={Style.menu_container}>
-            {showCustomToolbarMenu ? (
-              <ToolbarMenu {...this.props.menuProps} toolbar={this} />
-            ) : (
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <div>
-                  <h1>Flap.js</h1>
-                  <p>Something cool will be here soon. ;)</p>
-                  <p>Have an awesome day!</p>
+            <Slot name="menu" onSlotted={(Component, props, children, key, index) => {
+              const current = this.isCurrentMenu(index);
+              return (
+                <div key={key} className={Style.menu_panel_container
+                  + (!current ? ' hide ' : '')}>
+                  <Component {...props} {...this.props.menuProps} toolbar={this}/>
                 </div>
-                <div>
-                  <h3>Found a bug or have a cool idea?</h3>
-                  <p>
-                    Feel free to leave a comment or any feedback in{' '}
-                    <b>
-                      {'"'}Report a Bug{'"'}
-                    </b>
-                    .
-                  </p>
-                  <p>
-                    It{"'"}s for both <b>bugs</b> and <b>suggestions</b>!
-                  </p>
-                  <p style={{ marginTop: '3em' }}>
-                    And if you are at all interested in what we do and would
-                    like to join the team, please contact us!
-                  </p>
-                </div>
-              </div>
-            )}
+              );
+            }}/>
           </div>
           <div className={Style.menu_button_container}>
             {renderMenu()}
@@ -158,11 +126,11 @@ class ToolbarView extends React.Component {
           <ToolbarTitle
             className={Style.toolbar_title}
             title={title}
-            subtitle={subtitle}
             defaultValue={session.getProjectName()}
             onChange={this.onTitleChange}
-            onClick={onTitleClick}
-          />
+            onClick={onTitleClick}>
+            {renderSubtitle()}
+          </ToolbarTitle>
 
           <div className={Style.toolbar_button_container}>
             {renderBar()}
@@ -189,3 +157,32 @@ class ToolbarView extends React.Component {
   }
 }
 export default ToolbarView;
+
+export function AboutMenu(props) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <div>
+        <h1>Flap.js</h1>
+        <p>Something cool will be here soon. ;)</p>
+        <p>Have an awesome day!</p>
+      </div>
+      <div>
+        <h3>Found a bug or have a cool idea?</h3>
+        <p>
+          Feel free to leave a comment or any feedback in{' '}
+          <b>
+            {'"'}Report a Bug{'"'}
+          </b>
+          .
+        </p>
+        <p>
+          It{"'"}s for both <b>bugs</b> and <b>suggestions</b>!
+        </p>
+        <p style={{ marginTop: '3em' }}>
+          And if you are at all interested in what we do and would
+          like to join the team, please contact us!
+        </p>
+      </div>
+    </div>
+  );
+}

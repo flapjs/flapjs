@@ -31,7 +31,6 @@ class ToolbarTitle extends React.Component {
   /** @override */
   render() {
     const title = this.props.title;
-    const SubtitleClass = this.props.subtitle;
     const offline = !(navigator && navigator.onLine);
     const onClick = this.props.onClick;
 
@@ -50,13 +49,11 @@ class ToolbarTitle extends React.Component {
         </span>
         <div className={Style.title_label} onClick={onClick}>
           {title}
-          {SubtitleClass && (
-            <span
-              className={Style.title_subtitle}
-              onClick={(e) => e.stopPropagation()}>
-              <SubtitleClass />
-            </span>
-          )}
+          <span
+            className={Style.title_subtitle}
+            onClick={(e) => e.stopPropagation()}>
+            {this.props.children}
+          </span>
         </div>
       </div>
     );

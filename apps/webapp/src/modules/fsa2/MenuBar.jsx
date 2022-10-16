@@ -9,13 +9,13 @@ import EditPencilIcon from 'src/assets/icons/pencil.svg';
 
 import { useLocale } from 'src/libs/i18n';
 
-const BUGREPORT_URL = 'https://goo.gl/forms/XSil43Xl5xLHsa0E2';
-const HELP_URL =
+export const BUGREPORT_URL = 'https://goo.gl/forms/XSil43Xl5xLHsa0E2';
+export const HELP_URL =
   'https://github.com/flapjs/FLAPJS-WebApp/blob/master/docs/HELP.md';
 
-const MENU_INDEX_OPTION = 1;
-const MENU_INDEX_LANGUAGE = 2;
-const MENU_INDEX_MODULE = 3;
+export const MENU_INDEX_MODULE = 1;
+export const MENU_INDEX_LANGUAGE = 2;
+export const MENU_INDEX_OPTION = 3;
 
 export function MenuBar({ app, module, toolbarRef }) {
   const locale = useLocale();

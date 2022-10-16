@@ -9,10 +9,8 @@ const SESSION_INSTANCE = new Session();
 
 export function SessionProvider({ children }) {
     useEffect(() => {
-        console.log('START');
         SESSION_INSTANCE.startSession(App.INSTANCE);
         return () => {
-            console.log('STOP');
             SESSION_INSTANCE.stopSession(App.INSTANCE);
         };
     });

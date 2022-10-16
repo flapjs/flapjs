@@ -78,6 +78,14 @@
   margin-left: 1em;
   margin-right: 1em;
 }
+
+.menu_panel_container {
+  display: auto;
+}
+.menu_panel_container:global(.hide) {
+  display: none;
+}
+
 .menu_button_container {
   position: relative;
   display: flex;
