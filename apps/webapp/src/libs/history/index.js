@@ -1,6 +1,6 @@
 export { HistoryProvider } from './HistoryContext';
 export { useHistory } from './HistoryHooks';
-export { UndoButton, RedoButton, HistoryButtons } from './HistoryButtons';
+export { HistoryButtons } from './HistoryButtons';
 
 /**
  * @module HistoryService

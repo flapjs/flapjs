@@ -3,6 +3,7 @@ import React from 'react';
 import UndoIcon from 'src/assets/icons/undo.svg';
 import RedoIcon from 'src/assets/icons/redo.svg';
 import { useHistory } from './HistoryHooks';
+import IconButton from 'src/components/IconButton';
 
 /**
  * @param {object} props 
@@ -13,12 +14,12 @@ import { useHistory } from './HistoryHooks';
 export function UndoButton(props) {
     const { onClick, canClick, title="Undo" } = props;
     return (
-        <button
+        <IconButton
             onClick={onClick}
             disabled={!canClick()}
             title={title}>
             <UndoIcon/>
-        </button>
+        </IconButton>
     );
 }
 
@@ -31,12 +32,12 @@ export function UndoButton(props) {
 export function RedoButton(props) {
     const { onClick, canClick, title="Redo" } = props;
     return (
-        <button
+        <IconButton
             onClick={onClick}
             disabled={!canClick()}
             title={title}>
             <RedoIcon/>
-        </button>
+        </IconButton>
     );
 }
 

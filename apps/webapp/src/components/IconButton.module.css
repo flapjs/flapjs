@@ -40,3 +40,13 @@
 .icon_button:global(.hint) label {
   opacity: 1;
 }
+.icon_button {
+  color: var(--color-toolbar-text);
+  transition: color 0.3s ease;
+}
+.icon_button:hover {
+  color: var(--color-toolbar-text-active);
+}
+.icon_button:disabled {
+  color: var(--color-toolbar-text-disabled);
+}
