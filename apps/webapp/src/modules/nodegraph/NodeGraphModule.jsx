@@ -19,6 +19,7 @@ import SafeUndoNodeGraphEventHandler from 'src/graph2/SafeUndoNodeGraphEventHand
 import PanelContainer from 'src/components/panels/PanelContainer';
 
 import { Playground } from './Playground';
+import InputController from 'src/graph2/controller/InputController';
 
 const MODULE_NAME = 'nodegraph';
 const MODULE_VERSION = '0.0.1';
@@ -47,6 +48,8 @@ class NodalGraphModule {
     this._graphParser = new NodeGraphParser();
     this._graphController = new NodeGraphController(app, this._graph);
     this._graphViewComponent = React.createRef();
+
+    this._inputController = new InputController();
   }
 
   /** @override */

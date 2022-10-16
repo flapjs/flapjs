@@ -2,7 +2,6 @@ import React from 'react';
 
 import ViewportComponent from 'src/util/input/components/ViewportComponent';
 
-import InputController from 'src/graph2/controller/InputController';
 import InputContext from 'src/util/input/InputContext';
 
 import ViewportInputHandler from 'src/graph2/inputhandler/ViewportInputHandler';
@@ -11,7 +10,7 @@ class GraphView extends React.Component {
   constructor(props) {
     super(props);
 
-    this._inputController = new InputController();
+    this._inputController = props.inputController;
     this._inputContext = new InputContext();
 
     this._viewportComponent = React.createRef();
@@ -46,9 +45,6 @@ class GraphView extends React.Component {
     this.getViewportAdapter().setOffset(-x, -y);
   }
 
-  getInputController() {
-    return this._inputController;
-  }
   getInputContext() {
     return this._inputContext;
   }

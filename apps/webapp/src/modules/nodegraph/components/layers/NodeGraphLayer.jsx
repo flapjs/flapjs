@@ -31,7 +31,7 @@ class NodeGraphLayer extends React.Component {
     const editable = this.props.editable;
 
     const graph = graphController.getGraph();
-    const inputController = graphView.getInputController();
+    const inputController = this.props.inputController;
     const inputContext = graphView.getInputContext();
 
     return (

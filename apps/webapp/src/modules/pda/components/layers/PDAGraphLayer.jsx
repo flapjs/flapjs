@@ -13,10 +13,8 @@ import PDAEdgeRenderer from '../../graph/renderer/PDAEdgeRenderer';
 class PDAGraphLayer extends React.Component {
   constructor(props) {
     super(props);
-
-    const graphView = props.graphView;
     const graphController = props.graphController;
-    const inputController = graphView.getInputController();
+    const inputController = props.inputController;
 
     this._fsaNodeInputHandler = new PDANodeInputHandler(
       inputController,
@@ -45,7 +43,7 @@ class PDAGraphLayer extends React.Component {
     const editable = this.props.editable;
 
     const graph = graphController.getGraph();
-    const inputController = graphView.getInputController();
+    const inputController = this.props.inputController;
     const inputContext = graphView.getInputContext();
 
     return (

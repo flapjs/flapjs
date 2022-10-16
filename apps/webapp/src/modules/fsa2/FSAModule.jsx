@@ -34,6 +34,7 @@ import AnalysisPanel from './components/panels/analysis/AnalysisPanel';
 import { Playground } from './Playground';
 import { Init } from './Init';
 import { LocaleString } from 'src/libs/i18n';
+import InputController from 'src/graph2/controller/InputController';
 
 const MODULE_NAME = 'fsa';
 const MODULE_VERSION = '3.0.0';
@@ -63,6 +64,8 @@ class FSAModule {
     this._graphViewComponent = React.createRef();
 
     this._machineController = new MachineController(this);
+
+    this._inputController = new InputController();
 
     this._errorChecker = new FSAErrorChecker(
       app,

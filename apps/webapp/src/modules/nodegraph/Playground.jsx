@@ -8,10 +8,12 @@ export function Playground({ app, module }) {
     return (
         <GraphView
           ref={module._graphViewComponent}
+          inputController={module._inputController}
           renderGraph={(graphView) => (
             <NodeGraphLayer
               graphView={graphView}
               graphController={module._graphController}
+              inputController={module._inputController}
               editable={true}
             />
           )}
@@ -19,6 +21,7 @@ export function Playground({ app, module }) {
             <NodeGraphOverlayLayer
               graphView={graphView}
               graphController={module._graphController}
+              inputController={module._inputController}
               session={app.getSession()}
             />
           )}/>

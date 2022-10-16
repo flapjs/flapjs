@@ -27,6 +27,7 @@ import TestingPanel from './components/panels/testing/TestingPanel';
 import AnalysisPanel from './components/panels/analysis/AnalysisPanel';
 
 import { Playground } from './Playground';
+import InputController from 'src/graph2/controller/InputController';
 
 const MODULE_NAME = 'pda';
 const MODULE_LOCALIZED_NAME = 'Pushdown Automata';
@@ -55,6 +56,8 @@ class PDAModule {
     this._graphViewComponent = React.createRef();
 
     this._machineController = new MachineController(this);
+
+    this._inputController = new InputController();
 
     this._errorChecker = new PDAErrorChecker(
       app,

@@ -16,7 +16,7 @@ class NodeGraphOverlayLayer extends React.Component {
     const graphView = this.props.graphView;
     const graphController = this.props.graphController;
     const labelFormatter = graphController.getLabelFormatter();
-    const inputController = graphView.getInputController();
+    const inputController = this.props.inputController;
 
     return (
       <React.Fragment>

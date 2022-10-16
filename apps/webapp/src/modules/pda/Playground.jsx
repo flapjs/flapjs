@@ -10,11 +10,13 @@ export function Playground({ app, module }) {
     return (
         <GraphView
             ref={module._graphViewComponent}
+            inputController={module._inputController}
             renderGraph={(graphView) => {
                 return (
                     <PDAGraphLayer
                         graphView={graphView}
                         graphController={module._graphController}
+                        inputController={module._inputController}
                         editable={!module._testMode}
                     />
                 );
@@ -25,6 +27,7 @@ export function Playground({ app, module }) {
                         <PDAGraphOverlayLayer
                             graphView={graphView}
                             graphController={module._graphController}
+                            inputController={module._inputController}
                             session={app.getSession()}
                         />
                     );
@@ -32,6 +35,7 @@ export function Playground({ app, module }) {
                     return (
                         <PDATapeGraphOverlayLayer
                             graphView={graphView}
+                            inputController={module._inputController}
                             tester={module._tester}
                         />
                     );
