@@ -162,7 +162,6 @@ class Session {
     this._moduleClass = null;
     this._module = null;
     this._sessionID = null;
-    this._app = null;
   }
 
   setProjectName(name) {

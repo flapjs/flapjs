@@ -12,11 +12,10 @@ import HelpIcon from 'src/assets/icons/help.svg';
 
 import { ERROR_LAYOUT_ID } from 'src/session/manager/notification/NotificationManager';
 import { useLocale } from 'src/libs/i18n';
+import { MENU_INDEX_EXPORT } from './MenuBar';
 
 const HELP_URL =
   'https://github.com/flapjs/FLAPJS-WebApp/blob/master/docs/HELP.md';
-
-const MENU_INDEX_EXPORT = 0;
 
 const ERROR_UPLOAD_NOTIFICATION_TAG = 'error_upload';
 

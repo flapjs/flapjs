@@ -13,9 +13,11 @@ export const BUGREPORT_URL = 'https://goo.gl/forms/XSil43Xl5xLHsa0E2';
 export const HELP_URL =
   'https://github.com/flapjs/FLAPJS-WebApp/blob/master/docs/HELP.md';
 
+export const MENU_INDEX_EMPTY = 0;
 export const MENU_INDEX_MODULE = 1;
 export const MENU_INDEX_LANGUAGE = 2;
 export const MENU_INDEX_OPTION = 3;
+export const MENU_INDEX_EXPORT = 4;
 
 export function MenuBar({ app, module, toolbarRef }) {
   const locale = useLocale();

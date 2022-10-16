@@ -1,39 +1,36 @@
-.module_button_list {
+.panel_content {
   display: flex;
   flex-direction: column;
 }
-
-.module_button {
+.panel_content > * {
   flex: 1;
   display: flex;
   flex-direction: row;
-}
-.module_button {
+  font-size: 1.5rem;
+  padding: 1rem;
+
   background: var(--color-toolbar-menu);
   border-bottom: 1px solid var(--color-toolbar-menu-detail);
+  border-color: currentColor;
+  outline-color: currentColor;
 
   color: var(--color-toolbar-text);
   transition: color 0.3s ease;
 }
-.module_button:hover {
+.panel_content > *:hover {
   color: var(--color-toolbar-text-active);
   background: var(--color-toolbar-menu-active);
+  border-color: currentColor;
+  outline-color: currentColor;
 }
-.module_button:disabled {
+.panel_content > *:disabled {
   color: var(--color-toolbar-text-disabled);
   background: var(--color-toolbar-menu-disabled);
+  border-color: currentColor;
+  outline-color: currentColor;
 }
-.module_button svg {
+.panel_content > * svg {
   padding: 0.5em 0;
-  width: 16vmin;
-}
-.module_button label {
-  padding: 0.5em 0;
-  flex: 1;
-  font-size: 6vmin;
-  align-self: center;
-
-  /* Override default icon button styles */
-  position: relative;
-  opacity: 1;
+  width: 8vmin;
+  height: 100%;
 }

@@ -1,44 +1,34 @@
 import React from 'react';
-import Style from './LanguagePanel.module.css';
 
 import PanelContainer from 'src/components/panels/PanelContainer';
-import IconButton from 'src/components/IconButton';
-import { LocaleConsumer } from 'src/libs/i18n';
+import { LocaleConsumer, LocaleString } from 'src/libs/i18n';
+import PanelList from 'src/components/panels/PanelList';
+import PanelButton from 'src/components/panels/PanelButton';
 
-class LanguagePanel extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  renderLanguageButton(locale, localizedName, langCode) {
-    return (
-      <IconButton
-        key={langCode}
-        className={Style.language_button}
-        title={localizedName}
-        onClick={(e) => locale.setLanguage(langCode)}></IconButton>
-    );
-  }
-
-  /** @override */
-  render() {
-    return (
-      <LocaleConsumer>
-        {locale => (
-          <PanelContainer
-            id={this.props.id}
-            className={this.props.className}
-            style={this.props.style}
-            unlocalizedTitle="component.language.title">
-            <div className={Style.language_button_list}>
-              {this.renderLanguageButton(locale, 'English', 'en_us')}
-              {this.renderLanguageButton(locale, 'Pirate Speak', 'xx_pirate')}
-            </div>
-          </PanelContainer>
-        )}
-      </LocaleConsumer>
-    );
-  }
+export default function LanguagePanel(props) {
+  return (
+    <LocaleConsumer>
+      {locale => (
+        <PanelContainer
+          id={props.id}
+          className={props.className}
+          style={props.style}
+          unlocalizedTitle="component.language.title">
+          <PanelList>
+            <LanguageButton locale={locale} langCode="en_us" title="English"/>
+            <LanguageButton locale={locale} langCode="xx_pirate" title="Pirate Speak"/>
+          </PanelList>
+        </PanelContainer>
+      )}
+    </LocaleConsumer>
+  );
 }
 
-export default LanguagePanel;
+function LanguageButton(props) {
+  const { locale, langCode, title } = props;
+  return (
+    <PanelButton onClick={(e) => locale.setLanguage(langCode)}>
+      <LocaleString entity={title}/>
+    </PanelButton>
+  )
+}

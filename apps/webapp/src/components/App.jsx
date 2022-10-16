@@ -13,11 +13,6 @@ import NotificationView from 'src/session/manager/notification/components/Notifi
 import IconButton from 'src/components/IconButton';
 import FullscreenWidget from 'src/components/FullscreenWidget';
 
-import ExportPanel from 'src/components/menus/export/ExportPanel';
-import OptionPanel from 'src/components/menus/option/OptionPanel';
-import LanguagePanel from 'src/components/menus/language/LanguagePanel';
-import ModuleLoaderPanel from 'src/components/menus/moduleloader/ModuleLoaderPanel';
-
 import * as ColorTransform from 'src/util/ColorTransform';
 
 import ExportManager from 'src/util/file/export/ExportManager';
