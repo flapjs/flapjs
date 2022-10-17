@@ -48,6 +48,8 @@ class OverviewPanel extends React.Component {
   render() {
     const session = this.props.session;
     const currentModule = session.getCurrentModule();
+    if (!currentModule) return;
+    
     const graphController = currentModule.getGraphController();
     const graphView = currentModule.getGraphView();
     const machineController = currentModule.getMachineController();

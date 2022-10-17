@@ -10,6 +10,8 @@ import PanelList from 'src/components/panels/PanelList';
 export default function ExportPanel(props) {
   const session = props.session;
   const app = session.getApp();
+  if (!app) return;
+
   const exportManager = app.getExportManager();
   const exportTypes = exportManager.getExportTypes();
   return (

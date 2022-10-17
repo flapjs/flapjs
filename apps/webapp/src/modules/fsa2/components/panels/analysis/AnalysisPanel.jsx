@@ -141,6 +141,8 @@ class AnalysisPanel extends React.Component {
   render() {
     const session = this.props.session;
     const currentModule = session.getCurrentModule();
+    if (!currentModule) return;
+    
     const machineController = currentModule.getMachineController();
 
     return (

@@ -93,7 +93,7 @@ class Session {
 
     // Overwrite any past calls...
     if (MODULE_TIMEOUT) clearTimeout(MODULE_TIMEOUT);
-
+    
     this._app = app;
     MODULE_TIMEOUT = setTimeout(() => {
       moduleInfo.fetch((ModuleClass) => {

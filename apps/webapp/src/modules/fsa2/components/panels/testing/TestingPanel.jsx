@@ -26,6 +26,8 @@ class TestingPanel extends React.Component {
     const session = this.props.session;
     const app = session.getApp();
     const currentModule = session.getCurrentModule();
+    if (!currentModule) return;
+    
     const tester = currentModule._tester;
     tester.on('startTest', (tester) => {
       currentModule._testMode = true;
@@ -66,6 +68,8 @@ class TestingPanel extends React.Component {
   render() {
     const session = this.props.session;
     const currentModule = session.getCurrentModule();
+    if (!currentModule) return;
+
     const graphController = currentModule.getGraphController();
     const machineController = currentModule.getMachineController();
     const tester = currentModule.getStringTester();

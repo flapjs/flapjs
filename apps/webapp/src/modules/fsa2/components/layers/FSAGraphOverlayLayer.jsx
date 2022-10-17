@@ -7,7 +7,7 @@ import LabelEditorWidget from 'src/graph2/components/widgets/LabelEditorWidget';
 
 import FSALabelEditorRenderer from '../widgets/FSALabelEditorRenderer';
 
-class FSAGraphOverlayLayer extends React.Component {
+export default class FSAGraphOverlayLayer extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -47,5 +47,3 @@ class FSAGraphOverlayLayer extends React.Component {
     );
   }
 }
-
-export default FSAGraphOverlayLayer;

@@ -79,6 +79,8 @@ class OptionPanel extends React.Component {
   render() {
     const session = this.props.session;
     const app = session.getApp();
+    if (!app) return;
+    
     const themeManager = app.getThemeManager();
 
     return (

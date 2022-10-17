@@ -28,6 +28,7 @@ export function Init({ app, module }) {
  */
 function useGraphSaver(app, module) {
     const storageKey = 'graph-' + module.getModuleName();
+    if (!app || !module) return;
 
     async function serializer(dst) {
         try {
