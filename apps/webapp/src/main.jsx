@@ -27,10 +27,10 @@ window.addEventListener('DOMContentLoaded', () => {
           <SlotProvider name="app">
             <LocaleProvider>
               <HistoryProvider>
-                {/*<Slot name="providers" mode="provider">*/}
+                <Slot name="providers" mode="provider">
                   <Slot name="init"/>
                   <SessionApp/>
-                {/*</Slot>*/}
+                </Slot>
               </HistoryProvider>
             </LocaleProvider>
           </SlotProvider>

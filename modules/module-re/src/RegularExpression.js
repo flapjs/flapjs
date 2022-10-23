@@ -3,6 +3,14 @@
  * @typedef RegularExpression
  * @property {Array<Symbol<?>>} R
  * @property {Set<Symbol<?>>} A
+ * @property {Symbol<?>} EMPTY_SET
+ * @property {Symbol<?>} SIGMA
+ * @property {Symbol<?>} KLEENE
+ * @property {Symbol<?>} PLUS
+ * @property {Symbol<?>} CONCAT
+ * @property {Symbol<?>} UNION
+ * @property {Symbol<?>} SCOPE_OPEN
+ * @property {Symbol<?>} SCOPE_CLOSE
  * @property {RegularExpressionEventHandler<Attachment>} handler
  * @property {Attachment} attachment
  */
@@ -38,6 +46,14 @@ export function createRegularExpression(handler = defaultEventHandler, attachmen
     return {
         R: new Array(),
         A: new Set(),
+        EMPTY_SET: null,
+        SIGMA: null,
+        KLEENE: null,
+        PLUS: null,
+        CONCAT: null,
+        UNION: null,
+        SCOPE_OPEN: null,
+        SCOPE_CLOSE: null,
         handler,
         attachment,
     };

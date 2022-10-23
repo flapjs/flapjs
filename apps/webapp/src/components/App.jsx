@@ -111,6 +111,7 @@ class App extends React.Component {
   onSessionStart(session) {
     const currentModule = session.getCurrentModule();
 
+    /*
     this._hotKeyManager
       .registerHotKey('New', [CTRL_KEY, 'KeyN'], () =>
         currentModule.clear(this)
@@ -118,6 +119,7 @@ class App extends React.Component {
       .registerAltHotKey('Show Hints', () => {
         IconButton.SHOW_LABEL = !IconButton.SHOW_LABEL;
       });
+    */
 
     // Only register undo / redo hotkeys if undo is possible
     /*

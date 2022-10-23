@@ -51,35 +51,35 @@ export function AppBar({ app, module, toolbarRef, useSerDes }) {
 
   return (
     <>
-      <ToolbarButton
-        title={locale.getLocaleString('action.toolbar.newmachine')}
-        icon={PageEmptyIcon}
-        onClick={onToolbarClearButton}
-        disabled={!currentModule}
-      />
-      <ToolbarUploadButton
-        title={locale.getLocaleString('action.toolbar.uploadmachine')}
-        icon={UploadIcon}
-        accept={importManager.getFileTypesAsAcceptString()}
-        onUpload={onToolbarUploadButton}
-        disabled={importManager.isEmpty()}
-      />
-      <HistoryButtons
-        historyKey={historyKey}
-        serializer={serializer}
-        deserializer={deserializer}/>
-      <ToolbarButton
-        title={locale.getLocaleString('component.exporting.title')}
-        icon={DownloadIcon}
-        onClick={() => toolbarRef.current.setCurrentMenu(MENU_INDEX_EXPORT)}
-        disabled={exportManager.isEmpty()}
-      />
-      <ToolbarDivider />
-      <ToolbarButton
-        title={locale.getLocaleString('action.toolbar.help')}
-        icon={HelpIcon}
-        onClick={() => window.open(HELP_URL, '_blank')}
-      />
+    <ToolbarButton
+      title={locale.getLocaleString('action.toolbar.newmachine')}
+      icon={PageEmptyIcon}
+      onClick={onToolbarClearButton}
+      disabled={!currentModule}
+    />
+    <ToolbarUploadButton
+      title={locale.getLocaleString('action.toolbar.uploadmachine')}
+      icon={UploadIcon}
+      accept={importManager.getFileTypesAsAcceptString()}
+      onUpload={onToolbarUploadButton}
+      disabled={importManager.isEmpty()}
+    />
+    <HistoryButtons
+      historyKey={historyKey}
+      serializer={serializer}
+      deserializer={deserializer}/>
+    <ToolbarButton
+      title={locale.getLocaleString('component.exporting.title')}
+      icon={DownloadIcon}
+      onClick={() => toolbarRef.current.setCurrentMenu(MENU_INDEX_EXPORT)}
+      disabled={exportManager.isEmpty()}
+    />
+    <ToolbarDivider />
+    <ToolbarButton
+      title={locale.getLocaleString('action.toolbar.help')}
+      icon={HelpIcon}
+      onClick={() => window.open(HELP_URL, '_blank')}
+    />
     </>
   );
 }
