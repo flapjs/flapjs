@@ -23,18 +23,18 @@ window.addEventListener('DOMContentLoaded', () => {
   // TODO: Providers make the toolbar disappear for some reason :(
   root.render(
       <React.StrictMode>
+      <SlotProvider>
         <SessionProvider>
-          <SlotProvider name="app">
-            <LocaleProvider>
-              <HistoryProvider>
-                <Slot name="providers" mode="provider">
-                  <Slot name="init"/>
-                  <SessionApp/>
-                </Slot>
-              </HistoryProvider>
-            </LocaleProvider>
-          </SlotProvider>
+          <LocaleProvider>
+            <HistoryProvider>
+              <Slot name="providers" mode="provider">
+                <Slot name="init"/>
+                <SessionApp/>
+              </Slot>
+            </HistoryProvider>
+          </LocaleProvider>
         </SessionProvider>
+      </SlotProvider>
       </React.StrictMode>
   );
 });

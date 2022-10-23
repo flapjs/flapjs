@@ -1,7 +1,8 @@
-import React from 'react';
-import { DEFAULT_SLOT_NAME, DIRTY_KEY } from './SlotHelpers';
+import React, { useRef } from 'react';
+import { DEFAULT_SLOT_NAME, resolveSlot } from './SlotHelpers';
 
-import { SlotContext } from './SlotContext';
+import { useSlotContext } from './SlotContext';
+import { useForceUpdate } from 'src/hooks/ForceUpdate';
 
 /**
  * @callback OnSlottedCallback
@@ -60,94 +61,70 @@ import { SlotContext } from './SlotContext';
  * "contentKey" that unique identifies that piece of content. Any injections with the same
  * key (in the same slot) will be treated as an "override" of content, otherwise they will
  * be rendered as siblings.
+ * 
+ * @param {object} props
+ * @param {string} props.name
+ * @param {'renderer'|'consumer'|'provider'} [props.mode]
+ * @param {object} [props.slottedProps]
+ * @param {OnSlottedCallback} [props.onSlotted]
+ * @param {React.ReactNode} [props.children]
  */
-export class Slot extends React.Component {
-
-  /**
-   * @param {object} props
-   * @param {string} props.name
-   * @param {'renderer'|'consumer'|'provider'} [props.mode]
-   * @param {object} [props.slottedProps]
-   * @param {OnSlottedCallback} [props.onSlotted]
-   * @param {React.ReactNode} [props.children]
-   */
-  constructor(props) {
-    super(props);
-  }
-
-  /** @override */
-  shouldComponentUpdate(nextProps, nextState) {
-    /*
-    if (this.__slots__ && nextProps.name in this.__slots__) {
-    return this.__slots__[nextProps.name][DIRTY_KEY];
-    }
-    */
-    return true;
-  }
-
-  render() {
-    const {
-      name = DEFAULT_SLOT_NAME,
-      mode = 'renderer',
-      slottedProps = {},
-      onSlotted = undefined,
-      children = undefined,
-    } = this.props;
-    return (
-      <SlotContext.Consumer>
-        {(slotManager) => {
-          let slots = slotManager.slots;
-          if (slots[name]) {
-            slots[name][DIRTY_KEY] = false;
-            switch(mode) {
-              case 'consumer':
-                // @ts-ignore => It expects a function as it's child.
-                if (onSlottedProps) {
-                  throw new Error(`Unsupported operation - 'onSlottedProps' cannot be used for consumer slots.`);
-                }
-                return children.call(undefined, Object.values(slots[name]));
-              case 'provider':
-                return Object.entries(slots[name]).reduceRight(
-                  (prev, [key, { component: Component, props }], i, array) => {
-                    let childProps = { ...slottedProps, ...props };
-                    if (onSlotted) {
-                      return onSlotted(Component, childProps, prev, key, i, array);
-                    } else {
-                      return (
-                        <Component key={key} {...childProps}>
-                          {prev}
-                        </Component>
-                      );
-                    }
-                  },
-                  children
-                );
-              case 'renderer':
-              default:
-                return Object.entries(slots[name]).map(
-                  ([key, { component: Component, props }], i, array) => {
-                    let childProps = { ...slottedProps, ...props };
-                    if (onSlotted) {
-                      return onSlotted(Component, childProps, undefined, key, i, array);
-                    } else {
-                      return <Component key={key} {...childProps} />
-                    }
-                  }
-                );
-            }
+export function Slot(props) {
+  const {
+    name = DEFAULT_SLOT_NAME,
+    mode = 'renderer',
+    slottedProps = {},
+    onSlotted = undefined,
+  } = props;
+  const forceUpdate = useForceUpdate();
+  const slotContext = useSlotContext();
+  const slotInfo = resolveSlot(slotContext, name);
+  const { contents } = slotInfo;
+  slotInfo.forceUpdate = forceUpdate;
+  slotInfo.children = props.children;
+  let result = null;
+  switch(mode) {
+    case 'consumer':
+      if (onSlotted) {
+        throw new Error(`Unsupported operation - 'onSlottedProps' cannot be used for consumer slots.`);
+      }
+      if (props.children) {
+        // @ts-ignore => It expects a function as it's child.
+        result = props.children.call(undefined, Object.values(contents));
+        slotInfo.children = result;
+        return result;
+      }
+    case 'provider':
+      result = Object.entries(contents).reduceRight(
+        (prev, [key, { component: Component, props }], i, array) => {
+          let childProps = { ...slottedProps, ...props };
+          if (onSlotted) {
+            return onSlotted(Component, childProps, prev, key, i, array);
           } else {
-            switch (mode) {
-              case 'consumer':
-                // @ts-ignore => It expects a function as it's child.
-                return <>{children.call(undefined, [])}</>;
-              case 'provider':
-              case 'renderer':
-              default:
-                return <>{children || ''}</>;
-            }
+            return (
+              <Component key={key} {...childProps}>
+                {prev}
+              </Component>
+            );
           }
-        }}
-      </SlotContext.Consumer>
-    );
+        },
+        props.children
+      );
+      slotInfo.children = result;
+      return result;
+    case 'renderer':
+    default:
+      result = Object.entries(contents).map(
+        ([key, { component: Component, props }], i, array) => {
+          let childProps = { ...slottedProps, ...props };
+          if (onSlotted) {
+            return onSlotted(Component, childProps, undefined, key, i, array);
+          } else {
+            return <Component key={key} {...childProps} />
+          }
+        }
+      );
+      slotInfo.children = result;
+      return result;
   }
 }

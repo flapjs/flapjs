@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 
 import App from 'src/components/App';
+import { useSlotContext } from 'src/libs/slot';
 import Session from 'src/session/Session';
 
 export const SessionContext = React.createContext(null);
@@ -8,10 +9,11 @@ export const SessionContext = React.createContext(null);
 const SESSION_INSTANCE = new Session();
 
 export function SessionProvider({ children }) {
+    const slotContext = useSlotContext();
     useEffect(() => {
-        SESSION_INSTANCE.startSession(App.INSTANCE);
+        SESSION_INSTANCE.startSession(App.INSTANCE, undefined, slotContext);
         return () => {
-            SESSION_INSTANCE.stopSession(App.INSTANCE);
+            SESSION_INSTANCE.stopSession(App.INSTANCE, slotContext);
         };
     });
     return (

@@ -1,5 +1,5 @@
 export { Slot } from './Slot';
-export { SlotProvider } from './SlotContext';
+export { SlotProvider, useSlotContext } from './SlotContext';
 
 /**
  * @module SlotService

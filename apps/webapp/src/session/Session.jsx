@@ -31,7 +31,7 @@ function getSlottedForModules(app, modules) {
     if ('renderers' in moduleClass) {
       for(let { render, props = {}, on } of moduleClass.renderers) {
         let key = `${moduleClass.moduleId}${i++}`;
-        slotted.push(SlotProvider.createSlotted('app', on, render, {
+        slotted.push(SlotProvider.createSlotted(on, render, {
           ...props,
           ...superProps,
         }, key));
@@ -60,7 +60,7 @@ class Session {
     return this;
   }
 
-  startSession(app, moduleName = null) {
+  startSession(app, moduleName = null, slotContext = null) {
     if (this._module !== null) return;
 
     // Load from storage, url, or default, if not specified...
@@ -110,7 +110,7 @@ class Session {
             moduleInstance,
             appModuleInstance,
           ]);
-          SlotProvider.refresh('app', slotted);
+          SlotProvider.refresh(slotContext, slotted);
 
           // Allows renderers to be created...
           app.forceUpdate();
@@ -133,12 +133,12 @@ class Session {
     }, MODULE_LOAD_DELAY);
   }
 
-  restartSession(app, moduleName = null) {
+  restartSession(app, moduleName = null, slotContext = null) {
     if (this._module === null)
       throw new Error('Cannot restart session that is not yet started');
 
-    this.stopSession(app);
-    this.startSession(app, moduleName);
+    this.stopSession(app, slotContext);
+    this.startSession(app, moduleName, slotContext);
   }
 
   updateSession(app) {
@@ -147,7 +147,7 @@ class Session {
     }
   }
 
-  stopSession(app) {
+  stopSession(app, slotContext) {
     if (this._module === null) return;
 
     LOGGER.info('Stopping session...');
@@ -156,8 +156,8 @@ class Session {
       listener.onSessionStop(this);
     }
 
-    this._module.destroy(this._app);
-    SlotProvider.clearAll('app');
+    this._module.destroy(app);
+    SlotProvider.clearAll(slotContext);
     this._moduleStarted = false;
     this._moduleClass = null;
     this._module = null;
